@@ -11,6 +11,14 @@ body{
   text-align: center;
   font-size: 24px;
 }
+.headerTekst{
+  width: 90%;
+  float: left
+}
+.header img{
+  width: 2%;
+  float: right;
+}
 .innhold{
   margin: 10px 5%;
 }
