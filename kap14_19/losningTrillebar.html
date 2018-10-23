@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSS-animasjon</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+  <link rel="stylesheet" type="text/css" href="losningTrillebar.css">
+</head>
+  <body>
+    <div id="ramme">
+      <img id="hjul" src="hjul.png"></img>
+      <img id="trillebar" src="trillebar.png"></img>
+    </div>
+
+    <div id="info">
+    <h1> Animasjonseksempel: trillebår som forflytter seg med rullende hjul </h1>
+    <p> Elementer som legges inn: en ramme som forflyttes bortover (< div id = "ramme" >), to bilder (trillebår og ekstra hjul).<br>
+    Generell stilsetting: justerer størrelser og avstander slik at hjulet legges oppå trillebårens hjul <br>
+    Animasjonsstilsetting: hjulet ruller i animasjonen animation: roter 10s linear infinite. Rammen forflyttes og vendes i animasjonen animation: flytt 10s linear infinite.<br>
+    @keyframes roter {<br>
+    &nbsp;&nbsp; 0% { transform:rotate(0deg); }<br>
+    &nbsp;&nbsp; 100% { transform:rotate(720deg); }<br>
+    }<br> 
+    @keyframes flytt {<br>
+    &nbsp;&nbsp; 0% { left: 0%;}<br>
+    &nbsp;&nbsp; 45% {transform: rotateY(0deg);}<br>
+    &nbsp;&nbsp; 50% {left: 70%; transform: rotateY(180deg);}<br>
+    &nbsp;&nbsp; 95% {transform: rotateY(180deg);}<br>
+    &nbsp;&nbsp; 100% { left: 0%; transform: rotateY(0deg);}<br>
+    }</p>
+</div>
+
+
+     
+ </div> 
+</body>
+</html>

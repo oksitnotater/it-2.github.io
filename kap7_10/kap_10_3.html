@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"> 
+    <title> Skjemaer med JavaScript </title> 
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <link rel="stylesheet" type="text/css" href="css/skjema.css">
+</head>
+<body>
+	<h1> html-utgangspunkt </h1>
+	<p> Vi har gjort oppgave 10.1 og har et skjema vi kan bearbeide: </p>
+	<div id="skjema">
+		Skriv inn navn: <input type="text" placeholder="navn" id="navn">
+		Skriv inn telefonnr: <input type="number" min="1" placeholder="12345678" id="tlf"> 
+		Antall gjester: <select name="gjester" id="ant">
+			<option value="1"> 1 gjest </option>
+			<option value="2"> 2 gjester </option>
+			<option value="3"> 3 gjester </option>
+			<option value="4"> 4 gjester </option>
+			<option value="5"> 5 gjester </option>
+			<option value="6"> 6 gjester </option>
+		</select>
+		Frokost?<br> 
+		<input type="radio" name="frokost" id="frokostJa" checked> Ja <br> 
+		<input type="radio" name="frokost" id="frokostNei"> Nei<br>
+		Ekstraaktiviteter? <br>
+		<input type="checkbox" name="aktivitet" id="aktBo"> Dagspass Bø Sommarland (300 kr)<br>
+		<input type="checkbox" name="aktivitet" id="aktHoyt"> Dagspass Høyt og Lavt klatrepark (250 kr)<br>
+		<input type="checkbox" name="aktivitet" id="aktFrukt"> Omvisning på fruktgård (200 kr)<br>
+		<input type="checkbox" name="aktivitet" id="aktTelemark"> Dagstur på Telemarkskanalen (800 kr) <br>
+		<button id="send">Registrer</button>
+	</div>
+	<div id="kvittering"></div>
+
+	<h1> Vi vil vite hva brukeren har svart! </h1>
+	<p> I skjemaet over har jeg gitt inputfeltene hver sin id også. Dette er med tanke på å kunne hente ut svarene. Disse svarene kommer jeg til å skrive ut til et tomt div-element jeg har lagt under skjemaet. Jeg ønsker ikke å hente ut svarene før knappen trykkes, og legger derfor til en lytter:<br>
+	&nbsp;&nbsp; var sendEl = document.querySelector("#send");<br>
+	&nbsp;&nbsp;  sendEl.addEventListener("click", sendSvar);<br><br>
+	Jeg henter også ut kvitteringsdiven som jeg skal skrive til:<br>
+	&nbsp;&nbsp; var kvitteringEl = document.querySelector("#kvittering"); <br><br>
+	I funksjonen sendSvar vil jeg finne ut hva som er registrert i feltene og skriver ut kvittering: <br>
+	&nbsp;&nbsp; function sendSvar(){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; // henter inn svar<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var navnEl = document.querySelector("#navn");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var tlfEl = document.querySelector("#tlf");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var gjesterEl = document.querySelector("#ant");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var frokostJaEl = document.querySelector("#frokostJa");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var frokostNeiEl = document.querySelector("#frokostNei");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var aktBoEl = document.querySelector("#aktBo");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var aktHoytEl = document.querySelector("#aktHoyt");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var aktFruktEl = document.querySelector("#aktFrukt");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var aktTelemarkEl = document.querySelector("#aktTelemark");<br><br>
+	&nbsp;&nbsp;&nbsp;&nbsp;  // finner ut om gjestene skal ha frokost<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;  var frokost ="";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; if(frokostJaEl.checked){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frokost = "skal ha frokost";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; else if(frokostNeiEl.checked){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; frokost = "skal ikke ha frokost";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; // finner ut hvilke aktiviteter<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var aktBo = "";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; if(aktBoEl.checked){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aktBo = "Bø Sommarland < br >";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var aktHoyt = "";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; if(aktHoytEl.checked){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aktHoyt = "Høyt og Lavt klatrepark< br >";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var aktFrukt = "";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; if(aktFruktEl.checked){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aktFrukt = "Omvisning på fruktgård< br >";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var aktTelemark = "";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; if(aktTelemarkEl.checked){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; aktTelemark = "Dagstur på Telemarkskanalen< br >";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var aktIngen = "";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; if(!(aktBoEl.checked || aktHoytEl.checked || aktFruktEl.checked || aktTelemarkEl.checked)){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var aktIngen = "Ingen aktiviteter < br >";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; fyller tom div med kvittering<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; kvitteringEl.innerHTML = "< p > Navnet er " + navnEl.value + " og du er registrert med telefonnr " + tlfEl.value + ". Dere er " + gjesterEl.value + " gjester, og dere " + frokost + ". Av aktiviteter har dere valgt: < br >" + aktBo + aktHoyt + aktFrukt + aktTelemark + aktIngen + "< /p >";<br>
+	&nbsp;&nbsp; }
+	</p>
+
+	<script>
+		var sendEl = document.querySelector("#send");
+		sendEl.addEventListener("click", sendSvar);
+		var kvitteringEl = document.querySelector("#kvittering");
+
+		function sendSvar(){
+			// henter inn svar
+			var navnEl = document.querySelector("#navn");
+			var tlfEl = document.querySelector("#tlf");
+			var gjesterEl = document.querySelector("#ant");
+			var frokostJaEl = document.querySelector("#frokostJa");
+			var frokostNeiEl = document.querySelector("#frokostNei");
+			var aktBoEl = document.querySelector("#aktBo");
+			var aktHoytEl = document.querySelector("#aktHoyt");
+			var aktFruktEl = document.querySelector("#aktFrukt");
+			var aktTelemarkEl = document.querySelector("#aktTelemark");
+
+			// finner ut om gjestene skal ha frokost
+			var frokost ="";
+			if(frokostJaEl.checked){
+				frokost = "skal ha frokost";
+			}
+			else if(frokostNeiEl.checked){
+				frokost = "skal ikke ha frokost";
+			}
+
+			// finner ut hvilke aktiviteter
+			var aktBo = "";
+			if(aktBoEl.checked){
+				aktBo = "Bø Sommarland <br>";
+			}
+			var aktHoyt = "";
+			if(aktHoytEl.checked){
+				aktHoyt = "Høyt og Lavt klatrepark<br>";
+			}
+			var aktFrukt = "";
+			if(aktFruktEl.checked){
+				aktFrukt = "Omvisning på fruktgård<br>";
+			}
+			var aktTelemark = "";
+			if(aktTelemarkEl.checked){
+				aktTelemark = "Dagstur på Telemarkskanalen<br>";
+			}
+			var aktIngen = "";
+			if(!(aktBoEl.checked || aktHoytEl.checked || aktFruktEl.checked || aktTelemarkEl.checked)){
+				var aktIngen = "Ingen aktiviteter <br>";
+			}
+
+			// fyller tom div med kvittering
+			kvitteringEl.innerHTML = "<p> Navnet er " + navnEl.value + " og du er registrert med telefonnr " + tlfEl.value + ". Dere er " + gjesterEl.value + " gjester, og dere " + frokost + ". Av aktiviteter har dere valgt: <br>" + aktBo + aktHoyt + aktFrukt + aktTelemark + aktIngen + "</p>";
+		}
+
+	</script>
+</body>
+</html>

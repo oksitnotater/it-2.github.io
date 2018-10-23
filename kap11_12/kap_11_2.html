@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Løkke gjennom arrays </title>
+	<link rel="stylesheet" type="text/css" href="css/undervisning.css">
+</head>
+<body>
+	<h1> Å løkke gjennom arrays </h1>
+	<p> En array har en lengde som er lik antall verdier lagret i arrayen: <br>
+		&nbsp;&nbsp; arrayen ['a', 'b', 'c', 'd'] har lengde 4.<br>
+		&nbsp;&nbsp; arrayen [123456] har lengde 1. <br>
+		Dette kan vi bruke til å skrive ut alle verdiene i en løkke:<br>
+		I løkken <br>
+		&nbsp;&nbsp; for (var i = plassen første element; i <= plassen til siste element; i++){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; // kode<br>
+		&nbsp;&nbsp; }<br>
+		Vil plassen til første element være 0 og plassen til siste element være lengde-1. Løkken blir dermed <br>
+		&nbsp;&nbsp; for (var i = 0; i < arrayen.length; i++){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; // kode<br>
+		&nbsp;&nbsp; }<br><br>
+		Vi kan for eksempel bruke dette til å skrive ut alle elementene i en array (ikke så spennende):<br>
+		&nbsp;&nbsp; var tallArray = [1, 3, 5, 8, 10, 2, 44, 0];<br>
+		&nbsp;&nbsp; for(var i = 0; i < tallArray.length; i++){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(tallArray[i]);<br>
+		&nbsp;&nbsp; }<br><br>
+
+		Eller vi kan bruke det til å finne det største elementet i en array (litt mer spennende):<br>
+		&nbsp;&nbsp; var storst = tallArray[0];<br>
+		&nbsp;&nbsp; for(var i = 0; i < tallArray.length; i++){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; if (tallArray[i] > storst){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; storst = tallArray[i];<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; console.log(storst, tallArray.indexOf(storst));<br><br>
+
+		Koden for å finne største verdi i en array kan også utvides til en funksjon som tar inn arrayen og finner det største tallet:<br>
+		&nbsp;&nbsp; function finnStorst(tall){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var storst = tall[0];<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; for(var i = 0; i < tall.length; i++){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (tall[i] > storst){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; storst = tall[i];<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(storst, tall.indexOf(storst));<br>
+		&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; var tallArray = [1, 2, 3, 7, 10, 2];<br>
+		&nbsp;&nbsp; finnStorst(tallArray) // evt finnStorst([1, 2, 3, 7, 10, 2])</p>
+
+		<script>
+			var tallArray = [1, 3, 5, 8, 10, 2, 44, 0];
+			// skriver ut alle elementer
+			for(var i = 0; i < tallArray.length; i++){
+				console.log(tallArray[i]);
+			}
+
+			// finner det største elementet og plassen deres
+			var storst = tallArray[0];
+			for(var i = 0; i < tallArray.length; i++){
+				if (tallArray[i] > storst){
+					storst = tallArray[i];
+				}
+			}
+			console.log(storst, tallArray.indexOf(storst));
+
+			// funksjon som finner det største elementet i en array
+			function finnStorst(tall){
+				var storst = tall[0];
+				for(var i = 0; i < tall.length; i++){
+					if (tall[i] > storst){
+						storst = tall[i];
+					}
+				}
+				console.log(storst, tall.indexOf(storst));
+			}
+			var tallArray = [1, 2, 3, 7, 10, 2];
+			finnStorst(tallArray) // evt finnStorst([1, 2, 3, 7, 10, 2])
+		</script>
+
+		<h1> Oppgaver </h1>
+		<p> Oppgavene blir gjennomgått i timen på mandag. <br>
+		1. Lag en funksjon som finner det minste tallet i en array. <br>
+		2. Lag en funksjon som finner summen av tallene i en array. <br>
+		3. Lag en funksjon som finner gjennomsnittet av tallene i en array.</p>
+
+</body>
+</html>

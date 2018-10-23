@@ -1,0 +1,1 @@
+I løsningsforslaget er css/js/html i samme fil. Dette fordi oppgavene ikke er veldig omfattende. Det betyr likevel at  dere skal ha separat js/css/html på heldagsprøven!

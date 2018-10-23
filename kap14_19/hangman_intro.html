@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hangman</title>
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1> Hva går oppgaven ut på? </h1>
+    <p> Dere skal lage en nettside der brukeren kan spille Hangman. Spillet skal denne gangen bestå av et canvas der figuren tegnes fortløpende mens brukeren gjetter bokstaver. Oppgaven er også beskrevet i kapittel 15. <br>
+
+    Nettsiden må inneholde følgende elementer: </p>
+    <ul>
+      <li> Et felt med spilleregler til brukeren </li>
+      <li> Et felt der brukeren kan få beskjed om antall sjanser igjen </li>
+      <li> Et felt der brukeren ser de korrekte bokstavene som er gjettet </li>
+      <li> Et felt der brukeren ser de gale bokstavene som er gjettet </li>
+      <li> Et canvas der galgen tegnes </li>
+      <li> Et felt der brukeren kan skrive inn bokstaver som gjettes og en knapp som "sender bokstav" </li>
+    </ul>
+
+    <p> Scriptet bør inneholde følgende: </p>
+    <ul>
+      <li> En variabel (array) for løsningsordet </li>
+      <li> En variabel (array) for bokstaver brukeren har gjettet </li>
+      <li> En variabel (array) for riktige bokstaver brukeren har gjettet </li>
+      <li> En variabel som teller antall sjanser brukeren har brukt </li>
+      <li> En funksjon som kjøres når brukeren klikker på knappen, der følgende skjer: </li>
+    </ul>
+    <ol>
+      <li> Finn ut hvilken bokstav brukeren har skrevet inn </li>
+      <li> Sjekk at bokstaven ikke er skrevet inn tidligere </li>
+      <li> Sjekk om bokstaven finnes i løsningsordet. Skriv den i så fall inn på rett plass i arrayen med korrekte bokstaver </li>
+      <li> Hvis bokstaven ikke finnes i løsningsordet: trekk fra en sjanse og tegn en ny del av figuren </li>
+      <li> Sjekk om alle bokstaver i løsningsordet er gjettet og gi i så fall beskjed om at brukeren har vunnet + fjern muligheten til å gjette flere bokstaver </li>
+      <li> Sjekk om alle sjanser er brukt opp og gi i så fall beskjed om at brukeren har tapt + fjern muligheten til å gjette flere bokstaver </li>
+    </ol>
+    <p> Tips: lag en funksjon for å tegne galgen og en funksjon for å tegne hver kroppsdel, så kan du tegne korrekt kroppsdel avhengig av antall sjanser igjen. </p>
+
+    <h1> Oppgaver </h1>
+    <p> I alle oppgavene: forsøk å bruke boka så lite som mulig. Du kan selv velge om brukeren skal få mange sjanser (tegne galge + mann) eller få sjanser (galge tegnet fra før). <br>
+        1. Skriv HTML-kode og legg inn enkel stilsetting <br>
+        2. Skriv pseudokode for scriptet <br>
+        3. Skriv kode <br>
+        4. Forslag til utvidelser: <br>
+        &nbsp;&nbsp; Legg inn flere løsningsord av ulik lengde og velg et tilfeldig hver gang siden lastes <br>
+        &nbsp;&nbsp; Kontrollere at brukeren kun skriver inn én bokstav (og ingen andre tegn) i tekstfeltet <br>
+        &nbsp;&nbsp; Vis grafisk (f.eks. ved et visst antall hjerter / hjerte av en viss farge) hvor mange sjanser brukeren har igjen <br>
+        &nbsp;&nbsp; Lag et forgrunnsvindu med en ferdigtegnet galge som vises og en bakgrunnsmusikk som spilles før brukeren får starte spillet. <br><br>
+        Dere får timen i dag + torsdag til å jobbe med oppgaven.</p>
+
+    
+  </body>
+</html>

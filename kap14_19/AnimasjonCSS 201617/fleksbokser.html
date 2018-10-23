@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ANIMASJONER I CSS</title>
+    <link rel="stylesheet" type="text/css" href="160117_1.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1> TIMEN ONSDAG 18. JANUAR </h1>
+    <p> Gjennomgang av flexbokser, arbeidsoppgaver, elevevaluering 1340. </p>
+    <h1> Flexboxer </h1>
+    <p> Hva? <br>
+        En måte å ha full kontroll på hvor på siden elementene legges  <br>
+        Å kunne plassere elementene på en nettside mer effektivt enn ved å kun bruke display, margin, padding osv<br>
+        Å kunne bestemme størrelse, avstand osv også når størrelsen på elementet er ukjent </p>
+    <p> Hvordan? <br>
+        Tar utgangspunkt i < div > <br>
+        Lager en ramme (container): ”hovedboksen” rundt de elementene som skal plasseres. Vises med rosa farge på figuren <br>
+        elementene (items) legges inne i rammen: de elementene som skal plasseres. Vises med gul farge på figuren</p>
+    <img src="ramme.jpg">
+    <p> Metode for flexbox: <br>
+    1. Gi både rammen og de ulike elementene klasser eller ider <br><br>
+    
+    2. For rammen kan følgende egenskaper defineres:<br>
+        a.  <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; display: flex; <br>
+        her er det kun verdien flex som er interessant - forteller at innholdet i rammen er flex-elementer <br><br>
+        b.  <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; flex-direction: row; <br>
+        her kan også row-reverse, column og column-reverse brukes </p>
+        <div id="boks">
+            <img src="column.jpg" height="150px">
+            <img src="columnreverse.jpg" height="150px">
+            <img src="row.jpg" height="150px">
+            <img src="rowreverse.jpg" height="150px">
+        </div>
+        <p> 
+        c.  <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; flex-wrap: nowrap; <br>
+        her kan også wrap og wrap-reverse brukes - bestemmer om elementene skal flyttes til to linjer dersom det ikke er plass på en linje <br><br>
+        d.  flex-direction og flex-wrap kan også bestemmes i samme linje ved å bruke <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; flex-flow: row nowrap; <br><br>
+        e.  <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; justify-content: flex-start; <br>
+        her kan også flex-end, center, space-between og space around brukes - bestemmer hvor på siden elementene skal plasseres i x-retning <br><br>
+        f.  <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; align-items: flex-start; <br>
+        her kan også flex-end, center, baseline og stretch brukes - bestemmer hvor på siden elementene skal plasseres i y-retning <br><br>
+        
+    3.  For elementene kan følgende egenskaper defineres: <br>
+        a.  <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; order: 1; og andre tall <br>
+        bestemmer hvilket element som har førsteprioritet for plassering dersom de ikke ligger i riktig rekkefølge i html-koden <br><br>
+        b. <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; flex-grow: 0; og andre tall <br>
+        bestemmer om elementet skal være større relativt til de andre <br><br>
+        c.  <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; flex-shrink: 1; og andre tall <br>
+        bestemmer om elementet skal være mindre relativt til de andre <br><br>
+        d.  <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; flex-basis: auto; <br>
+        kan også bruke tall i % eller px, eller max-content, min-content med flere - bestemmer størrelse som utgangspunkt for grow og shrink<br><br>
+        e.  flex-grow, flex-shrink og flex-basis kan også bestemmes i samme linje ved å bruke <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; flex; 0 1 auto; <br><br>
+        f.  <br>
+        &nbsp;&nbsp;&nbsp;&nbsp; align-self: auto; <br> 
+        kan også bruke flex-start, flex-end, center - for å plassere ett enkelt element annerledes enn det som er satt som regler for rammen<br><br>
+
+    <h2> Oppgaver </h2>
+    <p> Lag en nettside som inneholder en meny med lenke til fem (fiktive) sider, et bilde og en tabell. <br>
+    Bruk flexbokser til å styre disse sidene slik at de får vannrett meny med bilde og tabell ved siden av hverandre og slik at de får loddrett meny med tabell og bilde under hverandre: </p>
+    <img src="hor.png" height="150px">
+    <img src="vert.png" height="150px">
+    <p> Tips: <br>
+        Start med å legge inn div-boksene, tegne gjerne figur over hvor dere trenger bokser <br>
+        Så setter dere innhold i lenkene <br>
+        Organiser lenkene slik at de går fra punktliste til bokser enten horisontalt eller vertikalt, dette har dere gjort før <br>
+        Legg inn innhold i de ulike boksene <br>
+        Fikse flex-strukturen, start med rammen </p>
+        <br><br><br><br><br><br><br>
+  </body>
+</html>

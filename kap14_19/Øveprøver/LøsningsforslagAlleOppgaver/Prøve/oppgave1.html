@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>LØSNINGSFORSLAG</title>
+    <link rel="stylesheet" href="prove.css">
+  </head>
+  <body>
+    <div class="innpakning">
+      <div id="farge"></div><br>
+      <div id="roter"></div><br>
+      <div id="bildetekst">
+        <img src="katta.jpg"><br>
+        <p id="tekst">
+          Katta er en skole med tradisjoner og de kuleste elevene og lærerne i Oslo!
+        </p>
+      </div>
+    </div>
+    <script type="text/javascript">
+      var roterEl = document.querySelector("#roter");
+      roterEl.addEventListener("click", roter);
+      function roter(){
+        roterEl.classList.add("roter");
+      }
+
+
+      //Her ville jeg funnet ut hvorfor opacitien ikke fungerte i bildet, og så når man hoverer så blir bildet gjennomsiktig og teksten synes. og så ville jeg funnet ut hvorfor bildet ikke var øverst...
+    </script>
+    </div>
+  </body>
+</html>

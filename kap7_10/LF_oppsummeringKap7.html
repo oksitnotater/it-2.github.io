@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Løsningsforslag </title>
+    <style>
+      .header{
+        width: 80%;
+        margin-left: 10%;
+        min-height: 100px;
+        background-color: #f0f8ff;
+      }
+      .main{
+        width: 100%;
+        min-height: 300px;
+        background-color: #d8dfe5;
+      }
+      table, td{
+        border: 1px solid black;
+        border-collapse: collapse;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- oppgave 2 -->
+    <div class="header"></div>
+    <div class="main"></div>
+    <script>
+    /* oppgave 1
+    a) En tag i html:  et element som angis mellom < og >. Et attributt i html: tilleggsinformasjon om den aktuelle taggen
+    b) Alle metodene henter inn html-elementer, men antall elementer er ulikt:
+    document.getElementById: henter inn et element med en gitt id. Dersom flere elementer har samme id vil den første hentes inn
+    document.getElementsByClassName: henter inn alle elementer med en gitt klasse. Disse lagres i en array (kap 11)
+    document.getElementsByTagName: henter inn alle elementer av en gitt type. Disse lagres i en array
+    document.querySelector: henter inn et element av en gitt type, id eller klasse (avhengig av hva som skrives i parentesen). Dersom det er flere like elementer vil den første hentes inn
+    document.querySelectorAll: henter inn alle elementer av en gitt type(, id) eller klasse. Disse lagres i en array
+    c) Når vi logger et element til konsollen får vi all informasjon om elementet: hvilken tag, hvilke attributter og hva slags innerHTML.
+    Når vi skriver et element til sidne får vi kun vite at det er et html-element og ingen annen informasjon.
+    d) innerHTML er teksten som står mellom starttaggen og sluttaggen for det aktuelle elementet
+    eks: innerHTML til p-elementet <p>Tekst</p> er Tekst.
+    eks: innerHTML til ol-elementet <ol><li>punkt1</li><li>punkt2</li></ol> er <li>punkt1</li><li>punkt2</li>
+    e) body+="<p> Et tekstelement</p>"; legger til tekstelementet på nettsiden
+    body="<p> Et tekstelement</p>"; overskriver alt annet innhold på nettsiden med tekstelementet.
+    f) Når vi oppretter et element med createElement får det datatypen object og kan bearbeides videre med setAttribute, innerHTML osv.
+    Når vi oppretter et element med "<h1>Overskrift</h1>" får det datatypen string og kan ikke endres etterpå.
+    g) Vi kan legge til stilsetting ved
+    element.style.egenskap="verdi";
+    element.setAttribute("attributt", "verdi"); (for attributter som bredde og høyde eller klasse og id)
+    element.classList.add("klassenavn");
+    Stilsettingen for de akutelle klassene og idene må da eksistere i stilarket for nettsiden. */
+
+    /* oppgave 2 */
+    //b
+    var headerEl = document.querySelector(".header");
+    var mainEl = document.querySelector(".main");
+
+    //c
+    var overskriftEl = document.createElement("h1");
+    overskriftEl.innerHTML = "Headertekst";
+    headerEl.appendChild(overskriftEl);
+    // evt for å sentrere teksten
+    overskriftEl.style.textAlign="center";
+
+    //d
+    var bildeEl = document.createElement("img");
+    bildeEl.src="https://static1.squarespace.com/static/56a0d018d8af10528bd54df1/t/5ae79f991ae6cf12927436ab/1525129151687/urter.jpg"; // her kan også setAttribute brukes, men src har en snarvei
+    bildeEl.style.width="80%";// her kan også setAttribute brukes
+    bildeEl.style.marginLeft="10%";
+    mainEl.appendChild(bildeEl);
+
+    //e
+    headerEl.style.backgroundColor = "#d8e5e5";
+
+    /* Oppgave 3 */
+    // henter først inn body
+    var bodyEl = document.querySelector("body");
+
+    //b
+    var tekstEl = document.createElement("p");
+    tekstEl.innerHTML = "dette er et tekstelement";
+    bodyEl.appendChild(tekstEl);
+
+    //c
+    var olEl = document.createElement("ol");
+    for(var i = 1; i <= 10; i++){
+      var liEl = document.createElement("li");
+      liEl.innerHTML = "Listepunkt nr " + i;
+      olEl.appendChild(liEl);
+    }
+    bodyEl.appendChild(olEl);
+
+    //d
+    //løsning 1: "rett frem"
+    var ulEl = document.createElement("ul");
+    for(var i = 1; i <= 10; i++){
+      var liEl = document.createElement("li");
+      liEl.innerHTML = "Listepunkt nr " + i;
+      var rod = Math.floor(Math.random()*256);
+      var gronn = Math.floor(Math.random()*256);
+      var bla = Math.floor(Math.random()*256);
+      liEl.style.color="rgb("+rod+","+gronn+","+bla+")";
+      ulEl.appendChild(liEl);
+    }
+    bodyEl.appendChild(ulEl);
+
+    //løsning 2: med en tilfeldig farge-funksjon
+    function tilfeldigFarge(){
+      var rod = Math.floor(Math.random()*256);
+      var gronn = Math.floor(Math.random()*256);
+      var bla = Math.floor(Math.random()*256);
+      return("rgb("+rod+","+gronn+","+bla+")");
+    }
+    var ulEl = document.createElement("ul");
+    for(var i = 1; i <= 10; i++){
+      var liEl = document.createElement("li");
+      liEl.innerHTML = "Listepunkt nr " + i;
+      liEl.style.color=tilfeldigFarge();
+      ulEl.appendChild(liEl);
+    }
+    bodyEl.appendChild(ulEl);
+
+    //e
+    var tabellEl = document.createElement("table");
+    for(var i = 1; i <= 10; i++){
+      var radEl = document.createElement("tr");
+      for(var j = 1; j <= 10; j++){
+        var celleEl = document.createElement("td");
+        celleEl.innerHTML = i*j;
+        radEl.appendChild(celleEl);
+      }
+      tabellEl.appendChild(radEl);
+    }
+    bodyEl.appendChild(tabellEl);
+
+    //f
+    function gangeTabell(tall){
+      var tabellEl = document.createElement("table");
+      for(var i = 1; i <= tall; i++){
+        var radEl = document.createElement("tr");
+        for(var j = 1; j <= tall; j++){
+          var celleEl = document.createElement("td");
+          celleEl.innerHTML = i*j;
+          radEl.appendChild(celleEl);
+        }
+        tabellEl.appendChild(radEl);
+      }
+      bodyEl.appendChild(tabellEl);
+    }
+    gangeTabell(20);
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,22 @@
+body{
+	background-color: #EBF0F1; /* samme farge som bildene */
+	color: #1C3C50; /*samme farge som bildene */
+	margin-left: 20px;
+}
+h3{
+	font-size: 150%;
+}
+p{
+	font-size: 150%;
+}
+#tittel{
+	color: #FF4B39; /*samme farge som bildene*/
+	text-align: center; 
+}
+.bilder img{
+	width: 80%;
+	margin-left: 10%;
+}	 
+#stein, #saks, #papir {
+cursor: pointer; /*for at det skal være mer innbydende å klikke*/
+}

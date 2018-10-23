@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+   	<meta charset="UTF-8">
+   	<title> Hendelser </title>
+   	<link rel="stylesheet" type="text/css" href="undervisning.css">
+</head>
+<body>
+	<h1> Kan vi ha ulike lyttere og hendelsesobjekter? </h1>
+	<p> I 8.1 var det alltid samme objekt vi klikket på og som endret: vi klikker på teksten og endrer samme tekst. Det går også an å knytte hendelsen til ett objekt og resutlatet til et annet. La oss illustrere med et eksempel: Monty Hall <br>
+	I Monty Hall får spilleren presentert tre dører. Bak to av dørene står det en geit, bak den siste døra står det en bil. Spilleren vet ikke hvilken dør som inneholder bilen. <br>
+	Spillet foregår slik:</p>
+	<ol>
+		<li> Spilleren velger seg en dør. Døren åpnes ikke.</li>
+		<li> Programlederen åpner en av de andre dørene, bak denne døra kommer det frem en geit </li>
+		<li> Spilleren får valget om å velge dør. Lønner det seg? </li>
+		<li> Når spilleren har bestemt seg, åpnes den valgte døra </li>
+	</ol>
+	<p> Vi opererer først med en veldig forenklet versjon, der vi kun undersøker hvilken dør som åpnes.<br>
+	Her er altså lytteren knyttet til den døra spilleren velger (trykker på). Selve hendelsen skjer derimot i den døra som åpnes. For at dette skal fungere, må vi vite hvilken dør som er valgt. Dette gjør vi ved å angi argumentet e i funksjonen som sjekker dør, der e representerer hendelsen (event), i dette tilfellet hvilket element som er valgt:<br>
+	&nbsp;&nbsp; function sjekkDor(e){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; console.log(e.target) // logger html-koden for bildet som er valgt  <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; console.log(e.type) // logger hendelsen (click)<br>
+	&nbsp;&nbsp; } </p>
+
+	<h1> Kort "pseudokode" for oppgaven </h1>
+	<p> Oppgave 8.5 til 8.8 s. 131 dekker også dette <br><br>
+		Nettsiden inneholder tre dører som kan velges<br>
+		Hent inn de tre dørene som variabler i script og legg til lyttere<br>
+		Når en dør velges, skal funksjonen sjekkDor kjøres. Her vil vi finne id'en til døra <br>
+		Til slutt skal vi logge id'en til døra som åpnes. <br><br>
+		Dersom du vil prøve deg videre:<br>
+		1. La bilen ligge bak en tilfeldig dør (bruk tilfeldige tall mellom 0 og 2 (0 = rød, 1 = grønn, 2 = blå)) og geiter bak de to andre. Å åpne døra vil si å bytte ut bildet av en dør med enten geita eller bilen. Dersom bildet er en geit, skal du skrive til skjerm "Gratulerer, du vant en geit!" og dersom bildet er en bil, skal du skrive til skjerm "Gratulerer, du vant en bil!".
+		<br><br>
+		2. Når brukeren velger en dør, skal denne ikke åpnes, men du skal åpne en av dørene med geit bak. Brukeren skal deretter få velge dør på ny. Åpne denne døra ved å bytte ut bildet med enten geit eller bil, avhengig av hva som ligger bak døra </p>
+    <img src="media/oppgaver8_2.png" width="60%">
+    <img src="media/oppgaver8_2b.png" width="60%">
+
+</body>
+</html>

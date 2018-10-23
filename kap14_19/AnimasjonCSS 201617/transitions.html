@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ANIMASJONER I CSS</title>
+    <link rel="stylesheet" type="text/css" href="200117_1.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Overganger og animasjoner med CSS </h1>
+  	<h2> Timer til kapittel 17: </h2>
+  	<p> Fredag: &nbsp;&nbsp; Hvor mye kan vi få til med css? <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Transition-egenskapen <br>
+  		Mandag:&nbsp;&nbsp;Kombinasjon av transitions og script <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Animation-egenskapen <br>
+  		Onsdag: &nbsp;&nbsp;Ingen time, men bruk tid på transitions-/animationsoppgave fra mandag </p>
+
+  	<h2> Hvilke muligheter gir CSS oss? </h2>
+  	<p>Egenskapene knyttet til transitions og animations gir oss mulighet til å bytte gradvis fra én CSS-verdi til en annen <br>
+  		Transitions: ingen repetisjoner av det som skjer, enkle overganger <br>
+  		Animations: brukes når vi vil repetere endringene eller når overgangene er stegvise <br>
+  		Vi må i all hovesak bruke JavaScript til å hendelsesstyre når dette skal skje </p> 
+
+  	<h2> Transitions </h2>
+  	<p> Vi skal endre egenskapene til et element etter en gitt tid <br>
+  		Lag en html-kode med 2 div-elementer: <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; < div id="byttForm" > < /div > <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; < div id="byttFarge" > < /div > <br>
+  		I en css-fil bestemmer vi først det orginale utseendet for de to: <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; #byttForm{<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 200px; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 200px; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: darkgreen; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+  		<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; #byttFarge{<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 200px; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 200px; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: darkblue; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+  	<div id="byttForm"></div>
+  	<br>
+  	<div id="byttFarge"></div>
+  	<br>
+
+  	<p> For det første elementet skal vi endre kantlinje, for det andre skal vi endre farge: <br>
+  		Vi legger inn følgende i css-koden: <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; #byttForm{<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition-property: border-radius; // bestemmer hvilken egenskap som skal endres <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition-delay: 2s; // bestemmer hvor lang tid det skal ta før animasjonen starter <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition-duration: 5s; // bestemmer hvor lang tid animasjonen skal ta <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;} <br><br>
+  		I tillegg må vi bestemme når animasjonen skal skje: for å holde oss til css i dag velger vi at det skjer når vi hovrer over div-elementet: <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; #byttForm:hover{<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 70%<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;} <br><br>
+  		Resultatet ser vi her:</p>
+  		<div id="byttForm"></div>
+
+  		<p>På samme måte endrer vi farge på den andre boksen: <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;#byttFarge{<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition-property: background.color; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition-delay: 5s; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition-duration: 10s; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;} <br><br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; #byttFarge:hover{<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: yellow<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;} <br><br>
+  		Resultatet ser vi her:</p>
+  		<div id="byttFarge"></div>
+
+  		<h2> Flere muligheter: timing </h2>
+  		<p> Ved å bruke egenskapen timing, kan vi velge om hele overgangen skal skje i samme tempo eller om noen deler skal gå raskere eller saktere. Ulike timinger finnes på siden <a href="http://easings.net"> easings</a>: viser animasjon sfa tid som har gått. <p>
+  		For figuren som skifter form kan vi for eksempel bestemme at overgangen skal starte langsomt, gå litt tilbake og ende raskt ved å legge inn <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;#byttForm2{<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; /*samme som for #byttForm*/ <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -webkit-transition: all 5s cubic-bezier(.03,.45,1,0)); <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; transition: all 5s cubic-bezier(.03,.45,1,0)); 	<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;} <br><br>
+  		<p>Forskjellen ser vi her: </p>
+  		<div id="byttForm"></div> <br> <div id="byttForm2"></div>
+  	        <br><br><br><br><br><br><br>
+  </body>
+</html>

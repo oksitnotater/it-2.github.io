@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ANIMASJONER I CSS</title>
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <link rel="stylesheet" type="text/css" href="posisjonering_1.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1> Informasjon om perioden </h1>
+    <p> Dekker kapittel 16, 17 og 18 i Achehoug-boka <br>
+        Vurdering: Prøve 15. februar, innlevering 16. februar. Dere får en samlet vurdering der innleveringen vil vippe opp eller ned. Innleveringen er en større oppgave enn den dere får på prøven, men er en god øvelse til prøven. <br>
+        Opplegg for timene: Jeg fortsetter med notater i .html, legger ut eksempelkode som filer i tillegg. Mer beskrivende navn enn kun dato. </p>
+
+    <h1> TIMEN MANDAG 16. JANUAR </h1>
+    <p> Posisjonering og flexboxer. Repetisjon fra IT-1, men kanskje glemt? </p>
+
+    <h1> Position </h1>
+    <p> Hva? <br>
+        Strukturerer posisjonen til et element på en nettside </p>
+    <p> Hvordan? <br>
+        Bruker egenskapen position, som kan ha ulike verdier </p>
+    <p> Minner om at alle elementer enten har display: inline (ved siden av, f.eks. < img > og < span >) eller block (under, f.eks < li > og < div >)</p>
+    <table>
+        <tr>
+            <th> verdi </th> <th> beskrivelse </th> 
+        </tr>
+        <tr>
+            <td> static </td> <td> default verdi, elementet følger rekkefølgen det legges i koden</td> 
+        </tr>
+        <tr>
+            <td> absolute </td> <td> elementet ligger inne i et annet element, posisjonen justeres i forhold til dette </td> 
+        </tr>
+        <tr>
+            <td> relative </td> <td> posisjonen sammenliknes med der det normalt ville vært plassert </td>
+        </tr>
+        <tr>
+            <td> fixed </td> <td> posisjonen bestemmes relativt til vinduet </td>
+         </tr>
+    </table>
+    <h2> Viser med div-bokser </h2>
+   <div id="ramme">
+        <div id="stat"> <p> stat </p> </div>
+        <div id="abs"> <p> absolute </p> </div>
+        <div id="rel"> <p> relative </p> </div>
+        <div id="fix"> <p> fixed </p></div>
+    </div>
+    <p> Her har de ulike:  <br>
+    #ramme{ <br>
+    width: 500px; <br>
+    height: 300px; <br>
+    background-color: #F16699; <br>
+    margin: 20px auto; <br>
+    position: relative; <br>
+    } <br>
+
+    #stat{ <br>
+    position: static; <br>
+    } <br>
+
+    #abs{ <br>
+    position: absolute; <br>
+    left: 70px; <br>
+    top: 80px; <br>
+    } <br>
+
+    #rel{ <br>
+    position: relative; <br>
+    top: 100px; <br>
+    left: 50px; <br>
+    } <br>
+
+    #fix{ <br>
+    position: fixed; <br>
+    left: 0px; <br>
+    top: 150px; <br>
+    border: 1px solid black; <br>
+    } <br> </p>
+    
+    <h2> Oppgaver: </h2>
+    <p> Lag et .html-side med følgende elementer: <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < div > <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; < h1 > Overskrift < /h1 > <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; < img > Sett selv inn et bilde < /img > <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; < table > Sett selv inn en tabell < /table > <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; < ul > Sett selv inn en liste < /ul > <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < /div> <br> <br>
+    Bestem plasseringene til elementene med de ulike egenskapene vist over, legg merke til hva som skjer<br>
+    Hva skjer hvis du øker bredden på innpakningsdiven?</p>
+
+    <h2> Å bruke css og js til å la et element følge musepekeren </h2>
+    <p> I html-koden: <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;< div id="folgerPil" > HEI < /div ></p>
+
+    <div id="folgerMus"> Følger musepeker! </div> </p>
+    
+    <p> I css-koden: <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; #folgerPil{ <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid red; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 150 px; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 50 px; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 50%;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: fixed;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; left: 0;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; top: 0;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+    <p> I js-koden <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < script > <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  var bodyEl = document.querySelector("body"); (henter element) <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  var mouseEl = document.querySelector("#folgerMus"); (henter element)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bodyEl.addEventListener ("mousemove", flyttSirkel); (legger til lytter)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function flyttSirkel(e) { (hendelsesstyrt funksjon)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mouseEl.style.left = (e.clientX - 25) + "px"; (x-posisjon)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mouseEl.style.top = (e.clientY - 25) + "px"; (y-posisjon)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; mouseEl.style.backgroundColor = " hsl(" + e.clientX + "," + e.clientY + "% , 50%) "; (farge er avhenging av posisjonen)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < /script ><br>
+    </p>
+
+   <script>
+        var bodyEl = document.querySelector("body");
+        var mouseEl = document.querySelector("#folgerMus");
+        bodyEl.addEventListener ("mousemove", flyttSirkel);
+        function flyttSirkel(e) {
+            mouseEl.style.left = (e.clientX - 25) + "px";
+            mouseEl.style.top = (e.clientY - 25) + "px";
+            //mouseEl.style.backgroundColor = "#F16699";
+            mouseEl.style.backgroundColor = " hsl(" + e.clientX + "," + e.clientY + "% , 50%) ";
+        }
+    </script>
+
+    
+    <h2> Å bruke css + js til å styre et element med piltastene </h2>
+    <p> Ganske liknende eksempel som forrige, men vil her la elementet følge piltaster <p>
+    <p> I html-koden   
+    <div id="folgerPil">Følger piltaster!</div>
+    </p>
+
+    <p> I css-koden <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; #folgerPil{ <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid red; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 150 px; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 50 px; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; position: fixed;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; left: 0;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; top: 0;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;}</p>
+    
+    <p> I js-koden <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < script > <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  var bodyEl = document.querySelector("body"); (henter element) <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  var pilEl = document.querySelector("#folgerPil"); (henter element)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var venstre = 0; (setter avstandsvariabel)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var topp = 0; (setter avstandsvariabel)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var dist = 10; (hvor langt den flyttes)<br>
+    <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bodyEl.addEventListener ("keydown", flyttFirkant); (legger til lytter)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function flyttFirkant(e) { (hendelsesstyrt funksjon)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if (e.keyCode === 37) { (pil venstre) <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;venstre -= dist; (flytter mot venstre) <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;else if (e.keyCode === 39) { (pil høyre) <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;venstre += dist; (flytter mot høyre) <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (e.keyCode === 38) { (pil opp)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;topp -= dist; (flytter opp)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if (e.keyCode === 40) { (pil ned)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; topp += dist; (flytter ned)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pilEl.style.top = topp + "px"; (setter ny avstand) <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pilEl.style.left = venstre + "px"; (setter ny avstand)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < /script ><br>
+    </p>
+
+   <script>
+        var bodyEl = document.querySelector("body");
+        var pilEl = document.querySelector("#folgerPil");
+        var venstre = 0; 
+        var topp = 0; 
+        var dist = 10;
+        bodyEl.addEventListener ("keydown", flyttFirkant);
+        function flyttFirkant(e) {
+          if (e.keyCode === 37) {
+            venstre -= dist;
+          }
+          else if (e.keyCode === 39){
+            venstre += dist;
+          }
+          else if (e.keyCode === 38) {
+            topp -= dist;
+          }
+          else if (e.keyCode === 40) {
+            topp += dist;
+          }
+        pilEl.style.top = topp + "px";
+        pilEl.style.left = venstre + "px";
+        }
+    </script>
+
+    <h2> Oppgaver </h2>
+    <p> La to div-elementer være de eneste på en side. Gi dem ulike kjennetegn (feks tekst, bilde, bakgrunnsfarge) og styr plasseringen til det ene med musepeker og til det andre med piltaster. Gi dem ulike position og se hvilke konsekvenser det har for muligheten til å styre plasseringen. </p>
+  </body>
+</html>

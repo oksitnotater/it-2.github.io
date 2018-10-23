@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Aritmetiske operasjoner </title>
+	<link rel="stylesheet" type="text/css" href="../grid.css">
+	<link rel="stylesheet" type="text/css" href="../stil.css">
+</head>
+<body>
+	<div class="col-12 row header">
+		Kapittel 2
+	</div>
+	<script type="text/javascript" src="../forside/meny.js"></script>
+	<div class="innhold">
+		<h1> Aritmetiske operasjoner på string </h1>
+		<p> Dersom vi foretar en aritmetisk operasjon på tall lagret som en tekststreng, vil følgende skje: <br>
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tekstVar = 'Tallet er '; <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tallVar1 = '42'; <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tallVar2 = '17'; <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; document.write(tekstVar + tallVar1 + tallVar2);  <br>
+		&nbsp;&nbsp; < /script > <br>
+
+		<script>
+			var tekstVar = 'Tallet er ';
+			var tallVar1 = '42';
+			var tallVar2 = '17';
+			document.write(tekstVar + tallVar1 + tallVar2 + '<br>');
+		</script>
+
+		Aritmetiske operasjoner har med andre ord ikke mye for seg på tall lagret i tekststrenger. Skal vi bruke aritmetiske operasjoner, må tall lagres som number </p>
+
+		<h1> Oppgave </h1>
+		<p> Skriv inn følgende kode og legg merke til hva som skrives til konsollen <br>
+			&nbsp;&nbsp; < script ><br>
+			&nbsp;&nbsp;&nbsp;&nbsp; // 1<br>
+			&nbsp;&nbsp;&nbsp;&nbsp; var var1 = 'Tallet er ';<br>
+			&nbsp;&nbsp;&nbsp;&nbsp; var var2 = 42;<br>
+			&nbsp;&nbsp;&nbsp;&nbsp; var var3 = 17;<br>
+			&nbsp;&nbsp;&nbsp;&nbsp; document.write(var1 + var2 + var3 +'< br >');<br>
+			&nbsp;&nbsp;&nbsp;&nbsp; //2<br>
+			&nbsp;&nbsp;&nbsp;&nbsp; document.write(var1 + (var2+var3) +'< br >')<br>
+			&nbsp;&nbsp;&nbsp;&nbsp; //3<br>
+			&nbsp;&nbsp;&nbsp;&nbsp; var1 = 42;<br>
+			&nbsp;&nbsp;&nbsp;&nbsp; var2 = 17;<br>
+			&nbsp;&nbsp;&nbsp;&nbsp; var3 = 'er tallet';<br>
+			&nbsp;&nbsp;&nbsp;&nbsp; document.write (var1 + var2 + var3  +'< br >');<br>
+			&nbsp;&nbsp; < /script > </p>
+		<script>
+		// 1
+		var var1 = 'Tallet er ';
+		var var2 = 42;
+		var var3 = 17;
+		document.write(var1 + var2 + var3 +'<br>');
+		//2
+		document.write(var1 + (var2+var3) +'<br>')
+		//3
+		var1 = 42;
+		var2 = 17;
+		var3 = 'er tallet';
+		document.write (var1 + var2 + var3  +'<br>');
+		</script>
+
+		<h1> Hvordan vet vi hva som er datatypen? </h1>
+		<p> Vi kan bruke metoden typeof til å finne ut hva slags datatype en variabel har med metoden typeof: <br>
+		&nbsp;&nbsp; < script > <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tekstVar = "Her skriver jeg tekst";<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(typeof tekstVar); // returnerer string<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tallVar = 42;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(typeof tallVar); // returnerer number<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tallTekstVar = '42';<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(typeof tallTekstVar); // returnerer string<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var boolskVar = false;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(typeof boolskVar); // returnerer boolean<br>
+		&nbsp;&nbsp; < /script > </p>
+
+		<script>
+		var tekstVar = "Her skriver jeg tekst";
+		console.log(typeof tekstVar); // returnerer string
+		var tallVar = 42;
+		console.log(typeof tallVar); // returnerer number
+		var tallTekstVar = '42';
+		console.log(typeof tallTekstVar); // returnerer string
+		var boolskVar = false;
+		console.log(typeof boolskVar); // returnerer boolean
+		</script>
+
+		<h1> Endre datatype </h1>
+		<p> Dersom vi oppdager at en variabel er lagret som feil datatype, kan vi gjøre om mellom de to. Dette gir oss f.eks. mulighet til å sjekke antall siffer i et tall. Husk at det ikke gir mening å gjøre om tekst til number. <br>
+		var nyVariabel = Number(gammelVariabel) gjør om til tall <br>
+		var nyVariabel = String(gammelVariabel) gjør om til tekst <br>
+		&nbsp;&nbsp; < script > <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tekstTallVar = '42';<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tallTekstVar = 3489;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(tekstTallVar + typeof tekstTallVar);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(tallTekstVar + typeof tallTekstVar);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tallFraTekst = Number(tekstTallVar);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tekstFraTall = String(tallTekstVar);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(tallFraTekst + typeof tallFraTekst);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(tekstFraTall + typeof tekstFraTall + tekstFraTall.length);<br>
+		&nbsp;&nbsp; < /script > </p>
+		<script>
+		var tekstTallVar = '42';
+		var tallTekstVar = 3489;
+		console.log(tekstTallVar + typeof tekstTallVar);
+		console.log(tallTekstVar + typeof tallTekstVar);
+		var tallFraTekst = Number(tekstTallVar);
+		var tekstFraTall = String(tallTekstVar);
+		console.log(tallFraTekst + typeof tallFraTekst);
+		console.log(tekstFraTall + typeof tekstFraTall + tekstFraTall.length);
+		</script>
+
+		<h1> Aritmetiske operasjoner på number </h1>
+		<p> De aritmetiske operasjonene inneholder blant annet de fire regneartene, i tillegg har vi tre tilleggsoperasjoner: </p>
+
+		<table>
+			<tr> <th> Operator </th> <th> Forklaring </th> <th> Eksempel </th> </tr>
+			<tr> <td> +  </td> <td> Addisjon </td> <td> add = a + b; </td> </tr>
+			<tr> <td> - </td> <td> Subtraksjon </td> <td> sub = c - b; </td> </tr>
+			<tr> <td> * </td> <td> Multiplikasjon </td> <td> multi = b * c; </td> </tr>
+			<tr> <td> / </td> <td> Divisjon </td> <td> divi = c / b; </td> </tr>
+			<tr> <td> % </td> <td> Modulus (restregning) </td> <td> rest = c % a; </td> </tr>
+			<tr> <td> ++ </td> <td> Inkrement </td> <td> inkr = a++; (dvs inkr = a + 1)</td> </tr>
+			<tr> <td> -- </td> <td> Dekrement </td> <td> dekr = b--; (dvs dekr = b - 1)</td> </tr>
+		</table>
+
+		<script>
+			var a = 10;
+			var b = 4;
+			var c= 12;
+			var add = a + b;
+			console.log(a + ' + ' + b + ' = ' + add);
+			var sub = c - b;
+			console.log(c + ' - ' + b + ' = ' + sub);
+			var multi = b * c;
+			console.log(b + ' * ' + c + ' = ' + multi);
+			var divi = c / b;
+			console.log(c + ' / ' + b + ' = ' + divi);
+			var rest = c % a;
+			console.log(c + ' % ' + a + ' = ' + rest);
+		</script>
+		<h1> Modulo-operatoren </h1>
+		<p> Modulo handler om restregning: her blir 12 % 10 = 2 fordi vi har 2 i rest ved 12 / 10. Dette kan f.eks brukes til å finne <br>
+		&nbsp;&nbsp; Partall: alle tall der tall % 2 = 0 <br>
+		&nbsp;&nbsp; Oddetall: alle tall der tall % 2 = 1 <br>
+		&nbsp;&nbsp; Tall delelig med 7: alle tall der tall % 7 = 0 <br>
+		Osv. </p>
+
+		<h1> Inkrement og dekrement </h1>
+		<p> a++ og b-- forenkler skrivemåten der vi skal øke eller minke variabler med én. Dette er spesielt nyttig i løkker, der vi øker eller minsker telleren for hver gang løkken kjøres. </p>
+
+		<h1> Tilordningoperatorer </h1>
+		<p> Å si at <br>
+		&nbsp;&nbsp; var a = 2; <br>
+		&nbsp;&nbsp; var a = a + 3; <br>
+		Vil si at vi tilordner verdien a tallet 5 (i stedet for 2). Slike regnestykker kan skrives enklere: <br>
+		<table>
+			<tr> <th> Operator </th> <th> Eksempel </th> <th> Tilsvarer </th> </tr>
+			<tr> <td> = </td> <td> a = 1; </td> <td> a = 1 </td> </tr>
+			<tr> <td> += </td> <td> a += 5; </td> <td> a = a + 5 = 1 + 5 = 6</td> </tr>
+			<tr> <td> -= </td> <td> a-= 1; </td> <td> a = a - 1 = 6 - 1 = 5 </td> </tr>
+			<tr> <td> *= </td> <td> a*= 4; </td> <td> a = a * 4 = 5 * 4 = 20 </td> </tr>
+			<tr> <td> /= </td> <td> a /= 2; </td> <td> a = a / 2 = 20 / 2 = 10</td> </tr>
+			<tr> <td> %= </td> <td> a %= 3; </td> <td> a = a % 3 = 10 % 3 = 1 </td> </tr>
+		</table>
+
+		<script>
+			var a = 1;
+			console.log(a);
+			a += 5;
+			console.log(a);
+			a-= 1;
+			console.log(a);
+			a*= 4;
+			console.log(a);
+			a /= 2;
+			console.log(a);
+			a %= 3;
+			console.log(a);
+		</script>
+
+		<p> Tilordningsoperatoren += er også nyttig for tekst, ved at vi kan legge til nye ledd i tekststrengen fortløpende: <br><br>
+
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tekst = 'Tekststrengen starter med litt tekst, ';<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; tekst += 'før vi legger til mer tekst ';<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; tekst += 'og slik kan vi fortsette.';<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; document.write(tekst);<br>
+		&nbsp;&nbsp; < /script ><br>
+
+		<script>
+			var tekst = '';
+			tekst += 'Tekststrengen starter med litt tekst, ';
+			tekst += 'før vi legger til mer tekst ';
+			tekst += 'og slik kan vi fortsette.';
+			document.write(tekst);
+		</script>
+
+		<h1> Oppgaver </h1>
+		<p> S. 33: Oppgave 2.9. Noter først hva dere forventer som resultat, deretter kan dere kjøre koden. <br>
+		S. 35: Oppgave 2.10. Noter først hva dere forventer som resultat, deretter kan dere kjøre koden. </p>
+	</div>
+</body>
+</html>

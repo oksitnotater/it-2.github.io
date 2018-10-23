@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Pong</title>
+    <link rel="stylesheet" type="text/css" href="undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Fremgangsmåte for spillet pong </h1>
+  	<p> <b> I html: </b></p>
+  	<ul>
+  		<li> Opprett poengtellerelementer (f.eks. to p-elementer i en div)</li>
+  		<li> Opprett et canvas </li>
+  	</ul>
+  	
+  	<p> <b> I script: </b></p>
+  	<ul>
+  		<li> Hent inn elementer fra siden (poengtellere og canvaset)</li>
+  		<li> Opprett to variabler som teller poeng (med startverdi 0)</li>
+  		<li> Opprett en klasse for spillere med konstruktørargumentene xPos, yPos, bredde, hoyde, yHast, farge og metodene tegn og flytt</li>
+  		<li> Opprett en klasse for ball med konstruktørargumentene xPos, yPos, radius, xHast, yHast, farge og metodene tegn og flytt. I flyttmetoden må du ha med de to spillerne som argumenter: når ballen treffer en av disse skal den sprette tilbake. </li>
+  		<li> Legg til to spillerobjekter (spiller 1 og spiller 2)</li>
+  		<li> Legg til en hendelsesstyrt funksjon document.addEventListener("keydown", trykk) som styrer de to spillerne (piltaster opp/ned og w/s). </li>
+  		<li> Legg til en hendelsesstyrt funksjon document.addEventListener("keyup", slipp); som styrer de to spillerne (piltaster opp/ned og w/s). </li>
+  		<li> Legg til ett ballobjekt </li>
+  		<li> Opprett en tellefunksjon som teller for begge spillerene </li>
+  		<li> Opprett en animasjonsfunksjon som flytter og tegner både ballobjektet og spillerobjektene. </li>
+  	</ul>
+
+
+ 	<h1> Forslag til utvidelser </h1>
+  	<ol>
+  		<li> Lagre highscore i LocalStorage </li>
+  		<li> Endre hastigheten til ballen når en spiller når en viss poengsum </li>
+  		<li> Lag start/pause/stopp-knapper for spillet </li>
+  		<li> Stilsett "banen" som f.eks. en tennisbane (se notater fra forrige time)</li>
+  		<li> Annet etter eget ønske, eller prøv deg på et annet enkelt spill </li>
+  	</ol>
+
+  	<img src="" alt="">
+  	<script>
+  		var img = document.querySelector("img");
+  		console.log(img)
+  	</script>
+  </body>
+</html>

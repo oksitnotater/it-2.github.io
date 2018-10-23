@@ -1,0 +1,68 @@
+/*  animation */
+#animasjon{
+	width: 200px; 
+	height: 200px; 
+	background-color: white;
+	border: 2px solid black; 
+	animation-name: radiusFarge;
+	animation-duration: 10s;
+	animation-delay: 2s;
+	animation-iteration-count: infinite;
+}
+@keyframes radiusFarge{
+	10% { background-color: red;}
+	20% { background-color: orange;}
+	30% { background-color: yellow;}
+	40% { background-color: green;}
+	50% { border-radius: 70%}
+	60% { background-color: darkgreen}
+	70% { background-color: blue;}
+	80% { background-color: darkblue;}
+	90% { background-color: violet;}
+	100% {border-radius: 0%;}
+}
+
+/* eksempel 1: bokser som faller */
+.innpakning {
+  width: 600px;
+  height: 300px;
+  margin: 50px auto;
+  background-color: #1a4741;	
+  position: relative;
+}
+.animer {
+  position: absolute;
+  top: 0px;
+  width: 20px;
+  height: 5px;
+  background-color: #54ffe8;
+  animation: sprett 5s infinite ease-in-out;
+}
+@keyframes sprett {
+  0%{top: 0px;}
+  50%{top: 295px;}
+  100%{top: 0px;}
+}
+
+/* eksempel 2: animasjoner i utakt */
+.boks, .sirkel {
+  width: 100px;
+  height: 100px;
+  margin: 10px;
+  animation: vis 2s linear alternate;
+}
+.boks {
+  background-color: red;
+  animation-play-state: running;
+  animation-iteration-count: 5;
+}
+.sirkel {
+  background-color: blue;
+  border-radius: 50%;
+  animation-play-state: paused;
+  animation-iteration-count: 3;
+}
+@keyframes vis {
+  0%{opacity: 0;}
+  100%{opacity: 1;}
+}

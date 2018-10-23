@@ -1,0 +1,43 @@
+.ramme{
+	width: 80%;
+	margin: auto;
+	background-color:#DDDDDD; 
+}
+#mittCanvas{
+	background-color: white;
+	margin-left: 25px;
+	margin-top: 10px;
+}
+#bokstav{
+	width: 30%;
+}
+.info p{
+	margin-bottom: -10px;
+}
+#tilbakemelding{
+	font-size: 20px;
+	color: red;
+}
+/*for forgrunnsvinduet*/
+#forgrunnsCanvas{
+	position: absolute;
+	background-color: white;
+}
+#forgrunnsDiv{
+	background-color: #DDDDDD;
+	padding: 10px;
+	display: initial;
+	position: fixed;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+}
+#lukkVindu{
+	position: absolute;
+	height: 40px;
+	width: 600px;
+	background-color: white;
+	color: red;
+}

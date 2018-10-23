@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="bonus.css">
+</head>
+<body>
+	<button id="startKnapp">Start</button>
+	<button id="stoppKnapp">Stopp</button>
+	<div id="div1">
+	<img id="bein1" src="bein1.png"></img>
+	<img id="bein2" src="bein2.png"></img>
+	<img id="kropp" src="wheelbarrow.png"></img>
+	</div>
+	<img id="klokke" src="klokke.png"></img>
+	<img id="viser" src="Viser.png"></img>
+	<img id="stup" src="stup.png"></img>
+	<img id="stein" src="stein.png"></img>
+	<img id="trampoline" src="trampoline.png"></img>
+	<div id="ground"></div>
+	<div id="ground2"></div>
+	<div id="air"></div>
+<script>
+	var startEl = document.querySelector("#startKnapp");
+	var stoppEl = document.querySelector("#stoppKnapp");
+	startEl.addEventListener("click", start);
+	stoppEl.addEventListener("click", stopp);
+	function stopp(){
+		document.getElementById("div1").style.WebkitAnimationPlayState = "paused";
+		document.getElementById("bein1").style.WebkitAnimationPlayState = "paused";
+		document.getElementById("bein2").style.WebkitAnimationPlayState = "paused";
+		document.getElementById("viser").style.WebkitAnimationPlayState = "paused";
+		document.getElementById("stein").style.WebkitAnimationPlayState = "paused";
+	}
+	function start(){
+		document.getElementById("div1").style.WebkitAnimationPlayState = "running";
+		document.getElementById("bein1").style.WebkitAnimationPlayState = "running";
+		document.getElementById("bein2").style.WebkitAnimationPlayState = "running";
+		document.getElementById("viser").style.WebkitAnimationPlayState = "running";
+		document.getElementById("stein").style.WebkitAnimationPlayState = "running";
+		}
+</script>
+</body>
+</html>

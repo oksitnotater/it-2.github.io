@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+   	<meta charset="UTF-8">
+   	<title> Andre hendelser </title>
+   	<link rel="stylesheet" type="text/css" href="undervisning.css">
+   	<style>
+   	html{
+   		height: 100%
+   	}
+   	/*body{
+    	height:100%;
+    }*/
+    </style>
+</head>
+<body>
+	<h1> Hendelsestyper </h1>
+	<p> Vi husker tabellen med hendelser fra kapittel 8.1: </p>
+	<table>
+    		<tr>
+    			<th> Hendelse </th> <th> Forklaring </th>
+    		</tr><tr>
+    			<td> load </td> <td> Nettsiden lastes </td>
+    		</tr>
+    		</tr><tr>
+    			<td> click </td> <td> Et element klikkes</td>
+    		</tr><tr>
+    			<td> dblclick </td> <td> Et element dobbelklikkes </td>
+    		</tr><tr>
+    			<td> input </td> <td> Noe skrives i et inputfelt </td>
+    		</tr><tr>
+    			<td> change </td> <td> Et select-element (element i en drop-down-meny) endres</td>
+    		</tr><tr>
+    			<td> keydown </td> <td> En tast trykkes ned </td>
+    		</tr><tr>
+    			<td> keyup </td> <td> En tast slippes opp </td>
+    		</tr><tr>
+    			<td> mousemove </td> <td> Musepekeren beveges </td>
+    		</tr><tr>
+    			<td> mouseover </td> <td> Musepekeren beveges på et element </td>
+    		</tr><tr>
+    			<td> mouseout </td> <td> Musepekeren beveges fra et element</td>
+    		</tr>
+    	</table>
+    	<p> Vi startet med hendelsene click og dblclick fordi de kan brukes uten å kjenne til eventargumentet (function hendelsesstyrt(e)). Nå som vi kjenner til dette kan vi forstå både musebevegelseshendelser og tastaturhendelser. For musehendelser må vi vite hvor på skjermen musepekeren er plassert og for tastaturhendelser må vi vite hvilken tast som trykkes ned. </p>
+
+    	<h1> Musebevegelser </h1>
+    	<p> Før vi kan registrere musebevegelser, må vi først definere at hele nettleservinduet er med, uavhengig av om det er elementer som fyller det opp. Dette gjøres i css ved <br>
+    	&nbsp;&nbsp; html, body{<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; height:100%;<br>
+    	&nbsp;&nbsp; }<br><br>
+    	Deretter trenger vi metoder til å finne ut hvor musepekeren befinner seg. Vi ser på skjermen som et rutenett der øvre venstre hjørne har x-posisjon 0 og y-posisjon 0, og y-posisjonen øker nedover siden mens x-posisjon øker mot høyre. <br>
+    	For å registrere posisjonene ber vi om hendelsen sin clientX og clientY. La meg illustrere med et eksempel:<br><br>
+
+    	Først lager jeg to p-elementer der jeg skal skrive ut posisjonen:<br>
+    	&nbsp;&nbsp; < p id="xPos" > Her skal jeg skrive ut x-posisjonen < /p ><br>
+  		&nbsp;&nbsp; < p id="yPos" > Her skal jeg skrive ut y-posisjonen < /p ><br><br>
+  		Deretter henter jeg ut disse to elementene, samt bodyelementet:<br>
+  		&nbsp;&nbsp; var xPosEl = document.querySelector("#xPos");<br>
+  	 	&nbsp;&nbsp; var yPosEl = document.querySelector("#yPos");<br>
+  	 	&nbsp;&nbsp; var bodyEl = document.querySelector("body");<br><br>
+  	 	Til bodyEl legger jeg til lytteren mousemove som kjører funksjonen visPos:<br>
+  	 	&nbsp;&nbsp; bodyEl.addEventListener("mousemove", visPos);<br>
+		&nbsp;&nbsp; function visPos(e){ //tar inn e, for "event"<br>
+  	 	&nbsp;&nbsp;&nbsp;&nbsp; console.log(e.clientX);<br>
+  	 	&nbsp;&nbsp;&nbsp;&nbsp; console.log(e.clientY);<br>
+  	 	&nbsp;&nbsp;&nbsp;&nbsp; xPosEl.innerHTML = "x-posisjonen er " + e.clientX;<br>
+  	 	&nbsp;&nbsp;&nbsp;&nbsp; yPosEl.innerHTML = "y-posisjonen er " + e.clientY;<br>
+  	 	&nbsp;&nbsp; }<br><br>
+
+    	<h3> Registrerer musebevegelser </h3>
+  		<p id="xPos"> Her skal jeg skrive ut x-posisjonen </p>
+  		<p id="yPos"> Her skal jeg skrive ut y-posisjonen </p>
+  		<script>
+  	 		var xPosEl = document.querySelector("#xPos");
+  	 		var yPosEl = document.querySelector("#yPos");
+  	 		var bodyEl = document.querySelector("body");
+  	 		bodyEl.addEventListener("mousemove", visPos);
+  	 		function visPos(e){ //tar inn e, for "event"
+  	 			/*console.log(e.clientX);
+  	 			console.log(e.clientY);*/
+  	 			xPosEl.innerHTML = "x-posisjonen er " + e.clientX;
+  	 			yPosEl.innerHTML = "y-posisjonen er " + e.clientY;
+  	 			console.log(e.type);
+  	 		}
+  	 	</script>
+
+    	<h1> Tastatur </h1>
+    	<p> Ved tastaturhendelser ønsker vi å vite hvilken tast som er trykket. Dette gjøres ved å be om e.keyCode. Her har hver tast en unicode-kode, og det er den vi får ut. For å oversette dette til tegn, må  vi bruke en unicode-tabell. Den finner vi på <a href="https://unicode-table.com/en/"> unicode-table.com</a>. Vi har også en metode som oversetter for oss: String.fromCharCode(e.keyCode). Denne fungerer dessverre dårlig for spesialtegn (æøå) på grunn av hvordan norske tastaturer er designet. <br><br>
+    	Eksempel med tastaturhendelser: <br>
+    	Lager først et p-element der jeg registrerer hvilken tast som trykkes.<br>
+		&nbsp;&nbsp; < p id="trykkTast" > Her skal jeg skrive ut hvilken tast som ble trykket ned< /p ><br>
+		Henter inn dette p-elementet og body-elementet:<br>
+		&nbsp;&nbsp; var trykkTastEl = document.querySelector("#trykkTast");<br>
+  	 	&nbsp;&nbsp; var bodyEl = document.querySelector("body");<br><br>
+  	 	Til bodyEl legger jeg til lytteren keydown og kjører funksjonen trykkerTast:<br>
+  	 	&nbsp;&nbsp; bodyEl.addEventListener("keydown", trykkerTast);<br>
+  	 	&nbsp;&nbsp; function trykkerTast(e){<br>
+  	 	&nbsp;&nbsp;&nbsp;&nbsp; console.log(e.keyCode);<br>
+  	 	&nbsp;&nbsp;&nbsp;&nbsp; var bokstav = String.fromCharCode(e.keyCode);<br>
+  	 	&nbsp;&nbsp;&nbsp;&nbsp; trykkTastEl.innerHTML = "Tasten som ble trykket var " +bokstav;<br>
+  	 	&nbsp;&nbsp; }</p>
+
+  		<h3> Registrerer tastaturtrykk </h3>
+		<p id="trykkTast"> Her skal jeg skrive ut hvilken tast </p>
+		<script>
+			var trykkTastEl = document.querySelector("#trykkTast");
+	  	 	var bodyEl = document.querySelector("body");
+  	 		bodyEl.addEventListener("keydown", trykkerTast);
+  	 		function trykkerTast(e){
+  	 			console.log(e.keyCode);
+  	 			var bokstav = String.fromCharCode(e.keyCode);
+  	 			trykkTastEl.innerHTML = "Tasten som ble trykket var " +bokstav;
+  	 		}
+		</script>
+</body>
+</html>

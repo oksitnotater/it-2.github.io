@@ -1,0 +1,56 @@
+Pseudokode for spillfunskjonen:
+
+Definerer globale variabler:
+	sum for å vinne: sumVinne
+	spillerens poeng: poengS
+	maskinens poeng: poengM
+	hva spilleren velger: valgS
+	hva maskinen velger: valgM 
+	rundeteller: i
+
+	sumVinne=5
+
+Henter ut idene til poengtellere og rundetellere
+	variabel poengBrukerEl
+	variabel poengMotstanderEl
+	variabel rundeTellerEl
+
+Hendelse når bilde velges
+	lytter etter om et av bildene trykkes på, finner ut hvilket og kjører spillfunksjonen
+
+Hendelsesstyrt funksjon som kjøres når bilde velges
+	Oppdaterer valgS
+	stein: valgS=0
+	saks: valgS=1
+	papir: valgS=2
+
+	valgM=tilfeldig tall 0-2
+	bytter maskinbilde
+		valgM=0: stein
+		valgM=1: saks
+		valgM=2: papir
+
+Sjekker vinner
+	valgS==valgM: 0 poeng til begge
+		i++
+	valgS == 0 og valgM == 1: S vinner
+		poengS++
+		i++
+	valgS == 0 og valgM == 2: M vinner
+		poengM++
+		i++
+	valgS == 1 og valgM == 0: M vinner
+		poengM++
+		i++
+	valgS == 1 og valgM == 2: S vinner
+		poengS++
+		i++
+	valgS == 2 og valgM == 0: S vinner
+		poengS++
+		i++
+	valgS == 2 og valgM == 1: M vinner
+		poengM++
+		i++
+	Oppdaterer poengene og rundetelleren
+
+Funksjonen kan kjøres så lenge poengS<sumVinne eller poengM<sumVinne

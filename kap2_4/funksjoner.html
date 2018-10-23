@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Funksjoner </title>
+	<link rel="stylesheet" type="text/css" href="undervisning.css">
+</head>
+<body>
+  <h1> Når bruker vi funksjoner? </h1>
+  <p> I en funksjon strukturerer vi kode til et lite program som kan tas i bruk flere ganger i koden. <br>
+    Det finnes mange innebygde funskjoner i JavaScript, mens andre må vi lage selv. Eksempler på innebygde funksjoner er <br>
+    &nbsp;&nbsp; Math.random() <br>
+    &nbsp;&nbsp; toFixed() <br>
+    &nbsp;&nbsp; document.write()<br>
+    &nbsp;&nbsp; console.log()<br>
+    Disse kaller vi ved å referere til selve <i> funksjonsnavnet </i><br>
+    På samme måte kaller vi egne funksjoner ved å referere til et navn vi gir funksjonen. <br>
+    Når vi deklarerer nye funksjoner følger vi følgende struktur: <br>
+    &nbsp;&nbsp; function funksjonsNavn(){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; // kode som kjøres når funksjonen kalles <br>
+    &nbsp;&nbsp; } <br>
+    Deretter kan vi bruke funksjonen så mange ganger vi ønsker ved å referere til funksjonsnavnet:<br>
+    &nbsp;&nbsp; funksjonsNavn();</p>
+
+    <h1> Eksempel </h1>
+    <p> Lag en funksjon som kaster en terning på nytt og på nytt til terningen viser 6 og som teller antall forsøk før suksess <br><br>
+    Funksjonen får navnet terningFunksjon: <br>
+    &nbsp;&nbsp; function terningFunksjon(){<br>
+    Funksjonen skal først opprette en tellevariabel som teller antall forsøk. Denne settes til 0: <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var teller = 0;<br>
+    Deretter opprettes en terningvariabel som vil vil inneholde terningens øyne. Denne får startverdi 0 for å sikre at datatypen er number <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var terning = 0;<br>
+    Vi vet ikke hvor mange ganger vi må slå terningen for å få 6, derfor bruker vi en whileløkke som fortsetter så lenge terningen ikke viser 6. <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; while (terning != 6) {<br>
+    Hver gang whileløkken kjøres kastes terningen på nytt: et tall mellom 1 og 6. <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; terning = Math.floor(Math.random() * 6) + 1;<br>
+    Terningkastet logges (for nysgjerrighetens skyld)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;console.log(terning);<br>
+    Og tellevariabelen økes med en <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; teller++; <br>
+    Deretter avsluttes whileløkken <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; } <br>
+    Og en beskjed til bruker skrives ut <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; document.write("< p >Det tok "+teller+" forsøk å få terningkast "+terning+"< /p >");<br>
+    Før funksjonen avsluttes <br>
+    &nbsp;&nbsp; }<br>
+    For å ta i bruk funksjonen må den kalles: <br>
+    &nbsp;&nbsp; terningFunksjon();<br><br>
+    Vi kan kalle funksjonen så mange ganger vi vil:<br>
+    &nbsp;&nbsp; terningFunksjon();<br>
+    &nbsp;&nbsp; terningFunksjon();<br>
+    &nbsp;&nbsp; terningFunksjon();</p>
+    <script>
+    function terningFunksjon(){
+        var teller = 0;
+        var terning = 0;
+        while (terning != 6) {
+          terning = Math.floor(Math.random() * 6) + 1;
+          console.log(terning);
+          teller++;
+        }
+        document.write("<p>Det tok "+teller+" forsøk å få terningkast "+terning+"</p>");
+      }
+      terningFunksjon();
+      terningFunksjon();
+      terningFunksjon();
+      terningFunksjon();
+    </script>
+
+  <h1> Funksjoner med argumenter </h1>
+  <p> Av og til trenger funksjonen en beskjed fra bruker om "hvordan" den skal kjøres. F.eks. krever funksjonen toFixed() en beskjed om antall desimaler:<br>
+    &nbsp;&nbsp; document.write(Math.PI.toFixed(1)+"< br >"+Math.PI.toFixed(2)+"< br >"+Math.PI.toFixed(10)+"< br >"); <br>
+    gir ulike resultater: <br>
+  <script>
+    document.write(Math.PI.toFixed(1)+"<br>"+Math.PI.toFixed(2)+"<br>"+Math.PI.toFixed(10)+"<br>");
+  </script>
+    <br>På samme måte kan vi lage funksjoner med argumenter. Disse argumentene representeres med symboler når funksjonen deklareres: <br>
+    &nbsp;&nbsp; function funksjonsNavn(argument1, argument2, argument3){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; // kode som kjøres når funksjonen kalles og tar i bruk argumentene<br>
+    &nbsp;&nbsp; } <br>
+    En funksjon kan ha flere argumenter, disse må ha ulike symboler. Når funksjonen kalles må argumentsymbolene erstattes med verdier: <br>
+    &nbsp;&nbsp; funksjonsNavn(verdi1, verdi2, verdi3);</p>
+
+  <h1> Eksempel </h1>
+  <p> En funksjon som beregner areal og omkrets av en sirkel, der radiusen er argument.<br>
+    &nbsp;&nbsp; < script ><br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; function sirkel(r){<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var areal = (Math.PI*r*r).toFixed(2);<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var omkrets = (2*Math.PI*r).toFixed(2);<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('Arealet til en sirkel med radius '+r+' er '+areal+' og omkretsen er '+omkrets+'.');<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; sirkel(4);<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; sirkel(1);<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; sirkel(10);<br>
+   	&nbsp;&nbsp; < /script > </p>
+  <script>
+  	function sirkel(r){
+  		var areal = (Math.PI*r*r).toFixed(2);
+  		var omkrets = (2*Math.PI*r).toFixed(2);
+   		document.write('<p> Arealet til en sirkel med radius '+r+' er '+areal+' og omkretsen er '+omkrets+'.</p>');
+   	}
+   	sirkel(4);
+   	sirkel(1);
+   	sirkel(10);
+   </script>
+
+  <h1> Funksjoner med returverdier </h1>
+  <p> Normalt vil all kode i en funksjon kjøre når funksjonen kalles. Av og til ønsker vi at funksjonen skal stoppe dersom et spesielt tilfelle og av og til ønsker vi at funksjonen skal returnere én bestemt verdi<br>
+      Til dette bruker vi kodeordet return<br>
+      I det vi kommer til dette kodeordet vil ikke resten av koden i funksjonen leses. Dersom return får en verdi som argument: return(verdi) vil denne verdien lagres til funksjonsnavnet og lagres i en variabel ved <br>
+			&nbsp;&nbsp; 	var variabel = funksjonsNavn(verdi)<br><br>
+			En viktig egenskap med å bruke return, er at funksjonen automatisk avsluttes her. All kode i funksjonen som ligger etter return, vil ikke bli lest, og tar dermed ikke opp unødvendig kapasitet for maskinen. Dette kan brukes i kombinasjon med if-else-setninger. <br>
+
+
+	<h1> Eksempel </h1>
+	<p> Lag en funksjon som tar inn en min- og en max-verdi og returnerer et tilfeldig tall mellom disse <br>
+		&nbsp;&nbsp; function tilfeldigTall(min, max){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; return(Math.floor(Math.random()*(max - min + 1)+min)); <br>
+		&nbsp;&nbsp; } <br>
+		&nbsp;&nbsp; var tilfeldig = tilfeldigTall(2, 10);<br>
+		&nbsp;&nbsp; document.write(tilfeldig);</p>
+
+	<script>
+		function tilfeldigTall(min, max){
+			return(Math.floor(Math.random()*(max - min + 1)+min));
+			//var tilfeldig = Math.floor(Math.random()*(max - min + 1)+min);
+		}
+		var tilfeldig = tilfeldigTall(2, 10);
+		document.write("<p>"+tilfeldig+"</p>");
+	</script>
+
+	<h1> Eksempel </h1>
+	<p> Lag et tilfeldig tall mellom 10 og 20 (med tilfeldig-funksjonen!) og sjekker om det er et partall. Partall skal returne true, mens oddetall skal returnere false. <br>
+		&nbsp;&nbsp; function sjekkPartall(min, max){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tilfeldig = tilfeldigTall(min, max);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; document.write(tilfeldig + '< br >');<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; if (tilfeldig % 2 == 0){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; return false; // trenger ingen else<br>
+		&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; if(sjekkPartall(10, 20) == 1){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; document.write('tallet er et partall');<br>
+		&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; else{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; document.write('tallet er et oddetall');<br>
+		&nbsp;&nbsp; }</p>
+
+	<script>
+		function sjekkPartall(min, max){
+			var tilfeldig = tilfeldigTall(min, max);
+			document.write("<p>"+tilfeldig + '<br>');
+			if (tilfeldig % 2 == 0){
+				console.log('sant')
+				return true;
+			}
+			return false; // trenger ingen else
+		}
+		if(sjekkPartall(10, 20) == 1){
+			document.write('tallet er et partall</p>');
+		}
+		else{
+			document.write('tallet er et oddetall</p>');
+		}
+		</script>
+
+	<h1> Lokale/globale variabler </h1>
+	<p> Når vi skriver kode med funksjoner må vi kunne forskjellen på lokale og globale variabler. <br>
+		En global variabel <i>defineres</i> utenfor funksjonen, og kan brukes både utenfor og inni funksjonen <br>
+		En lokal variabel <i>defineres</i> inni funksjonen, og kan kun brukes her. Utenfor funksjonen er den udefinert <br>
+		Lokale og globale variabler har hver sine fordeler: <br>
+		&nbsp;&nbsp; ved å bruke lokale variabler der de likevel ikke skal brukes utenfor funksjonen "bruker vi ikke opp" funksjonsnavn, og de samme navnene kan brukes uproblematisk lokalt i andre funksjoner også <br>
+		&nbsp;&nbsp; ved å bruke globale variabler er vi sikre på at vi kan kalle dem hvor som helst utenfor funksjonen. </p>
+
+	<h1> Eksempel </h1>
+	<p> Lokale og globale variabler i tilfeldigtallsfunksjonen <br><br>
+		Lokal tilfeldig-variabel gir feilmelding når den brukes globalt: <br>
+		&nbsp;&nbsp; function tilfeldigTall(min, max){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tilfeldig1= (Math.floor(Math.random()*(max - min + 1)+min));<br>
+		&nbsp;&nbsp; } <br>
+		&nbsp;&nbsp; tilfeldigTall(2, 10);<br>
+		&nbsp;&nbsp; document.write(tilfeldig1);<br><br>
+
+	<script>
+		function tilfeldigTall(min, max){
+			var tilfeldig1 = (Math.floor(Math.random()*(max - min + 1)+min)); // lager et tilfeldig tall mellom max og min
+		}
+		tilfeldigTall(2, 10);
+		document.write(tilfeldig1+"<br>");
+	</script>
+	Dette gir feilmeldingen "Uncaught ReferenceError: var tilfeldig1 is not defined at funksjoner.html:189" fordi variabelen ikke er definert utenfor funksjonen.<br><br>
+
+	Dersom vi definerer variabelen både globalt og lokalt, vil den ha ulike verdier før, i og etter funksjonen: <br>
+	&nbsp;&nbsp; var tilfeldig2 = (Math.floor(Math.random()*(10 - 2 + 1)+2)); <br>
+	&nbsp;&nbsp; document.write (tilfeldig2 + ' er verdien før funksjonen'); <br>
+	&nbsp;&nbsp; function tilfeldigTall(min, max){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var tilfeldig2 = (Math.floor(Math.random()*(max - min + 1)+min)); <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; document.write (tilfeldig2 + ' er verdien i funksjonen')<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; tilfeldigTall(2, 10);<br>
+	&nbsp;&nbsp; document.write(tilfeldig2 + ' er verdien etter funksjonen');<br><br>
+
+	<script>
+		var tilfeldig2 = (Math.floor(Math.random()*(10 - 2 + 1)+2));
+		document.write (tilfeldig2 + ' er verdien før funksjonen <br>');
+		function tilfeldigTall(min, max){
+			var tilfeldig2 = (Math.floor(Math.random()*(max - min + 1)+min)); // lager et tilfeldig tall mellom max og min
+			document.write (tilfeldig2 + ' er verdien i funksjonen <br>')
+		}
+		tilfeldigTall(2, 10);
+		document.write(tilfeldig2 + ' er verdien etter funksjonen <br>');
+	</script><br><br>
+
+	Dersom variabelen overskrives i funksjonen blir resultatet annerledes: <br>
+	&nbsp;&nbsp; var tilfeldig3 = (Math.floor(Math.random()*(10 - 2 + 1)+2)); <br>
+	&nbsp;&nbsp; document.write (tilfeldig3 + ' er verdien før funksjon'); <br>
+	&nbsp;&nbsp; function tilfeldigTall(min, max){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; tilfeldig3 = (Math.floor(Math.random()*(max - min + 1)+min)); <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; document.write (tilfeldig3 + ' er verdien i funksjonen')<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; tilfeldigTall(2, 10);<br>
+	&nbsp;&nbsp; document.write(tilfeldig3 + ' er verdien etter funksjonen');<br><br>
+
+	<script>
+		var tilfeldig3 = (Math.floor(Math.random()*(10 - 2 + 1)+2));
+		document.write (tilfeldig3 + ' er verdien før funksjonen <br>');
+		function tilfeldigTall(min, max){
+			tilfeldig3 = (Math.floor(Math.random()*(max - min + 1)+min)); // lager et tilfeldig tall mellom max og min
+			document.write(tilfeldig3 + ' er verdien i funksjonen <br>')
+		}
+		tilfeldigTall(2, 10);
+		document.write(tilfeldig3 + ' er verdien etter funksjonen <br>');
+	</script><br><br>
+
+	<b> Moralen er: vær nøye på hvordan du definerer variabler når du bruker funksjoner. Hvis du får en feilmelding om en udefinert variabel, er den sannsynligvis definert lokalt og brukt lokalt. Dersom du får en uventet verdi, bruker du den globale verdien til en variabel som både er definert lokalt og globalt. </b></p>
+</body>
+</html>

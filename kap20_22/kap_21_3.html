@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Animasjon med JavaScript</title>
+    <link rel="stylesheet" type="text/css" href="undervisning.css">
+    <meta charset="utf-8">
+    <style>
+    </style>
+  </head>
+  <body>
+    <h1> Oppgave fra forrige time </h1>
+    <p> Opprett en animasjon der en ball har både x- og y-hastighet og kolliderer i veggene. </p>
+    <canvas id="canvas" width="500" height="400" style="border:1px solid #000000; background-color: #FFFFFF;"></canvas >
+    <script>
+    // henter inn rett canvas å tegne i 
+    var canvas=document.querySelector("#canvas");
+    var ctx=canvas.getContext("2d");
+
+    // oppretter klasse for baller
+    class Ball {
+      // hver ball har en posisjon og en retning/hastighet
+      constructor (radius, xPos, yPos, xHast, yHast) {
+        this.radius = radius;
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.xHast = xHast;
+        this.yHast = yHast;
+      }
+
+      // metode for å tegne opp ball
+      tegnBall() {
+        ctx.beginPath() ;
+        ctx.arc(this.xPos, this.yPos, this.radius, 0, Math.PI *2); // tegner en sirkel der ballen befnner seg med radius 15px
+        ctx.strokeStyle = "black";
+        ctx.lineWidth = 5;
+        ctx.stroke();
+        ctx.fillStyle = "orange";
+        ctx.fill();
+        ctx.closePath();
+      }
+
+      // metode for å flytte posisjonen og hastigheten til ballen
+      flyttBall() {
+        this.xPos += this.xHast;
+        this.yPos += this.yHast;
+        if(this.xPos-this.radius <= 0 || this.xPos+this.radius >= canvas.width) {
+          this.xHast = -this.xHast;
+        }
+        if(this.yPos-this.radius <= 0 || this.yPos+this.radius >= canvas.height) {
+          this.yHast = -this.yHast;
+        }
+      }
+    }
+
+    // nytt ballobjekt
+    let ball = new Ball(15, canvas.width/2, canvas.height/2, 2, -1);
+
+    // funksjon som tømmer canvaset, flytter ballen og tener den opp på nytt
+    function animerBall(){
+      ctx.clearRect (0, 0, canvas.width, canvas.height);
+      ball.flyttBall();
+      ball.tegnBall();
+      requestAnimationFrame(animerBall);
+    }
+    requestAnimationFrame(animerBall);
+    </script>
+
+    <h1> I dag: kollisjoner </h1>
+    <p> Vi har så langt sett på kollisjoner mellom objekter og canvaset. I dag skal vi utvide dette til kollisjoner mellom ulike objekter. </p>
+
+    <h1> Hvordan beregne at kollisjoner skjer? </h1>
+    <p> Runde objekter er fine å forholde seg til, da de kan representeres med sentrum og radius uansett hvordan de roteres. Dersom man har to runde objekter vil man vite at de kolliderer i det avstanden mellom dem er de to kulenes samlede radius: <br>
+    <img src="bildefiler/kollisjonBall.png" width="200px"> <img src="bildefiler/pythagorasBall.png" width="400px"> <br>
+    Det vi altså må sjekke er om avstanden er mindre enn r1 + r2 der r1 og r2 er de to objektenes radier, og finnes ved hjelp av pythagoras: <br>
+    avstand<sup>2</sup> = xAvstand<sup>2</sup> + yAvstand<sup>2</sup> <br>
+
+    Koden for å sammenlikne avstand og sjekke om det er kollisjon blir dermed<br><br>
+    &nbsp;&nbsp; function avstand(obj, obj2){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var avstand = Math.sqrt(Math.pow(obj1.xPos-obj2.xPos, 2) + Math.pow(obj1.yPos-obj2.yPos, 2));<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; // Kollisjonen vil skje når avstanden er mindre enn radien de to ballene: <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; if(avstand <= (obj1.radius+obj2.radius)){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log("kollisjon!");<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp; }<br><br>
+    For å få med alle kollisjoner må denne funksjonen kalles i metoden for å flytte ballen. <br>
+
+    <h1> Eksempel som kun returnerer om ballene kolliderer </h1>
+    <p> Dere skal etterpå få utvide koden til å endre retning ved kollisjon </p>
+        <canvas id="canvas1" width="500" height="500" style="border:1px solid #000000; background-color: #FFFFFF;"></canvas >
+    <script>
+    // henter inn rett canvas å tegne i 
+    var canvas1=document.querySelector("#canvas1");
+    var ctx1=canvas1.getContext("2d");
+    // oppretter klasse for baller
+    class BallKollisjon {
+      // hver ball har en posisjon og en retning/hastighet
+      constructor (xPos, yPos, xHast, yHast, radius, farge) {
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.xHast = xHast;
+        this.yHast = yHast;
+        this.radius = radius;
+        this.farge = farge;
+      }
+      // metode for å tegne opp ball
+      tegnBall() {
+        ctx1.beginPath() ;
+        ctx1.arc(this.xPos, this.yPos, this.radius, 0, Math.PI *2); // tegner en sirkel der ballen befinner seg med radius 15px
+        ctx1.strokeStyle = "black";
+        ctx1.lineWidth = 5;
+        ctx1.stroke();
+        ctx1.fillStyle = this.farge;
+        ctx1.fill();
+        ctx1.closePath();
+      }
+
+      // metode for å flytte posisjonen og hastigheten til ballen
+      flyttBall() {
+        this.xPos += this.xHast;
+        if(this.xPos-this.radius < 0 || this.xPos+this.radius > canvas1.width ) {
+          this.xHast = -this.xHast;
+        }
+        this.yPos += this.yHast;
+        if(this.yPos-this.radius < 0 || this.yPos+this.radius > canvas1.height ) {
+          this.yHast = -this.yHast;
+        }
+      }
+    }
+
+    // nytt ballobjekt
+    var ball1 = new BallKollisjon(canvas1.width/2, canvas1.height/2, 3, 5, 35, "red");
+    var ball2 = new BallKollisjon(canvas1.width/4, canvas1.height/4, 5, 3, 20, "blue");
+
+    // funksjon som tømmer canvaset, flytter ballen og tener den opp på nytt
+    function animerBall1(){
+      ctx1.clearRect (0, 0, canvas1.width, canvas1.height);
+      ball1.flyttBall();
+      ball1.tegnBall();
+      ball2.flyttBall();
+      ball2.tegnBall();
+      avstandFunk(ball1, ball2);
+      requestAnimationFrame(animerBall1);
+    }
+    requestAnimationFrame(animerBall1);
+
+    function avstandFunk(obj1, obj2){
+      var avstand = Math.sqrt(Math.pow(obj1.xPos-obj2.xPos, 2) + Math.pow(obj1.yPos-obj2.yPos, 2));
+        if(avstand < (obj1.radius+obj2.radius)){
+        console.log("kollisjon!");
+      }
+    }
+    </script>
+
+    <p><b> Oppgave </b><br>
+    1. Utvid koden med ballene slik at de kan kollidere. Dersom det skjer skal begge to endre retning 180 grader (med mindre dere har lyst til å implementere korrekt fysikk). </p>
+
+    <h1> Annet nyttig ved spillprogrammering </h1>
+    <p><b> Å styre objekter med piltastene: </b><br>
+    Piltastene har tallkode 37 (venstre), 38 (opp), 39 (høyre), 40 (ned). Vi kan tillegge disse ulike roller i spillet ved vanlige hendelsesstyrte funksjoner. <br>
+    Dette kan vi gjøre ved å legge til lyttere og ha en funksjon som kjører på <br>
+    &nbsp;&nbsp; window.addEventListener("keydown", tasteFunksjon)<br>
+    &nbsp;&nbsp; function tasteFunksjon(e){ // når tast trykkes <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var tallkode = e.keyCode // finner ut hvilken tast <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; if (tallkode == 37){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // kode for venstre<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp;}<br>
+    osv. for de tastene vi vil inkludere <br>
+    Vi kan også registrere at taster slippes ved window.addEventListener("keyup", tasteFunksjon2)  </p>
+
+    <p> <b>Bakgrunner for canvas:</b> <br>
+    I pong ønsker vi kanskje en bakgrunn som ser mer ut som en tennisbane, andre ganger har vi andre ønsker for bakgrunnen. I canvas kan det løses med en object-variabel der vi setter størrelse, gressfarge, linjefarge osv. Videre lager vi en tegnBakgrunn-funksjon der vi henter inn elementer: <br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var bane = {<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bredde: canvas.width,<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; hoyde: canvas.height,<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gressfarge: "DarkGreen",<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; linjefarge: "White",<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; linjetykkelse: 4<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }  <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; function tegnBane(){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx.fillStyle=bane.gressfarge;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx.fillRect(0, 0, bane.bredde, bane.hoyde);<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx.fillStyle=bane.linjefarge;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx.fillRect(bane.bredde/2-bane.linjetykkelse/2, 0, bane.linjetykkelse, bane.hoyde);<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }</p>
+
+    <h1> Local storage </h1>
+    <p> Local storage er en metode for å lagre data (tekst eller tall) lokalt i nettleseren. Vi lagrer data ved hjelp av nøkler: <br>
+    &nbsp;&nbsp; localStorage.nøkkel = verdi;<br>
+    Og henter ut data ved bruk av samme nøkkel: <br>
+    &nbsp;&nbsp; var variabel = localStorage.nøkkel <br>
+    Vi kan ikke bruke local storage til å lagre objekter videre fordi objekter ikke er string eller number. Derfor må data som skal lagres først gjøres om til tekst. Dette gjøres ved hjelp av metodene: <br>
+    &nbsp;&nbsp; JSON.stringify (gjør om data til tekst)<br>
+    &nbsp;&nbsp; JSON.parse (gjør om data fra tekst til opprinnelig dataformat)<br><br>
+    Eksempel: har en array med figurer i Harry Potter: <br>
+    &nbsp;&nbsp; var figurer = ["Harry Potter", "Hermione Granger", "Ron Weasley"];<br>
+    &nbsp;&nbsp; figurerTekst = JSON.stringify(figurer); <br>
+    &nbsp;&nbsp; localStorage.mineFigurer = figurerTekst; <br>
+    &nbsp;&nbsp; var kjendiserOpprinnelig = JSON.parse(localStorage.mineFigurer); <br>
+
+    <p><b> Å telle poeng: </b><br>
+    I pong kan vi telle poeng for hver gang vi treffer ballen med rackerten. Her ønsker vi selvfølgelig å lagre tidligere highscore for å vite at vi har forbedret oss. Highscoren kan vi lagre i local storage. <br>
+    Rent praktisk gjøres dette ved <br><br>
+    Oppretter html-element for å telle poeng: <br>
+    < div id="poeng"> <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < h1 id="poengSpill> Poeng: 0 < /h1> <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < h1 id="poengRekord"> Poeng: 0 < /h1> <br>
+    < /div> <br>
+    Henter inn poengene: <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var poengSpill = document.querySelector("#poengSpill"); <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var poengRekord = document.querySelector("#poengRekord"); <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var poeng = 0; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; if(localStorage.rekord === undefined){ // hvis det ikke finnes noen high score <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; localStorage.rekord=0;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; } <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; if(betingelse for vunnet poeng){ <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; poeng += 1; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; poengSpill.innerHTML = "Poeng: " + poeng; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(poeng > localStorage.rekord){ <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; localStorage.rekord = poeng; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; poengRekord.innerHTML = "Ny rekord: " + poeng; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; poengRekord.style.color = "Red"; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+    &nbsp;&nbsp;&nbsp;&nbsp;}</p>
+
+
+    <h1> Oppgaver </h1>
+    <p> 1. Utvid koden med ballene slik at de kan kollidere. Dersom det skjer skal begge to endre retning 180 grader. <br>
+    2. Utvid koden slik at du kan styre den ene ballen med piltaster mens den andre er styrt av datamaskinen. Dersom du kolliderer med veggene eller den andre ballen skal spillet avsluttes (cancelAnimationFrame()). <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; Tips 1: Lag en superklasse ball med subklasser spiller og motstander <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; Tips 2: Hvis du står helt fast kan du se i læreboka fra side 315 og utover <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; Ja, løsningsforslag legges ut! <br>
+    Andre forslag: Snake, flappy bird eller andre spill du har lyst til å teste ut. Pong går vi gjennom neste mandag.</p>
+
+  </body>
+</html>
+ 

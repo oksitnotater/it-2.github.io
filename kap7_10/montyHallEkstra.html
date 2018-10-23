@@ -1,0 +1,141 @@
+<!doctype html>
+<html>
+<head>
+  <title>Monty Hall</title>
+  <meta charset="UTF-8">
+  <style>
+  body {
+    background-color: #323232;
+    font-family: "Century Gothic", Arial, sans-serif;
+    font-size: 14px;
+    color: #f2f2f2;
+    margin-left: 150px;
+  }
+  img:hover {
+    cursor: pointer;
+  }
+  </style>
+</head>
+
+
+<body>
+  <h1>Monty Hall</h1>
+  <p>Hvilken dør vil du velge?</p>
+  <img id="r" src="media/rod.png" width="227" alt="Dør">
+  <img id="g" src="media/gronn.png" width="227" alt="Dør">
+  <img id="b" src="media/blaa.png" width="227" alt="Dør">
+  <p id="tilbakemelding"></p>
+  <script>
+  var rodDorEl = document.querySelector("#r");
+  var gronnDorEl = document.querySelector("#g");
+  var blaaDorEl = document.querySelector("#b");
+  var tilbakemeldingEl = document.querySelector("#tilbakemelding");
+
+  rodDorEl.addEventListener("click", sjekkDor);
+  gronnDorEl.addEventListener("click", sjekkDor);
+  blaaDorEl.addEventListener("click", sjekkDor);
+
+  var bilDor = Math.floor(Math.random()*3);
+  console.log(bilDor);
+
+  function sjekkDor(e){
+    var valgtDor = e.target;
+    console.log(valgtDor);
+    if(valgtDor.id == "r"){
+      var valgtTall = 0;
+    }
+    else if(valgtDor.id=="g"){
+      var valgtTall = 1;
+    }
+    else{
+      var valgtTall = 2;
+    }
+
+    // åpner en dør med geit
+    if(bilDor == 0 && valgtTall == 0){ // hvis brukeren har valgt riktig dør i utgangspunktet (rød)
+      var tilf = Math.floor(Math.random()*2); // åpner tilfeldig enten grønn eller blå
+      if(tilf==0){
+        gronnDorEl.src="media/geit.png";
+      }
+      else{
+        blaaDorEl.src="media/geit.png";
+      }
+    }
+    else if(bilDor == 0 && valgtTall == 1){ // hvis bruker har valgt grønn og bilen er bak rød
+      blaaDorEl.src="media/geit.png"; // åpner blå
+    }
+    else if (bilDor == 0 && valgtTall == 2){ // hvis bruker har valgt blå og bilen er bak rød
+      gronnDorEl.src="media/geit.png"; // åpner grønn
+    }
+    else if(bilDor == 1 && valgtTall == 1){ // hvis brukeren har valgt riktig dør i utgangspunktet (grønn)
+      var tilf = Math.floor(Math.random()*2); // åpner tilfeldig enten rød eller blå
+      if(tilf==0){
+        rodDorEl.src="media/geit.png";
+      }
+      else{
+        blaaDorEl.src="media/geit.png";
+      }
+    }
+    else if(bilDor == 1 && valgtTall == 0){ // hvis brukeren har valgt rød og bilen er bak grønn
+      blaaDorEl.src="media/geit.png"; // åpner blå
+    }
+    else if(bilDor == 1 && valgtTall == 2){ // hvis brukeren har valgt blå og bilen er bak grønn
+      rodDorEl.src="media/geit.png"; // åpner rød
+    }
+    else if(bilDor == 2 && valgtTall == 2){  // hvis brukeren har valgt riktig dør i utgangspunktet (blå)
+      var tilf = Math.floor(Math.random()*2); // åpner tilfeldig enten rød eller grønn
+      if(tilf==0){
+        rodDorEl.src="media/geit.png";
+      }
+      else{
+        gronnDorEl.src="media/geit.png";
+      }
+    }
+    else if(bilDor == 2 && valgtTall == 0){ // hvis brukeren har valgt rød og bilen er bak blå
+      gronnDorEl.src="media/geit.png"; //  åpner grønn
+    }
+    else{ // hvis brukeren har valgt grønn og bilen er bak blå
+        rodDorEl.src="media/geit.png"; // åpner rød
+    }
+
+    // fjerner så lytterne og legger til så bruker kan velge på nytt
+    rodDorEl.removeEventListener("click", sjekkDor);
+    gronnDorEl.removeEventListener("click", sjekkDor);
+    blaaDorEl.removeEventListener("click", sjekkDor);
+
+    // legger til nye lyttere som kjører sjekkDorNy-funksjonen
+    // legg merke til at denne funksjonen ligger inni den forrige. Dette er for at ikke de to funksjonene skal kjøres samtidig
+    rodDorEl.addEventListener("click", sjekkDorNy);
+    gronnDorEl.addEventListener("click", sjekkDorNy);
+    blaaDorEl.addEventListener("click", sjekkDorNy);
+
+    function sjekkDorNy(e){
+      // finner ut hvilken dør som velges nå
+      var valgtDor = e.target;
+      if(valgtDor.id == "r"){
+        var valgtTall = 0;
+      }
+      else if(valgtDor.id=="g"){
+        var valgtTall = 1;
+      }
+      else{
+        var valgtTall = 2;
+      }
+      // og sjekker om brukeren har vunnet
+      if(valgtTall == bilDor){
+        tilbakemeldingEl.innerHTML="Du vant en bil!";
+        valgtDor.src="media/bil.png";
+      }
+      else{
+        tilbakemeldingEl.innerHTML="Du vant en geit!";
+        valgtDor.src="media/geit.png";
+      }
+      //fjerner til slutt lyttere
+      rodDorEl.removeEventListener("click", sjekkDorNy);
+      gronnDorEl.removeEventListener("click", sjekkDorNy);
+      blaaDorEl.removeEventListener("click", sjekkDorNy);
+    } // avslutter sjekkDorNy
+  }  // avslutter sjekkDor
+  </script>
+</body>
+</html>

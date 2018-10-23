@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> if-setninger </title>
+	<link rel="stylesheet" type="text/css" href="../grid.css">
+	<link rel="stylesheet" type="text/css" href="../stil.css">
+</head>
+<body>
+	<div class="col-12 row header">
+		Kapittel 3
+	</div>
+	<script type="text/javascript" src="../forside/meny.js"></script>
+	<div class="innhold">
+		<script>
+		  /* Oppgave:
+		  sjekk om et tilfeldig tall mellom 0 og 50 er et partall eller oddetall*/
+
+		  // lager det tilfeldige tallet:
+		  /* starter tilfeldig tall mellom 0 og 0,99999999 multipliseres med 51
+		  får med et tilfeldig tall mellom 0 og 50,9999999 og runder ned
+		  får med et tilfeldig tall mellom 0 og 50 */
+			var tilfeldig = Math.floor(Math.random()*51);
+			// runde av korrekt Math.round()
+			// runde opp: Math.ceil()
+
+		  // sjekker om det er partall
+		  /* partall % 2 = 0, legger dette som betingelse i if-setningen
+		  husk ==, ellers overskriver du partall % 2 til å alltid være 0, og da
+		  er if-setningen alltid sann*/
+			if(tilfeldig % 2 == 0){
+				document.write("<p> Tallet er " + tilfeldig + " og er et partall </p>");
+			}
+		  // hvis det ikke er partall: sjekker om det er oddetall
+		  /* oddetall % 2 = 1, kan legge dette som betingelse i if-setningen */
+			/* else if(tilfeldig % 2 == 1){
+				document.write("<p> Tallet er " + tilfeldig + " og er et oddetall </p>");
+			}*/
+			// MEN! Alle heltall som ikke er partall, er oddetall. else if er derfor ikke nødvendig
+			else{
+					document.write("<p> Tallet er " + tilfeldig + " og er et oddetall </p>");
+			}
+		</script>
+	</div>
+</body>
+</html>

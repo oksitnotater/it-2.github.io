@@ -1,0 +1,202 @@
+/* Generelt: CSS-animasjoner flekser dårlig, så å bruke grid/flexbox løser ikke alt. 
+Det er helt greit med løsninger som er optimalsert for fullt vindu i disse oppgavene. */
+
+/*felles for alle sider*/
+/* grid*/ 
+body{
+	margin-left: 2%;
+	margin-right: 2%
+}
+/* kode som alltid skal med ved bruk av grid */
+* {  /* gjelder alle html-elementer */
+    box-sizing: border-box;
+}
+[class*="col-"] {  /* gjelder alle klasser som heter col- */
+    float: left;
+    padding: 15px; /*vi setter selv en passende padding */
+}
+.row::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+/* definerer de breddene på elementene som vi tror vi kan få bruk for */
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+.col-1-5 {width: 12.5%;}
+
+/* annen stilsetting for alle sider*/
+body{
+	background-color: #EBF0F1; 
+	color: #1C3C50; 
+	margin-left: 50px;
+}
+.ramme{
+	background-color: #74AFAD;
+	padding: 10px;
+}
+.topp{
+	height: 200px;
+	background-color: #74AFAD;
+	color: #EBF0F1;
+	border: 10px solid  #558C89;
+	padding-top: 40px;
+	text-align: center;
+}
+.meny{
+	background-color: #D9853B;
+}
+a{ 
+    color: #74AFAD;  
+    font-weight: bold; 
+    text-decoration: none;  
+}
+a:hover{
+	background-color: #74AFAD;
+	color: #558C89;
+}
+.siden{
+	background-color: #ECECEA;
+	margin-top: 10px;
+	min-height: 90%;
+}
+
+/*index-siden*/
+#figur{
+	width: 50%;
+	height: 50%;
+	margin-left: 25%;
+}
+
+/* trillebår */
+#animasjon {
+  width: 400px;
+  left: -15%;
+  animation: flytt 10s linear infinite;
+  position: relative;
+}
+#trillebar {
+  width: 400px;
+}
+#hjul {
+  width: 80px;
+  position: absolute;
+  left: 237px;
+  top: 165px;
+  animation: roter 10s linear infinite;
+}
+@keyframes roter {
+  0% { transform:rotate(0deg); }
+  100% { transform:rotate(720deg); }
+}
+@keyframes flytt {
+  0% { left: -15%;}
+  45% {transform: rotateY(0deg);}
+  50% {left: 70%; transform: rotateY(180deg);}
+  95% {transform: rotateY(180deg);}
+  100% { left: -15%; transform: rotateY(0deg);}
+}
+
+/* sol */
+#bakgrunn{
+	height: 500px;
+	background-color: #87ceeb;
+	animation: himmel 10s linear infinite;
+	overflow: hidden;
+}
+#sol{
+	position: relative;
+    width: 150px;
+    animation: sol 10s linear infinite;
+}
+@keyframes himmel {
+	0% {background-color: black;}
+	25% {background-color: #483078;}
+	50% {background-color: #87ceeb;}
+	75% {background-color: #483078;}
+	100% {background-color: black;}
+}
+@keyframes sol {
+	0% {transform: translate(10%, 200%) rotate(0deg); }
+	50% {transform: translate(170%, 10%) rotate(360deg);}
+	100% {transform: translate(340%, 200%) rotate(720deg); }
+}
+
+/* tannhjul */
+#hvit{
+	background-color: white;
+	height: 200px;
+}
+#tannhjul2 {
+	position: relative;
+	top: 20px;
+	left: 115px;
+	animation: sirkel 2s linear infinite;
+	animation-play-state: paused;
+	cursor: pointer;
+}
+#tannhjul1 {
+	position: relative;
+	top: 10px;
+	left: 100px;
+	animation: sirkelTo 2s linear infinite;
+	animation-play-state: paused;
+	cursor: pointer;
+}
+#tannhjul3 {
+	position: relative;
+	top: 72px;
+	left: -82px;
+	animation: sirkelTo 2s linear infinite;
+	animation-play-state: paused;
+	cursor: pointer;
+}
+
+@keyframes sirkel {
+	0% { transform:rotate(0deg); }
+	100% { transform:rotate(360deg); }
+}
+@keyframes sirkelTo {	
+	0% { transform:rotate(360deg); }
+	100% { transform:rotate(0deg); }
+}
+
+/* skålvekt */
+#skalvekt{
+	left: auto;
+	width: 550px;
+	height: 550px;
+	position: relative;
+}
+
+#stang{
+	position: absolute;
+	top: -135px;
+	left: 0;
+	transition: all 0.2s ease;
+}
+
+#venstreskal{
+	position: absolute;
+	top: -105px;
+	left: -160px;
+	transition: all 0.2s ease;
+}
+
+#hoyreskal{
+	position: absolute;
+	top: -105px;
+	left: 160px;
+	transition: all 0.2s ease;
+}
+

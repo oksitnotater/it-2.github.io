@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Objektorientering</title>
+    <link rel="stylesheet" type="text/css" href="undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Introduksjon til objektorientert programmering i JavaScript </h1>
+  	<h2> Løsningsforslag til oppgave med set </h2>
+  	<p> Oppgaven går ut på å lage en applikasjon der du kan bruke en kalender til å sjekke om du har planer på en bestemt dag. Legg inn alle datoer som årstall-måned-dato (2017-02-27) og la bruker velge dato ved hjelp av inputtypen dato (< input type="date">). Legg alle datoer som velges inn i en set og sett som utgangspunkt at 17. mai er opptatt og alle andre datoer er ledige. Gi så brukeren tilbakemelding på om datoen er opptatt eller ikke og legg til valgte datoer som opptatte. </p>
+  	<input type="date" id="inputDato">
+  	<p> Velg en dato der du vil legge inn en avtale </p>
+  	<p id ="tilbakemeld">Skrives her </p>
+  	<script> 
+  		var inputDato = document.querySelector("#inputDato");
+  		var tilbakemeld = document.querySelector("#tilbakemeld");
+  		var opptatteDager = new Set(["2018-05-17"]); // setter 17. mai som opptatt
+      inputDato.addEventListener("change", sjekk);
+  		function sjekk(){ // funksjon som kjøres når dato endres
+  			if(opptatteDager.has(inputDato.value)){ // dersom datoen er opptatt
+  				tilbakemeld.innerHTML = "Du har valgt en dato der du er opptatt"; // gir tilbakemelding til bruker
+  				tilbakemeld.style.color="red"; // endrer farge på opptatte dager
+  			}
+  			else{ // dersom datoen er ledig
+  				tilbakemeld.innerHTML = "Datoen var ledig, du velger å legge inn en avtale";
+  				opptatteDager.add(inputDato.value), // legger inn datoen som opptatt
+  				tilbakemeld.style.color = "blue";
+  			}
+  		}
+  	</script>
+
+  	<h2> Bonusoppgave</h2>
+  	<p> Skriv ut til bruker hvilke datoer som er opptatte og gi bruker mulighet til å slette avtaler </p>
+  </body>
+</html>

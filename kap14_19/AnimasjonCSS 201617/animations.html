@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ANIMASJONER I CSS</title>
+    <link rel="stylesheet" type="text/css" href="230117_1.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Overganger og animasjoner med CSS </h1>
+  	<h2> Timer til kapittel 17: </h2>
+  	<p> Fredag: &nbsp;&nbsp; Hvor mye kan vi få til med css? <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Transition-egenskapen <br>
+  		Mandag:&nbsp;&nbsp;Kombinasjon av transitions og script <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Animation-egenskapen <br>
+  		Onsdag: &nbsp;&nbsp;Ingen time, men bruk tid på transitions-/animationsoppgave fra mandag </p>
+
+  	<h2> Hvilke muligheter gir CSS oss? </h2>
+  	<p>Egenskapene knyttet til transitions og animations gir oss mulighet til å bytte gradvis fra én CSS-verdi til en annen <br>
+  		Transitions: ingen repetisjoner av det som skjer, enkle overganger <br>
+  		Animations: brukes når vi vil repetere endringene eller når overgangene er stegvise <br>
+  		Vi må i all hovesak bruke JavaScript til å hendelsesstyre når dette skal skje </p> 
+
+  	<p> Spørsmål fra fredag: hvorfor bruker vi -webkit- <br>
+  		Dette er ikke nødvendig annet en når koden skal leses i Safari </p>
+
+  	<h2> Styre transitions med JavaScriot </h2>
+  	<p> På fredag brukte vi #byttForm:hover{} til å styre når en overgang skulle skje. For å la det skje kan vi også bruke hendelser i JavaScript som vi kjenner til: f.eks. med click. Jeg viser to metoder: </p>
+
+  	<p> Legger i funksjonen hvordan style skal endres: <br>
+
+  		&nbsp;&nbsp;&nbsp;&nbsp; < div id="byttForm" > < /div > <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; < button id="bytteKnapp" > Bytt < /button > <br><br>
+  	I css-fila: <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; #byttForm{<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 200px; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 200px; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: darkgreen; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+  		<br>
+  	I script: <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; < script > <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var knappEl = document.querySelector("#bytteKnapp"); <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var byttFormEl = document.querySelector("#byttForm"); <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var byttFargeEl = document.querySelector("#byttFarge"); <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; knappEl.addEventListener("click", byttFunksjon) <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function byttFunksjon(){<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; byttFormEl.style.transitionDelay="2s"; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; byttFormEl.style.transitionDuration="5s"; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; byttFormEl.style.borderRadius="70%"; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; < /script > </p>
+  	<div id="byttForm"> </div>
+  	<button id="bytteKnapp"> Bytt </button>
+  	<script> 
+  		var knappEl = document.querySelector("#bytteKnapp"); 
+  		var byttFormEl = document.querySelector("#byttForm"); 
+  		knappEl.addEventListener("click", byttFunksjon) 
+  		function byttFunksjon(){
+  			byttFormEl.style.transitionDelay="2s"; 
+  			byttFormEl.style.transitionDuration="5s"; 
+  			byttFormEl.style.borderRadius="70%"; 
+  		} 
+  	</script>
+
+  	<p> Den andre metoden er å legge inn en klasse i css med overgangsegenskapene og legge til denne klassen når knappen trykkes: <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; < div id="bytteForm2" > < /div > <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; < button id="bytteKnapp2" > Bytt < /button > <br><br>
+  	I css-fila: <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; #byttForm2{<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 200px; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 200px; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: darkgreen; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; .byttForm2{<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border-radius: 70%; <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+  	I script: <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; < script > <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var knappEl2 = document.querySelector("#byttKnapp2"); <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var byttFormEl2 = document.querySelector("#byttForm2"); <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; knappEl2.addEventListener("click", byttFunksjon2); <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function byttFunksjon2(){<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; byttFormEl2.classList.add("byttForm2") <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; < /script > </p>
+
+  	<div id="byttForm2"> </div>
+  	<button id="bytteKnapp2"> Bytt </button>
+  	<script> 
+  		var knappEl2 = document.querySelector("#bytteKnapp2"); 
+  		var byttFormEl2 = document.querySelector("#byttForm2"); 
+  		knappEl2.addEventListener("click", byttFunksjon2) 
+  		function byttFunksjon2(){
+  			byttFormEl2.classList.add("byttForm2") 
+  		} 
+  	</script>
+
+  	<h2> Animasjoner  med css </h2>
+  	<p> Nå får vi blant annet muligheten til å gjenta overgangene og sette sammen ulike overganger. </p>
+  	<table>
+  		<tr>
+  			<th> Metode </th> <th> Forklaring </th>
+  		</tr> <tr>
+  			<td> @keyframes </td> <td> Tilstanden av animasjonen</td>
+  		</tr><tr>
+			<th>Eksempel: </th> <th> Forklaring </th>
+		</tr><tr>
+			<td> @keyframes radius{ </td> <td> angir hvilken animasjon som endres </td>
+		</tr><tr>
+			<td> from { border-radius: 0% } </td> <td> angir gammel verdi </td>
+		</tr><tr>
+			<td> to { border-radius: 70%} } </td> <td> angir ny verdi </td>
+  		</tr><tr>
+
+  			<th> Egenskaper </th> <th> Forklaring </th>
+  		</tr> <tr>
+  			<td> animation-name: </td> <td> Legger inn navnet på keyframen </td>
+  		</tr> <tr>
+  			<td> animation-duration: </td> <td> Legger inn hvor lang tid animasjonen skal ta </td>
+  			</tr> <tr>
+  			<td> animation-delay: </td> <td> Legger inn forsinkelse i animasjonen </td>  		
+  		</tr> <tr>
+  			<td> animation-iteration-count </td> <td> Hvor mange ganger skal animasjonen gjentas? <br>
+  														Heltall eller infinite</td>
+  		</tr> <tr>
+  			<td> animation-direction </td> <td> fra 0% til 100% (standard), 0 til 100%  (reverse) eller annen hver (alternate) </td>
+  		</tr> <tr>
+  			<td> animation-fill-mode </td> <td> Legger inn hvordan animasjonen skal avsluttes <br>
+  												For eksempel forwards: det siste utseendet </td>
+		</tr>		
+  	</table>
+
+  <h2> Eksempel </h2>
+  <p> Lager en animasjon der en div først endrer border-radius, siden farge. Fargene endres gradvis. <br>
+  	Legger først inn en div vi skal endre: <br>
+  	< div id="animasjon" > < /div > <br>
+  	I css-fila legges følgende:<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; #animasjon{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 200px; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 200px; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: white;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 2px solid black; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; animation-name: radiusFarge;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; animation-duration: 10s;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; animation-delay: 2s;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; animation-iteration-count: infinite;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; @keyframes radiusFarge{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10% { background-color: red;}<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20% { background-color: orange;}<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 30% { background-color: yellow;}<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 40% { background-color: green;}<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 50% { background-color: darkgreen;}<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 60% { background-color: blue;}<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 70% { background-color: darkblue;}<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80% { background-color: violet;}<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 90% { border-radius: 70%;}<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 100% { background-color: white}, {border-radius: 0%;}<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+
+  	<div id="animasjon"></div>
+   
+   <br><br><br><br><br><br><br><br><br><br><br><br>
+
+  	<h2> Oppgaver </h2>
+  	<p> 1) Lag en overgang (eks: farge, form, plassering på siden, størrelse) som styres ved en knapp eller en annen hendelse <br>
+  		2) Lag en animasjon der du inkluderer ulike overganger. Undersøk de ulike egenskapene listet opp ovenfor <br>
+  		3) La animasjonen styres av JavaScript (tips: legg til div-elementet i < script > ved å bruke document.createElement("div" og appendChild)) <br> 
+  		4) Bruk timing-funksjoner (<a href="http://www.w3schools.com/cssref/css3_pr_animation-timing-function.asp">mer her</a>) for å styre timingen på animasjonen slik vi gjorde med overganger </p>
+
+  <br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+  </body>
+</html>

@@ -1,0 +1,239 @@
+/*felles for alle sider*/
+body{
+	background-color: #EBF0F1; 
+	color: #1C3C50; 
+	margin-left: 50px;
+}
+.ramme{
+	width: 90%;
+	background-color: #74AFAD;
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+}
+.topp{
+	height: 200px;
+	background-color: #74AFAD;
+	color: #EBF0F1;
+	border: 10px solid  #558C89;
+	padding-top: 5%;
+	text-align: center;
+}
+.meny{
+	background-color: #D9853B;
+	margin: 2%;
+	display: flex;
+	justify-content: space-between;
+}
+a{ 
+	padding: 1% 3%;
+    color: #74AFAD;  
+    border-radius:2px;
+    font-weight: bold; 
+    text-decoration: none; 
+    background-color: #558C89; 
+}
+a:hover{
+	background-color: #74AFAD;
+	color: #558C89;
+}
+.siden{
+	background-color: #ECECEA;
+	margin: 2%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+/*index-siden*/
+#figur{
+	width: 50%;
+	height: 50%;
+}
+
+/* oppgave 2*/
+#oppg2b{
+	justify-content: center;
+	width: 10%;
+	height: 10%;
+	background-color: blue;
+	transition: width linear 0s 0s, background-color linear 0s 2s, height linear 0s 4s;
+}
+#oppg2b:hover{
+	width: 20%;
+	background-color: green;
+	height: 20%;
+}
+
+/* oppgave 3 */
+#oppg3{
+	width: 40%;
+	margin-left: 15%;
+	margin-top: 10%;
+	display:flex;
+	flex-direction: column;
+	align-items: center;
+}
+#roter1{
+	color: red;
+	background-color: yellow;
+	width: 50%;
+	transform: rotate(25deg);
+}
+#roter2{
+	color: green;
+	background-color: yellow;
+	width: 50%;
+	transform: rotate(60deg);
+	transform-origin: center top;
+}
+#skaler{
+	color: blue;
+	background-color: yellow;
+	width: 50%;
+	transform: scale(2);
+}
+
+/* opppgave 4 */
+#oppg4{
+	justify-content: center;
+	display: flex;
+	flex-direction: column;
+}
+#ramme1{
+	margin: 5%;
+	width: 90%;
+	height: 90%;
+	border: 2px solid orange;
+}
+#kryssBoks{
+	position: relative;
+	width: 5%;
+	height: 5%;
+	background-color: orange;
+	animation-name: kryss;
+	animation-duration: 4s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: linear;
+}
+@keyframes kryss{
+	/*kode for å endre med from to:*/
+	/*from{transform: translateX(0%) translateY(0%)} 
+	to{transform: translateX(1800%) translateY(1800%)}*/
+	/*boksen er 5% av hele, vi ønsker at den flytter seg 90% totalt, dvs 1800%*/
+
+	/* kode for å endre med prosent*/
+	0%{transform: translateX(0%) translateY(0%)}
+	20%{transform: translateX(360%) translateY(360%)}
+	40%{transform: translateX(720%) translateY(720%)}
+	60%{transform: translateX(1080%) translateY(1080%)}
+	80%{transform: translateX(1440%) translateY(1440%)}
+	100%{transform: translateX(1800%) translateY(1800%)}
+}
+#ramme2{
+	margin:5%;
+	width: 90%;
+	height: 90%;
+	border: 2px solid lightblue;
+}
+#fig{
+	position: relative;
+	width: 5%;
+	height: 8%;
+	animation-name: dans;
+	animation-duration: 5s;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	animation-timing-function: linear;
+}
+@keyframes dans{
+	0% {transform: translateX(0%) translateY(0%) rotateZ(0deg);}
+	10% {transform: translateX(180%) translateY(150%) rotateZ(90deg);}
+	20% {transform: translateX(360%) translateY(450%) rotateZ(180deg);}
+	30% {transform: translateX(540%) translateY(300%) rotateZ(270deg);}
+	40% {transform: translateX(720%) translateY(600%) rotateZ(360deg);}
+	50% {transform: translateX(880%) translateY(450%) rotateZ(450deg);}
+	60% {transform: translateX(1080%) translateY(750%) rotateZ(540deg);}
+	70% {transform: translateX(1260x%) translateY(600%) rotateZ(630deg);}
+	80% {transform: translateX(1440%) translateY(900%) rotateZ(720deg);}
+	90% {transform: translateX(1620%) translateY(750%) rotateZ(810deg);}
+	100% {transform: translateX(1800%) translateY(950%) rotateZ(900deg);}
+}
+
+/* Oppgave 5 */
+#oppg5{
+	display: flex;
+	justify-content: center;
+}
+/* kode for å endre med scale */
+#ramme3{
+	position: relative;
+	width: 90%;
+	height: 90%;
+	overflow: hidden;
+	background-color: white;
+}
+img{
+	width: 96%;
+	height: 96%;
+}
+#ramme3>img{
+	position: absolute;
+	padding: 2%;
+	transform:scale(1);
+	transition: 0.5s 0.5s;
+}
+#ramme3>p{
+	position: absolute;
+	width: 80%;
+	height: 80%;
+	padding: 10%;
+	background-color: white;
+	text-align: center;
+	transform: scale(0);
+	transition: 0.5s 0s;
+}
+#ramme3:hover>img{
+	transform:scale(0);
+	transition: 0.5s 0s;
+}
+#ramme3:hover>p{
+	transform:scale(1);
+	transition: 0.5s 0.5s;
+}
+
+/* kode for å endre med opacity */
+/*#ramme3{
+	position: relative;
+	width: 90%;
+	height: 90%;
+	overflow: hidden;
+	background-color: white;
+}
+img{
+	width: 96%;
+	height: 96%;
+}
+#ramme3>img{
+	position: absolute;
+	padding: 1.5%;
+	opacity: 1;
+	transition: 1s;
+}
+#ramme3>p{
+	position: absolute;
+	width: 80%;
+	height: 80%;
+	padding: 10%;
+	background-color: white;
+	text-align: center;
+	opacity: 0;
+	transition: 1;
+}
+#ramme3:hover>img{
+	opacity: 0;
+}
+#ramme3:hover>p{
+	opacity: 1;
+}*/

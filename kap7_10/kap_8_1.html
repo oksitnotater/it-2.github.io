@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  	<head>
+    	<meta charset="UTF-8">
+    	<title> Hendelser </title>
+    	<link rel="stylesheet" type="text/css" href="undervisning.css">
+    	<style>
+    		.overskrift:hover{
+    			cursor: pointer;
+    		}
+    		#tom, #tom2{
+    			width: 50%;
+    			height: 200px;
+    			border: 1px solid green;
+    			color: green;
+    			background-color: yellow;
+    		}
+    	</style>
+    </head>
+    <body>
+    	<h1> Hva er en hendelse og hva er vitsen? </h1>
+    	<p> Hendelsene vi snakker om i IT-faget er ikke hendelser som "rakk ikke bussen", "har bursdag" eller liknende, men hendelser som er knyttet til nettleseren og brukeren av en nettside. Disse kan være å laste siden, å bevege musepekeren, å fylle input i et skjema, å klikke på en knapp eller andre. <br>
+    	Hendelser kan vi bruke til å lage det vi kaller hendelsesstyrte funksjoner: funksjoner som kjører først når en bestemt hendelse skjer. <br>
+    	Vi samler de viktigste hendelsene i en tabell (flere finnes på s. 124): </p>
+    	<table>
+    		<tr>
+    			<th> Hendelse </th> <th> Forklaring </th>
+    		</tr><tr>
+    			<td> load </td> <td> Nettsiden lastes </td>
+    		</tr>
+    		</tr><tr>
+    			<td> click </td> <td> Et element klikkes</td>
+    		</tr><tr>
+    			<td> dblclick </td> <td> Et element dobbelklikkes </td>
+    		</tr><tr>
+    			<td> input </td> <td> Noe skrives i et inputfelt </td>
+    		</tr><tr>
+    			<td> change </td> <td> Et select-element (element i en drop-down-meny) endres</td>
+    		</tr><tr>
+    			<td> keydown </td> <td> En tast trykkes ned </td>
+    		</tr><tr>
+    			<td> keyup </td> <td> En tast slippes opp </td>
+    		</tr><tr>
+    			<td> mousemove </td> <td> Musepekeren beveges </td>
+    		</tr><tr>
+    			<td> mouseover </td> <td> Musepekeren beveges på et element </td>
+    		</tr><tr>
+    			<td> mouseout </td> <td> Musepekeren beveges fra et element</td>
+    		</tr>
+    	</table>
+
+    	<h1 class="overskrift"> Lyttere og hendelsesstyrte funksjoner </h1>
+    	<p> For å finne ut om en hendelse inntreffer, må vi ha en lytter som følger med. Denne lytteren er selve elementet, som kan være enten document, body eller enkeltelementer på nettsiden. Til denne legger vi en lytter som skal følge med på en spesiell hendelse (fra tabellen over f.eks.). Dersom hendelsen inntreffer, blir en funksjon kallet. Vi kaller slike funksjoner <i>hendelsesstyrte funksjoner</i><br>
+    	Syntaksen for å legge til lyttere er <br>
+    	&nbsp;&nbsp; element.addEventListener("hendelse", funksjon); <br><b>Legg merke til at funksjonen ikke kalles når koden skrives, men kun nevnes</b> (vi bruker ikke funksjon())<br><br>
+    	For å legge til en lytter må vi først hente inn elementet. I dette tilfellet er elementet overskriften til dette avsnittet (med klasse .overskrift).<br>
+    	&nbsp;&nbsp; var overskriftEl = document.querySelector(".overskrift");<br>
+    	&nbsp;&nbsp; overskriftEl.addEventListener("click", fargeFunksjon);<br><br>
+    	Denne funksjonen må defineres:<br>
+    	&nbsp;&nbsp; function fargeFunksjon() {<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; overskriftEl.style.color="red";<br>
+    	&nbsp;&nbsp; }</p>
+    	<script>
+    		var overskriftEl = document.querySelector(".overskrift");
+    		overskriftEl.addEventListener("click", fargeFunksjon);
+    		function fargeFunksjon() {
+    			overskriftEl.style.color="red";
+    		}
+    	</script>
+
+    	<h1> Eksempel </h1>
+    	<p> Jeg lager en div og sier at den skal fylles med teksten "jeg er ikke en tom div!" når den dobbelklikkes <br>
+    	&nbsp;&nbsp; < div id="tom" >< /div ><br>
+    	&nbsp;&nbsp; < script ><br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; var divEl = document.querySelector("#tom");<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; divEl.addEventListener("dblclick", tekstFunksjon);<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; var tekstEl = document.createElement("p");<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; tekstEl.innerHTML = "jeg er ikke en tom div!";<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; function tekstFunksjon() {<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; divEl.appendChild(tekstEl);<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+    	&nbsp;&nbsp; < /script ></p>
+    	<div id="tom"></div>
+    	<script>
+    		var divEl = document.querySelector("#tom");
+    		divEl.addEventListener("dblclick", tekstFunksjon);
+    		var tekstEl = document.createElement("p");
+    		tekstEl.innerHTML = "jeg er ikke en tom div!";
+    		function tekstFunksjon() {
+    			divEl.appendChild(tekstEl);
+    		}
+    	</script>
+
+    	<h1> Alternativ kode </h1>
+    	<p> Det går også an å ha funksjoner knyttet til hendelser uten å legge inn en lytter. Dersom du vet du har kontroll nok til å veksle mellom de to kan mindre hendelsesstyrte funksjoner lages på denne måten.<br>
+      Skal du kun velge én (det gjelder de fleste av dere) holder dere dere til å bruke lyttere som i forrige eksempel, da det er denne metoden boka forholder seg til.<br>
+    	Den andre metoden er at vi lager funksjonen som <br>
+    	&nbsp;&nbsp; element.onHendelse = function(){<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; definer funksjon;<br>
+    	&nbsp;&nbsp;} <br><br>
+    	Eksemplet over blir da<br>
+    	&nbsp;&nbsp; < div id="tom2" >< /div ><br>
+    	&nbsp;&nbsp; < script ><br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; var divEl2 = document.querySelector("#tom2");<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; var tekstEl2 = document.createElement("p");<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; tekstEl2.innerHTML = "jeg er heller ikke en tom div!";<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; divEl2.ondblclick = function(){<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; divEl2.appendChild(tekstEl2);<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    	&nbsp;&nbsp; < /script ></p>
+
+    	<div id="tom2"></div>
+    	<script>
+    		var divEl2 = document.querySelector("#tom2");
+    		var tekstEl2 = document.createElement("p");
+    		tekstEl2.innerHTML = "jeg er heller ikke en tom div!";
+    		divEl2.ondblclick = function(){
+    			divEl2.appendChild(tekstEl2);
+    		}
+    	</script>
+
+    	<p> onHendelse kan også legges direkte når elementes lages i html: <br>
+    	&nbsp;&nbsp; < div ondblclick = "tekstfunksjon()"><br>
+    	Da defineres funksjonen i < script > som før </p>
+
+    	<h1> removeEventListener </h1>
+    	<p> Dersom vi øsnker å fjerne en lytter når funksjonen har kjørt, bruker vi metoden <br>
+    	&nbsp;&nbsp; element.removeEventListener("hendelse", funksjon)<br>
+    	For eksempel <br>
+    	&nbsp;&nbsp; divEl.removeEventListener("dblclick", tekstFunksjon)</p>
+    	<h1> Oppgaver </h1>
+    	<p> s. 127: oppgave 8.1, 8.2, 8.3, 8.4</p>
+      <img src="media/oppgaver8_1.png" width="60%">
+      <img src="media/oppgaver8_1b.png" width="60%">
+
+   	</body>
+</html>

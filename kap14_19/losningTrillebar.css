@@ -1,0 +1,31 @@
+#ramme {
+  top: 50px;
+  animation: flytt 10s linear infinite;
+  border: none;
+  position: absolute;
+}
+#trillebar {
+  width: 400px;
+}
+#hjul {
+  width:80px;
+  position: absolute;
+  left:240px;
+  margin-top: 165px;
+  animation: roter 10s linear infinite;
+}
+@keyframes roter {
+  0% { transform:rotate(0deg); }
+  100% { transform:rotate(720deg); }
+}
+@keyframes flytt {
+  0% { left: 0%;}
+  45% {transform: rotateY(0deg);}
+  50% {left: 70%; transform: rotateY(180deg);}
+  95% {transform: rotateY(180deg);}
+  100% { left: 0%; transform: rotateY(0deg);}
+}
+#info{
+  position: absolute;
+  top: 500px;
+}

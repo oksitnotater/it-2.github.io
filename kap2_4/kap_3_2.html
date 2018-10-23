@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> løkker </title>
+	<link rel="stylesheet" type="text/css" href="undervisning.css">
+</head>
+<body>
+	<h1> Hvorfor lære løkker? </h1>
+	<p> Del 2 fra oppgavesettet forrige uke gir unødvendig mye kode, og vi ser at kode repeteres. </p>
+
+	<h1> Eksempler på kode som er tungvint uten å bruke løkker </h1>
+	<p> "Skriv kode som gjentar teksten 'jeg synes det er unødvendig å skrive det samme 10 ganger' ti ganger til konsollen"<br>
+	&nbsp;&nbsp; 	< script ><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	var tekst = 'jeg synes det er unødvendig å skrive det samme 10 ganger';<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	console.log(tekst);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	console.log(tekst);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	console.log(tekst);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	console.log(tekst);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	console.log(tekst);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	console.log(tekst);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	console.log(tekst);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	console.log(tekst);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	console.log(tekst);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	console.log(tekst);<br>
+	&nbsp;&nbsp; 	< /script ><br><br>
+
+	Det må også finnes en enklere måte å skrive ut 3-gangeren på enn <br>
+	&nbsp;&nbsp; < script ><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; console.log(1*3);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; console.log(2*3);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; console.log(3*3);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; console.log(4*3);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; console.log(5*3);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; console.log(6*3);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; console.log(7*3);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; console.log(8*3);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; console.log(9*3);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; console.log(10*3);	 <br>
+  &nbsp;&nbsp; < /script ><br><br>
+
+	"Presenter den lille gangetabellen i tabellformat på nettsiden ved hjelp av aritmetiske operasjoner."<br>
+	&nbsp;&nbsp; 	< script ><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	document.write("< table >");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	document.write("< tr > < td >"+1*1+"< /td >< td >"+1*+2"< /td >< td >"+1*3+"< /td >< td >"+1*4+"< /td >< td >"+1*5+"< /td >< td >"+1*6+"< /td >< td >"+1*7+"< /td >< td >"+1*8+"< /td >< td >"+1*9+"< /td >< td >"+1*10+"< /td >< /tr >");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	// osv 9 rader til<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; 	document.write("</table>");
+	&nbsp;&nbsp; 	< script ></p>
+
+	<script>
+	var tekst = 'jeg synes det er unødvendig å skrive det samme 10 ganger';
+	console.log(tekst);
+	console.log(tekst);
+	console.log(tekst);
+	console.log(tekst);
+	console.log(tekst);
+	console.log(tekst);
+	console.log(tekst);
+	console.log(tekst);
+	console.log(tekst);
+	console.log(tekst);
+
+	console.log(1*3);
+	console.log(2*3);
+	console.log(3*3);
+	console.log(4*3);
+	console.log(5*3);
+	console.log(6*3);
+	console.log(7*3);
+	console.log(8*3);
+	console.log(9*3);
+	console.log(10*3);
+
+	document.write("<table>");
+	document.write("<tr><td>"+1*1+"</td><td>"+1*2+"</td><td>"+1*3+"</td><td>"+1*4+"</td><td>"+1*5+"</td><td>"+1*6+"</td><td>"+1*7+"</td><td>"+1*8+"</td><td>"+1*9+"</td><td>"+1*10+"</td></tr>");
+	document.write("</table>");
+	</script>
+	<p>
+  Vi gjentar kode ved å skrive den som løkker. Vi har to hovedtyper av løkker: forløkker og whileløkker. En forløkke gjentar kode et gitt antall ganger, mens en whileløkke vil gjenta kode så lenge en gitt påstand er sann. De har derfor noe forskjellig bruksområde. </p>
+
+	<h1> Forløkker </h1>
+  <p> I eksempelet med gangetabellen er det nyttig å bruke en forløkke fordi vi vet hvor mange ganger vi skal repetere koden. Strukturen for en forløkke er: <br>
+  &nbsp;&nbsp; < script > <br>
+  &nbsp;&nbsp;&nbsp;&nbsp; for(var teller = startverdi; teller <= sluttverdi; teller øker med){ <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kode som skal gjentas <br>
+  &nbsp;&nbsp;&nbsp;&nbsp; } <br>
+  &nbsp;&nbsp; < /script > <br><br>
+  Telleren kaller vi som oftest i (j, k kan også brukes), og vi kan også ha en nedtelling der teller >= sluttverdi og teller minker. <br>
+  I eksempelet med gangetabellen ønsker vi at startverdien for i er 1, at i skal være mindre eller lik 10 og at i øker med 1: <br>
+  &nbsp;&nbsp; < script ><br>
+  &nbsp;&nbsp;&nbsp;&nbsp; for(var i = 1; i <=10; i++){<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log(3*i);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; } <br>
+  &nbsp;&nbsp; < /script ></p>
+
+  <script>
+  	for(var i = 1; i <= 10; i++){
+  		console.log(3*i);
+  	}
+  </script>
+
+	<h1> Eksempel: gjenta tekst i konsollen </h1>
+	<p>&nbsp;&nbsp; < script ><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var tekst = 'jeg synes det er unødvendig å skrive det samme 10 ganger';<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; for(var i = 1; i <= 10; i++){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log(tekst);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; < /script ></p>
+
+	<script>
+	var tekst = 'jeg synes det er unødvendig å skrive det samme 10 ganger';
+	for(var i = 1; i <= 10; i++){
+		console.log(tekst);
+	}
+	</script>
+
+	<h1> Eksempel: gangetabell (for-løkker) </h1>
+	<p> &nbsp;&nbsp; < script ><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; document.write('< table >');<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; for (var i=1; i<=10; i++){<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('< tr >');<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(var j=1; j<=10; j++){<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('< td >'+i*j+'< /td >');<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('< /tr >');<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; document.write('< /table >');<br>
+ 	&nbsp;&nbsp; < /script ></p>
+
+
+	<script>
+	  document.write('<table>');
+      for (var i=1; i<=10; i++){
+        document.write('<tr>');
+        for(var j=1; j<=10; j++){
+          document.write('<td>'+i*j+'</td>');
+        }
+        document.write('</tr>');
+      }
+      document.write('</table>');
+ 	</script>
+
+	<h1> Eksempel: telle ned </h1>
+	<p> Skriv kode for å telle ned fra 100 til 10 <br>
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; for(var i = 100; i >= 10; i--){ // i = i-1<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log(i);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; < /script ><br><br>
+
+	Skriv kode for å telle ned partallene fra 50 til 30 <br>
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; for(i = 50; i>= 30; i-=2){ // i = i-2<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //if(i % 2==0){ // if-setningen er ikke nødvendig hvis vi teller annenhver<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log(i);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;	//}<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; < /script ></p>
+
+	<script>
+	for(var i = 100; i >= 10; i--){ // i = i-1
+		console.log(i);
+	}
+
+	for(i = 50; i>= 30; i-=2){ // i = i-2
+		//if(i % 2==0){ // if-setningen er ikke nødvendig hvis vi teller annenhver
+		console.log(i);
+		//}
+	}
+	</script>
+
+  <h1> Whileløkker </h1>
+  <p> Whileløkkene har ikke en teller som gir antall repetisjoner av koden, men en betingelse som sier om koden skal kjøres: <br>
+  &nbsp;&nbsp; < script > <br>
+  &nbsp;&nbsp;&nbsp;&nbsp; while(betingelse er sann){<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kode som skal gjentas <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; husk å endre premiss for betingelsen! <br>
+  &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp; < /script> <br><br>
+
+	<h1> Eksempel: generere nye tall </h1>
+	<p> Skriv kode som oppfyller følgende pseudokode:<br>
+	&nbsp;&nbsp; generer et tilfeldig tall mellom 0 og 30 og skriv dette på siden; <br>
+	&nbsp;&nbsp; hvis det nye tallet ikke er delelig med seks{ <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; generer et nytt tilfeldig tall mellom 0 og 30 og skriv dette på siden; <br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; hvis det nye tallet ikke er delelig med seks{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; generer et nytt tilfeldig tall mellom 0 og 30 og skriv dette på siden; <br>
+	&nbsp;&nbsp; } <br>
+	&nbsp;&nbsp; Osv helt til tallet som blir generert er delelig med seks.<br><br>
+
+	<script>
+	var tilfeldig = Math.floor(Math.random()*31);
+	if(tilfeldig%6 == 0){
+		document.write("<p> " + tilfeldig + " er delelig med seks");
+	}
+	else{
+		tilfeldig = Math.floor(Math.random()*31);
+	}
+	if(tilfeldig%6 == 0){
+		document.write("<p> " + tilfeldig + " er delelig med seks");
+	}
+	else{
+		tilfeldig = Math.floor(Math.random()*31);
+	}
+	</script>
+
+	Denne lar seg ikke løse uten løkker: vi vet ikke hvor mange ganger vi må gjenta if-setningen før vi får et tall som er delelig med seks. <br>
+	Dvs: vi skal bruke en whileløkke.<br><br>
+
+	&nbsp;&nbsp; < script ><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var tilf = Math.floor(Math.random()*31); // genererer tilfeldig tall<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; console.log(tilf);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; while(tilf%6!=0){ // gjentar så lenge tallet ikke er delelig med seks<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var tilf = Math.floor(Math.random()*31); // genererer nytt tilfeldig tall <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log(tilf);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; < /script ></p>
+
+	<script>
+	var tilf = Math.floor(Math.random()*31); // genererer tilfeldig tall
+	console.log(tilf);
+	while(tilf%6!=0){ // gjentar så lenge tallet ikke er delelig med seks
+		var tilf = Math.floor(Math.random()*31); // genererer nytt tilfeldig tall
+		console.log(tilf);
+	}
+	</script>
+	<p> Vi vet ikke hvor mange ganger koden skal gjentas, og kan derfor ikke bruke noen forløkke </p>
+	<script>
+	/*var tilfeldig = Math.floor(Math.random()*31);
+	for(var i = 0; i <= 9999; i++) {// vi aner ikke hva sluttverdien for i skal være!
+		if(tilfeldig%6 == 0){
+			document.write("<p> " + tilfeldig + " er delelig med seks");
+		}
+		else{
+			tilfeldig = Math.floor(Math.random()*31);
+		}
+	}*/
+	</script>
+
+	<h1> Tellere/sum </h1>
+	<p> I en whileløkke kan vi holde orden på hvor mange ganger whileløkken har kjørt ved å legge inn en tellevariabel som oppdateres hver gang koden kjøres: <br>
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tilf = Math.floor(Math.random()*31); // genererer tilfeldig tall<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(tilf);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var antall = 0;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; while(tilf%6!=0){ // gjentar så lenge tallet ikke er delelig med seks<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var tilf = Math.floor(Math.random()*31); // genererer nytt tilfeldig tall <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; antall ++;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log("tallet " + tilf + " er delelig med seks. Det tok "+ antall + " forsøk.");<br>
+		&nbsp;&nbsp; < /script ></p>
+		<script>
+		var tilf = Math.floor(Math.random()*31); // genererer tilfeldig tall
+		console.log(tilf);
+		var antall = 0;
+		while(tilf%6!=0){ // gjentar så lenge tallet ikke er delelig med seks
+			var tilf = Math.floor(Math.random()*31); // genererer nytt tilfeldig tall
+			antall++;
+		}
+		console.log("tallet " + tilf + " er delelig med seks. Det tok "+ antall + " forsøk.");
+		</script>
+
+	<p> Dersom vi skal finne summen av et visst antall tall må vi huske at <br>
+	summen av tallene fra 1 til 10 = 1 + 2 + 3 + 4 + 5 + 6 + 7 + 8 + 9 + 10<br>
+	dvs at du skal legge til i hver gang: <br>
+	var sum = 0;<br>
+	sum = sum + 1;<br>
+	sum = sum + 2;<br>
+	sum = sum + 3;<br>
+	sum = sum + 4;<br>
+	sum = sum + 5;<br>
+	sum = sum + 6;<br>
+	sum = sum + 7;<br>
+	sum = sum + 8;<br>
+	sum = sum + 9;<br>
+	sum = sum + 10;</p>
+
+
+	<h1> Oppgaver </h1>
+	<p> s. 53: oppgave 3.9, 3.11, 3.12, 3.13 + 3.14, 3.16, 3.17 </p>
+
+	<h1> Å løkke gjennom tekst </h1>
+	<p> Fra tidligere husker vi at vi har ulike måter å behandle tekststrenger på: <br>
+	Her er var tekstVar = 'En setning med tekst!';</p>
+	<table>
+		<tr> <th> Metode </th> <th> Forklaring </th> <th> Eksempel </th> </tr>
+		<tr> <td> [plass] </td> <td> Gir tegnet på en gitt plassering </td> <td>console.log(tekstVar[3]); returnerer s</td> </tr>
+		<tr> <td> indexOf() </td> <td> Finner plasseringen til første element av typen et spørres etter </td> <td> console.log(tekstVar.indexOf('n')); returnerer n </td></tr>
+		<tr> <td> toUpperCase() </td> <td> Gjør om til kun store bokstaver </td> <td> console.log(tekstVar.toUpperCase()); returnerer EN SETNING MED TEKST! </td> </tr>
+		<tr> <td> toLowerCase() </td> <td> Gjør om til kun små bokstaver </td> <td> console.log(tekstVar.toLowerCase()); returnerer en setning med tekst!</td> </tr>
+		<tr> <td> length </td> <td> Gir antall tegn i stringen </td> <td> console.log(tekstVar.length); returnerer 21 </td> </tr>
+		<tr> <td>  substring() </td> <td> Gir tegnene i et intervall </td> <td> console.log(tekstVar.substring(11, 14)); returnerer med</td> </tr>
+	</table>
+
+	<p> Dette kan vi bruke sammen med forløkker til å for eksempel bla gjennom en tekststreng og lete etter bestemte tegn. Løkken vil da være en for-løkke som bruker sitatets lengde. <br><br>
+	Vi tar for oss tekststrengen <br>
+	&nbsp;&nbsp; var tekst = 'Endelig har vi begynt med litt ordentlig koding';<br>
+	Lengden til dette sitatet finner vi ved <br>
+	&nbsp;&nbsp; console.log(tekst.length); // konsollen svarer 47 <br>
+	Dersom vi ønsker å skrive teksten bokstav for bokstav til konsollen, må vi huske at det første tegnet står på plass 0 og det siste på plass 46. Løkken for dette blir da <br>
+	&nbsp;&nbsp; for(var i = 0; i < tekst.length; i++){ <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; console.log(tekst[i]); <br>
+	&nbsp;&nbsp; } <br><br>
+
+	Vi kan også finne ut hvor mange ord teksten består av ved å lage en antallsvariabel og telle antall mellomrom: <br>
+	&nbsp;&nbsp; var antall = 0;<br>
+	&nbsp;&nbsp; for(var i = 0; i < tekst.length; i++){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; if (tekst[i]=== '&nbsp;&nbsp;'){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; antall ++;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; console.log(antall);<br>
+	Antall ord må da være antall + 1: åtte ord </p>
+
+	<script>
+		var tekst = 'Endelig har vi begynt med litt ordentlig koding';
+		console.log(tekst.length);
+		for(var i = 0; i < tekst.length; i++){
+			console.log(tekst[i]);
+		}
+
+		var antall = 0;
+		for(var i = 0; i < tekst.length; i++){
+			if (tekst[i]=== ' '){
+				antall ++;
+			}
+		}
+		console.log(antall);
+	</script>
+
+	<h1> Oppgaver </h1>
+	<p> s. 53: oppgave 3.9, 3.11, 3.12, 3.13 + 3.14, 3.16, 3.17 <br>
+	s. 55: oppgave 3.18, 3.19 <br>
+	Der det står "skriv ut" velger du selv mellom konsollen og nettsiden.</p>
+
+
+</body>
+</html>

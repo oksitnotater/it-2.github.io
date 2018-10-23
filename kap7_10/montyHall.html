@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+  <title>Monty Hall</title>
+  <meta charset="UTF-8">
+  <style>
+  body {
+    background-color: #323232;
+    font-family: "Century Gothic", Arial, sans-serif;
+    font-size: 14px;
+    color: #f2f2f2;	
+  }
+  img:hover {
+    cursor: pointer;
+  }
+  </style>
+</head>
+<body>
+  <h1>Monty Hall</h1>
+  <p>Hvilken dør vil du velge?</p>
+  <img id="r" src="media/rod.png" width="227" height="324" alt="Dør">
+  <img id="g" src="media/gronn.png" width="227" height="324" alt="Dør">
+  <img id="b" src="media/blaa.png" width="227" height="324" alt="Dør">
+  <p id="tilbakemelding"></p>
+<script>
+  var rodDorEl = document.querySelector("#r");
+  var gronnDorEl = document.querySelector("#g");
+  var blaaDorEl = document.querySelector("#b");
+  var tilbakemeldingEl = document.querySelector("#tilbakemelding")
+
+  rodDorEl.addEventListener("click", sjekkDor);
+  gronnDorEl.addEventListener("click", sjekkDor);
+  blaaDorEl.addEventListener("click", sjekkDor);
+
+  var bilDor = Math.floor(Math.random()*3); 
+ // console.log(bilDor);
+
+  function sjekkDor(e){
+    // console.log(e.target);
+    // console.log(e.type);
+    var valgtDor = e.target;
+    // console.log(valgtDor.id);
+    if(valgtDor.id == "r"){
+      var valgtTall = 0;
+    }
+    else if(valgtDor.id=="g"){
+      var valgtTall = 1;
+    }
+    else{
+      var valgtTall = 2;
+    }
+    //console.log(valgtTall);
+
+    if(valgtTall == bilDor){
+      tilbakemeldingEl.innerHTML="Du vant en bil!";
+      valgtDor.src="media/bil.png";
+    }
+    else{
+      tilbakemeldingEl.innerHTML="Du vant en geit!";
+      valgtDor.src="media/geit.png";
+    }
+  }
+
+</script>
+</body>
+</html>

@@ -1,0 +1,42 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Objektorientering</title>
+    <link rel="stylesheet" type="text/css" href="undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Løsningsforslag til oppgave i timen </h2>
+  	<script> 
+  	class Bil{
+  		constructor(merke, modell, bensineffekt){
+  			this.merke=merke;
+  			this.modell=modell;
+  			this.bensineffekt=bensineffekt;
+  		}
+  		get motoreffekt(){
+  			return this.bensineffekt;
+  		}
+  	}
+  	class Hybridbil extends Bil{
+  		constructor(merke, modell, bensineffekt, eleffekt){
+  			super(merke, modell, bensineffekt);
+  			this.eleffekt=eleffekt;
+  		}
+     
+      		/*get motoreffekt(){ //overstyrer metoden i superklassen
+  			return this.bensineffekt + this.eleffekt;
+  		}*/
+  	}
+  	let golf = new Bil("Volkswagen", "Golf", 90);
+    let octavia = new Bil("Skoda", "Oktavia", 100);
+  	let hybridgolf = new Hybridbil("Volkswagen", "Golf GTE", 90, 60);
+    let sportback = new Hybridbil("Audi", "A3 Sportback e-tron", 80, 70)
+  	document.write(golf.merke +" "+ golf.modell + " har motoreffekt " + golf.motoreffekt +"<br>");
+  	document.write(hybridgolf.merke +" "+ hybridgolf.modell + " har motoreffekt " + hybridgolf.motoreffekt +"<br>");
+    document.write(octavia.merke +" "+ octavia.modell + " har motoreffekt " + octavia.motoreffekt +"<br>");
+    document.write(sportback.merke +" "+ sportback.modell + " har motoreffekt " + sportback.motoreffekt +"<br>");
+  	</script>
+  </body>
+</html>

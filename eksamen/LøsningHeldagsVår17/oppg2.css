@@ -1,0 +1,11 @@
+table, th, td{
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+#tilbakemeld{
+	font-size: 30px;
+	color: red;
+}
+#skibilde{
+	width: 400px;
+}

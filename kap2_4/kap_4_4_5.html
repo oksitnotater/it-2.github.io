@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Funksjoner </title>
+	<link rel="stylesheet" type="text/css" href="undervisning.css">
+</head>
+<body>
+	<h1> Globale og lokale variabler </h1>
+	<p> I forrige time la vi inn returverdier i en funksjon, for eksempel returnerer tilfeldigTall-funksjonen et tilfedig tall. Vi så at koden <br>
+	&nbsp;&nbsp; < script > <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; function tilfeldigTall(min, max){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var tilfeldig = (Math.floor(Math.random()*(max - min + 1)+min));<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; } <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; tilfeldigTall(2, 10);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; document.write(tilfeldig);<br>
+	&nbsp;&nbsp; < /script > <br>
+
+	<script>
+		function tilfeldigTall(min, max){
+			var tilfeldig = (Math.floor(Math.random()*(max - min + 1)+min)); // lager et tilfeldig tall mellom max og min
+		}
+		tilfeldigTall(2, 10);
+		document.write(tilfeldig);
+	</script><br><br>
+
+	gir oss en feilmelding som sier at variablen tilfeldig ikke er definert. Årsaken til dette er at den er det vi kaller en lokal variabel: den finnes kun inne i funksjonen. <br>
+	Variabler slik vi tidligere har brukt dem ved å deklare den utenfor funksjoner kaller vi globale variabler, og de finnes for hele programmet. <br> <br>
+
+	Vi ser at variabler med samme variabelnavn vil ha ulike verdier før, i og etter funksjonen: <br>
+	&nbsp;&nbsp; < script ><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var tilfeldig2 = (Math.floor(Math.random()*(10 - 2 + 1)+2)); <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; document.write (tilfeldig2 + ' er verdien før funksjon < br >'); <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; function tilfeldigTall(min, max){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var tilfeldig2 = (Math.floor(Math.random()*(max - min + 1)+min)); <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write (tilfeldig2 + ' er verdien i funksjonen < br >')<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; tilfeldigTall(2, 10);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; document.write(tilfeldig2 + ' er verdien etter funksjonen < br >');<br>
+	&nbsp;&nbsp; < /script ><br><br>
+
+	<script>
+		var tilfeldig2 = (Math.floor(Math.random()*(10 - 2 + 1)+2));
+		document.write (tilfeldig2 + ' er verdien før funksjonen <br>');
+		function tilfeldigTall(min, max){
+			var tilfeldig2 = (Math.floor(Math.random()*(max - min + 1)+min)); // lager et tilfeldig tall mellom max og min
+			document.write (tilfeldig2 + ' er verdien i funksjonen <br>')
+		}
+		tilfeldigTall(2, 10);
+		document.write(tilfeldig2 + ' er verdien etter funksjonen <br>');
+	</script><br><br>
+
+	Løsningen er altså at vi må bruke returverdier i slike sammenhenger. <br>
+
+	<h1> Kommentering av kode </h1>
+	<p> Vi husker hvordan vi kan kommenterere kode i html, css og js: <br>
+		&nbsp;&nbsp; < !-- Kommentar --> &nbsp;&nbsp;&nbsp;&nbsp; Gir utkommentering i html <br>
+		&nbsp;&nbsp; /* kommentar */ &nbsp;&nbsp;&nbsp;&nbsp; Gir utkommentering i css <br>
+		&nbsp;&nbsp; /* kommentar */ og // kommentar &nbsp;&nbsp;&nbsp;&nbsp; Gir utkommentering i js <br><br>
+
+		Kommentarer bruker vi av to årsaker: for at kode ikke skal bli lest (f.eks fordi vi skal feilsøke, eller fordi vi har ombestemt oss, men ikke vil slette koden helt) og for å forklare kode. Å kommentere hvordan koden fungerer er, sammen med en ryddig kode med innrykk, et godt grunnlag for at andre brukere kan forstå koden din (eller fremtidige deg kan forstå den om et halvt år). Et eksempel på bruk av kommentarer for å forklare kode er vist under: <br> <br>
+
+		&nbsp;&nbsp;< script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; /* Koden under viser en funksjon som tar inn et heltall n og skriver ut gangetabellen opp til n*n */<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; function gangetabell(n){ // definerer funksjonen, med parameter n<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('< table >'); // starter html-tabell<br>
+      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (var i=1; i<=n; i++){ // ønsker n rader<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('< tr >');<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(var j=1; j<=n; j++){ // ønsker n kolonner<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;document.write('< td >'+i*j+'< /td >'); // fyller hver celle med et produkt<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('< /tr >'); <br>
+      	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      	&nbsp;&nbsp;&nbsp;&nbsp; document.write('< /table >');<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+   		&nbsp;&nbsp;&nbsp;&nbsp; // kaller funksjonen for to ulike verdier av n<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; gangetabell(10);<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; gangetabell(20);<br>
+		&nbsp;&nbsp; < /script ><br>
+
+		<script>
+			/* Koden under viser en funksjon som tar inn et heltall n og skriver ut gangetabellen opp til n*n */
+			function gangetabell(n){ // definerer funksjonen, med parameter n
+    			document.write('<table>'); // starter html-tabell
+      			for (var i=1; i<=n; i++){ // ønsker n rader
+        			document.write('<tr>');
+        			for(var j=1; j<=n; j++){ // ønsker n kolonner
+          			document.write('<td>'+i*j+'</td>'); // fyller hver celle med et produkt
+        			}
+        		document.write('</tr>');
+      			}
+      			document.write('</table>');
+    		}
+   			// kaller funksjonen for to ulike verdier av n
+    		gangetabell(10);
+    		gangetabell(20);
+		</script>
+</body>
+</html>

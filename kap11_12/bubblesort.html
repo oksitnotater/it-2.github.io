@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sorteringsalgoritmer</title>
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Denne timen: </h1>
+  	<p> <b>Enten</b> fortsettelse bubblesort, grundig gjennomgang av bytter<br>
+  		<b>Eller</b> jobbe med en av sorteringsalgoritmene quick sort, selection sort eller merge sort. Dere kan i så fall ta utgangspunkt i lenken til ulike sorteringsalgoritmer på itslearning. <br>
+
+  	<h1> Bubble sort: hva skjer? </h1>
+  	<p> Vi har arrayen a = [1, -4, 5, 7, 2, 3] </p>
+  		<ol> 
+  		<b> Første runde:</b><br>
+  		<li> Sammenlikner 1 og -4: <br>
+  		&nbsp;&nbsp; if(1 > -4){<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; // bytt plass <br>
+  		&nbsp;&nbsp; }<br>
+  		Nå er a = [-4, 1, 5, 7, 2, 3] </li>
+  		<li> Sammenlikner 1 og 5<br>
+  		&nbsp;&nbsp; if(1 > 5){<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; // bytt plass (skjer ikke) <br>
+	  	&nbsp;&nbsp; }<br>
+		Nå er a = [-4, 1, 5, 7, 2, 3] </li>	
+		<li> Sammenlikner 5 og 7 <br>
+		&nbsp;&nbsp; if(5 > 7){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; // bytt plass (skjer ikke)<br>
+		&nbsp;&nbsp; } <br>
+		Nå er a = -4, 1, 5, 7, 2, 3]</li>
+		<li> Sammenlikner 7 og 2 <br>
+		&nbsp;&nbsp; if(7 > 2){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; // bytt plass <br>
+		&nbsp;&nbsp; } <br>
+		Nå er a = [-4, 1, 5, 2, 7, 3]</li>
+		<li> Sammenlikner 7 og 3 <br>
+		&nbsp;&nbsp; if(7 > 3){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; // bytt plass <br>
+		&nbsp;&nbsp; } <br>
+		Nå er a = [-4, 1, 5, 2, 3, 7]</li>
+		</ol>
+		<p><b> Etter første runde vet vi helt sikkert at vi har flyttet arrayens største verdi bakerst. </b></p>
+
+		<ol>
+		<b> Andre runde </b>
+		<li> Sammenlikner -4 og 1<br>
+		&nbsp;&nbsp; if(-4 > 1){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; // bytt plass (skjer ikke) <br>
+		&nbsp;&nbsp; } <br>
+		Nå er a = [-4, 1, 5, 2, 3, 7]</li>
+		<li> Sammenlikner 1 og 5 <br>
+		&nbsp;&nbsp; if(1 > 5){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; // bytt plass (skjer ikke)<br>
+		&nbsp;&nbsp; } <br>
+		Nå er a = [-4, 1, 5, 2, 3, 7]</li>
+		<li> Sammenlikner 5 og 2<br>
+		&nbsp;&nbsp; if(5 > 2){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; // bytt plass<br>
+		&nbsp;&nbsp; } <br>
+		Nå er a = [-4, 1, 2, 5, 3, 7]</li>
+		<li> Sammenlikner 5 og 3 <br>
+		&nbsp;&nbsp; if(5 > 3){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; // bytt plass<br>
+		&nbsp;&nbsp; } <br>
+		Nå er a = [-4, 1, 2, 3, 5, 7]</li>
+		</ol>
+		<p><b> Nå trenger vi ikke sammenlikne 5 og 7 fordi vi visste at den største verdien står bakerst. <br>
+		Nå vet vi at de to største verdiene er de bakerste. </b><br><br>
+		Slik forstetter sorteringen ved at man gjør en sammenlikning mindre hver gang. Siste runde sammenliknes kun de to første verdiene i arrayen, og da vet man at hele er sortert. Skrevet som kode trenger vi da en løkke som starter hver sorteringsrunde og en annen forløkke som sørger for at den neste runden alltid har en sammenlikning mindre enn den forrige. </p>
+
+		<h1> Kode for bubble sort </h1>
+		<p> Koden for bubble sort vises under. Her skriver jeg ut de delvis sorterte arrayene til siden underveis slik at dere får se alt som skjer (i stedet for å logge til konsollen): <br><br>
+		
+		&nbsp;&nbsp; function sortereFunksjon (a){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; document.write("< b >Den usorterte arrayen er " + a +"< /b >< br >");<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; for (var i= 0; i < a.length; i++){  // løkker gjennom fra første til siste element<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write("< b> Starter runde< /b >< br >");<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (var j=0; j < a.length-i; j++){ // løkker gjennom fra første til siste-i element<br> 
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (a[j] > a[j+1]){ // sjekker om tallet er større enn tallet etter, i så fall bytter de plass<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var temp = a[j]; // må lagre det største tallet i en midlertidig variabel når jeg bytter plass<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a[j] = a[j+1]; // setter det minste av tallene på plass j<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; a[j+1] = temp; // setter det største av tallene på plass j+1<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write("< b >Neste runde< /b >< br >")<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; document.write("< b >Den sorterte arrayen er " + a+"< /b >< br >"); <br>	
+		&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; a = [1, -4, 5, 7, 2, 3];<br>
+		&nbsp;&nbsp; sortereFunksjon(a);<br><br>
+
+
+		<script>
+		function sortereFunksjon (a){
+			document.write("<b>Den usorterte arrayen er " + a+"</b><br>");
+			for (var i= 0; i < a.length; i++){  // løkker gjennom fra første til siste element
+				document.write("<b>Starter runde</b><br>");
+				for (var j=0; j< a.length-i; j++){ // løkker gjennom fra første til siste-i element 
+					if (a[j]>a[j+1]){ // sjekker om tallet er større enn tallet etter, i så fall bytter de plass
+						var temp = a[j]; // må lagre det største tallet i en midlertidig variabel når jeg bytter plass
+						a[j] = a[j+1]; // setter det minste av tallene på plass j
+						a[j+1] = temp; // setter det største av tallene på plass j+1
+					}
+				document.write ("Nå er den halvsorterte arrayen "+ a +"<br>")
+			}
+		}
+		document.write("<b>Den sorterte arrayen er " + a+"</b><br>");	
+	}
+	a = [1, -4, 5, 7, 2, 3];
+	sortereFunksjon(a);
+	</script>
+
+  </body>
+</html>

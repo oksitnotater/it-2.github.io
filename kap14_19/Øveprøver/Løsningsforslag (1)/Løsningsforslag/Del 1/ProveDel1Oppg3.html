@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Løsningsforslag</title>
+    <meta charset="utf-8">
+    <style>
+    #canvas{
+    	background-color: black;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+      border: 0;
+      overflow: hidden; // tar bort scrolling
+      display: block;  
+    }
+    </style>
+  </head>
+  <body>
+  	<canvas id="canvas"></canvas>
+  	<script>
+  		var canvas = document.querySelector ("#canvas");
+		var ctx = canvas.getContext ("2d");
+		canvas.width  = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        // superklasse for stjerner
+        class Stjerne{
+       		constructor (xPos, yPos, radius, xHast, farge) {
+			this.xPos = xPos;
+			this.yPos = yPos;
+			this.radius = radius;
+			this.xHast = xHast;
+			this.farge = farge;
+			}
+			tegn() {
+			ctx.beginPath();
+			ctx.arc(this.xPos, this.yPos, this.radius, 2*Math.PI, 0);
+			ctx.fillStyle = this.farge;
+			ctx.fill ();
+			}
+			flytt() {
+			this.xPos += this.xHast;
+			if (this.xPos+this.radius>canvas.width) { // antar at alle stjerner beveger seg mot høyre
+				this.xPos = this.radius;
+			}
+        	}
+    	}
+
+
+        // subklasse for stjerneskudd
+    	class Skudd extends Stjerne{
+    		constructor(xPos, yPos, radius, xHast, yHast, farge){
+    			super(xPos, yPos, radius, xHast, farge);
+    			this.yHast = yHast;
+    		}
+    			flytt() {
+				this.xPos += this.xHast;
+				this.yPos += this.yHast;
+				if (this.xPos+this.radius>canvas.width || this.xPos<this.radius){ 
+					this.xPos=Math.random()*window.innerWidth;
+					var tilfeldig=Math.random();
+					if (tilfeldig <= 0.5){
+					this.xHast=-tilfeldig*10;
+					}
+					else{
+					this.xHast=tilfeldig*10;
+					}
+				}
+				if (this.yPos+this.radius>canvas.width || this.yPos<this.radius){ 
+					this.yPos=Math.random()*window.innerHeight;
+					var tilfeldig=Math.random();
+					if (tilfeldig <= 0.5){
+					this.yHast=-tilfeldig*10;
+					}
+					else{
+					this.yHast=tilfeldig*10;
+					}
+				}
+    		}
+    	}
+
+        // subklasse for asteroider
+    	class Asteroide extends Stjerne{
+    		constructor(xPos, yPos, radius, xHast, yHast, farge){
+    			super(xPos, yPos, radius, xHast, farge);
+    			this.yHast = yHast;
+    		}
+    			flytt() {
+				this.xPos += this.xHast;
+				this.yPos += this.yHast;
+				if (this.xPos+this.radius>canvas.width || this.xPos<this.radius){
+					this.xHast = -this.xHast;
+				}
+				if (this.yPos+this.radius>canvas.height || this.yPos<this.radius){ 
+					this.yHast = -this.yHast;
+				}
+    		}
+    	}
+
+        // lager nye himmellegemer ved å legge dem i en tom array og løkke gjennom med gitt antall av hver
+    	var rod = [];
+    	for(i=0; i<40; i++){
+    		xPos = Math.random()*window.innerWidth;
+    		yPos = Math.random()*window.innerHeight;
+    		radius = 10;
+    		xHast = 0.5;
+    		color = "#FFCCCC";
+    		rod[i] = new Stjerne(xPos, yPos, radius, xHast, color);
+    	}
+       	var hvit = [];
+    	for(i=0; i<40; i++){
+    		xPos = Math.random()*window.innerWidth;
+    		yPos = Math.random()*window.innerHeight;
+    		radius = 2;
+    		xHast = 0.4;
+    		color = "white";
+    		hvit[i] = new Stjerne(xPos, yPos, radius, xHast, color);
+    	}
+    	var sol = [];
+    	for(i=0; i<40; i++){
+    		xPos = Math.random()*window.innerWidth;
+    		yPos = Math.random()*window.innerHeight;
+    		radius = 4;
+    		xHast = 0.7;
+    		color = "#FFFF99";
+    		sol[i] = new Stjerne(xPos, yPos, radius, xHast, color);
+    	}
+    	var skudd = new Skudd(Math.random()*window.innerWidth, Math.random()*window.innerHeight, 3, Math.random()*5+4, Math.random()*5+4, "#B6F2FF");
+    	var asteroide = [];
+    	for(i=0; i<10; i++){
+    		xPos = Math.random()*window.innerWidth;
+    		yPos = Math.random()*window.innerHeight;
+    		radius = 20;
+    		xHast = Math.random()*0.6-0.3;
+    		yHast = Math.random()*0.6-0.3;
+    		color = "#C2C2A3";
+    		asteroide[i] = new Asteroide(xPos, yPos, radius, xHast, yHast, color);
+    	}
+    function himmel(){
+	ctx.clearRect (0, 0, canvas.width , canvas.height);
+	for(i=0; i<40; i++){
+		rod[i].flytt();
+		rod[i].tegn();
+		hvit[i].flytt();
+		hvit[i].tegn();
+		sol[i].flytt();
+		sol[i].tegn();
+	}
+	skudd.flytt();
+	skudd.tegn();
+	for(i=0; i<10; i++){
+		asteroide[i].flytt();
+		asteroide[i].tegn();
+	}
+	requestAnimationFrame(himmel);
+	}
+	requestAnimationFrame(himmel);
+  	</script>
+  </body>
+</html>

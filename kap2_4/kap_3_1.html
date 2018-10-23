@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> if-setninger </title>
+	<link rel="stylesheet" type="text/css" href="../grid.css">
+	<link rel="stylesheet" type="text/css" href="../stil.css">
+</head>
+<body>
+	<div class="col-12 row header">
+		Kapittel 3
+	</div>
+	<script type="text/javascript" src="../forside/meny.js"></script>
+	<div class="innhold">
+		<h1> Hva er en if-setning? </h1>
+		<p> En if-setning gir oss muligheten til å kjøre ulike deler av koden avhengig av forholdene som ligger till rette. Vi kan illustrere if-setninger med enkle flytdiagrammer: <br>
+
+		Under vises flytdiagrammet for et program som genererer et tilfeldig tall og sjekker om det er et oddetall eller partall: </p>
+		<img src="media/flytdiagram.png" width="500px">
+
+		<p> I dette diagrammet ligger det flere opplysninger: </p>
+		<ol>
+			<li> Generer først et tilfeldig tall. </li>
+			<li> Beregner tall % 2 </li>
+			<li> Hvis tall % 2 er 0: skriv "tallet er et partall"</li>
+			<li> Hvis tall % 2 er 1: skriv "tallet er et oddetall" </li>
+		</ol>
+
+		<p> For å oversette dette til kode, må vi innom flere metoder. Heng med! </p>
+
+		<h1> Å genererere tilfeldig tall </h1>
+		<p> Metoden Math.random(); genererer et tilfeldig tall mellom 0 og 0,99999999999999999.... Dersom vi ønsker å ha et heltall, må vi
+			<ol>
+				<li> Multiplisere det med den (øvre grensen + 1) for hvilket tall vi ønsker å ha (f.eks. multiplisere med 11 for å få tall fra 0 til 10)</li>
+				<li> Runde tallet ned til nærmeste heltall for å slippe desimaltall. Dette gjøres med metoden floor (rund ned) </li>
+			</ol>
+		<p> Altså:<br>
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tilfeldig = Math.random();<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(tilfeldig);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; tilfeldig = tilfeldig * 11;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(tilfeldig);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; tilfeldig = Math.floor(tilfeldig);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(tilfeldig);<br>
+		&nbsp;&nbsp; < /script ><br><br>
+		Dette kan også skrives enklere: <br>
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tilfeldigTall = Math.floor(Math.random()*11);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(tilfeldigTall);<br>
+		&nbsp;&nbsp; < /script ></p>
+
+		<script>
+			var tilfeldig = Math.random();
+			console.log(tilfeldig);
+			tilfeldig = tilfeldig * 11; // eller tilfeldig *= 11;
+			console.log(tilfeldig);
+			tilfeldig = Math.floor(tilfeldig);
+			console.log(tilfeldig);
+
+			var tilfeldigTall = Math.floor(Math.random()*11);
+			console.log(tilfeldigTall);
+		</script>
+
+		<h2> Oppgave </h2>
+		<p> Skriv kode for å generere et tilfeldig tall mellom 0 og 100. Kan denne koden skrives på ulike måter? <br>
+		Tips: Math.round() og Math.ceil()</p>
+
+		<script>
+			// runde ned
+			var tilfeldigTall100 = Math.floor(Math.random()*101);
+			console.log(tilfeldigTall100);
+
+			// hva hvis vi skal ha et tall mellom 1 og 100
+			var tilfeldigTall = Math.floor(Math.random()*100)+1;
+			var tilfeldigTall = Math.floor((Math.random()*100)+1);
+
+			// mellom 2 og 13
+			var tilfeldigTall = Math.random();
+			var tilfeldigTall = tilfeldigTall * 12; // får tall mellom 0 og 11
+			var tilfeldigTall = Math.floor(tilfeldigTall);// heltall mellom 0 og 11
+			var tilfeldigTall = tilfeldigTall + 2; // heltall mellom 2 og 13
+			// på en linje
+			var tilfeldigTall = Math.floor(Math.random()*12)+2;
+		</script>
+
+		<h1> Å sammenlikne tall </h1>
+		<p> I forrige time gikk vi gjennom det vi kaller tilordningsoperatorer: de operatorene som tilordner en variabel en ny verdi. F.eks vil operatoren <br>
+		&nbsp;&nbsp; a = a + 3; <br>
+		gi variabelen a verdien // gammel verdi + 3. <br>
+		Sammenlikningsoperatorene skiller seg fra tilordningsoperatorene ved at de sjekker om en variabel har en gitt verdi:
+		</p>
+		<table>
+			<tr> <th> Operator </th> <th> Forklaring </th> <th> Eksempel </th> </tr>
+			<tr> <td> ==  </td> <td> Lik verdi </td> <td> 10 == '10'; gir true</td> </tr>
+			<tr> <td> ===  </td> <td> Lik verdi og lik datatype </td> <td> 10 === 10; gir true, 10 === '10'; gir false </td> </tr>
+			<tr> <td> != </td> <td> Ikke lik verdi </td> <td> 10 != 5; gir true </td> </tr>
+			<tr> <td> !== </td> <td> Ikke lik verdi eller ikke lik datatype </td> <td> 10 !== '10'; gir true, 10 !== 5; gir true</td> </tr>
+			<tr> <td> > </td> <td> Større enn </td> <td> 10 > 9;  gir true, 10 > 10; gir false </td> </tr>
+			<tr> <td> < </td> <td> Mindre enn </td> <td> 9 < 10; gir true; 10 < 10; gir false </td> </tr>
+			<tr> <td> >= </td> <td> Større eller lik </td> <td>10 >= 10; gir true; </td> </tr>
+			<tr> <td> <= </td> <td> Mindre eller lik </td> <td> 10 <= 10; gir true;</td> </tr>
+		</table>
+
+		<h2>  Oppgaver </h2>
+		<p> S 43: 3.1: Noter først hva dere forventer som resultat, deretter kan dere kjøre koden.</p>
+
+		<script>
+			// oppgave 3.1
+			var a = 3;
+			var b = 7;
+			var c = '7';
+			console.log( b == c);
+			console.log( b === c);
+			console.log( a < b);
+			console.log( a <= b);
+			console.log(a > b);
+			console.log(a != b);
+			console.log(b != c);
+			console.log(b !== c);
+		</script>
+
+		<h1> Å bruke if-setninger til å styre hvilken kode som kjøres </h1>
+		<p> I en if-setning bruker vi sammenlikningsoperatorene som en forutsetning for kode som kjøres. If-setninger er strukturert som: <br>
+		&nbsp;&nbsp; < script > <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; if(sammenlikningspåstand){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kode som kjøres; <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; < /script ><br><br>
+		For eksempel vil koden for å skrive til siden "Tallet er mindre enn 10" dersom et satt tall er mindre enn 10 skrives som: <br>
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tall = 0; <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; if(tall < 10){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('Tallet er mindre enn 10');<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; < /script > </p>
+
+		<script>
+		var  tall = 0;
+		if(tall < 10){
+			document.write('Tallet er mindre enn 10');
+		}
+		</script>
+
+		<h1> Oppgave </h1>
+		<p> Utvid koden til å sjekke om et tilfeldig tall mellom 0 og 100 er mindre enn 10</p>
+
+		<script>
+		var tall = Math.floor(Math.random()*101);
+		console.log(tall);
+		if(tall < 10){
+			console.log('Tallet er ' + tall + '. Tallet er mindre enn 10');
+		}
+		</script>
+
+		<h1> Else-if </h1>
+		<p> Vi har også mulighet til å skrive if-setninger der ulike betingelser gir ulike konsekvenser: <br>
+		&nbsp;&nbsp; dersom betingelse1 == sann{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; kjør kode1;<br>
+		&nbsp;&nbsp; }<br>
+		dersom betingelse1 != sann, mens betingelse 2 == sann{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; kjør kode2; <br>
+		&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; dersom ingen av disse er sanne{<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; kjør kode3; <br>
+		&nbsp;&nbsp;}<br>
+		// koden skrevet over kalles pseudokode og er en forklarende kode som ikke kun kan leses av mennesker, ikke av maskinen. Mer om dette senere!
+		<br><br>
+		Koden over vil skrives som: <br>
+		&nbsp;&nbsp; < script > <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; if(betingelse1 == true){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // kode som kjøres <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; else if(betingelse2 == true){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // kode som kjøres <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; else{ <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // kode som kjøres <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>
+		For eksempel kan vi sjekke om et tall mellom 0 og 100 er mindre enn 10, større enn 90 eller et sted i mellom: <br>
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tall = Math.floor(Math.random()*101);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(tall);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; if(tall < 10){ <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log('Tallet er mindre enn 10'); <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; else if(tall > 90){ <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log('Tallet er større enn 90');<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; else{ <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log('Tallet er mellom 10 og 90'); <br>
+		&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+		&nbsp;&nbsp; < /script ><br>
+
+		<script>
+		var tall = Math.floor(Math.random()*101);
+		console.log(tall);
+		if(tall < 10){
+			console.log('Tallet er mindre enn 10');
+		}
+		else if(tall > 90){
+			console.log('Tallet er større enn 90');
+		}
+		else{
+			console.log('Tallet er mellom 10 og 90');
+		}
+		</script>
+
+		<h1> Hva hvis flere påstander skal være sanne? </h1>
+		<p> Vi kan sette flere påstander som kriterie for if-setninger ved å bruke de logiske operatorene og (&&), eller (||) eller ikke (!). I eksemplene er a = 7, b = 3:</p>
+		<table>
+			<tr> <th> Operator </th> <th> Forklaring </th> <th> Eksempel </th> </tr>
+			<tr> <td> && </td> <td> Og (begge påstander sanne) </td> <td> (a < 10 && b > 2); a mindre enn 10 og b større enn 2 - gir true </td> </tr>
+			<tr> <td> || </td> <td> Eller (en av påstandene sanne) </td> <td> (a < 8 || b > 5); a mindre enn 8 eller b større enn 5 - gir true</td> </tr>
+			<tr> <td> ! </td> <td> Ikke (påstanden er ikke sann) </td> <td> !(a < b); a er ikke større enn b - gir true</td> </tr>
+		</table>
+		<p> På den måten kan vi for eksempel gi betingelsen (tall mellom 0 og 50 er mindre eller lik 20 og delelig med 5): <br>
+		&nbsp;&nbsp; < script > <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tall = Math.floor(Math.random()*51);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(tall);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; if(tall <= 20 && tall%5==0){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log('Tallet er mindre enn 20 og delelig med 5');<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; < /script > </p>
+		<script>
+			var tall = Math.floor(Math.random()*51);
+			console.log(tall);
+			if(tall <= 20 && tall%5==0){
+				console.log('Tallet er mindre enn 20 og delelig med 5');
+			}
+		</script>
+
+		<h2> Oppgaver </h2>
+		<p>
+		Side 45: 3.3, 3.4 <br>
+		Skriv kode for å sjekke om et tilfeldig tall mellom 0 og 50 er et partall eller oddetall<br>
+		Side 48: 3.5, 3.6 <br>
+	 	På eget ark: repetisjonsoppgaverIf_introduksjonsoppgaverLøkker. Disse blir gjennomgått på mandag</p>
+	</div>
+</body>
+</html>

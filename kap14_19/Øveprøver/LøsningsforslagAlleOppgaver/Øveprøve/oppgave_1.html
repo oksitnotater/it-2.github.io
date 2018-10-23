@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "UTF-8">
+    <title> LØSNINGSFORSLAG </title>
+    <link rel="stylesheet" type="text/css" href="oveprove.css">
+  </head><!doctype html>
+<body>
+<div id="bakgrunn">
+    <div id="boks1" class="boks"></div>
+    <div id="boks2" class="boks"></div>
+    <div id="boks3" class="boks"></div>
+</div>
+<button id="start">start</button>
+<script type="text/javascript">
+    var bakgrunn = document.getElementById("bakgrunn");
+    var boks1 = document.getElementById("boks1");
+    var boks2 = document.getElementById("boks2");
+    var boks3 = document.getElementById("boks3");
+    var startEl = document.getElementById("start");
+    
+    startEl.addEventListener("click", animasjon)
+    function animasjon(){
+        boks1.style.top = 480 + "px";
+        boks1.style.transform = "rotate(360deg)";
+        boks2.style.bottom = 560 + "px";
+        boks2.style.height = 20 + "px";
+        boks2.style.width  = 560 + "px";
+        boks2.style.left   = 20 + "px";
+        boks3.animate([{left:"480px", top: "10px", opacity:1.},
+                       {left:"480px", top: "10px", opacity:0},
+                       {left:"580px", top: "480px", opacity:0},
+                       {left:"480px", top: "480px", opacity:1},
+                       ],
+                       {duration: 4000, 
+                        fill: "forwards"});
+    }
+</script>
+</body>
+</html>

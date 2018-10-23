@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+  <title>Hangman</title>
+  <link rel="stylesheet" type="text/css" href="hangman.css">
+  <meta charset="utf-8">
+</head>
+<body>
+
+  <div id="forgrunnsDiv">
+    <canvas width="600" height="330" id="forgrunnsCanvas"></canvas><br><br>
+    <button id="lukkVindu"> Start spillet! </button>
+  </div>
+
+<div class="ramme">
+  <div class="info">
+    <h1> Hangman </h1>
+    <p id="sjanserIgjen">Antall sjanser igjen:</p>  
+    <p id="riktigeBokstaver">Dine bokstaver:</p>
+    <p id="brukteBokstaver">Gjettede bokstaver: </p>
+  </div>
+  
+  <canvas width="600" height="330" id="mittCanvas"></canvas>
+  
+  <p id="mottaBokstav">
+    <input type="text" name="bokstav" id="bokstav">
+    <button id="knapp">Test bokstav</button>
+  </p>
+
+  <p id="tilbakemelding"></p>
+</div>
+
+<script type="text/javascript" src="tegneHangman.js"></script>
+<script type="text/javascript" src="forgrunnsHangman.js"></script>
+<script type="text/javascript" src="hangman.js"></script>
+</body>
+</html>

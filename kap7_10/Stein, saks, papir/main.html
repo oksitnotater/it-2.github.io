@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stein-saks-papir</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="grid.css">
+    <link rel="stylesheet" type="text/css" href="main.css">
+  </head>
+  <body>
+    <h1 id="tittel"> Spill stein-saks-papir! </h1>
+
+    <div class="row bilder"> 
+      <div class="col-13">
+        <img src="media/spiller_stein.png" id="stein">
+      </div>
+      <div class="col-13">
+        <img src="media/spiller_saks.png" id="saks">
+      </div>
+      <div class="col-13">
+        <img src="media/spiller_papir.png" id="papir">
+      </div>
+      <div class="col-13">
+      </div>
+      <div class="col-13">
+        <img src="media/maskin_ukjent.png" id="motstander">
+      </div>
+    </div>
+    
+    <div class="row info"> 
+      <div class="col-5 poeng">
+        <h3> Status poeng </h3>
+        <p> Dine poeng er: <span id="poengSpiller">0</span><br>
+        Motstanderens poeng er: <span id="poengMotstander">0</span><br>
+        Antall runder spilt er: <span id="rundeTeller">0</span><br>
+        Vinneren av spillet er: <span id="vinner"></span></p> 
+      </div>
+      <div class="col-2"> </div>
+      <div class="col-5 regler"> 
+        <h3> Regler for spillet </h3>
+        <p> Stein slår saks, saks slår papir og papir slår stein. </br> Spillet avsluttes når førstemann når 5 poeng. <br> Du får ett poeng for hver runde du vinner </p>
+      </div>
+    </div>
+ 
+  <script src="spill.js"></script>
+  </body>
+</html>

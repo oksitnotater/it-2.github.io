@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8"> 
+    <title> Skjemaer med JavaScript </title> 
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <link rel="stylesheet" type="text/css" href="css/skjema.css">
+</head>
+<body>
+	<h1> Oppgave 10.4 </h1>
+	<p> Lag din egen versjon av "kalkulatoren" som ble beskrevet i teksten på forrige side <br>
+		Kalkulatoren består av to tallfelt der brukeren skriver inn to tall som skal summeres samt en tom div der resultatet skrives ut:</p>
+		Tall 1: <input type="number" id="tall1">
+		Tall 2: <input type="number" id="tall2">
+		<button id="summer"> Summer tallene </button>
+		<div id="resultat"></div>
+
+		<p> &nbsp;&nbsp; Tall 1: < input type="number" id="tall1" ><br>
+		&nbsp;&nbsp; Tall 2: < input type="number" id="tall2" ><br>
+		&nbsp;&nbsp; < button id="summer" > Summer tallene < /button ><br>
+		&nbsp;&nbsp; < div id="resultat" >< /div ><br><br>
+
+		I scriptet hentes verdiene til tallene ut, legges sammen, og resultatet skrives ut. Dette skjer når knappen klikkes: <br><br>
+		&nbsp;&nbsp; var summerEl = document.querySelector("#summer"); <br>
+		&nbsp;&nbsp; var resultatEl = document.querySelector("#resultat"); <br>
+		&nbsp;&nbsp; summerEl.addEventListener("click", summerFunksjon); <br>
+		&nbsp;&nbsp; function summerFunksjon(){ <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tall1El = document.querySelector("#tall1"); <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tall2El = document.querySelector("#tall2"); <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var sum = Number(tall1El.value) + Number(tall2El.value); <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; resultatEl.innerHTML = "< p > Summen av " + tall1.value + " og " + tall2.value + " er " + sum + "< /p >"; <br>
+		&nbsp;&nbsp; }	</p>
+
+		<script>
+			var summerEl = document.querySelector("#summer");
+			var resultatEl = document.querySelector("#resultat");
+			summerEl.addEventListener("click", summerFunksjon);
+
+			function summerFunksjon(){
+				var tall1El = document.querySelector("#tall1");
+				var tall2El = document.querySelector("#tall2");
+				var sum = Number(tall1El.value) + Number(tall2El.value);
+				//var sum = tall1El.value + tall2El.value;
+				resultatEl.innerHTML = "<p> Summen av " + tall1.value + " og " + tall2.value + " er " + sum + "</p>";
+			}
+		</script>
+
+	<h1> Oppgave 10.5 </h1>
+	<p> Kan utvides til å ha fire radioknapper med +, - , *, / der brukeren velger regneart. Skjemaet blir da: </p>
+		Tall 1: <input type="number" id="talla">
+		+ <input type="radio" name="regneart" id="pluss">&nbsp;&nbsp; &nbsp;&nbsp; 
+		- <input type="radio" name="regneart" id="minus">&nbsp;&nbsp; &nbsp;&nbsp; 
+		* <input type="radio" name="regneart" id="gange">&nbsp;&nbsp; &nbsp;&nbsp; 
+		/ <input type="radio" name="regneart" id="dele"><br>
+		Tall 2: <input type="number" id="tallb">
+		<button id="regn ut"> Beregn </button>
+		<div id="resultat"></div>
+	<p> I scriptet må du nå finne ut hvilken radioknapp som er valgt (husk: samme name, ulik id) og utføre beregningene med valgt regneart. </p>
+</body>
+</html>

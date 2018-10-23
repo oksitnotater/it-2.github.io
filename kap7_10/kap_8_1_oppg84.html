@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+<head>
+   	<meta charset="UTF-8">
+   	<title> Hendelser </title>
+   	<link rel="stylesheet" type="text/css" href="undervisning.css">
+   	<style>
+   	body{
+   		font-family: "Century Gothic", Arial, sans-serif;
+   		font-size: 14px
+   	}
+   	#tekst {
+   		background-color: #f05a3f;
+   		padding: 20px;
+   	}
+   	#tekst:hover{
+   		cursor: pointer;
+   	}
+   	.gul{
+   		border: 4px solid yellow;
+   	}
+   	.blaa{
+   		border: 4px solid blue;
+    }
+    .vanlig{
+      font-family: times;
+    }
+   	</style>
+</head>
+<body>
+	<h1> Oppgaven </h1>
+	<p class="vanlig"> I oppgave 8.4 s. 127 skal dere <br>
+		Opprette et < p >-element som bytter kantlinje hver gang det klikkes: fra gul til blå kantlinje rundt elementet. </p>
+	<h1> Løsning </h1>
+	<p class="vanlig"> Her er det tilstrekkelig med internal css: i < style > legges følgende kode: <br>
+	&nbsp;&nbsp; body{<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; font-family: "Century Gothic", Arial, sans-serif;<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; font-size: 14px<br>
+   	&nbsp;&nbsp; }<br>
+   	&nbsp;&nbsp; #tekst {<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; background-color: #f05a3f;<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; padding: 20px;<br>
+   	&nbsp;&nbsp; }<br>
+   	&nbsp;&nbsp; #tekst:hover{<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; cursor: pointer;<br>
+   	&nbsp;&nbsp; }<br>
+   	&nbsp;&nbsp; .gul{<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; border: 4px solid yellow;<br>
+   	&nbsp;&nbsp; }<br>
+   	&nbsp;&nbsp; .blaa{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; border: 4px solid blue;<br>
+   	&nbsp;&nbsp; }<br><br>
+
+   	Deretter legger vi til det aktuelle p-elementet, som jeg her gir iden tekst fordi jeg har flere p-elementer:<br>
+   	< p id = "tekst" > Klikk på dette tekstelementet og se hva som skjer! < /p > </p>
+   	<p id = "tekst"> Klikk på dette tekstelementet og se hva som skjer! </p>
+
+   	<p class="vanlig"> Deretter må vi i script legge til en lytter som sjekker om elementet klikkes. Første gang det skjer skal det få gul kantlinje, neste gang blå osv. Dette løser vi ved å bruke removeEventListener og addEventListener i hver hendelsesstyrte funksjon: <br>
+    	&nbsp;&nbsp; < script > <br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; var tekstEl = document.querySelector("#tekst");<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; tekstEl.addEventListener("click", gulKant);<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; function gulKant(){<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tekstEl.setAttribute("class", "gul");<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tekstEl.removeEventListener("click", gulKant);<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tekstEl.addEventListener("click", blaaKant);<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; function blaaKant(){<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tekstEl.setAttribute("class", "blaa");<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tekstEl.removeEventListener("click", blaaKant);<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tekstEl.addEventListener("click", gulKant);<br>
+    	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    	&nbsp;&nbsp; < /script ></p>
+
+   	<script>
+   		var tekstEl = document.querySelector("#tekst");
+   		tekstEl.addEventListener("click", gulKant);
+   		function gulKant(){
+   			tekstEl.setAttribute("class", "gul");
+   			tekstEl.removeEventListener("click", gulKant);
+   			tekstEl.addEventListener("click", blaaKant);
+   		}
+   		function blaaKant(){
+   			tekstEl.setAttribute("class", "blaa");
+   			tekstEl.removeEventListener("click", blaaKant);
+   			tekstEl.addEventListener("click", gulKant);
+   		}
+   	</script>
+
+</body>
+</html>

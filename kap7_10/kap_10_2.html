@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="css/undervisning.css">
+	<link rel="stylesheet" type="text/css" href="css/kap_10_2.css">
+	<title> Skjemaer </title>
+</head>
+<body>
+	<h1> Stilsetting av skjemaer </h1>
+	<iframe width="560" height="315" src="https://www.youtube.com/embed/tX7C-4-1xVE" frameborder="0" allowfullscreen></iframe>
+	<p> Et enkelt skjema legger vi til ved <br>
+	&nbsp;&nbsp; < form method="GET" ><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; Navn: < input type="text" name="navn" ><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; Alder: < input type="number" name="alder" ><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; Send svar: < input type="submit" name="send" value="Send svar" ><br>
+	&nbsp;&nbsp; < /form ></p>
+
+	<form method="GET">
+		Navn: <input type="text" name="navn" placeholder="skriv inn navnet ditt">
+		Alder: <input type="number" name="alder" min="0" max="100">
+		Send svar: <input type="submit" name="send" value="Send svar">
+	</form>
+
+	<p> Som vi ser, er alle input-elementene inline-elementer, og legges ved siden av hverandre. Dette kan vi overstyre i css:<br>
+	&nbsp;&nbsp; input{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; display: block;<br>
+	&nbsp;&nbsp; }<br><br>
+
+	Når vi ellers stilsetter skjemaet, har vi valget mellom å stilsettte <br>
+	&nbsp;&nbsp; form {}/* stilsetter hele skjemaet */<br>
+	&nbsp;&nbsp; input[type="text"]{} /* stilsetter alle inputfelt av typen text <br>
+	&nbsp;&nbsp; input[type="number"]{} /* stilsetter alle inputfelt av typen number <br>
+	&nbsp;&nbsp; input[type="submit"]{} /* stilsettter alle inputfelt av typen submit <br>
+	I tillegg kan enkeltfelt stilsettes ved bruk av klasser eller id'er. </p>
+
+	<h1> Oppgaver </h1>
+	<p> s. 157: oppgave 10.1 <br>
+		s. 163: oppgave 10.2, 10.3 </p>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video og lyd med html og css</title>
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	  	<h1> Video og lyd</h1>
+  	<h1> Video </h1>
+  	<p> Taggen for å legge til video er < video > < /video>, mens selve filmen legges inn i < source >: på samme måte som < figure > og < img > for bilder: <br>
+  	&nbsp;&nbsp; < video > <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; < source src = "filnavn.filendelse" type = "video/mp4"> <br>
+  	&nbsp;&nbsp; < /video > <br><br>
+  	I tillegg til src og type har vi andre attributter det kan være aktuelt å inkludere:<br>
+  	&nbsp;&nbsp; autoplay - sørger for at filmen spilles automatisk når siden lates <br>
+  	&nbsp;&nbsp; controls - legger inn play/pause/lyd <br>
+  	&nbsp;&nbsp; width eller height - styrer størrelsen <br>
+  	&nbsp;&nbsp; loop - gjentar avspilling <br>
+  	&nbsp;&nbsp; muted - starter uten lyd <br> <br>
+  	Så vi kan f.eks. legge ut en film som spiller automatisk, ikke har kontroller og looper:<br>
+  	&nbsp;&nbsp; < video width="1200px" autoplay loop muted><br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; < source src="media/flikkflakk.mp4" type="video/mp4" ><br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; Din nettleser støtter ikke videoelementet<br>
+  	&nbsp;&nbsp; < /video ><br>
+  	</p>
+  	<video width="1200px" autoplay loop muted controls>
+  	<source src="media/flikkflakk.mp4" type="video/mp4">
+  		Din nettleser støtter ikke videoelementet
+  	</video>
+
+  	<h1> Legge til egne filmer </h1>
+  	<p> Når vi legger til filmer som ligger på egen maskin, må vi passe på filadressen som vanlig. Av hensyn til den som bruker siden, legger vi på controls. Dersom vi ikke spesifiserer annet, legges filmene inline (ved siden av hverandre). </p>
+  	<video width="400px" controls>
+  	<source src="media/turn_2.mp4" type="video/mp4">
+  		Din nettleser støtter ikke videoelementet
+  	</video>
+  	<br>
+
+  	<video width="300px" controls>
+  		<source src="media/ulla_ulrikke_2.mp4" type="video/mp4">
+  		Din nettleser støtter ikke videoelementet
+  	</video>
+  	<video width="300px" controls>
+  		<source src="media/ulla_ulrikke_3.mp4" type="video/mp4">
+  		Din nettleser støtter ikke videoelementet
+  	</video>
+  	<video width="300px" controls>
+  		<source src="media/theo_3.mp4" type="video/mp4">
+  		Din nettleser støtter ikke videoelementet
+  	</video>
+
+  	<h1> Legge til youtube-filmer </h1>
+  	<p> I html har vi mulighet til å legge til youtubefilmer direkte i stedet for kun å legge ut en link til filmen: <br><img src="media/youtube_1.png" width="300px"> <img src="media/youtube_2.png" width="300px"><br>
+  	Resultatet blir da<br>
+  	&nbsp;&nbsp; < iframe width="560" height="315" src="https://www.youtube.com/embed/n1ZOv90AytQ" frameborder="0" allowfullscreen >< /iframe ></p>
+  	<iframe width="560" height="315" src="https://www.youtube.com/embed/n1ZOv90AytQ" frameborder="0" allowfullscreen></iframe>
+
+  	<h1> Lyd  </h1>
+  	<p> Taggen for å legge til lyd er < audio > og brukes, som film, sammen med < source > for å sette inn lydfiler: <br>
+    &nbsp;&nbsp; < audio controls > <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < source src="media/Beatles_Twist_and_Shout.mp3" type = "audio/mpeg"> <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; Din nettleser støtter ikke audioelementet <br>
+    &nbsp;&nbsp; < /audio ><br>
+
+   	<audio autoplay controls>
+  	<source src="media/Beatles_Twist_and_Shout.mp3" type = "audio/mpeg">
+    Din nettleser støtter ikke audioelementet 
+    </audio>	
+
+    <h1> Å bruke JavaScript til å styre lyd og video </h1>
+    <p> Vi kan hente ut lyd- og videoelementer på samme måte som alle andre elementer: ved å referere til type element, klasse eller id. Deretter kan vi styre egenskaper som play, pause, autoplay og loop med javascript ved f.eks. knapper. Disse knappene kan erstatte eller komme i tillegg til controls (husk at controls også gir mulighet til å spole, justere lyd osv) <br>
+
+   	&nbsp;&nbsp; < video width="500px" muted id = "flikkflakk" ><br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; < source src="media/flikkflakk.mp4" type="video/mp4"><br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; Din nettleser støtter ikke videoelementet<br>
+  	&nbsp;&nbsp; < /video >< br ><br><br>
+    &nbsp;&nbsp; < button id="spill" >Spill film< /button ><br>
+    &nbsp;&nbsp; < button id="gjenta" >Loop film< /button ><br>
+    &nbsp;&nbsp; < button id="stopp" >Stopp film< /button ><br><br>
+    &nbsp;&nbsp; < script ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var flikkflakkFilm = document.querySelector("#flikkflakk");<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var spillKnapp = document.querySelector("#spill");<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var loopKnapp = document.querySelector("#gjenta");<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var stoppKnapp = document.querySelector("#stopp");<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; spillKnapp.addEventListener("click", spillFilm);<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; function spillFilm(){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flikkflakkFilm.play();<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; loopKnapp.addEventListener("click", gjentaFilm);<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; function gjentaFilm(){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  flikkflakkFilm.loop=true;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; stoppKnapp.addEventListener("click", stoppFilm);<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; function stoppFilm(){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; flikkflakkFilm.pause();<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp;< /script ></p>
+
+    <video width="500px" muted id = "flikkflakk">
+  		<source src="media/flikkflakk.mp4" type="video/mp4">
+  		Din nettleser støtter ikke videoelementet
+  	</video><br>
+
+    <button id="spill">Spill film</button>
+    <button id="gjenta">Loop film</button>
+    <button id="stopp">Stopp film</button>
+    
+    <script>
+    	var flikkflakkFilm = document.querySelector("#flikkflakk");
+    	var spillKnapp = document.querySelector("#spill");
+    	var loopKnapp = document.querySelector("#gjenta");
+    	var stoppKnapp = document.querySelector("#stopp");
+    	spillKnapp.addEventListener("click", spillFilm);
+    	function spillFilm(){
+    		flikkflakkFilm.play();
+    	}
+    	loopKnapp.addEventListener("click", gjentaFilm);
+    	function gjentaFilm(){
+    		flikkflakkFilm.loop=true;
+    	}
+    	stoppKnapp.addEventListener("click", stoppFilm);
+    	function stoppFilm(){
+    		flikkflakkFilm.pause();
+    	}
+    </script>
+
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/jHSKa-yk7kU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+
+    <h1> Oppgaver </h1>
+    <p> S. 213: oppgave 13.9 - 13.12. Bruk film/lyd du har redigert tidligere i kapittelet. </p>
+
+  </body>
+</html>

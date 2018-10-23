@@ -1,0 +1,146 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Objektorientering</title>
+    <link rel="stylesheet" type="text/css" href="undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1> Oppgave fra forrige time </h1>
+    <p> c) I denne oppgaven skal du opprette to klasser: klassen Sirkel og klassen Kule. 
+      Klassen Sirkel skal ha konstruktørargumentet radius og en metode for å regne ut areal. Klassen Kule skal være en subklasse av Sirkel og arve radius fra denne. Metodene skal overskrives med areal og volum av kula. Du skal så legge til to sirkler og to kuler og skrive ut verdiene for omkrets og areal / areal og volum av disse.<br><br>
+
+      Først: oppretter klassen Sirkel med ett argument to metoder <br>
+      &nbsp;&nbsp; class Sirkel{<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; constructor(radius){<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.radius = radius;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; get omkrets(){<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 2*Math.PI*this.radius;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; get areal(){<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return Math.PI*Math.pow(this.radius,2);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      &nbsp;&nbsp; }<br>
+      &nbsp;&nbsp; let s1 = new Sirkel(4);<br>
+      &nbsp;&nbsp; console.log(s1.omkrets.toFixed(2), s1.areal.toFixed(2));<br><br>
+      <script>
+        class Sirkel{
+          constructor(radius){
+            this.radius = radius;
+          }
+          get omkrets(){
+            return 2*Math.PI*this.radius;
+          }
+          get areal(){
+            return Math.PI*Math.pow(this.radius,2);
+          }
+        }
+        let s1 = new Sirkel(4);
+        console.log(s1.omkrets.toFixed(2), s1.areal.toFixed(2));
+      </script>
+      Deretter: oppretter klassen Kule med ett argument som en subklasse av Sirkel. Nå kan vi bruke både areal og omkrets på denne, men det blir jo feil <br>
+      &nbsp;&nbsp; class Kule extends Sirkel{<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; constructor(radius){<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(radius);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      &nbsp;&nbsp; }<br>
+      &nbsp;&nbsp; let k1 = new Kule(4);<br>
+      &nbsp;&nbsp; console.log(k1.omkrets.toFixed(2), k1.areal.toFixed(2));<br><br>
+      <script>
+        class Kule extends Sirkel{
+          constructor(radius){
+            super(radius);
+          }
+        }
+        let k1 = new Kule(4);
+        console.log(k1.omkrets.toFixed(2), k1.areal.toFixed(2));
+      </script>
+      Derfor overskriver vi slik at vi heller har korrekt arealmetode og legger til en volummetode. <br>
+      &nbsp;&nbsp; class Kule extends Sirkel{<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; constructor(radius){<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(radius);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; get areal(){<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 4*Math.PI*Math.pow(this.radius, 2);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; get volum(){<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return (4/3)*Math.PI*Math.pow(this.radius, 3);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      &nbsp;&nbsp; }<br>
+      &nbsp;&nbsp; let k1 = new Kule(4);<br>
+      &nbsp;&nbsp; console.log(k1.areal.toFixed(2), k1.volum.toFixed(2));</p>
+      <script>
+       /* class Kule extends Sirkel{
+          constructor(radius){
+            super(radius);
+          }
+          get areal(){
+            return 4*Math.PI*Math.pow(this.radius, 2);
+          }
+          get volum(){
+            return (4/3)*Math.PI*Math.pow(this.radius, 3);
+          }
+        }
+        let k1 = new Kule(4);
+        console.log(k1.areal.toFixed(2), k1.volum.toFixed(2));*/
+      </script>
+  	<h1> Objektorientert utvikling </h1>
+  	<h1> Hva er objektorientert utvikling? </h1>
+  	<p> Objektorientert utvikling handler om å planlegge, designe og programmere objektorienterte datasystemer. I planleggingen vil vi lage ulike modeller og diagrammer som er til hjelp i programmeringen ved å visuelt vise hvordan koden skal fungere. <br>
+  	UML = Unified Modelling Language er et metodesett for slike modeller, der man blant annet tar i bruk klassediagrammer og brukmønsterdiagrammer (use case). </p>
+
+  	<h1> Klassediagrammer </h1>
+  	<p> Et klassediagram viser klassene i et datasystem med deres attributter og metoder samt sammenhengen mellom klassene: for forfatter-bok blir dette: <br>
+  		<img src="klassediagram.png"><br>
+  	Klassediagrammet inneholder altså en tabell for hver klasse: klassenavn i en celle, objekter i en celle og metoder i en celle. Pilen representerer at klassen bøker inneholder objekter fra klassen forfatter. <br>
+  	Dersom vi har et sub-super-system tegner vi klassene under hverandre i stedet.
+  	</p>
+
+  	<p> Oppgave: <br>
+  	Tegn klassediagram for bil-hybridbil. <br><br><br>
+  		<img src="klassediagram2.png"></p>
+
+  	<h1> Bruksmønsterdiagrammer (use case) </h1>
+  	<p> Et bruksmønsterdiagram sier noe om hvordan et datasystem er tenkt brukt av hver aktør. For et bibliotek vil ulike aktører være bibliotekar og kunde: <br>
+  	<img src="bruksmønster.png"> </p>
+
+  	
+  	<h1> Kodestruktur </h1>
+  	<h1> Hvordan ønsker vi at koden skal være i objektorientert utvikling? </h1>
+  	<p> HTML, CSS og JS i ulike filer <br>
+  		Har en index.html som fungerer som startside <br>
+  		Legger til css i head: <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; < link rel="stylesheet" type="text/css" href="mappenavn/filnavn.css"> <br>
+  		Har ulike js-filer for ulik kode: <br>
+  		main.js er der vi oppretter nye objekter til klassen <br>
+  		filnavn.js (filnavnet vil være avhengig av klassene) er fila der vi oppretter klassen <br>
+  		Legger til js-filer i body <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; < script src="mappenavn/filnavn.js">< /script> <br>
+  	</p> 
+  	<h1> Oppgave: lage en klasse med kontakter </h1>
+  	<p> Lag en html-fil med et skjema der man kan legge inn fornavn, etternavn og telefonnummer. Dette skal lagres inn i en klasse. <br>
+  		Lag en js-fil der du oppretter klassen Kontakt. Klassen skal inneholde en metode for å returnere fullt navn og en metode for å skrive ut en tabell med fullt navn (ved hjelp av den første metoden) og telefonnummer samt en knapp for å slette kontakten fra klassen. <br>
+  		Lag en js-fil der du lagrer inputen fra feltene og oppretter objekter til klassen. <br>
+  		Det er meningen at dere skal måtte bruke litt tid på komme i gang med denne oppgaven, men det vil komme løsningsforslag  (men ikke med en gang, dere skal måtte tenke litt først)<br>
+      <b> Bonus! </b><br>
+      Dersom du ønsker å utforske lokal lagring for at det du skriver inn ikke skal forsvinne når siden lastes på nytt, kan du utforske local storage. En kort intro til dette er lagt ut rett under oppgaven, og løsningsforslaget tar i bruk dette. Dette er på siden av fagpensum, men veldig nyttig. </p>
+
+    <h1> Local storage </h1>
+    <p> Local storage er en metode for å lagre data (tekst eller tall) lokalt i nettleseren. Vi lagrer data ved hjelp av nøkler: <br>
+    &nbsp;&nbsp; localStorage.nøkkel = verdi;<br>
+    Og henter ut data ved bruk av samme nøkkel: <br>
+    &nbsp;&nbsp; var variabel = localStorage.nøkkel <br>
+    Vi kan ikke bruke local storage til å lagre objekter videre fordi objekter ikke er string eller number. Derfor må data som skal lagres først gjøres om til tekst. Dette gjøres ved hjelp av metodene: <br>
+    &nbsp;&nbsp; JSON.stringify (gjør om data til tekst)<br>
+    &nbsp;&nbsp; JSON.parse (gjør om data fra tekst til opprinnelig dataformat)<br><br>
+    Eksempel: har en array med figurer i Harry Potter: <br>
+    &nbsp;&nbsp; var figurer = ["Harry Potter", "Hermione Granger", "Ron Weasley"];<br>
+    &nbsp;&nbsp; figurerTekst = JSON.stringify(figurer); <br>
+    &nbsp;&nbsp; localStorage.mineFigurer = figurerTekst; <br>
+    &nbsp;&nbsp; var kjendiserOpprinnelig = JSON.parse(localStorage.mineFigurer); <br>
+
+
+  </body>
+</html>

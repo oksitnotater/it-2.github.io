@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Løkke gjennom arrays </title>
+	<link rel="stylesheet" type="text/css" href="css/undervisning.css">
+</head>
+<body>
+	<h1> Oversikt over metoder fra de to siste timer </h1>
+	<table>
+		<tr><th>Metode</th><th>Kode</th></tr>
+		<tr><td>Opprette en array</td><td> var arrayen = [verdi1, verdi2, verdi3];</td></tr>
+		<tr><td>Endre en verdi i en array</td><td>arrayen[plass] = nyVerdi;</td></tr>
+		<tr><td>Legge til en verdi i starten av en array</td><td>arrayen.unshift(verdi)</td></tr>
+		<tr><td>Legge til en verdi på slutten av en array</td><td>arrayen.push(verdi)</td></tr>
+		<tr><td>Fjerne verdien i starten av en array</td><td>arrayen.shift()</td></tr>
+		<tr><td>Fjerne verdien på slutten av array</td><td>arrayen.pop()</td></tr>
+		<tr><td>Finne plass til enkeltverdi i en array</td><td>arrayen.indexOf(verdi)</td></tr>
+		<tr><td>Fjerne enkeltverdier i en array</td><td>arrayen.splice(plass, antall verdier som fjernes)</td></tr>
+		<tr><td>Legge til enkeltverdier i en array</td><td>arrayen.splice(plass, antall verdier som fjernes, verdi som legges til, verdi som legges til, osv)</td></tr>
+
+		<tr><td>Løkke gjennom en array</td><td> for(var i = 0; i < arrayen.length; i++){// kode}</td></tr>
+	</table>
+
+	<h1>Oppgaver fra forrige time</h1>
+	<p>	1. Lag en funksjon som finner det minste tallet i en array. <br>
+		&nbsp;&nbsp; var tallArray = [4, 3, 11, 7, 9, -3, 4];<br>
+		&nbsp;&nbsp; var minst = tallArray[0];<br>
+		&nbsp;&nbsp; var plass = 0;<br>
+		&nbsp;&nbsp; for(var i = 0; i < tallArray.length; i++){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; if(tallArray[i] < minst){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; minst = tallArray[i];<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; plass = i;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; console.log('Det minste tallet er '+minst+' og står på plass '+plass);
+		<br><br>
+
+		2. Lag en funksjon som finner summen av tallene i en array. <br>
+		&nbsp;&nbsp; var sum = 0;<br>
+		&nbsp;&nbsp; for(var i = 0; i < tallArray.length; i++){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; sum += tallArray[i]<br>
+		&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; console.log('Summen av tallene i arrayen er  '+sum);<br><br>
+
+		3. Lag en funksjon som finner gjennomsnittet av tallene i en array.<br>
+		&nbsp;&nbsp; var snitt = sum / tallArray.length;<br>
+		&nbsp;&nbsp; console.log('Gjennomsnittet av tallene i arrayen er '+snitt); </p>
+
+		<script>
+			var tallArray = [4, 3, 11, 7, 9, -3, 4];
+			// finner det minste tallet
+			var minst = tallArray[0];
+			var plass = 0;
+			for(var i = 0; i < tallArray.length; i++){
+				if(tallArray[i] < minst){
+					minst = tallArray[i];
+					plass = i;
+				}
+			}
+			console.log('Det minste tallet er '+minst+' og står på plass '+plass);
+
+			// finner summen
+			var sum = 0;
+			for(var i = 0; i < tallArray.length; i++){
+				sum += tallArray[i]
+			}
+			console.log('Summen av tallene i arrayen er  '+sum);
+
+			//finner gjennomsnittet
+			var snitt = sum / tallArray.length;
+			console.log('Gjennomsnittet av tallene i arrayen er '+snitt);
+		</script>
+
+	<h1> Løkke gjennom todimensjonale arrays </h1>
+	<p> Todimensjonale arrays er arrays med arrays inne i: <br>
+		&nbsp;&nbsp; var A = [<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; [1, 2, 3],<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; [4, 5, 6] <br>
+		&nbsp;&nbsp; ]<br><br>
+		For å løkke gjennom disse må vi bruke to for-løkker: <br>
+		&nbsp;&nbsp; for(var i = 0; i < A.length; i++){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; for (var j = 0; j < A[i].length; j++){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log(A[i][j]);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp; }<br>
+
+		<script>
+			var a = [
+				[1, 2, 3],
+				[4, 5, 6]
+			]
+			for(var i = 0; i < a.length; i++){
+				for (var j = 0; j < a[i].length; j++){
+					console.log(a[i][j]);
+				}
+			}
+		</script>
+
+	<h1> Metoden querySelectorAll </h1>
+	<p> Vi husker fra tidligere at metoden querySelector finner første forekomst av et element (querySelector("p")), av et element med en gitt klasse (querySelector(".klassenavn")) eller av et element med en gitt id (querySelector("#idnavn")). Det ble også nevnt at det finnes en metode querySelectorAll som tar inn alle elementer av en gitt type/klasse. Denne har vi spart fordi disse variablene lagres som nettopp en array. For å bearbeide dem må jeg da hente inn alle ved hjelp av en løkke. <br><br>
+
+	Som eksempel kan jeg hente inn alle td-elementer i dette dokumentet og gi dem rosa bakgrunn: <br>
+		&nbsp;&nbsp; var tdEl = document.querySelectorAll("td");<br>
+		&nbsp;&nbsp; for(var i = 0; i < tdEl.length; i++){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; tdEl[i].style.backgroundColor = "pink";<br>
+		&nbsp;&nbsp; }</p>
+
+	<script>
+		var tdEl = document.querySelectorAll("td");
+		for(var i = 0; i < tdEl.length; i++){
+			tdEl[i].style.backgroundColor = "pink";
+		} 
+	</script>
+
+	<h1> Oppgave med querySelectorAll </h1>
+	<p> Lag et html-dokument med mellom 5 og 10 checkbox (dette er eneste inputfelt). Bruk querySelectorAll til å skrive ut en liste over hvilke bokser som er krysset av. </p>
+
+	<h3> Hvilke idretter liker du? </h3>
+		<p><input type="checkbox" class="idrett" value="fotball">Fotball<br>
+		<input type="checkbox" class="idrett" value="kunstløp">Kunstløp<br>
+		<input type="checkbox" class="idrett" value="langrenn">Langrenn<br>
+		<input type="checkbox" class="idrett" value="turn">Turn<br>
+		<input type="checkbox" class="idrett" value="skihopping">Skihopping<br>
+		<input type="checkbox" class="idrett" value="vektløfting">Vektløfting</p>
+		<button id="send">Send svar </button>
+		<p id="skrivUt"></p>
+
+		<script>
+			var idrettEl = document.querySelectorAll(".idrett");
+			var skrivUtEl = document.querySelector("#skrivUt");
+			var sendEl = document.querySelector("#send");
+			sendEl.addEventListener("click", sjekkSkjema);
+			function sjekkSkjema(){
+				skrivUtEl.innerHTML += 'Du liker å drive med <ul>';
+				for(i = 0; i < idrettEl.length; i++){
+					if(idrettEl[i].checked){
+						skrivUtEl.innerHTML += '<li>' + idrettEl[i].value + '</li>';
+					}
+				}
+				skrivUtEl.innerHTML += '</ul>';
+			}
+		</script>
+
+	<p> HTML for dette: <br>
+		&nbsp;&nbsp; < input type="checkbox" class="idrett" value="fotball">Fotball<br>
+		&nbsp;&nbsp; < input type="checkbox" class="idrett" value="kunstløp">Kunstløp<br>
+		&nbsp;&nbsp; < input type="checkbox" class="idrett" value="langrenn">Langrenn<br>
+		&nbsp;&nbsp; < input type="checkbox" class="idrett" value="turn">Turn<br>
+		&nbsp;&nbsp; < input type="checkbox" class="idrett" value="skihopping">Skihopping<br>
+		&nbsp;&nbsp; < input type="checkbox" class="idrett" value="vektløfting">Vektløfting<br>
+		&nbsp;&nbsp; < button id="send">Send svar < /button ><br>
+		&nbsp;&nbsp; < p id="skrivUt">< /p ><br><br>
+
+	Scriptet for dette:<br>
+		&nbsp;&nbsp; var idrettEl = document.querySelectorAll(".idrett");<br>
+		&nbsp;&nbsp; var skrivUtEl = document.querySelector("#skrivUt");<br>
+		&nbsp;&nbsp; var sendEl = document.querySelector("#send");<br>
+		&nbsp;&nbsp; sendEl.addEventListener("click", sjekkSkjema);<br>
+		&nbsp;&nbsp; function sjekkSkjema(){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; skrivUtEl.innerHTML += 'Du liker å drive med < ul >';<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; for(i = 0; i < idrettEl.length; i++){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(idrettEl[i].checked){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; skrivUtEl.innerHTML += '< li >' + idrettEl[i].value + '< /li >';<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; skrivUtEl.innerHTML += '< /ul >';<br>
+		&nbsp;&nbsp; }</p>
+
+</body>
+</html>

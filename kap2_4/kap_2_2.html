@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Ulike datatyper </title>
+	<link rel="stylesheet" type="text/css" href="../grid.css">
+	<link rel="stylesheet" type="text/css" href="../stil.css">
+</head>
+<body>
+	<div class="col-12 row header">
+		Kapittel 2
+	</div>
+	<script type="text/javascript" src="../forside/meny.js"></script>
+	<div class="innhold">
+		<h1> De tre datatypene </h1>
+		<h2> String </h2>
+		<p> Datatypen string brukes for tekstvariabler. All tekst skal legges i fnutter ('tekst') eller dobbeltfnutter ("tekst"): <br>
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tekstVar = 'En setning med tekst!';
+		&nbsp;&nbsp; < script ><br>< /script ><br>
+		En tekststreng er indexert fra 0  til (n-1) der n er antall tegn. Vi kan behandle tekstvariabler ved flere metoder, blant annet </p>
+			<table>
+				<tr> <th> Metode </th> <th> Forklaring </th> <th> Eksempel </th> </tr>
+				<tr> <td> [plass] </td> <td> Gir tegnet på en gitt plassering </td> <td> console.log(tekstVar[3]); returnerer s</td> </tr>
+				<tr> <td> indexOf() </td> <td> Finner plasseringen til første element av typen et spørres etter </td> <td> console.log(tekstVar.indexOf('n')); returnerer 1 </td></tr>
+				<tr> <td> toUpperCase() </td> <td> Gjør om til kun store bokstaver </td> <td> console.log(tekstVar.toUpperCase()); returnerer EN SETNING MED TEKST! </td> </tr>
+				<tr> <td> toLowerCase() </td> <td> Gjør om til kun små bokstaver </td> <td> console.log(tekstVar.toLowerCase()); returnerer en setning med tekst!</td> </tr>
+				<tr> <td> length </td> <td> Gir antall tegn i stringen </td> <td> console.log(tekstVar.length); returnerer 21 </td> </tr>
+				<tr> <td> substring() </td> <td> Gir tegnene i et intervall </td> <td> console.log(tekstVar.substring(11, 14)); returnerer med</td> </tr>
+			</table>
+
+		<script>
+			var tekstVar = 'En setning med tekst!';
+			console.log(tekstVar[3]);
+			console.log(tekstVar.indexOf('n'));
+			console.log(tekstVar.toUpperCase());
+			console.log(tekstVar.toLowerCase());
+			console.log(tekstVar.length);
+			console.log(tekstVar.substring(11, 14));
+		</script>
+
+		<h2> Boolean </h2>
+		<p> Vi har to boolske variabler: sann (1) og usann (0). Disse legger blant annet grunnlag for if-setninger, der vi ber om at kode skal kjøres dersom en påstand er sann eller usann. <br>
+		Boolske variabler lagres som <br>
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var boolskVar = true; <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var boolskVar = false; <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var boolskVar = 1; <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var boolskVar = 0; <br>
+		&nbsp;&nbsp; < /script ></p>
+
+		<h2> Number </h2>
+		<p> Number er alle tallvariabler: heltall, desimaltall, negative tall, positive tall. Merk at JavaScript ikke skiller mellom heltall og desimaltall! <br>
+		Vi lagrer numbervariabler som <br>
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tallVar = 1; <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tallVar = 1.0; <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tallVar = -157.42 <br>
+		&nbsp;&nbsp; < /script ></p>
+
+		<script>
+			var tall1 = 10
+			var tall2 = 5;
+			var tall3 = tall1 + tall2;
+			document.write("<p>"+ tall1 + " + " + tall2 + " = " + (tall1+tall2)+ "</p>")
+		</script>
+
+		<h1> Oppgaver </h1>
+		<p> I boka: 2.6 - 2.8 s. 31 <br>
+			På w3schools: besøk <a href="https://www.w3schools.com/js/js_strings.asp" target="_blank">string</a>, <a href="https://www.w3schools.com/js/js_numbers.asp" target="_blank">number</a> og <a href="https://www.w3schools.com/js/js_booleans.asp" target="_blank">boolske</a>.  </p>
+		</div>
+</body>
+</html>

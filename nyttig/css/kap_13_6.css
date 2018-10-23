@@ -1,0 +1,15 @@
+#videoDiv{
+	background-color: #DDDDDD;
+	padding: 10px;
+	border: 2px solid black;
+	display: none;
+	position: absolute;
+	z-index: 1000;
+	left: 0;
+	top: 0;
+	width: 576px;
+	height: 320px;
+}
+#lukkFilm{
+	margin-top: 15px;
+}

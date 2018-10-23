@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Video i forgrunnsvindu</title>
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <link rel="stylesheet" type="text/css" href="css/kap_13_6.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Å legge videoer i forgrunnsvindu </h1>
+  	<p> Vi kan ønske å legge videoer i forgrunnsvindu for eksempel hvis det skal være en reklamefilm som må vises før vi får gå inn på selve nettstedet eller dersom vi ikke ønsker at en film skal fylle opp en nettside før brukeren faktisk skal se den. Egenskapene vi bruker for å sette videoer i forgrunnsvindu er de samme som når vi lager dropdownmenyer (for de av dere som har gjort det): vi justerer z-index og display. <br>
+    I dette eksempelet skal vi vise det siste eksempelet: en film som åpnes i et forgrunnsbilde når brukeren velger å se den.<br><br>
+
+    Vi legger først til en knapp brukeren kan trykke på for å få opp filmen: <br>
+    &nbsp;&nbsp; < button id ="visFilm" >Vis film< /button ><br><br>
+    
+    Selve filmen legges til i et div-element som vi justerer css-egenskapene til. Her finnes også en lukk-knapp: <br>
+    &nbsp;&nbsp; < div id = "videoDiv" ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < video width="576px" height="320px" controls ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; < source src="media/turn_2.mp4" type="video/mp4" ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < /video ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < button id="lukkFilm" > X < /button ><br>
+    &nbsp;&nbsp; < /div ><br><br>
+
+    I css justeres egenskapene til forgrunnsvinduet. Her er dispay: none (filmen synes i utgangspunktet ikke), position: absolute og z-index: 1000 (filmen legges foran alt annet innhold når display endres): <br>
+    &nbsp;&nbsp; #videoDiv{<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; background-color: #DDDDDD;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; padding: 10px;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; border: 2px solid black;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; display: none;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; position: absolute;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; z-index: 1000;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; left: 0;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; top: 0;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; width: 576px;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; height: 320px;<br>
+    &nbsp;&nbsp; }<br>
+    &nbsp;&nbsp; #lukkFilm{<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; margin-top: 15px;<br>
+    &nbsp;&nbsp; }<br><br>
+
+    Til vis-knappen legges en lytter som endrer display til "initial" og plasserer filmen på siden ved bruk av window.innerHeight og window.innerWidth, og til lukk-knappen legges en lytter som endrer display tilbake:<br>
+    &nbsp;&nbsp; < script ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var visFilm = document.querySelector("#visFilm");<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var videoDiv = document.querySelector("#videoDiv");<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var lukkFilm = document.querySelector("#lukkFilm");<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; visFilm.addEventListener("click", visFilmFunk);<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; lukkFilm.addEventListener("click", lukkFilmFunk);<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; function visFilmFunk(){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; videoDiv.style.display = "initial";<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var topp = (window.innerHeight - 320)/2;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var venstre = (window.innerWidth - 576)/2;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; videoDiv.style.top = topp+"px";<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; videoDiv.style.left = venstre+"px";<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; function lukkFilmFunk(){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; videoDiv.style.display = "none";<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp; < /script > </p>
+
+    <button id ="visFilm">Vis film</button>
+
+    <div id = "videoDiv">
+      <video width="576px" height="320px" controls>
+        <source src="media/turn_2.mp4" type="video/mp4">
+      </video>
+      <button id="lukkFilm"> X </button>
+    </div>
+
+    <script>
+      var visFilm = document.querySelector("#visFilm");
+      var videoDiv = document.querySelector("#videoDiv");
+      var lukkFilm = document.querySelector("#lukkFilm");
+
+      visFilm.addEventListener("click", visFilmFunk);
+      lukkFilm.addEventListener("click", lukkFilmFunk);
+
+      function visFilmFunk(){
+        videoDiv.style.display = "initial";
+        var topp = (window.innerHeight - 320)/2;
+        var venstre = (window.innerWidth - 576)/2;
+        videoDiv.style.top = topp+"px";
+        videoDiv.style.left = venstre+"px";
+      }
+
+      function lukkFilmFunk(){
+        videoDiv.style.display = "none";
+      }
+
+    </script>
+
+    <h1> Oppgaver </h1>
+    <p> 1. Lag en nettside der videovinduet vises automatisk med en lukk-knapp for å komme videre til selve nettsiden. Videoen skal dekke 90% av bredden til nettleservinduet. Det skal gå an å åpne opp igjen videoen. <br>
+    2. Utvid koden slik at filmen settes på pause når forgrunnsvinduet lukkes og fortsetter der den slapp hvis brukeren åpner videoen igjen.</p>
+
+
+</html>

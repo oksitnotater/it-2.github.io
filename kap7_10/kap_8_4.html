@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+   	<meta charset="UTF-8">
+   	<title> Hendelsesfunksjoner med argumenter </title>
+   	<link rel="stylesheet" type="text/css" href="undervisning.css">
+</head>
+<body>
+	<h1> Å gi hendelsesfunksjoner argumenter </h1>
+	<p> Så langt har vi bare forholdt oss til eventargumentet i hendelsesstyrte funksjoner (e). Vi kan ikke definere andre argumenter sammen med funksjonen, da det vil kjøre den i det siden lastes. Dette gir problemer fordi vi ikke har noen hendelse mousemove ved innlasting av siden.<br><br>
+	&nbsp;&nbsp; var bodyEl = document.querySelector("body");<br>
+	&nbsp;&nbsp; bodyEl.addEventListener("mousemove", sjekkFunksjon(3));<br>
+	&nbsp;&nbsp; function sjekkFunksjon(tall, e){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var posisjon = e.clientX;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; console.log(posisjon*tall);<br>
+	&nbsp;&nbsp; }</p>
+	<script>
+		/*var bodyEl = document.querySelector("body");
+		bodyEl.addEventListener("mousemove", sjekkFunksjon(3));
+		function sjekkFunksjon(tall, e){
+			var posisjon = e.clientX;
+			console.log(posisjon*tall);
+		}*/
+	</script>
+
+	<p> Dette kan løses ved å lage en anonym funksjon når lytteren legges til: en funksjon uten funksjonsnavn. Inne i denne funksjonen legger vi funksjonen med argument: <br>
+	&nbsp;&nbsp; var bodyEl = document.querySelector("body");<br>
+	&nbsp;&nbsp; bodyEl.addEventListener("mousemove", function(e){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var posisjon = e.clientX;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; sjekkFunksjon(3, posisjon);<br>
+	&nbsp;&nbsp; })<br>
+	&nbsp;&nbsp; function sjekkFunksjon(tall, posisjon){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; console.log(posisjon*tall);<br>
+	&nbsp;&nbsp; }</p>
+	<script>
+		var bodyEl = document.querySelector("body");
+		bodyEl.addEventListener("mousemove", function(e){
+			var posisjon = e.clientX;
+			sjekkFunksjon(3, posisjon);
+		})
+		function sjekkFunksjon(tall, posisjon){
+			console.log(posisjon*tall);
+		}
+	</script>
+
+	<h3> Merk: det er sjeldent vi faktisk får bruk for dette </h3>
+
+	<h1> Oppgaver </h1>
+	<p> s. 133: oppgave 8.10 og 8.11 </p>
+	<h1> Hva skjer videre? </h1>
+	<p> Torsdag 9. november, fredag 10. november: kapittel 9 (stein, saks, papir) <br>
+		Mandag 13. november: kapittel 10.1 og 10.2 (html og css for skjemaer)<br>
+		&nbsp;&nbsp; <i>særemnedag for deler av VG3 </i><br>
+		<b> Onsdag 15. november: informatikkolympiaden i studietida </b><br>
+		Torsdag 16. november: kapittel 10.3 <br>
+		Fredag 17. november: repetisjon til heldags <br>
+		Mandag 20. november, torsdag 23. november: øveoppgaver til heldags<br>
+		&nbsp;&nbsp; <i>disse kan leveres inn dersom dere vil ha tilbakemelding </i><br>
+		Fredag 1. desember: heldagsprøve IT.</p>
+</body>
+</html>

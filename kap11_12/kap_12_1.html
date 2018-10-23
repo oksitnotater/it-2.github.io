@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Objects</title>
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Hva er forskjellen på arrays og objects? </h1>
+  	<p> I en array henter vi verdiene med å referere til plasseringen deres i arrayen. Det er ingen annen måte å skille mellom verdiene på, og arrays er derfor mest praktisk når vi har flere verdier av samme slag: f.eks. en samling over hele klassens fødselsår, eller hele klassens navn. Dersom vi heller ønsker å lagre flere typer informasjon om én elev i klassen, vil det være upraktisk å bruke arrays fordi vi ikke kan vite (uten å huske fra da vi laget arrayen) om det var fornavn eller etternavn som sto på den første plassen, eller om vi lagret alder eller fødselsår. Det er da objects kommer inn i bildet. <br><br>
+  	I et object er vi ikke interessert i plasseringen til verdien, men hva slags verdi det er. For å vite dette lagrer vi hver enkelt verdi sammen med en nøkkel som sier noe om verdien (tilsvarer assosiative arrays i php):<br>
+  	&nbsp;&nbsp; var objectVar = {nøkkel1: "verdi1", nøkkel2: "verdi2", osv.}<br>
+  	Som et eksempel kan jeg lagre personinfo i et object: <br>
+  	&nbsp;&nbsp; var person = {fnavn: "Asta", enavn: "Fjærli", alder: 27, hobby: "løfte tungt"};<br>
+  	Mer oversiktlig er det å skrive <br>
+  	&nbsp;&nbsp; var person = {<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; fnavn: "Asta", <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; enavn: "Fjærli", <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; alder: 27, <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; hobby: "løfte tungt"<br>
+  	&nbsp;&nbsp; };<br>
+  	Som vi ser, kan objectverdiene inneholde både tekst og tall. De kan også inneholde boolske variabler og arrays.</p>
+
+  	<h1> Arrays i objects </h1>
+  	<p> Det kan jo hende jeg har flere hobbyer. Da er det upraktisk å ha en nøkkel for hver (hobby1, hobby2 osv) og enklere å legge alle aktivitetene i en array: <br>
+  	&nbsp;&nbsp; var person = {<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; fnavn: "Asta", <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; enavn: "Fjærli", <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; alder: 27, <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; hobby: ["spille fløyte", "løfte tungt", "strikke"] <br>
+  	&nbsp;&nbsp; };</p>
+
+  	<script>
+  	var person  = {
+  		fnavn: "Asta",
+  		enavn: "Fjærli",
+  		alder: 27,
+  		hobby: ["spille fløyte", "løfte tungt", "strikke"]
+  	}
+  	</script>
+
+  	<h1> Bruke objects </h1>
+  	<p> Vi refererte til plasseringen for å finne verdier i en array: arrayVar[2]. For å skrive ut verdier i et object bruker vi nøkkelen: <br>
+  	&nbsp;&nbsp; person["fnavn"] og person.fnavn vil begge gi verdien "Asta". <br>
+  	For å hente ut en gitt hobby holder det ikke å be om person["hobby"], da det vil returnere <br>
+  	&nbsp;&nbsp; (3) ["spille fløyte", "løfte tungt", "strikke"]<br>
+  	For å få ut en viss hobby må man derfor be om person["hobby"][1];<br><br>
+
+  	Oppsummert har vi følgende kode for å lage og bruke objectet:<br>
+   	&nbsp;&nbsp; var person  = {<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; fnavn: "Asta",<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; enavn: "Fjærli",<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; alder: 27,<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; hobby: ["spille fløyte", "løfte tungt", "strikke"]<br>
+  	&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; console.log(person["fnavn"], person.fnavn);<br>
+  	&nbsp;&nbsp; console.log(person["hobby"], person.hobby);<br>
+  	&nbsp;&nbsp; console.log(person["hobby"][2], person.hobby[2]);</p>
+
+  	<script>
+  	console.log(person["fnavn"], person.fnavn);
+  	console.log(person["hobby"], person.hobby);
+  	console.log(person["hobby"][2], person.hobby[2]);
+  	</script>
+
+  	<h1> Løkke gjennom objects </h1>
+  	<p> Vi kjenner til forløkker som for(var i = startverdi; i <= sluttverdi; i++) der vi vet antall ganger koden skal gjentas. For objects kjenner vi ikke nødvendigvis til antall egenskaper, og kan heller ikke referere til objectets lengde. Forløkker for objects kaller vi derfor for - in - løkker. Her konstrueres en egenskapsvariabel som sørger for at alle egenskaper i et object blir løkket gjennom. Denne egenskapsvariablen kan vi kalle hva som helst: kodene <br>
+	&nbsp;&nbsp; for(var egenskap in person){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; console.log(egenskap);<br>
+  	&nbsp;&nbsp; }<br>
+  	og<br>
+  	&nbsp;&nbsp; for(var jul in person){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; console.log(jul);<br>
+  	&nbsp;&nbsp; }<br>
+  	returnerer begge alle egenskaper i objectet. Her må vi bruke klammenotasjon for å få ut verdiene. Her kan ikke dot-notasjon brukes. <br>
+  	&nbsp;&nbsp; for(var egenskap in person){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; console.log(person[egenskap]);<br>
+  	&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; for(var jul in person){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; console.log(person[jul]);<br>
+	&nbsp;&nbsp; }</p>
+
+  	<script>
+  	for(var egenskap in person){
+  		console.log(egenskap);
+  	}
+  	for(var jul in person){
+  		console.log(jul);
+  	}
+  	for(var egenskap in person){
+  		console.log(person[egenskap]);
+  	}
+  	for(var jul in person){
+  		console.log(person[jul]);
+  	}
+  	</script>
+
+  	<h1> Oppgaver </h1>
+  	<p> s. 190: oppgave 12.1, 12.2<br>
+  		s. 191: oppgave 12.3</p>
+
+  	<h1> Endre verdier i objects </h1>
+  	<p> På samme måte som i arrays kan vi overskrive enkeltverdier i objects. Her kan vi bruke både klammenotasjon og dotnotasjon: <br>
+  	&nbsp;&nbsp; person.fnavn = "Asta Rønning";<br>
+  	&nbsp;&nbsp; person["alder"] = 1000;<br>
+  	&nbsp;&nbsp; person.hobby[0] = "korps";<br>
+  	&nbsp;&nbsp; person["hobby"][1] = "vektløfting";<br><br>
+  	
+  	På samme måte kan vi legge til verdier:<br>
+  	&nbsp;&nbsp; person.favorittbok = "Ringdrotten";<br>
+  	&nbsp;&nbsp; person["favorittland"] = "Island";<br>
+  	&nbsp;&nbsp; person["hobby"].push("turn");<br><br>
+
+  	Og vi kan slette verdier:<br>
+  	&nbsp;&nbsp; delete person.enavn;<br>
+  	&nbsp;&nbsp; delete person["fnavn"];<br><br>
+
+  	Den nyeste utgaven finner vi ved å løkke gjennom på nytt: <br>
+  	&nbsp;&nbsp; for(var egenskap in person){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; console.log(person[egenskap]);<br>
+  	&nbsp;&nbsp; }</p>
+
+
+  	<script>
+  	person.fnavn = "Asta Rønning";
+  	person["alder"] = 1000;
+  	person.hobby[0] = "korps";
+  	person["hobby"][1] = "vektløfting";
+
+  	person.favorittbok = "Ringdrotten";
+  	person["favorittland"] = "Island";
+  	person["hobby"].push("turn");
+
+  	delete person.enavn;
+  	delete person["fnavn"];
+
+  	for(var egenskap in person){
+  		console.log(person[egenskap]);
+  	}
+  	</script>
+
+  	<h1> this-metoder </h1>
+  	<p> Et object kan, i tillegg til egenskaper, ha metoder. Disse fungerer som funksjoner, og oppgaven til en slik metode kan for eksempel være å returnere alder og favorittland, eller å skrive ut en liste over hobbyene. Fordi funksjonen er definert inne i objectet, bruker vi kodeordet this for å peke på egenskapen. Det forteller at vi skal finne egenskapen i nettopp dette objectet.<br><br>
+  	&nbsp;&nbsp; var person = {<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; fnavn: "Asta Rønning",<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; enavn: "Fjærli",<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; alder: 27,<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; hobby: ["korps", "vektløfting", "strikke", "turn"],<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; favorittbok: "Ringdrotten",<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; favorittland: "Island",<br>
+ 	&nbsp;&nbsp; // returnere alder og favorittland<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; alderLand: function(){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.alder + " " + this.favorittland;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; },<br>
+  	&nbsp;&nbsp; // skrive ut en liste over hobbyer<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; hobbyer: function(){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var bodyEl = document.querySelector("body");<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var liste = document.createElement("ul");<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(i = 0; i < this.hobby.length; i++){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var listeEl = document.createElement("li")<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; listeEl.innerHTML = this.hobby[i];<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; liste.appendChild(listeEl)<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bodyEl.appendChild(liste);<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; console.log(person.alderLand());<br>
+  	&nbsp;&nbsp; person.hobbyer();</p>
+
+  	<script>
+
+  	var person = {
+  		fnavn: "Asta Rønning",
+  		enavn: "Fjærli",
+  		alder: 27,
+  		hobby: ["korps", "vektløfting", "strikke", "turn"],
+  		favorittbok: "Ringdrotten",
+  		favorittland: "Island",
+
+  		// returnere alder og favorittland
+  		alderLand: function(){
+  			return this.alder + " " + this.favorittland;
+  		},
+
+  		// skrive ut en liste over hobbyer
+  		hobbyer: function(){
+  			var bodyEl = document.querySelector("body");
+  			var liste = document.createElement("ul");
+  			for(i = 0; i < this.hobby.length; i++){
+  				var listeEl = document.createElement("li")
+  				listeEl.innerHTML = this.hobby[i];
+  				liste.appendChild(listeEl)
+  			}
+  			bodyEl.appendChild(liste);
+  		}
+
+  	}
+  	console.log(person.alderLand());
+  	person.hobbyer();
+  	
+  	</script>
+
+  	<h1> Oppgaver </h1>
+  	<p> s. 192: oppgave 12.4, 12.5<br>
+  		s. 193: oppgave 12.6, 12.7 </p>
+
+
+  	<h1> Info om uka etter jul: </h1>
+  	<p> Det legges ut et oppgavesett på its som er ment som repetisjon av arrays og det vi har lært om objects i dag. Oppgavene vil ha forskjellig vanskegrad, og det er markert i oppgaven. De som har kommet videre i informatikkolympiaden får bruke tida på å jobbe med oppgaver knyttet til det i stedet. Det vil bli tatt fravær i torsdagstimen. </p>
+  </body>
+</html> 

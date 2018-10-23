@@ -1,0 +1,101 @@
+/* generelt */
+html, body{
+	min-height: 100%;
+	width: 100%;
+}
+/* oppgave 1*/
+#bakgrunn {
+    position: relative;
+    width: 600px;
+    height: 600px;
+    overflow: hidden;
+    border: 3px solid;
+    background-color: lightgray;
+}
+.boks {
+    position: absolute;
+    border: 3px solid;
+    width: 100px;
+    height: 100px;
+}
+#boks1 {
+    top: 10px;
+    left: 20px;
+    background-color: red;
+    transition: all 4s linear;
+}
+#boks2 {
+    left: 250px;
+    bottom: 10px;
+    background-color: green;
+    transition: all 4s linear; /* Setter alle CSS transisjoner på dette elementet til 4s*/
+}
+#boks3 {
+    top: 10px;
+    left: 480px;
+    background-color: blue;
+}
+
+/* oppgave 2 */
+/* med scale 
+#ramme{
+	position: relative;
+	min-height: 500px;
+	overflow: hidden;
+}
+#ramme #kjottmeis{
+	position: absolute;
+	width: 50%;
+	margin-left: 25%;
+	cursor: pointer;
+	transform: scale(1);
+	transition: 1s 1s;
+}
+#ramme #kolibri{
+	position: absolute;
+	width: 50%;
+	margin-left: 25%;
+	cursor: pointer;
+	scale: 0;	
+	transform: scale(0);
+	transition: 1s 0s;
+}
+#ramme:hover #kjottmeis{
+	transform:scale(0);
+	transition: 1s 0s;
+}
+#ramme:hover #kolibri{
+	transform:scale(1);
+	transition: 1s 1s;
+}*/
+
+/* med opacity*/ 
+#ramme{
+	position: relative;
+	min-height: 500px;
+	overflow: hidden;
+}
+#ramme #kjottmeis{
+	position: absolute;
+	width: 80%;
+	margin-left: 10%;
+	cursor: pointer;
+	opacity: 1;
+	transition: 2s;
+}
+#ramme #kolibri{
+	position: absolute;
+	width: 50%;
+	margin-left: 25%;
+	cursor: pointer;
+	opacity: 0;
+	transition: 2s;
+}
+#ramme:hover #kjottmeis{
+	opacity: 0;
+	transition: 1s 0s;
+}
+#ramme:hover #kolibri{
+	opacity: 1;
+	transition: 1s 1s;
+}

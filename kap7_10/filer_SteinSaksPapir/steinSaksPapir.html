@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Stein, saks, papir</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+  </head>
+  <body>
+    <h1> Hva går prosjektet ut på? </h1>
+    <p> Vi skal lage et stein, saks, papir-spill for å repetere temaene så langt: bruk av DOM og hendelsesstyrte funksjoner. Vi bryter ned spillet til mindre oppgaver for at det skal være greiere å henge med. <br>
+    Stein, saks, papir går ut på at to spillere spiller mot hverandre. Begge velger enten stein (knyttneve), saks (to fingre) eller papir (flat hånd). Stein slår saks, saks slår papir og papir slår stein. Dersom det blir likt får ingen av spillerene poeng. I dette spillet er datamaskinen en av spillerene. </p>
+
+    <h1> Hvor starter vi? </h1>
+    <p> Spillet skal presenteres på en nettside som skal være brukervennlig. På denne nettsiden må brukeren ha mulighet til å velge enten stein, saks eller papir, og det må være mulig å se hva datamaskinen har valgt. I tillegg skal vi se hvem som har vunnet, og holdes oppdatert på poengsummen. <br> <br>
+    Vi deler planleggingen av prosjektet i tre deler: <i>Kravspesifikasjon</i>, <i>skisse</i> og <i>pseudokode</i>. I kravspesifikasjonen legger vi inn krav til hvordan spillet skal fungere. I skissen viser vi hvordan nettsiden skal se ut. I pseudokoden skriver vi i "menneskekode" den koden vi skal skrive for å lage spillet.</p>
+
+    <h1> Kravspesifikasjon </h1>
+    <p> Spillet skal kunne utføre det følgende: </p>
+    <ul> 
+      <li> To spillere: bruker og datamaskin </li>
+      <li> Brukeren velger mellom stein, saks og papir </li>
+      <li> Maskinen velger <i>tilfeldig</i> stein, saks eller papir </li>
+      <li> Brukerens og maskinens valg kommer til syne og poengtelleren oppdateres </li>
+      <li> Når en spiller har fått 5 poeng, avsluttes spillet med at det skrives ut hvem som vant </li>
+      <li> Når en spiller har vunnet, skal det ikke være mulig å spille flere runder uten å laste siden på nytt</li>
+    </ul>
+
+    <h1> Skisse </h1>
+    <p> Skissen er <b>IKKE</b> en skjermdump av det ferdige produktet, men en figur over hvordan vi ønsker at spillet skal se ut. Skissen kan f.eks. tegnes med papir og blyant eller i paint</p>
+    <img src="media/skisse.png" alt="skisse">
+
+    <h1> Pseudokoden </h1>
+    <p> Pseudokoden skal hjelpe oss å strukturere koden. Den er skrevet i menneskekode, slik at man ikke må kunne programmeringsspråkets syntax for å forstå den, og kan godt skrives på norsk (men må ikke). Pseudokoden skal være skrevet i samme rekkefølge som selve koden. Et eksempel på pseudokode for spillet er <br><br>
+    &nbsp;&nbsp; // Definerer globale variabler:<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; sum for å vinne: sumVinne<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; spillerens poeng: poengS<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; maskinens poeng: poengM<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; hva spilleren velger: valgS<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; hva maskinen velger: valgM <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; rundeteller: i<br><br>
+
+    &nbsp;&nbsp; // Setter verdi til summen for å vinne (5)<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; sumVinne=5<br><br>
+
+    &nbsp;&nbsp; // Henter ut idene til poengtellere og rundetellere<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; variabel poengBrukerEl<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; variabel poengMotstanderEl<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; variabel rundeTellerEl<br><br>
+
+    &nbsp;&nbsp; // Legger til hendelse når bilde velges<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; lytter etter om et av bildene trykkes på, finner ut hvilket og kjører spillfunksjonen<br><br>
+
+    &nbsp;&nbsp; // Hendelsesstyrt funksjon som kjøres når bilde velges<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; Oppdaterer valgS<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; stein: valgS=0<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; saks: valgS=1<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; papir: valgS=2<br><br>
+
+    &nbsp;&nbsp; // Setter maskinens valgt til stein, saks eller papir<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; valgM=tilfeldig tall 0-2<br>
+    &nbsp;&nbsp; // bytter maskinbilde<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; valgM==0: stein<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; valgM==1: saks<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; valgM==2: papir<br><br>
+
+    &nbsp;&nbsp; // Sjekker vinner<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; valgS==valgM: 0 poeng til begge<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i++<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; valgS == 0 og valgM == 1: S vinner<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; poengS++<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i++<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; valgS == 0 og valgM == 2: M vinner<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; poengM++<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i++<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; valgS == 1 og valgM == 0: M vinner<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; poengM++<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i++<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; valgS == 1 og valgM == 2: S vinner<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; poengS++<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i++<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; valgS == 2 og valgM == 0: S vinner<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; poengS++<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i++<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; valgS == 2 og valgM == 1: M vinner<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  poengM++<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; i++<br>
+    &nbsp;&nbsp; // Oppdaterer poengene og rundetelleren<br><br>
+
+    &nbsp;&nbsp; // Funksjonen kan kjøres så lenge poengS < sumVinne eller poengM < sumVinne </p>
+
+    <h1> Javel, men hvor starter jeg nå? </h1>
+    <p> Først lager vi de filene vi trenger. Alle bilder ligger lastet opp i en zip-fil på its. Siden prosjektet er såpass omfattende, anbefaler jeg å dele html, css og js i separate filer. Vi lagrer en script-fil som filnavn.js og legger inn alt vi ellers ville skrevet mellom < script > og < /script >. For at vi skal lese scriptet, må vi i html legge til <br>
+    &nbsp;&nbsp; < script src="filnavn.js" >< /script ><br>
+    der vi ønsker å kjøre scriptet. <br><br>
+    I html-fila legger vi inn de elementene som ligger i skissen. I css stilsetter vi til vi er fornøyde. Deretter begynner vi på scriptet. Husk å bruke pseudokoden din som utgangspunkt! Skriv gjerne verdier til konsollen underveis, disse vil hjelpe deg med feilsøking. <br><br>
+    Dere kan komme i mål på to måter: </p>
+    <ol>
+      <li> Med et stort læringsutbytte dersom dere lukker igjen boka og lar dere selv stange litt i veggen før dere får det helt til. </li>
+      <li> Ved å bruke kort tid fordi dere skriver av boka, men uten egentlig å ha lært noe særlig </li>
+    </ol>
+    <p> Jeg regner med at dere vet hva jeg ønsker at dere skal gjøre. Jeg legger derfor ikke ut løsningsforslag før etter fredagstimen. Bruk tida godt! </p>
+
+    <h1> Ferdig? </h1>
+    <p> På s. 150 er det forslag til utvidelser </p>
+  </body>
+</html>

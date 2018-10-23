@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sorteringsalgoritmer</title>
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Sorteringsalgoritmer </h1>
+  	<p> Det finnes mange måter å sortere data i stigende (eller synkende for den saks skyld) rekkefølge på. Det er ulikt hvor effektive de er, og hvor enkle de er å forstå seg på. I Javascript kan vi også bruke den innebygde funksjonen sort (<a href="http://www.w3schools.com/jsref/jsref_sort.asp">les mer</a>) eller reverse(<a href="https://www.w3schools.com/jsref/jsref_reverse.asp">les mer</a>), men hensikten med timen i dag er å selv lage en sorteringsfunksjon slik at vi ser hvordan de er bygget opp. </p>  
+  	<h1> <a href="http://codingmiles.com/sorting-algorithms-bubble-sort-using-javascript/">Bubble sort</a> </h1>
+  	<p> En av de som kan være lettest å forstå kalles bubble sort. Den kan introduseres visuelt med denne ungarske dansen: </p>
+  	<iframe width="560" height="315" src="https://www.youtube.com/embed/lyZQPjUT5B4" frameborder="0" allowfullscreen></iframe><br>
+  	<p> Vi ser at man starter i begynnelsen av arrayen (a[0]) og hele tiden sammenlikner tallet med det neste. Etter å ha fullført én runde er ikke arrayen sortert enda, da vi kun har sjekket og byttet to og to plasser ved siden av hverandre. Derfor må vi fortsette å sammenlikne til det kun er de to første plassene igjen, da er vi i mål. Av og til er dataene sortert allerede etter første runde, men algoritmen fungerer likevel slik at den sammenlikner helt ut. <br>
+  	Bubble sort er derfor en tungvint sorteringsalgoritme, spesielt for store datamengder. Dersom du er interessert i ulike sorteringsalgoritmer og hvor effektive de er, anbefaler jeg deg å lese mer <a href="https://visualgo.net/sorting">her</a> (tilleggspensum).
+	<h2> Pseudokode for bubblesort</h2>
+	<p> Jeg lager en array med tilfeldige tall ved å bestemme lengden og løkke gjennom: <br>
+	&nbsp; a = [], en tom array <br>
+	&nbsp; lengthA er lengden til a <br>
+	&nbsp; for alle i fra 0 til lengthA-1 setter jeg inn tilfeldig tall fra 0 til 10  <br>
+	&nbsp;&nbsp; a[i] er tilfeldig tall floor(random*11) </p>
+	<p> Først vil jeg starte i a[0] og sjekke om hvert element er større enn det neste, i så fall må de bytte plass <br>
+	&nbsp; lager funksjon som tar inn arrayen a <br>
+	&nbsp; skriver ut den usorterte a <br>
+	&nbsp; for alle i fra 0 til lengthA-1 <br>
+	&nbsp;&nbsp; for alle j i fra 0 til lengthA-1-i <br>
+	&nbsp;&nbsp;&nbsp; sjekk om a[j] er større enn a[j+1] og bytt i så fall plass <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;midlertidig = a[j]  <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;a[j]=a[j+1]  <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;a[j+1]=midlertidig<br>
+	&nbsp; Kaller funksjonen </p>
+	<p> Arrayen kan også sorteres ved å starte i b[lengthB-1] og sjekke om hvert element er mindre enn det forrige, i så fall må de bytte plass <br>
+	&nbsp; lager funksjon som tar inn arrayen b <br>
+	&nbsp; skriver ut den usorterte b <br>
+	&nbsp; for alle i fra lengthB-1 til 0 <br>
+	&nbsp;&nbsp; for alle j fra lengthB-i til 1 <br>
+	&nbsp;&nbsp;&nbsp; sjekk om b[j] er mindre enn b[j-1] og bytt i så fall plass <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; midlertidig = b[j] <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; b[j] = b[j-1] <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; b[j-1] = midlertidig <br>
+	&nbsp; Kaller funksjonen</p>
+
+	<h1> Oppgaver </h1>
+	<p> 1. Forsøk å implementere sorteringsalgoritmen over, enten fra start-slutt eller fra slutt-start, uten å se på koden til lærer eller nettressurser. <br>
+		2. Oppgave 11.13 og 11.14. Disse er lekse til fredag. Her kan du enten bruke din egen sorteringsfunksjon eller de innebygdde sort og reverse. <br>
+		3. Oppgave 11.15. Denne er ikke lekse til fredag, men ment som en utfordring. </p>
+
+	<script>
+	// kode for å sjekke fra a[0] og oppover
+	var a = [];  // fyller en tilfeldig variabel
+	lengthA = 10; //med lengde lengthA
+	for(var i=0; i<lengthA-1; i++){ 
+		a[i] = Math.floor(Math.random()*11); // med tilfeldige tall fra 0 til 10
+	}
+	function sortereFunksjon (a){
+		console.log("Den usorterte arrayen er " + a);
+		for (var i= 0; i <=lengthA-1; i++){  // løkker gjennom fra a[0] til a[6]
+			for (var j=0; j<=lengthA-1-i; j++){ // løkker gjennom fra a[0] til a[5-i] 
+				if (a[j]>a[j+1]){ // sjekker om tallet er større enn tallet etter, i så fall bytter de plass
+					var temp = a[j]; // må lagre det ene tallet i en midlertidig variabel når jeg bytter plass
+					a[j] = a[j+1]; // bytter 
+					a[j+1] = temp; // bytter
+				}
+				console.log("Nå er den halvsorterte arrayen"+ a)
+			}
+		}
+		console.log("Den sorterte arrayen er " + a);	
+	}
+	sortereFunksjon(a);
+		
+	// kode for å sjekke fra a[length-1] og nedover
+	var b = [];  // fyller en tilfeldig variabel
+	lengthB = 7; // med lengde lengthB
+	for(var i=0; i<lengthB-1; i++){ 
+		b[i] = Math.floor(Math.random()*11); // med tilfeldige tall
+	}
+	function sortereFunksjon2 (b){
+		console.log("Den usorterte arrayen er " + b);
+		for (var i = (lengthB - 1); i >= 0; i--) {
+			for (var j = (lengthB - i); j >= 1; j--) {
+				if (b[j] < b[j-1]) {
+               		var temp = b[j]; //lager midlertidig variabel å lagre tallet i
+               		b[j] = b[j-1];
+               		b[j-1] = temp;
+				}
+			console.log("Nå er den halvsorterte arrayen "+ b);
+			}
+		}
+		console.log("Den sorterte arrayen er " + b);
+	}
+	sortereFunksjon2(b);
+	</script>
+
+</body>
+</html>

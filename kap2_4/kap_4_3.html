@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Funksjoner </title>
+	<link rel="stylesheet" type="text/css" href="undervisning.css">
+</head>
+<body>
+	<h1> Funksjoner med returverdier </h1>
+	<p> Så langt har funksjonene våre gitt oss et "svar" i form av å skrive til konsollen eller direkte til nettsiden. Vi kan også ha funksjoner som fungerer mer som en mellomregning: som gir oss en returverdi vi kan lagre inn i en variabel og bruke videre. </p>
+	<p> Som et eksempel kan vi bruke funksjonen som lager et tilfeldig tall mellom en nedre og øvre grense: <br>
+	&nbsp;&nbsp; < script > <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; function tilfeldigTall(min, max){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write(Math.floor(Math.random()*(max - min + 1)+min));<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; } <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; tilfeldigTall(2, 10);<br>
+	&nbsp;&nbsp; < /script > <br>
+
+	<script>
+		function tilfeldigTall(min, max){
+			document.write(Math.floor(Math.random()*(max - min + 1)+min)); // lager et tilfeldig tall mellom max og min
+		}
+		tilfeldigTall(2, 10);
+	</script><br><br>
+
+	Det tilfeldige tallet som blir generert her kan vi la være returverdien til funksjonen. Dette kan gjøres ved å legge inn en return i funksjonen, og så lagre svaret i en variabel: <br>
+	&nbsp;&nbsp; < script > <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; function tilfeldigTall(min, max){<br>
+	<!---&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var tilfeldig =Math.floor(Math.random()*(max - min + 1)+min)); <br> -->
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return(Math.floor(Math.random()*(max - min + 1)+min)); <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; } <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var tilfeldig = tilfeldigTall(2, 10);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; document.write(tilfeldig);<br>
+	&nbsp;&nbsp; < /script > <br>
+
+	<script>
+		function tilfeldigTall(min, max){
+			return(Math.floor(Math.random()*(max - min + 1)+min));
+			//var tilfeldig = Math.floor(Math.random()*(max - min + 1)+min);
+		}
+		var tilfeldig = tilfeldigTall(2, 10);
+		document.write(tilfeldigTall(2,10));
+	</script></p>
+
+	<h1> Return avslutter funksjonen </h1>
+	<p> En annen egenskap med å bruke return, er at funksjonen automatisk avsluttes her. All kode i funksjonen som ligger etter return, vil ikke bli lest. Dette kan brukes i kombinasjon med if-else-setninger. <br>
+	Eksempel: lager et tilfeldig tall mellom 10 og 20 (med tilfeldig-funksjonen!) og sjekker om det er et partall. Partall skal returne true, mens oddetall skal returnere false. <br>
+	&nbsp;&nbsp; < script ><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; function sjekkPartall(min, max){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var tilfeldig = tilfeldigTall(min, max);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write(tilfeldig + '< br >');<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (tilfeldig % 2 == 0){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return true;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log('usant');<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return false;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; if(sjekkPartall(10, 20) == 1){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('tallet er et partall');<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; else{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('tallet er et oddetall');<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; < /script ><br>
+
+	<script>
+		function sjekkPartall(min, max){
+			var tilfeldig = tilfeldigTall(min, max);
+			document.write(tilfeldig + '<br>');
+			if (tilfeldig % 2 == 0){
+				console.log('sant')
+				return true;
+			}
+			console.log('usant')
+			return false;
+		}
+		if(sjekkPartall(10, 20) == 1){
+			document.write('tallet er et partall');
+		}
+		else{
+			document.write('tallet er et oddetall');
+		}
+	</script>
+
+	<h1> Oppgaver </h1>
+	<p> s. 67: 4.9 (les s. 65 - 67 først), 4.10, 4.13 </p>
+</body>
+</html>

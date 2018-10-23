@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+  <head>
+     <meta charset="UTF-8">
+     <title> Eksempel med DOM </title>
+     <style>
+  	.overskrifter{
+     		font-family: Arial, sans-serif;
+   		font-size: 400%;
+    		color: green;
+    	}
+    	.tom{
+   		background-color: grey;
+    		width: 70%;
+    	}
+    	table, td{
+    		border: 1px solid black;
+    		border-collapse: collapse;
+    	}
+     </style>
+  </head>
+  <body>
+     <script>
+     	// henter inn body:
+   	  var bodyEl = document.querySelector("body");
+
+    	// oppgave 3a
+    	var overskriftEl = document.createElement("h2");
+    	overskriftEl.innerHTML = 'En litt mer sammensatt oppgave';
+      overskriftEl.setAttribute("class", "overskrifter");
+      bodyEl.appendChild(overskriftEl);
+
+    	// oppgave 3b
+      var olListeEl = document.createElement("ol");
+      for(var i = 0; i<4; i++){
+      		var listeEl = document.createElement("li");
+       		listeEl.innerHTML = 'dette er listepunkt nr ' + (i+1);
+       		olListeEl.appendChild(listeEl);
+      }
+     	bodyEl.appendChild(olListeEl);
+
+      // oppgave 3c
+      var bildeEl = document.createElement("img");
+      bildeEl.setAttribute("alt", "det finnes ikke noe bilde");
+      bodyEl.appendChild(bildeEl);
+
+     	// oppgave 3d
+     	var tomEl = document.createElement("div");
+     	tomEl.setAttribute("class", "tom");
+     	bodyEl.appendChild(tomEl);
+
+    	// oppgave 4
+    	olListeEl.style.color="red";
+    	olListeEl.style.listStyleType="lower-roman";
+
+    	// oppgave 5
+    	bildeEl.setAttribute("src", "http://wpstatic.idium.no/www.dooa.no/2017/08/Basse-Bj%C3%B8rndal-256x300.jpg");
+    	bildeEl.setAttribute("width", "400px");
+
+      // oppgave 6
+      var divEl = document.querySelector(".tom");
+      var tabellEl = document.createElement("table");
+      for (i = 0; i < 4; i++){
+       		var radEl = document.createElement("tr");
+       		for (j = 0; j < 4; j++){
+       			kolonneEl = document.createElement("td");
+       			kolonneEl.innerHTML = "A";
+       			radEl.appendChild(kolonneEl);
+       		}
+      	  tabellEl.appendChild(radEl);
+       }
+       tabellEl.style.width="100%";
+       divEl.appendChild(tabellEl);
+   </script>
+</body>
+</html>

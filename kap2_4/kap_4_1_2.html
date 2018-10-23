@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Funksjoner </title>
+	<link rel="stylesheet" type="text/css" href="undervisning.css">
+</head>
+<body>
+	<h1> Hva bruker vi funksjoner til? </h1>
+	<p> JavaScript inneholder mange forhåndsdefinerte funksjoner som vi tar i bruk: for å lage tilfeldige tall, for å skrive til skjerm, for å skrive til konsoll også videre. Disse funksjonene kaller "egne programmer" som utfører en viss operasjon. I tillegg har vi muligheter til å skrive våre egne funksjoner som utfører en gitt kode. Dette kan være kode som kjører når en nettside åpnes, kode som kjører når en knapp trykkes, eller andre. <br>
+	Når vi deklarerer en funksjon, må vi gi den et funskjonsnavn. Funksjonsnavnet skal beskrive funksjonen, og må ikke være likt noen innebygde funksjoner. Det finnes to måter å deklarere funksjoner på: enten direkte, eller ved å lagre dem til en variabel: <br>
+	&nbsp;&nbsp; < script > <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; function funksjonsNavn(){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // kode som kjøres <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; } <br>
+	&nbsp;&nbsp; < /script > <br><br>
+	&nbsp;&nbsp; < script > <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var funksjonsNavn = function(){ <br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // kode som kjøres <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; } <br>
+	&nbsp;&nbsp; < /script > <br><br>
+	Jeg kommer til å bruke den første måten i undervisningen. <br>
+	Når vi skal kalle en funksjon, altså bruke den, bruker vi funksjonsnavnet:<br>
+	&nbsp;&nbsp; < script > <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; funksjonsNavn(); <br>
+	&nbsp;&nbsp; < /script > </p>
+
+	<h1> Eksempel: en funksjon som skriver ut gangetabellen </h1>
+	<p> <p> &nbsp;&nbsp; < script ><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; function gangetabell(){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('< table >');<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for (var i=1; i<=10; i++){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('< tr >');<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; for(var j=1; j<=10; j++){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('< td >'+i*j+'< /td >');<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('< /tr >');<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write('< /table >');<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; } <br>
+    &nbsp;&nbsp; gangetabell();<br>
+ 	&nbsp;&nbsp; < /script ></p>
+
+	<script>
+		gangetabell();
+    gangetabell();
+    gangetabell();
+    gangetabell();
+
+	function gangetabell(){
+	  document.write('<table>');
+      for (var i=1; i<=10; i++){
+        document.write('<tr>');
+        for(var j=1; j<=10; j++){
+          document.write('<td>'+i*j+'</td>');
+        }
+        document.write('</tr>');
+      }
+      document.write('</table>');
+    }
+     	</script>
+
+ 	<h1> Funksjoner med argumenter </h1>
+ 	<p> Når vi bruker funksjoner kan vi også gi dem et argument, som vil bestemme resultatet av koden. Vi kan for eksempel lage en funksjon som beregner areal og omkrets av en sirkel, der radiusen er argument. </p>
+ 	<h3> I denne funksjonen brukes metoden toFixed(2) for å gi svaret med to desimaler </h3>
+	<p> &nbsp;&nbsp; < script ><br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; function sirkel(r){<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; areal = (Math.PI*r*r).toFixed(2);<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; omkrets = (2*Math.PI*r).toFixed(2);<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log('Arealet til en sirkel med radius '+r+' er '+areal+' og omkretsen er '+omkrets+'.');<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; sirkel(4);<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; sirkel(1);<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; sirkel(10);<br>
+ 	&nbsp;&nbsp; < /script > </p>
+ 	<script>
+ 		function sirkel(r){
+ 			areal = (Math.PI*r*r).toFixed(2);
+ 			omkrets = (2*Math.PI*r).toFixed(2);
+ 			document.write('<p> Arealet til en sirkel med radius '+r+' er '+areal+' og omkretsen er '+omkrets+'.</p>');
+ 		}
+ 		sirkel(4);
+ 		sirkel(1);
+ 		sirkel(10);
+ 	</script>
+
+ 	<h1> Oppgave </h1>
+ 	<p> Utvid funksjonen gangetabell til at den tar inn størrelsen på gangetabellen (i stedet for standard 10*10) og returnerer en tabell med denne gangetabellen. <br>
+ 	Side 60: 4.1, 4.2, 4.3 <br>
+ 	Side 62: oppgave 4.6, 4.7 </p>
+
+
+</body>
+</html>

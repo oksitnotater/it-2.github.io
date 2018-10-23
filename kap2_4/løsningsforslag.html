@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Løsningsforslag </title>
+</head>
+<body>
+<script>
+	// Fila inneholder løsningsforslag til underveis-i-timen-oppgavene. 
+	// Løsningsforslag til bokas oppgaver finnes på lokus, og er lagt ut på its i tillegg.
+
+	/****************/
+	/* kapittel 2.1 */
+	/****************/
+
+	// Skriv inn koden over i dokumentet ditt fra i sta, men bytt ut med ditt eget navn og alder. Hva betyr + ' ' + mellom fornavn og etternavn?
+	var fornavn = 'Asta';
+	var etternavn = 'Fjærli';
+	var alder = 27;
+	document.write('navnet er ' + fornavn + ' ' + etternavn + ' og alderen er ' + alder + ' år <br><br>');
+	// + ' ' + skrives for å sette inn mellomrom mellom fornavn og etternavn.
+
+	// Skriv inn koden over og se hva som skrives til konsollen.
+	var tall = 0;
+	tall = 42;
+	console.log(tall);
+	// til konsollen skrives tallet 42.
+
+	// 2.1 - 2.5: se løsningsforslag på elevnettstedet
+
+	/***********************/
+	/* kapittel 2.2 og 2.3 */
+	/***********************/
+	// gjør arbeidsoppgavene i læreboka og se løsningssforslag på elevnettstedet
+
+	/****************/
+	/* kapittel 3.1 */
+	/****************/
+
+	// Skriv kode for å generere et tilfeldig tall mellom 0 og 100. Kan denne koden skrives på ulike måter?
+	var tilfeldigTall100 = Math.floor(Math.random()*101);
+	console.log(tilfeldigTall100);
+
+	// 3.1 og 3.2: se løsningforslag på elevnettstedet
+
+	// Utvid koden til å sjekke om et tilfeldig tall mellom 0 og 100 er mindre enn 10
+	var tall = Math.floor(Math.random()*101);
+	console.log(tall);
+	if(tall < 10){ // sjekker om tallet er mindre enn 10
+		console.log('Tallet er mindre enn 10'); 
+	}
+
+	// 3.3, 3.4, 3.5, 3.6: se løsningsforslag på elevnettstedet
+
+	//Skriv kode for å sjekke om et tilfeldig tall mellom 0 og 50 er et partall eller oddetall
+	var tall = Math.floor(Math.random()*51);
+	if(tall % 2 == 0){
+		console.log(tall + ' er et partall');
+	}
+	else{
+		console.log(tall + ' er et oddetall')
+	}
+
+	// husk arbeidsoppgavene med løsningsforslag også!
+
+	/****************/
+	/* kapittel 3.2 */
+	/****************/
+
+	//Løs oppgaven med den lille gangetabellen fra i går ved hjelp av løkker. Tips: det går an å legge to løkker inni hverandre med ulik teller
+	document.write('<table>');
+      for (var i=1; i<=10; i++){
+        document.write('<tr>');
+        for(var j=1; j<=10; j++){
+          document.write('<td>'+i*j+'</td>');
+        }
+        document.write('</tr>');
+      }
+    document.write('</table>');
+
+    // 3.8, 3.9, 3.12, 3.13 + 3.14, 3.16, 3.17, 3.19: se løsningsforslag på elevnettstedet
+
+	/****************/
+	/* kapittel 4.2 */
+	/****************/
+
+	// Lag en funksjon som skriver ut "Dette er en funksjon!" til nettsiden. 
+	function skriv(){
+		document.write('Dette er en funksjon!<br><br>');
+	}
+	skriv();
+
+	//  Lag en funksjon som skriver ut en tilfeldig hilsen. Den tilfeldige hilsenen kan være "Hei!", "Hallo!" eller "God morgen!"
+	function tilfeldigHilsen(){
+		var tilfeldigTall = Math.floor(Math.random()*3);
+		if(tilfeldigTall == 0){
+			document.write('Hei! <br><br>');
+		}
+		else if(tilfeldigTall == 1){
+			document.write('Hallo! <br><br>');
+		}
+		else{
+			document.write('God morgen! <br><br>')
+		}
+	}
+	tilfeldigHilsen();
+
+	//Lag en funksjon som tar inn et navn som argument og skriver ut en en hilsen til personen med dette navnet. Eks: funksjonen siHeiTil('Asta') skriver ut "Hei, Asta!"
+	function siHeiTil(navn){
+		document.write('Hei, '+ navn + '<br> <br>');
+	}
+	siHeiTil('Asta');
+
+	// Lag en funksjon som tar inn lengden og bredden til et rektangel som argument og beregner areal og omkrets.
+	function rektangel(l, b){
+		document.write('Arealet til rektangelet med lengde ' + l  + ' og bredde ' + b + ' er ' + (l*b) + ' og omkretsen er ' + (2*l + 2*b) + '<br> <br>');
+	}
+	rektangel(2,4);
+	rektangel(10,20);
+
+	// Lag en funksjon som tar inn to tall som argument og genererer et tilfeldig tall mellom disse to 
+	function tilfeldigTall(a, b){
+		document.write(Math.floor(Math.random()*(a - b + 1)+b) + ' <br> <br>'); // lager et tilfeldig tall mellom max og min
+	}
+	tilfeldigTall(2, 10);
+	tilfeldigTall(3, -5);
+
+	// 
+
+	// Utvid funksjonen gangetabell til at den tar inn størrelsen på gangetabellen (i stedet for standard 10*10) og returnerer en tabell med denne gangetabellen. 
+	function gangetabell(n){
+    document.write('<table>');
+      for (var i=1; i<=n; i++){
+        document.write('<tr>');
+        for(var j=1; j<=n; j++){
+          document.write('<td>'+i*j+'</td>');
+        }
+        document.write('</tr>');
+      }
+      document.write('</table>');
+    }
+    gangetabell(10)
+    gangetabell(25)
+
+    // 4.1, 4.2, 4.3, 4.6, 4.7: se løsningsforslag på elevnettstedet.
+
+	/****************/
+	/* kapittel 4.3 */
+	/****************/
+
+	// 4.9, 4.10, 4.13: se løsningsforslag på elevnettstedet.
+
+	</script>

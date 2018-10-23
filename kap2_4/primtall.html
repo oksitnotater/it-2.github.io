@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+      // et tall er et primtall dersom det kun er delelig med seg selv og 1
+      // vi tar utgangspunkt i at alle tall er primtall og leter etter et tall det ikke er delelig med
+      for(i=1; i<=100; i++){ // løkker gjennom så mange primtall vi vil finne
+        var primtall = true; // antar at tallet er et primtall
+        for(j = 2; j < i; j++){ // sjekker om det finnes et tall mellom 2 og tallet selv som det er delelig med
+          if(i%j==0){
+            var primtall = false; // i så fall avkrefter vi at tallet er et primtall
+          }
+        }
+        if(primtall == true){ // dersom vi ikke har funnet noe tall det er delelig med
+          console.log(i); // logger vi tallet, som er et primtall
+        }
+      }
+
+      // kan lage en funksjon som tar inn et tall og sjekker alle tall opp til dette
+
+      function primfinner(max){
+        for(i=1; i<=max; i++){
+    			var primtall = true;
+    			for(j = 2; j < i; j++){
+    				if(i%j==0){
+    					var primtall = false;
+    				}
+    			}
+    			if(primtall == true){
+    				console.log(i);
+    			}
+  		  }
+      }
+      primfinner(300); //finner primtallene mellom 1 og 300
+
+
+    </script>
+  </body>
+</html>

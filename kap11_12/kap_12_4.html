@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Quiz med objects</title>
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Oppgave </h1>
+  	<p> Vi skal lage en quiz der vi lagrer spørsmålene i en array med objects og tar inn svarene i en annen array. Dette bruker vi til å sammenlikne svarene med fasiten. Jeg går gjennom selve koden, så skal dere lage deres egen quiz med egne spørsmål der dere også stilsetter noe med css. </p>
+
+  	<script>
+  		// henter inn bodyEl og lager en div der vi skal legge inn quizen og et p der resultat skal skrives ut. Gir disse id'er for å kunne stilsettte.
+  		var bodyEl = document.querySelector("body");
+  		var quizEl = document.createElement("div");
+  		quizEl.setAttribute("id", "quiz");
+  		var resultatEl = document.createElement("p");
+  		resultatEl.setAttribute("id", "resultat");
+
+  		// lager en array med objects for hvert spørsmål, alternativer i en array, husker å ha fasit som en egenskap
+  		var quizArray = [
+			{sporsmal: "Hvem vant kongepokalen for damer under NM i vektløfting 2017?",
+			alternativer: ["Ruth Kasirye", "Ine Anderson", "Rebekka Tao Jacobssen", "Sarah Hovden Øvsthus"],
+			fasit: ["galt", "galt", "galt", "rett"]},
+			{sporsmal: "Hvem vant kongepokalen for herrer under NM i vektløfting 2017?",
+			alternativer: ["Vebjørn Varlid", "Roger Behrmann Myrholt", "Kim Eirik Tollefsen", "Håvard Grostad"],
+			fasit: ["galt", "galt", "rett", "galt"]},
+			{sporsmal: "Hvor arrangeres NM i vektløfting 2018?",
+			alternativer: ["Naustdal", "Spydeberg", "Tysvær", "Larvik"],
+			fasit:  ["rett", "galt", "galt", "galt"]},
+			{sporsmal: "Hvordan ligger Asta an til NM i 2018?",
+			alternativer: ["veldig godt", "helt ok", "veldig dårlig"],
+			fasit: ["galt", "galt", "rett"]},
+		];
+
+		// bruker en løkke til å skrive ut spørsmålene  med radioknapper (kun ett riktig svar)
+		var formEl = document.createElement("form");
+		formEl.method = "post";
+		formEl.action="/action_page.php";
+		for (var i = 0; i < quizArray.length; i++){
+			// presenterer spørsmålet
+			var sporsmalEl  = document.createElement("p");
+			sporsmalEl.innerHTML += (i+1)+". " + quizArray[i].sporsmal + "<br>";
+			// presenterer alternativer
+			for(var j = 0; j < quizArray[i].alternativer.length; j++){
+				// lager en radioknapp, gir den name og value for å kunne sjekke svar, legger den til
+				var radioEl = document.createElement("input");
+				radioEl.type = "radio";
+				var nr = i+1;
+				radioEl.name = nr;
+				radioEl.value = quizArray[i].fasit[j];
+				radioEl.required = 1;
+				sporsmalEl.appendChild(radioEl);
+				sporsmalEl.innerHTML += quizArray[i].alternativer[j] + "<br>";
+ 			}
+
+			// legger det til på siden
+			formEl.appendChild(sporsmalEl);
+		}
+
+  		// legger til svarknapp og legger til lytter
+		var knapp = document.createElement("input");
+		knapp.type = "submit";
+		knapp.innerHTML = "send svar";
+		formEl.appendChild(knapp);
+		quizEl.appendChild(formEl);
+		// legger inn quizen
+  		bodyEl.appendChild(quizEl);
+  		knapp.addEventListener("click", sjekkResultat);
+
+
+  		// sjekker svar og beregner resultat
+  		function sjekkResultat(){
+  			console.log("test");
+  			// setter poeng til 0
+  			var poeng = 0;
+
+  			// henter inn alle spørsmål
+  			var alleSporsmal = document.querySelectorAll("input");
+  			
+  			// sjekker svar
+  			for(var i = 0; i < alleSporsmal.length; i++){
+  				// sjekker at bruker har svart og sjekker i så fall mot fasit
+  				if(alleSporsmal[i].checked){
+  					if(alleSporsmal[i].value == "rett"){
+  						poeng++;
+  					}
+  				}
+  			}
+  			resultatEl.innerHTML = "Du fikk " + poeng + " poeng.";
+  		}
+
+  		// legger inn resultatet
+  		bodyEl.appendChild(resultatEl);
+  	</script>
+  	<h1> Oppgave (denne jobber vi også med i timen på fredag)</h1>
+  	<p> 1. implementer din egen quiz  med minst fire spørsmål, med utgangspunkt i koden over <br>
+  	2. stilsett nettsiden slik at den ser mer oversiktlig ut <br>
+  	3. skriv kode slik at galt svar gir minuspoeng <br>
+  	4. gi bruker en tilbakemelding som er avhengig av antall poeng oppnådd (f.eks. "Du fikk 0 poeng. Det er dårlig")<br>
+  	5. skriv kode slik at det er obligatorisk å svare på alle spørsmål.<br>
+  	6. utvid quizen til å ta inn ett svar som nedtrekksmeny (select, option)<br>
+  	7. utvid quizen til å kunne ha flere riktige svar i ett spørsmål (checkbox) <br>
+ 	8. utvid quizen til å kunne ha tekstsvar på ett spørsmål <br>
+ 	9. skriv kode slik at ett spørsmål vises av gangen</p>
+  </body>
+</html>

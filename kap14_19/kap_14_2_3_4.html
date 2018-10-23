@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Canvaselementet</title>
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <meta charset="utf-8">
+    <style>
+		canvas{
+			border: 1px solid #000000;
+		}
+	</style>
+  </head>
+  <body>
+  	<h1> Løsning på oppgaver fra forrige time </h1>
+  	<p> a) 14.5: Ta utgangspunkt i koden fra 14.1 og lag funksjonen tegnEtTre(x, y) som tegner et tre fra punktet (x, y)<br>
+  	b) Utvid funksjonen til å tegne n trær plassert med passende mellomrom. <br>
+  	c) Skriv kode for å tegne et rutenett med ruter på 40px*40px i et canvas med bredde 1000px*1000px.<br>
+  	d) 14.10: Tegn en kopi av snømannen nedenfor på et < canvas >-element. Husk at det er mulig å bruke både fill() og stroke().<br><br>
+
+  	a) <br>
+	&nbsp;&nbsp; function tegnEtTre(x, y) {<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var canvas1 = document.querySelector("#canvas1"); <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var ctx1=canvas1.getContext("2d");<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; ctx1.fillStyle = "green";<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; ctx1.fillRect(x, y, 150, 150);<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; ctx1.fillStyle = "brown";<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; ctx1.fillRect(x + 50, y + 100, 50, 150);<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; tegnEtTre(10, 50);</p>
+
+  	<canvas id="canvas1" width="500px" height="500px"></canvas>
+	<script>
+		function tegnEtTre(x, y) {
+			var canvas1 = document.querySelector("#canvas1"); 
+			var ctx1=canvas1.getContext("2d");
+ 			ctx1.fillStyle = "green";
+ 			ctx1.fillRect(x, y, 150, 150);
+ 			ctx1.fillStyle = "brown";
+ 			ctx1.fillRect(x + 50, y + 100, 50, 150);
+		}
+		tegnEtTre(10, 50);
+	</script>
+
+	<p> b) <br>
+	&nbsp;&nbsp; function tegnFlereTrar(n) {<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var canvas2 = document.querySelector("#canvas2"); <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var ctx2=canvas2.getContext("2d");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var xPos = 10;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var yPos = 50;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var bredde = 150;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; for(var i = 0; i < n; i++){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx2.fillStyle = "green";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx2.fillRect(i*(bredde+xPos), yPos, 150, 150);<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx2.fillStyle = "brown";<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx2.fillRect(i*(bredde+xPos) + 50, yPos + 100, 50, 150);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; tegnFlereTrar(6);</p>
+
+	<canvas id="canvas2" width="1000px" height="300px"></canvas>
+	<script>
+		function tegnFlereTrar(n) {
+			var canvas2 = document.querySelector("#canvas2"); 
+			var ctx2=canvas2.getContext("2d");
+			var xPos = 10;
+			var yPos = 50;
+			var bredde = 150;
+			for(var i = 0; i < n; i++){
+	 			ctx2.fillStyle = "green";
+	 			ctx2.fillRect(i*(bredde+xPos), yPos, 150, 150);
+ 				ctx2.fillStyle = "brown";
+ 				ctx2.fillRect(i*(bredde+xPos) + 50, yPos + 100, 50, 150);
+			}
+		}
+		tegnFlereTrar(6);
+	</script>
+
+	<p> c) <br>
+	&nbsp;&nbsp; var canvas3 = document.querySelector("#canvas3"); <br>
+	&nbsp;&nbsp; var ctx3=canvas3.getContext("2d");<br>
+	&nbsp;&nbsp; for (var i=0; i <= canvas3.width; i += 40) {<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; ctx3.moveTo(i, 0);<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; ctx3.lineTo(i, canvas3.height);<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; for (var j=0; j <= canvas3.height; j += 40) {<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; ctx3.moveTo(0, j);<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; ctx3.lineTo(canvas3.width, j);<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; ctx3.strokeStyle = "red"; <br>
+	&nbsp;&nbsp; ctx3.stroke(); </p>
+
+	<canvas id="canvas3" width="520px" height="520px"></canvas>
+	<script>
+		var canvas3 = document.querySelector("#canvas3"); 
+		var ctx3=canvas3.getContext("2d");
+		for (var i=0; i <= canvas3.width; i += 40) {
+ 			ctx3.moveTo(i, 0);
+ 			ctx3.lineTo(i, canvas3.height);
+		}
+		for (var j=0; j <= canvas3.height; j += 40) {
+ 			ctx3.moveTo(0, j);
+ 			ctx3.lineTo(canvas3.width, j);
+		}
+		ctx3.strokeStyle = "red"; 
+		ctx3.stroke(); 
+	</script>
+
+	<p> d) <br>
+	&nbsp;&nbsp; var canvas4 = document.querySelector("#canvas4"); <br>
+	&nbsp;&nbsp; var ctx4=canvas4.getContext("2d");<br>
+	&nbsp;&nbsp; // tegner underkropp<br>
+	&nbsp;&nbsp; ctx4.beginPath();<br>
+	&nbsp;&nbsp; ctx4.arc(150, 220, 70, 0, 2*Math.PI);<br>
+	&nbsp;&nbsp; ctx4.fillStyle = "white";<br>
+	&nbsp;&nbsp; ctx4.strokeStyle = "black;"<br>
+	&nbsp;&nbsp; ctx4.fill();<br>
+	&nbsp;&nbsp; ctx4.lineWidth = 2;<br>
+	&nbsp;&nbsp; ctx4.stroke();<br>
+	&nbsp;&nbsp; ctx4.closePath(); <br>
+	&nbsp;&nbsp; // tegner mage<br>
+	&nbsp;&nbsp; ctx4.beginPath();<br>
+	&nbsp;&nbsp; ctx4.arc(150, 130, 60, 0, 2*Math.PI);<br>
+	&nbsp;&nbsp; ctx4.fillStyle = "white";<br>
+	&nbsp;&nbsp; ctx4.strokeStyle = "black;"<br>
+	&nbsp;&nbsp; ctx4.fill();<br>
+	&nbsp;&nbsp; ctx4.lineWidth = 2;<br>
+	&nbsp;&nbsp; ctx4.stroke();<br>
+	&nbsp;&nbsp; ctx4.closePath();<br>
+	&nbsp;&nbsp; // teger hodet<br>
+	&nbsp;&nbsp; ctx4.beginPath();<br>
+	&nbsp;&nbsp; ctx4.arc(150, 50, 40, 0, 2*Math.PI);<br>
+	&nbsp;&nbsp; ctx4.fillStyle = "white";<br>
+	&nbsp;&nbsp; ctx4.strokeStyle = "black;"<br>
+	&nbsp;&nbsp; ctx4.fill();<br>
+	&nbsp;&nbsp; ctx4.lineWidth = 2;<br>
+	&nbsp;&nbsp; ctx4.stroke();<br>
+	&nbsp;&nbsp; ctx4.closePath();<br>
+	&nbsp;&nbsp; // tegner nese<br>
+	&nbsp;&nbsp; ctx4.beginPath();<br>
+	&nbsp;&nbsp; ctx4.moveTo(155, 40);<br>
+	&nbsp;&nbsp; ctx4.lineTo(160, 60);<br>
+	&nbsp;&nbsp; ctx4.lineTo(145, 40);<br>
+	&nbsp;&nbsp; ctx4.closePath();<br>
+	&nbsp;&nbsp; ctx4.fillStyle = "orange";<br>
+	&nbsp;&nbsp; ctx4.fill();<br>
+	&nbsp;&nbsp; // tegner øyne<br>
+	&nbsp;&nbsp; ctx4.beginPath();<br>
+	&nbsp;&nbsp; ctx4.arc(135, 30, 5, 0, 2*Math.PI);<br>
+	&nbsp;&nbsp; ctx4.fillStyle = "black";<br>
+	&nbsp;&nbsp; ctx4.fill();<br>
+	&nbsp;&nbsp; ctx4.closePath();<br>
+	&nbsp;&nbsp; ctx4.beginPath();<br>
+	&nbsp;&nbsp; ctx4.arc(160, 30, 5, 0, 2*Math.PI);<br>
+	&nbsp;&nbsp; ctx4.fillStyle = "black";<br>
+	&nbsp;&nbsp; ctx4.fill();<br>
+	&nbsp;&nbsp; ctx4.closePath();</p>
+
+	<canvas id="canvas4" width="300px" height="300px"></canvas>
+	<script>
+		var canvas4 = document.querySelector("#canvas4"); 
+		var ctx4=canvas4.getContext("2d");
+		// tegner underkropp
+		ctx4.beginPath();
+		ctx4.arc(150, 220, 70, 0, 2*Math.PI);
+		ctx4.fillStyle = "white";
+		ctx4.strokeStyle = "black;"
+		ctx4.fill();
+		ctx4.lineWidth = 2;
+		ctx4.stroke();
+		ctx4.closePath(); 
+		// tegner mage
+		ctx4.beginPath();
+		ctx4.arc(150, 130, 60, 0, 2*Math.PI);
+		ctx4.fillStyle = "white";
+		ctx4.strokeStyle = "black;"
+		ctx4.fill();
+		ctx4.lineWidth = 2;
+		ctx4.stroke();
+		ctx4.closePath();
+		// teger hodet
+		ctx4.beginPath();
+		ctx4.arc(150, 50, 40, 0, 2*Math.PI);
+		ctx4.fillStyle = "white";
+		ctx4.strokeStyle = "black;"
+		ctx4.fill();
+		ctx4.lineWidth = 2;
+		ctx4.stroke();
+		ctx4.closePath();
+		// tegner nese
+		ctx4.beginPath();
+		ctx4.moveTo(155, 40);
+		ctx4.lineTo(160, 60);
+		ctx4.lineTo(145, 40);
+		ctx4.closePath();
+		ctx4.fillStyle = "orange";
+		ctx4.fill();
+		// tegner øyne
+		ctx4.beginPath();
+		ctx4.arc(135, 30, 5, 0, 2*Math.PI);
+		ctx4.fillStyle = "black";
+		ctx4.fill();
+		ctx4.closePath();
+		ctx4.beginPath();
+		ctx4.arc(160, 30, 5, 0, 2*Math.PI);
+		ctx4.fillStyle = "black";
+		ctx4.fill();
+		ctx4.closePath();
+	</script>
+
+  	<h1> Diagrammer med canvas </h1> 		
+  	<p> Dette krever litt kunnskaper om array og objects. Eksamensrelevant tema: de to bruksområdene for canvas er først og fremst animasjon og diagrammer <br>
+	<br>
+	Først må vi kjenne til kommandoen for å skrive tekst i et canvas: <br>
+	&nbsp;&nbsp; ctx.font ="24 px 'Arial' "; bestemmer skrift (merk ' ')<br>
+	&nbsp;&nbsp; ctx.fillStyle ="blue"; bestemmer skriftfarge <br>
+	&nbsp;&nbsp; ctx.fillText("teksten jeg skriver", xPos, yPos); setter inn tekst <br><br>
+
+	&nbsp;&nbsp; var canvas5=document.querySelector("#canvas5");<br>
+	&nbsp;&nbsp; var ctx5=canvas5.getContext("2d");<br>
+	&nbsp;&nbsp; ctx5.font ="30px 'Arial' ";<br>
+	&nbsp;&nbsp; ctx5.fillStyle = "blue";<br>
+	&nbsp;&nbsp; ctx5.fillText("teksten jeg skriver", 50, 50);</p>
+
+	<canvas id="canvas5" width="400" height="400" style="border:1px solid #000000;"></canvas>
+	<script>
+		var canvas5=document.querySelector("#canvas5");
+		var ctx5=canvas5.getContext("2d");
+		ctx5.font ="30px 'Arial' ";
+		ctx5.fillStyle = "blue";
+		ctx5.fillText("teksten jeg skriver", 50, 50);
+	</script>
+
+	<p> Til å lage et søylediagram trenger vi et datasett å ta utgangspunkt, for eksempel antall timer skolearbeid hver dag. Dette lagres som en array med objekter, der egenskapene er dag og timer: <br>
+	&nbsp;&nbsp; var data = [ <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; {dag: "Mandag", timer: 8}, <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; {dag: "Tirsdag", timer: 7}, <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; {dag: "Onsdag", timer: 8}, <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; {dag: "Torsdag", timer: 6}, <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; {dag: "Fredag", timer: 6}, <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; {dag: "Lørdag", timer: 4}, <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; {dag: "Søndag", timer: 1} <br>
+	&nbsp;&nbsp;];	 <br><br>
+
+	I tillegg lagrer vi spesifikasjoner for tekst og søyler som variabler: <br>
+	&nbsp;&nbsp; var tekstBredde = 250; <br>
+	&nbsp;&nbsp; var totalBredde = canvas5.width; (samme bredde som canvaset) <br>
+	&nbsp;&nbsp; var soyleBredde = totalBredde - tekstbredde - 10; (bestemmer avgrensning for søylene) <br>
+	&nbsp;&nbsp; canvas5.height = data.length*30; (endrer størrelsen på canvaset avhengig av antall verdier i arrayen) <br>
+	&nbsp;&nbsp; var max = 0; (denne kommer vi til å endre til verdien til den største søylen, noe vi gjør med en for-løkke:) <br>
+	&nbsp;&nbsp; for(var i=0; i < data.length; i++){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; if (data[i].timer > max) {<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; max = data[i].timer;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+	&nbsp;&nbsp;}<br>
+	<br>
+	Videre spesifiseres utseendet: <br>
+	&nbsp;&nbsp; ctx5.font ="30px 'Arial' "; <br>
+	&nbsp;&nbsp; ctx5.textAlign = "end"; (høyrejustert tekst)  <br>
+	&nbsp;&nbsp; ctx5.textBaseline = "hanging"; (plasserer teksten under punktet som angis som plassering)<br>
+	<br>
+	Nå kan vi tegne søyler som representerer datasettet: <br>
+	&nbsp;&nbsp; for (var i = 0; i < data.length; i++){	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; //1: Bestemmer skriftfarge så alle dager får samme <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx5.fillStyle = "#323232"; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; //2: Lager en variabel som bestemmer størrelsen på den aktuelle søylen:<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var storrelse = (data[i].timer/max)*soyleBredde; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; //3: Skriver ut hvilken dag og hvor mange timer<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx5.fillText(data[i].dag + '(' + data[i].timer + ')', tekstBredde, (30*i) + 3); (husk: tekst, xPos, yPos)<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; //4: Sørger for at hver søyle får ny farge, bruker hsl-verdi <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx5.fillStyle = 'hsl('+i*30 +' , 100%, 70%)';<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; //5: Tegner søylene <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx5.fillRect(tekstBredde + 5, (30*i)+3, storrelse, 24);<br>
+	&nbsp;&nbsp; } </p>
+
+	<canvas id="canvas6" width="500px" height="400px"></canvas>
+	<script>
+		var canvas6=document.querySelector("#canvas6");
+		var ctx6=canvas6.getContext("2d");
+		ctx6.font ="30px 'Arial' ";
+		ctx6.fillStyle = "blue";
+		ctx6.fillText("teksten jeg skriver", 50, 50);
+		var data = [
+			{dag: "Mandag", timer: 8},
+			{dag: "Tirsdag", timer: 7},
+			{dag: "Onsdag", timer: 8},
+			{dag: "Torsdag", timer: 6},
+			{dag: "Fredag", timer: 6},
+			{dag: "Lørdag", timer: 4},
+			{dag: "Søndag", timer: 1}
+		];
+		//lagrer variabler vi trenger
+		var tekstBredde = 250; 
+		var totalBredde = canvas6.width; 
+		var soyleBredde = totalBredde-tekstBredde-10;
+		canvas6.height = data.length*30;
+		var max = 0;
+		for(var i=0; i<data.length; i++){
+			if (data[i].timer > max) {
+				max = data[i].timer;
+			}
+		}
+		console.log(max);
+		// spesifiserer utseende for canvaset
+		ctx6.font ="24px 'Arial' ";
+		ctx6.textAlign = "end";   //høyrejustert
+		ctx6.textBaseline = "hanging"; //plasseres under punktet som angis som plassering
+		// tegner søylene
+		for (var i = 0; i<data.length; i++){	
+			ctx6.fillStyle = "#323232"; // bestemmer skriftfarge så alle dager får samme 
+			var storrelse = (data[i].timer/max)*soyleBredde;  // lager en vareiabel som bestemmer størrelsen på den aktuelle søylen:
+			ctx6.fillText(data[i].dag + "(" + data[i].timer + ")", tekstBredde, (30*i) + 3); // skriver ut hvilken dag og hvor mange timer
+			ctx6.fillStyle = "hsl("+i*30 +" , 100%, 70%)"; // sørger for at hver søyle får ny farge
+			ctx6.fillRect(tekstBredde + 5, (30*i)+3, storrelse, 24); // tegner søylene
+		}
+	</script>
+	
+	<h1> Oppgave: </h1>
+	<p> Hvordan kan dere bruke dette sammen med kunnskaper om tegning av sirkeler til å tegne sektordiagram? <br>
+	1. Finn totalt antall timer <br>
+	2. Finn andelen hver dag skal ha av sirkelen, og sammenlikne dette med andel av 2PI <br>
+	3. Husk at hver sektor må ha startpunkt der den forrige har sluttpunkt</p>
+
+	<h1> Løsning </h1>
+	<p>&nbsp;&nbsp; var canvas7=document.querySelector("#canvas7");<br>
+	&nbsp;&nbsp; var ctx7=canvas7.getContext("2d");<br>
+	&nbsp;&nbsp; // Lagrer totalt antall timer i en variabel: <br>
+	&nbsp;&nbsp; var antTimer = 0;<br>
+	&nbsp;&nbsp; for(var i=0; i < data.length; i++){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; antTimer += data[i].timer;<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; // Finner andel av total for hver dag i en array: <br>
+	&nbsp;&nbsp; var andel = [];<br>
+	&nbsp;&nbsp; andel.length = data.length;<br>
+	&nbsp;&nbsp; for(var i = 0; i < data.length; i++){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; andel[i] = data[i].timer/antTimer;<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; console.log(andel);<br>
+	&nbsp;&nbsp; // Gjør dette om til total vinkel for dagen: <br>
+	&nbsp;&nbsp; var vinkel = [];<br>
+	&nbsp;&nbsp; vinkel.length = andel.length;<br>
+	&nbsp;&nbsp; var sum = 0;<br>
+	&nbsp;&nbsp; for(var i = 0; i < data.length; i++){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; vinkel[i] = andel[i]*2*Math.PI;<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; console.log(vinkel);<br>
+	&nbsp;&nbsp; // vi kunne gjort dette enda enklere ved å legge til nye egenskaper (andel og vinkel) i den opprinnelige objecten!<br>
+	&nbsp;&nbsp; // plasserer sektordiagrammet litt på siden<br>
+	&nbsp;&nbsp; var cX = canvas7.width/3;<br>
+	&nbsp;&nbsp; var cY = canvas7.height/2;<br>
+	&nbsp;&nbsp; var radius = 150;<br>
+	&nbsp;&nbsp; // Lager en variabel som lagrer hvor forrige sektor sluttet for å starte neste riktig sted<br>
+	&nbsp;&nbsp; var forrigeSlutt = 0; <br>
+	&nbsp;&nbsp; // Går gjennom alle verdiene og tegner kakestykker for hver av dem<br>
+	&nbsp;&nbsp; for (var i = 0; i < data.length; i++) {<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var sektorStr = vinkel[i];<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var sektorSlutt = forrigeSlutt + sektorStr;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; // Tegner sektoren<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx7.beginPath();<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx7.arc(cX, cY, radius, forrigeSlutt, sektorSlutt);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx7.lineTo(cX, cY);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx7.fillStyle = "hsl("+i*30 +" , 100%, 50%)"; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx7.fill();<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx7.closePath();<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; // Oppdaterer variabelen forrigeSlutt<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; forrigeSlutt = sektorSlutt;<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; // Angir tekststørrelse og type for teksten og plasserer den ved siden av sektordiagrammet<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; ctx7.font = "24px 'Century Gothic'";<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; ctx7.textBaseline = "hanging";<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; var tekstStartX = canvas7.width / 1.7;<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; var tekstStartY = (canvas7.height / 2) - (30 * (data.length / 2)) + (30 * i);<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; ctx7.fillText(data[i].dag + "(" + data[i].timer + ")", tekstStartX, tekstStartY);<br> 
+	&nbsp;&nbsp; } </p>
+	<canvas id = "canvas7" width="700px" height = "400px"></canvas>
+	<script>
+		var canvas7=document.querySelector("#canvas7");
+		var ctx7=canvas7.getContext("2d");
+		// Lagrer totalt antall timer i en variabel: 
+		var antTimer = 0;
+		for(var i=0; i < data.length; i++){
+			antTimer += data[i].timer;
+		}
+		// Finner andel av total for hver dag i en array: 
+		var andel = [];
+		andel.length = data.length;
+		for(var i = 0; i < data.length; i++){
+			andel[i] = data[i].timer/antTimer;
+		}
+		console.log(andel);
+	
+		// Gjør dette om til total vinkel for dagen: 
+		var vinkel = [];
+		vinkel.length = andel.length;
+		var sum = 0;
+		for(var i = 0; i < data.length; i++){
+			vinkel[i] = andel[i]*2*Math.PI;
+		}
+		console.log(vinkel);
+		// vi kunne gjort dette enda enklere ved å legge til nye egenskaper (andel og vinkel) i den opprinnelige objecten!
+
+		// plasserer sektordiagrammet litt på siden
+		var cX = canvas7.width/3;
+		var cY = canvas7.height/2;
+		var radius = 150;
+
+		// Lager en variabel som lagrer hvor forrige sektor sluttet for å starte neste riktig sted
+		var forrigeSlutt = 0; 
+
+		// Går gjennom alle verdiene og tegner kakestykker for hver av dem
+		for (var i = 0; i < data.length; i++) {
+	 		var sektorStr = vinkel[i];
+ 	 		var sektorSlutt = forrigeSlutt + sektorStr;
+ 			// Tegner sektoren
+ 			ctx7.beginPath();
+		 	ctx7.arc(cX, cY, radius, forrigeSlutt, sektorSlutt);
+	 		ctx7.lineTo(cX, cY);
+ 			ctx7.fillStyle = "hsl("+i*30 +" , 100%, 50%)"; 
+	 		ctx7.fill();
+			ctx7.closePath();
+	 		// Oppdaterer variabelen forrigeSlutt
+ 			forrigeSlutt = sektorSlutt;
+ 			// Angir tekststørrelse og type for teksten og plasserer den ved siden av sektordiagrammet
+ 			ctx7.font = "24px 'Century Gothic'";
+ 			ctx7.textBaseline = "hanging";
+ 			var tekstStartX = canvas7.width / 1.7;
+ 			var tekstStartY = (canvas7.height / 2) - (30 * (data.length / 2)) + (30 * i);
+ 			ctx7.fillText(data[i].dag + "(" + data[i].timer + ")", tekstStartX, tekstStartY); 
+		}
+	</script>
+
+	<h1> Oppgaver </h1>
+	<p> s. 230: oppgave 14.11 <br>
+		s. 236 Oppgave 14.13 - 14.16. <br>
+		I 14.14 og 14.16: ta inn verdiene i et skjema (utfordring, gjennomgåes i timen på fredag). </p>
+
+  </body>
+</html>

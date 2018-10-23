@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Canvaselementet</title>
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <meta charset="utf-8">
+    <style>
+		#lerret1{
+			width: 200px;
+			height: 200px;
+			border: 1px solid grey;
+			background-color: lightgrey;
+		}
+		.canvasene{
+			border: 1px solid #000000;
+		}
+	</style>
+  </head>
+  <body>
+  	<h1> Hva er canvaselementet? </h1>
+  	<p> < canvas > er et element man bruker for å tegne inn figurer, basert på geometriske kommandoer. Canvas-elementet minner mye om < svg > som ble brukt i IT-1, men samarbeider bedre med javascript. Vi bruker selve < canvas > til å tegne inn et lerret der vi kan plassere figurene vi tegner inn. Canvaselementet egner seg også godt for animasjoner. Selve lerretet gir vi enten dimensjoner i css eller vi kan legge det inn inline. Fordelen med å stilsette det med en id er at vi f.eks. kan legge inn border eller sette bakgrunn enkelt uten at dette ligger inline. Normalt bruker vi en kombinasjon der vi legger stilsetting i css, men bestemmer størrelse i <br>
+  	&nbsp;&nbsp; < canvas id = "lerret1" ><br>
+  	&nbsp;&nbsp; < /canvas ><br><br>
+  	&nbsp;&nbsp; < canvas width="200" height="200"><br>
+  	&nbsp;&nbsp; < /canvas ><br><br>
+
+  	<canvas id="lerret1"></canvas><br>
+  	<canvas width="200" height="200"></canvas>
+
+  	<h1> Å tegne i canvaselementet </h1>
+  	<p> Vi kan tegne i canvaselementet ved å refere til punkter i lerretet og trekke streker mellom disse, eller ved å tegne inn figurer direkte. I canvaselementet har øvre venstre hjørne koordinat (0,0) og nedre høyre hjørne har koordinat (bredde, høyde). Før vi kan begynne å tegne i canvaselementet, må vi hente inn elementet og fortelle at vi skal tegne en todimensjonal tegning her: <br><br>
+  	&nbsp;&nbsp; var canvasEl = document.querySelector("#lerret1");<br>
+  	&nbsp;&nbsp; var ctx = canvasEl.getContext("2d");<br><br>
+
+  	Ulike kommandoer, noen med nødvendige attributter, for canvastegning vises i tabellen under: </p>
+
+  	<table>
+  		<tr><th>Metode</th><th>Beskrivelse</th></tr>
+  		<tr><td>fillRect(x, y , bredde, høyde)</td><td>Tegner et fyllt rektangel</td></tr>
+  		<tr><td>strokeRect(x, y, bredde, høyde)</td><td>Tegner et tomt rektangel (omrisset)</td></tr>
+  		<tr><td>clearRect(x, y, bredde, høyde)</td><td>Fjerner et rektangel fra lerretet</td></tr>
+  		<tr><td>arc(x, y, radius, startvinkel, sluttvinkel)</td><td>Tegner en sirkel (evt halvsirkel e.l)</td></tr>
+  		<tr><td>beginPath()</td><td>Tegner "path" i f.eks. en sirkel</td></tr>
+  		<tr><td>closePath()</td><td>Avslutter en path</td></tr>
+  		<tr><td>moveTo(x, y)</td><td>Velger startpunkt for neste figur</td></tr>
+  		<tr><td>lineTo(x, y)</td><td>Trekker en strek til nytt punkt</td></tr>
+  		<tr><td>stroke()</td><td>Tegner linje</td></tr>
+  		<tr><td>fill()</td><td>Fyller område</td></tr>
+  		<tr><td>fillText(tekst, x, y)</td><td>Legger tekst i lerretet med gitt startpunkt</td></tr>
+  		<tr><td>font</td><td>Tekstegenskaper</td></tr>
+  		<tr><td>textAlign</td><td>Vannrett tekstjustering</td></tr>
+  		<tr><td>textBaseline</td><td>Loddrett tekstjustering</td></tr>
+  		<tr><td>fillStyle</td><td>Fyllfarge</td></tr>
+  		<tr><td>strokeStyle</td><td>Strekfarge</td></tr>
+  		<tr><td>lineWidth</td><td>Strekens tykkelse</td></tr>
+  	</table>
+
+  	<p> Flere av disse brukes i kombinasjoner. Under vises kode for flere ulike figurer som kan tegnes: <br>
+  	<!--<canvas id="canvas1" class="canvasene"></canvas> <br>
+    <canvas id="canvas2" class="canvasene"></canvas> <br>
+  	<canvas id="canvas3" class="canvasene"></canvas> <br>
+    <canvas id="canvas4" class="canvasene"></canvas> <br>-->
+    <canvas id="canvas1" class="canvasene" width="600px" height="400px"></canvas> <br>
+    <canvas id="canvas2" class="canvasene" width="600px" height="400px"></canvas> <br>
+  	<canvas id="canvas3" class="canvasene" width="600px" height="400px"></canvas> <br>
+    <canvas id="canvas4" class="canvasene" width="600px" height="400px"></canvas> <br>
+    <input type="number" placeholder="Skriv inn x-startpunkt for streken" min="0" max="600" id="xPos"> 
+	<input type="number" placeholder="Skriv inn y-startpunkt for streken" min="0" max="400" id="yPos"> 
+	<input type="number" placeholder="Skriv inn kryssets bredde" min="0" id="bredde"> 
+	<input type="number" placeholder="Skriv inn kryssets høyde" min="0" id="hoyde"> 
+	<button id="tegn">Tegn siste figur</button><br><br>
+	<canvas id="canvas5" class="canvasene" width="600px" height="400px"></canvas><br>
+
+	&nbsp;&nbsp; //tegne firkant<br>
+ 	&nbsp;&nbsp; var canvas1 = document.querySelector("#canvas1");<br>
+	&nbsp;&nbsp; var canvas1 = document.querySelector("#canvas1");<br>
+	&nbsp;&nbsp; var ctx1 = canvas1.getContext("2d"); // forteller at det er en 2d-tegning<br>
+	&nbsp;&nbsp; ctx1.fillStyle = "yellow"; // bestemmer fargen på figuren<br>
+	&nbsp;&nbsp; ctx1.strokeStyle = "blue"; //bestemmer farge på rammen	<br>
+	&nbsp;&nbsp; ctx1.strokeRect(18, 18, 564, 364); // tegner opp et rektangel med attributtene (startX, startY, bredde, høyde)<br>
+	&nbsp;&nbsp; ctx1.fillRect(20, 20, 560, 360); // fyller et rektangel med attributtene (startX, startY, bredde, høyde)<br><br>
+
+	&nbsp;&nbsp; //tegne linjer i kryss<br>
+	&nbsp;&nbsp; var canvas2 = document.querySelector("#canvas2");<br>
+	&nbsp;&nbsp; var ctx2 = canvas2.getContext("2d");<br>
+	&nbsp;&nbsp; ctx2.strokeStyle="green"; //bestemmer fargen på linja<br>	
+	&nbsp;&nbsp; ctx2.lineWidth=10; //bredde på linja<br>
+	&nbsp;&nbsp; ctx2.moveTo(0,0); //koordinater for startpunktet<br>
+	&nbsp;&nbsp; ctx2.lineTo(600,400); // koordinater for sluttpunktet<br>
+	&nbsp;&nbsp; ctx2.moveTo(600,0); // bestemmer nytt startpunkt<br>
+	&nbsp;&nbsp; ctx2.lineTo(0,400); // koordinater for sluttpunktet<br>
+	&nbsp;&nbsp; ctx2.stroke(); //tegner linje<br><br>
+
+	&nbsp;&nbsp; //tegne sirkel<br>
+	&nbsp;&nbsp; var canvas3 = document.querySelector("#canvas3");<br>
+	&nbsp;&nbsp; var ctx3 = canvas3.getContext("2d");<br>
+	&nbsp;&nbsp; ctx3.strokeStyle="red";<br>
+	&nbsp;&nbsp; ctx3.lineWidth=5;<br>
+	&nbsp;&nbsp; ctx3.fillStyle="pink";<br>
+	&nbsp;&nbsp; ctx3.beginPath(); //begynn å tegne linje<br>
+	&nbsp;&nbsp; ctx3.arc(300,200,180,0,1*Math.PI); //lager en krum linje med verdiene(senterX, senterY, radius, startvinkel, sluttvinkel)<br>
+	&nbsp;&nbsp; ctx3.stroke(); //tegner linje<br>
+	&nbsp;&nbsp; ctx3.fill(); //fyller sirkel<br><br>
+
+	&nbsp;&nbsp; //bruke variabler til å tegne<br>
+	&nbsp;&nbsp; var canvas4 = document.querySelector("#canvas4")<br>
+	&nbsp;&nbsp; var ctx4 = canvas4.getContext("2d"); <br>	
+	&nbsp;&nbsp; var xPos = 20;<br>
+	&nbsp;&nbsp; var yPos = 20;<br>
+	&nbsp;&nbsp; var bredde = 560;<br>
+	&nbsp;&nbsp; var hoyde = 360;<br>
+	&nbsp;&nbsp; ctx4.fillRect(xPos, yPos, bredde, hoyde);<br><br>
+
+	&nbsp;&nbsp; var canvas5 = document.querySelector("#canvas5")<br>
+	&nbsp;&nbsp; var ctx5 = canvas5.getContext("2d");<br>
+	&nbsp;&nbsp; var sendEl = document.querySelector("#tegn");<br>
+	&nbsp;&nbsp; sendEl.addEventListener("click", tegnFigur);<br>
+	&nbsp;&nbsp; function tegnFigur(){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var xPos = document.querySelector("#xPos").value;<br> 	
+	&nbsp;&nbsp;&nbsp;&nbsp; var yPos = document.querySelector("#yPos").value; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var bredde = document.querySelector("#bredde").value;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var hoyde = document.querySelector("#hoyde").value;<br> 	 		
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx5.moveTo(xPos,yPos); //koordinater for startpunktet<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx5.lineTo(xPos+bredde,yPos+hoyde); // koordinater for sluttpunktet<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx5.moveTo(xPos+bredde,yPos); // bestemmer nytt startpunkt<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx5.lineTo(xPos,yPos+hoyde); // koordinater for sluttpunktet<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; ctx5.stroke(); //tegner linje<br>
+	&nbsp;&nbsp; }<br><br>
+
+    <script>
+    	//tegne firkant
+		var canvas1 = document.querySelector("#canvas1")
+		var ctx1 = canvas1.getContext("2d"); // forteller at det er en 2d-tegning
+		ctx1.fillStyle = "yellow"; // bestemmer fargen på figuren
+		ctx1.strokeStyle = "blue"; //bestemmer farge på rammen	
+		ctx1.strokeRect(18, 18, 564, 364); // tegner opp et rektangel med attributtene (startX, startY, bredde, høyde)
+		ctx1.fillRect(20, 20, 560, 360); // fyller et rektangel med attributtene (startX, startY, bredde, høyde)
+
+		//tegne linjer i kryss
+		var canvas2 = document.querySelector("#canvas2");
+		var ctx2 = canvas2.getContext("2d");
+		ctx2.strokeStyle="green"; //bestemmer fargen på linja	
+		ctx2.lineWidth=10; //bredde på linja
+		ctx2.moveTo(0,0); //koordinater for startpunktet
+		ctx2.lineTo(600,400); // koordinater for sluttpunktet
+		ctx2.moveTo(600,0); // bestemmer nytt startpunkt
+		ctx2.lineTo(0,400); // koordinater for sluttpunktet
+		ctx2.stroke(); //tegner linje
+
+		//tegne sirkel
+		var canvas3 = document.querySelector("#canvas3");
+		var ctx3 = canvas3.getContext("2d");
+		ctx3.strokeStyle="red";
+		ctx3.lineWidth=5;
+		ctx3.fillStyle="pink";
+		ctx3.beginPath(); //begynn å tegne linje
+		ctx3.arc(300,200,180,0,1*Math.PI); //lager en krum linje med verdiene(senterX, senterY, radius, startvinkel, sluttvinkel)
+		ctx3.stroke(); //tegner linje
+		ctx3.fill(); //fyller sirkel
+
+		//bruke variabler til å tegne
+		var canvas4 = document.querySelector("#canvas4")
+		var ctx4 = canvas4.getContext("2d"); 	
+		var xPos = 20;
+		var yPos = 20;
+		var bredde = 560;
+		var hoyde = 360;
+		ctx4.fillRect(xPos, yPos, bredde, hoyde);
+
+		var canvas5 = document.querySelector("#canvas5")
+		var ctx5 = canvas5.getContext("2d"); 
+		var sendEl = document.querySelector("#tegn");
+		sendEl.addEventListener("click", tegnFigur);
+		function tegnFigur(){
+			var xPos = document.querySelector("#xPos").value; 	
+			var yPos = document.querySelector("#yPos").value; 
+			var bredde = document.querySelector("#bredde").value;
+			var hoyde = document.querySelector("#hoyde").value; 	 		
+			ctx5.moveTo(xPos,yPos); //koordinater for startpunktet
+			ctx5.lineTo(xPos+bredde,yPos+hoyde); // koordinater for sluttpunktet
+			ctx5.moveTo(xPos+bredde,yPos); // bestemmer nytt startpunkt
+			ctx5.lineTo(xPos,yPos+hoyde); // koordinater for sluttpunktet
+			ctx5.stroke(); //tegner linje
+		}
+    </script>
+
+    <h1> Oppgaver </h1>
+    <p> s. 222: Oppgave 14.1 og 14.2 </p>
+
+  	<h1> Å tegne ved hjelp av forløkker </h1>
+  	<p> Ved hjelp av forløkker kan vi enkelt tegne flere figurer. Disse figurene trenger ikke være like: vi kan endre størrelse eller farge for hver figur. Når vi endrer farge passer det godt å bruke hsl-farger slik at vi får farger som passer høverlig greit sammen. Når vi tegner med løkker må vi passe på at vi kun oppretter ett canvas. <br>
+
+  	<canvas class="canvasene" id="canvas6" width="500px" height="500px"></canvas><br><br>
+
+  	<script>
+  		var canvas6 = document.querySelector("#canvas6");
+  		var ctx6 = canvas6.getContext("2d");
+  		for (var i=0; i < 15; i++){
+  			var xKoor = Math.random() * canvas6.width;
+  			var yKoor = Math.random() * canvas6.height;
+  			ctx6.fillStyle = "hsl("+ i*20 +", 100%, 70%)";
+  			ctx6.fillRect(xKoor, yKoor, 50, 50);
+  		}
+  	</script>
+  	&nbsp;&nbsp; < canvas class="canvasene" id="canvas6" width="500px" height="500px" >< /canvas ><br><br>
+
+  	&nbsp;&nbsp; var canvas6 = document.querySelector("#canvas6");<br>
+  	&nbsp;&nbsp; var ctx6 = canvas6.getContext("2d");<br>
+  	&nbsp;&nbsp; for (var i=0; i < 15; i++){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; var xKoor = Math.random() * canvas6.width;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; var yKoor = Math.random() * canvas6.height;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; ctx6.fillStyle = "hsl("+ i*30 +", 100%, 70%)";<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; ctx6.fillRect(xKoor, yKoor, 50, 50);<br>
+  	&nbsp;&nbsp; }<br><br>
+
+  	<h1> Oppgaver </h1>
+  	<p> s. 224: 14.3 14.4, 14.5 <br>
+  	Skriv kode for å tegne horisontale streker med 20px mellomrom over et canvas med bredde 200px*200px.<br>
+  	Skriv kode for å tegne et rutenett med ruter på 40px*40px i et canvas med bredde 1000px*1000px.<br>
+  	s. 230: 14.10 <br>
+  	</p>
+
+  </body>
+</html>

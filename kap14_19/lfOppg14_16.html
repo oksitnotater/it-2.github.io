@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Canvaselementet</title>
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+    <h1> Oppgaven </h1>
+    <p> Lag en funksjon som tar inn et datasett fra et skjema og tegner et sektordiagram. Skjemaet kan gjerne lages ved å bruke arrays/objects. </p>
+
+    <h1> Løsning </h1>
+    <p> Legger først inn nødvendige HTML-elementer <br>
+      &nbsp;&nbsp; < div id="skjema" >< /div > <br>
+      &nbsp;&nbsp; < div id="tilbakemelding" >< /div ><br>
+      &nbsp;&nbsp; < canvas id="canvas1" width="500" height="400" > < /canvas ><br><br>
+
+      Legger først inn feltene til skjemaet. For å slippe å fylle inn noe hver gang, legges det inn en standardverdi (denne kan endres!) <br>
+      &nbsp;&nbsp; var skjemaEl = document.querySelector("#skjema");<br>
+      &nbsp;&nbsp; var info = [{akt: "sove", verdi:8, sektor: 0}, {akt: "spise", verdi: 2, sektor: 0}, {akt: "skole", verdi: 9, sektor: 0}, {akt: "trene", verdi: 2, sektor: 0}, {akt: "andre", verdi: 3, sektor: 0}];<br><br>
+
+      &nbsp;&nbsp; for(var i = 0; i < info.length; i++){<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; var pEl = document.createElement("p");<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; pEl.innerHTML = info[i].akt + " ";<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; var inputEl = document.createElement("input");<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; inputEl.type ="number";<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; inputEl.name = info[i].akt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; inputEl.min = "0",<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; inputEl.value = info[i].verdi;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; pEl.appendChild(inputEl);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; skjemaEl.appendChild(pEl);<br>
+      &nbsp;&nbsp; }<br><br>
+
+      Legger til en knapp med en funksjon når knappen klikkes:<br>
+      &nbsp;&nbsp; var knappEl = document.createElement("button");<br>
+      &nbsp;&nbsp; knappEl.id="send";<br>
+      &nbsp;&nbsp; knappEl.innerHTML = "send svar";<br>
+      &nbsp;&nbsp; sjemaEl.appendChild(knappEl);<br><br>
+
+      &nbsp;&nbsp; // henter inn elementer og datainput<br>
+      &nbsp;&nbsp; var sendEl = document.querySelector("#send");<br>
+      &nbsp;&nbsp; sendEl.addEventListener("click", lagDiagram);<br>
+      &nbsp;&nbsp; var tilbakemeldingEl = document.querySelector("#tilbakemelding");<br><br>
+
+      I funksjonen sjekkes først at alle feltene er positive tall og at summen er 24: <br>
+      &nbsp;&nbsp; // funksjonen når knappen klikkes<br>
+      &nbsp;&nbsp; function lagDiagram(){<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; var aktiviteter = document.querySelectorAll("input");<br>
+  
+      &nbsp;&nbsp;&nbsp;&nbsp; // sjekker om antall timer totalt er 24<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; var sumTimer = 0;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; for(var i = 0; i < aktiviteter.length; i++){<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (aktiviteter[i].value < 0){<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tilbakemeldingEl.innerHTML = "du kan ikke sette et negativt antall timer!";<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; sumTimer += Number(aktiviteter[i].value);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; if (sumTimer != 24){<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tilbakemeldingEl.innerHTML = "du må fylle hele døgnet, og ikke noe mer enn det!";<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; }<br><br>
+
+      Deretter beregnes størrelsen på hver sektor: <br>
+      &nbsp;&nbsp;&nbsp;&nbsp; // oppdaterer sektorelementet til å inneholde fornuftig info<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; for (var i = 0; i < info.length; i++){<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; info[i].sektor = info[i].verdi*2*Math.PI/sumTimer;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; } <br><br>
+
+      Canvaset hentes inn og diagrammet tegnes<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; // henter inn canvaset og plotter<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; var canvas=document.querySelector("#canvas1");<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; var ctx1=canvas1.getContext("2d");<br><br>
+
+      &nbsp;&nbsp;&nbsp;&nbsp; var cX = canvas1.width/3;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; var cY = canvas1.height/2;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; var radius = 150;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp; var forrigeSlutt = 0;<br><br> 
+
+      &nbsp;&nbsp;&nbsp;&nbsp; for (var i = 0; i < info.length; i++) {<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var sektorSlutt = forrigeSlutt + info[i].sektor;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Tegner sektoren<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx1.beginPath();<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx1.arc(cX, cY, radius, forrigeSlutt, sektorSlutt);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx1.lineTo(cX, cY);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx1.fillStyle = "hsl("+i*50 +" , 70%, 50%)";<br> 
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx1.fill();<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx1.closePath();<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Oppdaterer variabelen forrigeSlutt<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; forrigeSlutt = sektorSlutt;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // Angir tekststørrelse og type for teksten og plasserer den ved siden av sektordiagrammet<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx1.font = "24px 'Century Gothic'";<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx1.textBaseline = "hanging";<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var tekstStartX = canvas1.width / 1.5;<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var tekstStartY = (canvas1.height / 2) - (30 * (info.length / 2)) + (30 * i);<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx1.fillText(info[i].akt + "(" + info[i].verdi + ")", tekstStartX, tekstStartY); <br>
+      &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+      &nbsp;&nbsp; }<br>
+
+  </body>
+</html>

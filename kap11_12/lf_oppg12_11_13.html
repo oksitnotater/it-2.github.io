@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Tabell av objects</title>
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Oppgave 12.11 </h1>
+  	<p> 12.11: Lag funksjonen lagTabell(overskrifter, innhold) som har to argumenter. Det første argumentet (overskrifter) skal være en array som inneholder tabellens overskrifter. Det andre argumentet (innhold) skal være en array med objecter som utgjør tabellens innhold.</p>
+
+  	<script>
+  	// to inputargumenter: en array med overskrifter og en array med innholdsobjects
+  	var overskrifter = [];
+  	var innhold = [];
+  	// lager en funksjon lagTabell
+  	function lagTabell(overskrifter, innhold){
+  		// skal skrive ut en tabell: må hente inn body og lage et tabellelement
+  		var bodyEl = document.querySelector("body");
+  		var tabellEl = document.createElement("table");
+
+  		// legger inn overskriftene fra arrayen
+  		// lager en tabellrad
+  		var overskriftEl = document.createElement("tr");
+  		for(var i = 0; i < overskrifter.length; i++){
+  			// legger til overskriftene
+  			var thEl = document.createElement("th");
+  			thEl.innerHTML = overskrifter[i];
+  			overskriftEl.appendChild(thEl);
+  		}
+  		// legger til overskriftene i tabellen
+  		tabellEl.appendChild(overskriftEl)
+
+  		// legger inn hvert object på en ny rad
+  		for(var i = 0; i < innhold.length; i++){
+  			//svar på oppg. 12.13
+  			if (Object.keys(innhold[i]).length != overskrifter.length) {
+		 		console.error("Det er feil antall egenskaper i objekt nummer " + i);
+			}
+  			// lager en ny rad
+  			var trEl = document.createElement("tr");
+  			// henter ut alle egenskapene i objectet innhold[i]
+  			for(var egenskap in innhold[i]){
+  				// legger til innhold i raden
+  				var tdEl = document.createElement("td");
+  				tdEl.innerHTML = innhold[i][egenskap];
+  				trEl.appendChild(tdEl);
+  			}
+  			// legger til raden i tabellen
+  			tabellEl.appendChild(trEl);
+  		}
+  		// legger til ta bellen i body
+  		bodyEl.appendChild(tabellEl);
+  	}	
+  	</script>
+
+  	<h1> Oppgave 12.12 </h1>
+  	<p> 12.12: Bruk funksjonen på arrayen bilmerker som du lagde i oppgave 12.8 </p>
+  	<script>
+  	// legger innhold i arrayene
+  	var overskrifter = ["forkortelse", "bilmerke", "land"];
+  	var innhold = [
+ 		{forkortelse: "VW", bilmerke: "Volkswagen", land: "Tyskland"},
+ 		{forkortelse: "Toyota", bilmerke: "Toyota", land: "Japan"},
+ 		{forkortelse: "Audi", bilmerke: "Audi", land: "Tyskland"},
+ 		{forkortelse: "BMW", bilmerke: "Bayerische Motoren Werke", land: "Tyskland"},
+ 		{forkortelse: "Ford", bilmerke: "Ford Motor Company", land: "USA"}
+	]; 
+  	// kjører funksjonen 
+  	lagTabell(overskrifter, innhold);
+  	</script>
+
+  	<h1> Oppgave 12.13 </h1>
+  	<p> 12.13: Lag en array med objecter som ikke inneholder like mange egenskaper. Hvordan fungerer denne arrayen med funksjonen du lagde i 12.11? Du kan godt lage din egen feilmelding i funksjonen der du tar i bruk antall egenskaper i et object med Object.keys(objectNavn). Du vil da få ut en array med objectets egenskaper som du kan finne lengden til. For å skrive ut feilmeldingen kan du bruke metoden console.error(feilmelding).</p>
+
+  	<script>
+  	// legger til en verdi i overskrifter og for en av bilene og ser resultatet når funksjonen kjøres:
+  	var overskrifter = ["forkortelse", "bilmerke", "farge", "land"];
+  	var innhold = [
+ 		{forkortelse: "VW", bilmerke: "Volkswagen", farge: "blå", land: "Tyskland"},
+ 		{forkortelse: "Toyota", bilmerke: "Toyota", land: "Japan"},
+ 		{forkortelse: "Audi", bilmerke: "Audi", land: "Tyskland"},
+ 		{forkortelse: "BMW", bilmerke: "Bayerische Motoren Werke", land: "Tyskland"},
+ 		{forkortelse: "Ford", bilmerke: "Ford Motor Company", land: "USA"}
+	]; 
+  	// kjører funksjonen 
+  	lagTabell(overskrifter, innhold);
+  	// ser at dette ser stygt ut, spesielt når den avvikende egenskapen ligger midt i.
+
+  	// legger inn en feilmelding dersom lengden er ulik i funksjonen:
+  	/*if (Object.keys(innhold[i]).length != overskrifter.length) {
+		console.error("Det er feil antall egenskaper i objekt nummer " + i);
+	}*/ 
+
+
+  	</script>
+  	</body>
+</html>

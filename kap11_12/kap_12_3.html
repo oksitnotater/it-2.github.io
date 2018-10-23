@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Objects</title>
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Om prøven i temaet </h1>
+  	<p> Prøven blir torsdag 18. januar, og dekker kapittel 11 og 12. Det forventes også at dere husker alt vi har gjort tidligere, men spesielt kapittel 10 (brukerinput) er relevant. Oppgavene dere arbeidet med forrige uke er veldig relevant som øveprøve, i tillegg skal dere få noen øveoppgaver fra kapittel 12.3 og utover. Fokus på prøven blir å kunne bruke arrays alene, objects alene og kombinasjoner av de to med innebygde metoder snarere enn å skrive egne algoritmer for f.eks. sortering. Hjelpemidler er som tidligere: eget arbeid og w3schools. Prøvetid er 90 minutter. </p>
+
+  	<h1> Timene frem til vurdering </h1>
+  	<p> Mandag 08.01: kap. 12.3: arrays med objects<br>
+  		Torsdag 11.01: kap 12.4: quiz med arrays og objects <br>
+  		Fredag 12.01: repetisjon <br>
+	  	Mandag 15.01: øve til prøve<br>
+	  	Jeg minner om at læreboka også har <a href="https://www.youtube.com/channel/UCW591y4lZyb-ipsEbPQXXcw" target="blank">videogjennomgang</a> som ressurs, bruk gjerne den i repetisjonen! </p>
+
+  	<h1> Objects med arrays </h1>
+  	<p> Så langt har vi laget objects med arrays i stedet for enkeltverdier:<br> 
+  	&nbsp;&nbsp; var person = {<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; fnavn: "Asta", <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; enavn: "Fjærli", <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; alder: 27, <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; hobby: ["spille fløyte", "løfte tungt", "strikke"] <br>
+  	&nbsp;&nbsp; };<br><br>
+
+  	Dette er nyttig for å unngå et uvisst antall nøkler <i>hobby1, hobby2, osv</i>, og det gir oss muligheten til å bruke de vanlige metodene på arrayen: <br>
+  	&nbsp;&nbsp; person.hobby[1] = "vektløfting";<br>
+  	endrer en verdi i arrayen i objectet ved å referere til plasseringen i arrayen. <br>
+  	&nbsp;&nbsp; person.hobby.push("turn");<br>
+  	legger til en verdi sist i arrrayen i objectet ved metoden push. <br>
+  	&nbsp;&nbsp; person.hobby.pop();<br>
+  	fjerner den siste verdien i arrayen ved metoden pop. Vi kan også bruke shift, unshift og splice til å legge til og fjerne verdier</p>
+
+  	<script>
+  	var person  = {
+  		fnavn: "Asta",
+  		enavn: "Fjærli",
+  		alder: 27,
+  		hobby: ["spille fløyte", "løfte tungt", "strikke"]
+  	}
+  	console.log(person.hobby);
+  	person.hobby[1] = "vektløfting";
+  	console.log(person.hobby);
+  	person.hobby.push("turn");
+  	console.log(person.hobby);
+  	person["hobby"].pop();
+  	console.log(person.hobby);
+  	</script>
+  	
+  	<h1> Arrays med ojects </h1>
+  	<p> Vi kan også få bruk for å lagre en array som inneholder objects i stedet for enkeltverdier. Som eksempel bruker vi elever i en klasse. Disse elevene får hver sin plass i arrayen: <br>
+  	&nbsp;&nbsp; var elever = ["Andrea", "Damir", "Silje", "Thomas"];<br>
+  	Dersom vi ønsker å lagre mer informasjon enn bare navnet på disse elevene i arrayen, får vi et problem. Det gir jo ikke mening å sette inn Andrea s etternavn som elever[4]. Da er det bedre å legge inn et object for hver elev og la denne objecten ha egenskaper som fornavn, etternavn, alder, telefonnummer osv. Da kan vi godt lage elevenes objects først, og deretter legge dem inn i en array etterpå. <br>
+  	&nbsp;&nbsp; var elev1 = {<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; fnavn: "Andrea",<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; enavn: "Fredriksen",<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; alder: 18<br>
+  	&nbsp;&nbsp; };<br>
+  	&nbsp;&nbsp; var elev2 = {<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; fnavn: "Damir",<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; enavn: "Penava",<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; alder: 19<br>
+  	&nbsp;&nbsp; };<br>
+  	&nbsp;&nbsp; var elev3 = {<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; fnavn: "Silje",<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; enavn: "Aasen",<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; alder: 17<br>
+  	&nbsp;&nbsp; };<br>
+  	&nbsp;&nbsp; var elev4 = {<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; fnavn: "Thomas",<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; enavn: "Fris",<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; alder: 18<br>
+  	&nbsp;&nbsp; };<br>
+  	&nbsp;&nbsp; var elever = [elev1, elev2, elev3, elev4]; <br>
+  	Eller vi kan legge inn objectene direkte i arrayen:<br>
+  	&nbsp;&nbsp; elever.push({fnavn: "Silje", enavn: "Evensen", alder: 19});<br><br>
+
+	Om vi lager objectene først som egne variabler og deretter legger dem inn eller om vi legger hele objects i arrayen kommer helt an på hva vi synes er mest praktisk og om vi starter fra ingenting eller har en eksisterende array/eksisterende objects fra før.</p> 
+  	<script>
+  	var elever = ["Andrea", "Damir", "Silje", "Thomas"];
+  	console.log(elever);
+  	var elev1 = {
+  		fnavn: "Andrea",
+  		enavn: "Fredriksen",
+  		alder: 18
+  	};
+  	console.log(elev1);
+  	var elev2 = {
+  		fnavn: "Damir",
+  		enavn: "Penava",
+  		alder: 19
+  	};
+  	var elev3 = {
+  		fnavn: "Silje",
+  		enavn: "Aasen",
+  		alder: 17
+  	};
+  	var elev4 = {
+  		fnavn: "Thomas",
+  		enavn: "Fris",
+  		alder: 18
+  	};
+  	var elever = [elev1, elev2, elev3, elev4];
+  	console.log(elever);
+  	elever.push({fnavn: "Silje", enavn: "Evensen", alder: 19});
+  	console.log(elever);
+  	</script>
+
+  	<h1> Å hente ut verdier fra en array med objects </h1>
+  	<p> Vi henter ut hele objectet ved å referere til plassen: elever[1] gir ut hele objectet til Damir. Skal vi ha ut kun en egenskap, refererer vi til nøkkelen ved enten dot-notasjon eller klammenotasjon: elever[1].fnavn og elever[1]["fnavn"] gir begge ut fornavnet.</p>
+
+  	<script>
+  		console.log(elever[1]);
+  		console.log(elever[1].fnavn);
+  		console.log(elever[1]["fnavn"]);
+  	</script>
+
+  	<h1> Å løkke gjennom arrays med objects </h1>
+  	<p> Siden arrays med objects fortsatt har en gitt lengde, dvs en gitt mengde objects, bruker vi en vanlig forløkke for å bruke alle objectene. Vi kan for eksempel finne gjennomsnittsalderen:<br>
+  	&nbsp;&nbsp; var alderSum = 0;<br>
+  	&nbsp;&nbsp; for(var i = 0; i < elever.length; i++){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; alderSum += elever[i].alder;<br>
+  	&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; var snittAlder = alderSum/elever.length;<br>
+  	&nbsp;&nbsp; console.log(snittAlder.toFixed(2));<br>
+
+  	<script>
+  		var alderSum = 0;
+  		for(var i = 0; i < elever.length; i++){
+  			alderSum += elever[i].alder;
+  		}
+  		var snittAlder = alderSum/elever.length;
+  		console.log(snittAlder.toFixed(2));
+  	</script>
+
+  	<h1> Oppgaver (før pause) </h1>
+  	<p> 12.8 og 12.9 s. 195 <br><br>
+  		12.8: Lag arrayen bilmerker. Arrayen skal bestå av objecter som inneholder informasjon om bilmerker. Hver object skal ha egenskapene forkortelse, bilmerke og land. Registrer minst fire bilmerker i arrayen din.<br>
+  		12.9: Skriv ut informasjon om alle bilmerkene i arrayen bilmerker til konsollen ved bruk av en løkke. </p>
+
+  	<h1> Å sortere objects i en array </h1>
+  	<p> For arrays har vi den innebygde sorteringsmetoden sort(arrayNavn); som sorterer en tekstarray i alfabetisk rekkefølge.<br>
+  	&nbsp;&nbsp; var tekst = ["def", "aeg", "abc", "aaaa"];<br>
+  	&nbsp;&nbsp; tekst.sort();<br>
+  	&nbsp;&nbsp; console.log(tekst);<br>
+  	Denne må utvides for å også gjelde tall: koden under fungerer ikke optimalt og returnerer [-1, -20, 0, 19, 2, 4] fordi 2 er større enn 1, og maskinen derfor tror at -20 er større enn -1 (håpløst).<br>
+  	&nbsp;&nbsp; var tall = [2, 0, -1, 4, 19, -20];<br>
+  	&nbsp;&nbsp; tall.sort();<br>
+  	&nbsp;&nbsp; console.log(tall);<br>
+  	Her må vi fortelle at sorteringen skal fortsette til arrayen faktisk er sortert. Dette implementerer vi ved å legge inn en funksjon i sorteringen som finner forskjellen mellom tallene og sorterer ved å sjekke om forskjellen mellom to tall er positiv +1 (den andre verdien er mindre enn den første), null 0 (verdiene er like store) eller negativ -1 (den andre verdien er større enn den første):<br>
+  	&nbsp;&nbsp; var tall = [2, 0, -1, 4, 19, -20];<br>
+  	&nbsp;&nbsp; tall.sort(function(a, b){return a-b});<br>
+  	&nbsp;&nbsp; console.log(tall);<br><br>
+
+  	Vi kan skrive ut hele denne sorteringen for å kunne utvide den til å sortere en array med objects etter en av nøklene (her må vi prioritere hvilken nøkkel vi skal sortere etter):<br>
+  	&nbsp;&nbsp; var tall = [2, 0, -1, 4, 19, -20];<br>
+  	&nbsp;&nbsp; tall.sort(function(a, b){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; if(a > b){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 1;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; else if(a < b){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -1;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; else{<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; });<br>
+  	&nbsp;&nbsp; console.log(tall);<br><br>
+
+  	Skal vi sortere en array med objects bruker vi samme konseptet, men spesifiserer hvilken nøkkel vi sorterer på:<br>
+  	&nbsp;&nbsp; elever.sort(function(a, b){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; if(a.enavn > b.enavn){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 1;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; else if(a.enavn < b.enavn){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return -1;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; else{<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return 0;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; })<br>
+  	&nbsp;&nbsp; console.log(elever);</p>
+
+  	<script>
+  	var tekst = ["def", "aeg", "abc", "aaaa"];
+  	tekst.sort();
+  	console.log(tekst);
+  	var tall = [2, 0, -1, 4, 19, -20];
+  	tall.sort();
+  	console.log(tall);
+  	var tall = [2, 0, -1, 4, 19, -20];
+  	tall.sort(function(a, b){return a-b});
+  	console.log(tall);
+  	var tall = [2, 0, -1, 4, 19, -20];
+  	tall.sort(function(a, b){
+  		if(a > b){
+  			return 1;
+  		}
+  		else if(a < b){
+  			return -1;
+  		}
+  		else{
+  			return 0;
+  		}
+  	});
+  	console.log(tall);
+
+  	elever.sort(function(a, b){
+  		if(a.enavn > b.enavn){
+  			return 1;
+  		}
+  		else if(a.enavn < b.enavn){
+  			return -1;
+  		}
+  		else{
+  			return 0;
+  		}
+  	})
+  	console.log(elever);
+  	</script>
+
+  	<h1> Å skrive ut objects i en array til en tabell på nettsiden </h1>
+  	<p> To av bruksområdene til arrays med objects er å oversiktlig kunne skrive ut data til siden, for eksempel i tabellform, og å kunne lagre inputverdier fra skjemaer oversiktlig. Når vi skal skrive ut data til en tabell, bruker vi nøklene som kolonneoverskrifter og fyller inn hver arrayverdi i en ny rad. I dagens eksempel vil det være å skrive ut en tabell med kolonnene fnavn, enavn og alder der hver elev får sin rad. Vi starter helt fra scratch med å lage selve tabellelementet: <br><br>
+
+  	&nbsp;&nbsp; var bodyEl = document.querySelector("body")<br>
+  	&nbsp;&nbsp; var tabellEl = document.createElement("table");<br>
+  	&nbsp;&nbsp; var overskriftEl = document.createElement("tr");<br>
+  	&nbsp;&nbsp; overskriftEl.innerHTML="< th >Fornavn< /th >< th >Etternavn< /th >< th >Alder< /th >";<br>
+  	&nbsp;&nbsp; tabellEl.appendChild(overskriftEl);<br>
+  	&nbsp;&nbsp; for(var i=0; i < elever.length; i++){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; var radEl = document.createElement("tr");<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; radEl.innerHTML = "< td >"+elever[i].fnavn+"< /td >"+"< td >"+elever[i].enavn+"< /td >"+"< td >"+elever[i].alder+"< /td >";<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; tabellEl.appendChild(radEl);<br>
+  	&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; bodyEl.appendChild(tabellEl);<br><br>
+
+  	Deretter kan vi stilsette tabellen som vi ønsker.
+
+  	</p>
+
+  	<script>
+  	var bodyEl = document.querySelector("body")
+  	var tabellEl = document.createElement("table");
+  	var overskriftEl = document.createElement("tr");
+  	overskriftEl.innerHTML="<th>Fornavn</th><th>Etternavn</th><th>Alder</th>";
+  	tabellEl.appendChild(overskriftEl);
+  	for(var i=0; i < elever.length; i++){
+  		var radEl = document.createElement("tr");
+  		radEl.innerHTML = "<td>"+elever[i].fnavn+"</td>"+"<td>"+elever[i].enavn+"</td>"+"<td>"+elever[i].alder+"</td>";
+  		tabellEl.appendChild(radEl);
+  	}
+  	bodyEl.appendChild(tabellEl);
+  	</script>
+
+
+  	<h1> Oppgaver (lekse til torsdag) </h1>
+  	<p> 12.10 s.196, 12.11, 12.12, 12.13 s. 199<br><br>
+  		12.10: Lag en sammenlikningsfunksjon som lar deg sortere arrayen bilmerker fra oppgave 12.8. Arrayen skal sorteres etter bilmerkenes navn(ikke forkortelse)<br>
+  		12.11: Lag funksjonen lagTabell(overskrifter, innhold) som har to argumenter. Det første argumentet (overskrifter) skal være en array som inneholder tabellens overskrifter. Det andre arumentet (innhold) skal være en array med objecter som utgjør tabellens innhold.<br>
+  		12.12: Bruk funksjonen på arrayen bilmerker som du lagde i oppgvev 12.8 <br>
+  		12.13: Lag en array med objecter som ikke inneholder like mange egenskaper. Hvordan fungerer denne arrayen med funksjonen du lagde i 12.11? Du kan godt lage din egen feilmelding i funksjonen der du tar i bruk antall egenskaper i et object med Object.keys(objectNavn). Du vil da få ut en array med objectets egenskaper som du kan finne lengden til. For å skrive ut feilmeldingen kan du bruke metoden console.error(feilmelding).</p>
+ </body>
+ </html>

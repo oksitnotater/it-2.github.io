@@ -1,0 +1,46 @@
+/* generelle innstillinger */
+body{
+	background-color: #EBF0F1; 
+	color: #1C3C50; 
+	margin-left: 50px;
+}
+
+p{
+	font-size: 150%;
+}
+table, tr, td, th{
+	font-size: 110%;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+#flytt{
+background-color: pink;
+width: 400px;
+height: 200px;
+transform: translate(400px, 50px);
+}
+#skaler{
+background-color: lightgreen;
+width: 400px;
+height: 200px;
+transform: scale(0.4, 1.6);
+}
+#roter{
+background-color: purple;
+width: 400px;
+height: 200px;
+transform: rotate(-30deg);
+}
+#punktforflytt{
+background-color: orange;
+width: 400px;
+height: 200px;
+transform: skew(30deg);
+}
+#samlet{
+background-color: yellow;
+width: 400px;
+height: 200px;
+transform: translate(800px, -40px) scale(2, 0.8) rotate(20deg);
+}

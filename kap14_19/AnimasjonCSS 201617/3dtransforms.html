@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>ANIMASJONER I CSS</title>
+    <link rel="stylesheet" type="text/css" href="030217.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Transfomasjoner med CSS </h1>
+  	<h2> Timen i dag: </h2>
+  	<p> To eksempler: <br>
+  		- Kombinasjon av transformasjon og animasjon <br>
+  		- 3D-transformasjon </p>
+  	<h2> Eksempel 1: Boks som roterer når knapp trykkes </h2>
+  	<p> Lager først boksen og en knapp for å rotere boksen: <br>
+
+  		< button id="roterKnapp" > Roter < /button > <br>
+  		< div id="boks" > < /div ><br>
+  		Bestemmer så utseendet for boksen i css: <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; #boks{<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; width: 300px;<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; height: 300px;<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: lightBlue;<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; border: 2px solid blue;<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	</p>
+
+  	<div id="boks"></div>
+  	<button id="roterKnapp">Roter </button>
+
+  	<p> Ved hjelp av en animasjon bestemmer jeg hvor ofte boksen skal rotere: jeg gir animasjonen 3 sekunder for en hel runde og deler en runde i 10 deler: gir ny vinkel hver 10% der vinkelen øker med 36 grader <br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; .rotereBoks{<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; animation-name: rotasjon;<br>
+       	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; animation-duration: 3s;<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; animation-iteration-count: 1;<br>
+  		&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>
+  	Spesifiserer så at data for rotasjonsanimasjonen. Her bruker jeg transisjonen transform: rotate(n*36deg) som animasjonsargument. <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; @keyframes rotasjon{<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 10% {transform:rotate(36deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 20% {transform:rotate(72deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 30% {transform:rotate(108deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 40% {transform:rotate(144deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 50% {transform:rotate(180deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 60% {transform:rotate(216deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 70% {transform:rotate(252deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 80% {transform:rotate(288deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 90% {transform:rotate(324deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 100% {transform:rotate(360deg);}<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }</p>
+
+	<p> I script tillegger jeg boksen klassen rotereBoks når knappen trykkes: <br>
+		< script >  <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var knappEl = document.querySelector("#roterKnapp");<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var boksEl = document.querySelector("#boks");<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; knappEl.addEventListener("click", roterFunksjon);<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; function roterFunksjon(){<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; boksEl.classList.add("rotereBoks");<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+		<  /script ><br>
+		<script>
+			var knappEl = document.querySelector("#roterKnapp");
+			var boksEl = document.querySelector("#boks");
+			knappEl.addEventListener("click", roterFunksjon);
+			function roterFunksjon(){
+				boksEl.classList.add("rotereBoks");
+			}
+		</script>
+
+	<h2> Eksempel 2: 3D-transformasjon </h2>
+	<p> Eksemplene viser ulike 3D-transformasjoner: rotasjon om 3 akser <br>
+		Lager først et element å rotere: setter inn skrift for å illustrere rotasjonen: <br>
+		< div class="boks3D" > Se på dette! < / div > </p>
+		<div class="boks3D"> <p>Se på dette!</p> </div>
+		<p> Rotasjon om x: <br>
+			&nbsp;&nbsp;&nbsp;&nbsp; transform: rotateX(180deg); </p>
+		<div class="boks3D" id="boks3DX"> <p>X-rotasjon!</p> </div>
+
+		<p> Rotasjon om y: <br>
+			&nbsp;&nbsp;&nbsp;&nbsp; transform: rotateY(180deg); </p>
+		<div class="boks3D" id="boks3DY"> <p>Y-rotasjon!</p> </div>
+
+		<p> Rotasjon om z: <br>
+			&nbsp;&nbsp;&nbsp;&nbsp; transform: rotateZ(180deg); </p>
+		<div class="boks3D" id="boks3DZ"> <p>Z-rotasjon!</p> </div>
+
+	<p> Vi kan tydeligere se hva som skjer ved å lage en animasjon av overgangen: </p>
+		<p> Urotert: </p>
+		<div class="boks3D"> <p> Se på dette!</p> </div>
+		<p> X-rotasjon: </p>
+		<div class="boks3D" id="boks3DX_an"> <p>X-rotasjon!</p> </div>
+		<p> Y-rotasjon:</p>
+		<div class="boks3D" id="boks3DY_an"> <p>Y-rotasjon!</p> </div>
+		<p> Z-rotasjon: </p>
+		<div class="boks3D" id="boks3DZ_an"> <p>Z-rotasjon!</p> </div>
+
+	<h2> Prøv dere frem: </h2>
+	<p>Hva forventer dere fra transform: translate3d(x,y,z), transform: scale3d(x,y,z) og transform: rotate3d(x,y,z,angle)? Test de forskjellige. </p>
+
+	<div id="test3D"> Testeboks </div>
+  </body>
+</html>

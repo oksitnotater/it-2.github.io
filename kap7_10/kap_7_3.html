@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title> Å redigere html med JavaScript </title>
+    <link rel="stylesheet" type="text/css" href="undervisning.css">
+    <style>
+    	.rod{
+    		color: red;
+    	}
+    	.gronn{
+    		color: green;
+    	}
+    </style>
+    </head>
+  <body>
+  	<h1> Metode for å hente inn html-elementer med JavaScript </h1>
+  	<p> Fra 7.2 husker vi at vi henter inn html-elementer og lagrer dem i variabler ved metoden document.querySelector(id, klasse eller element): <br>
+  	&nbsp;&nbsp; < script ><br>
+	  &nbsp;&nbsp;&nbsp;&nbsp; var tekstKlasseEl = document.querySelector('.tekst');<br>
+	  &nbsp;&nbsp;&nbsp;&nbsp; var bildeEl = document.querySelector('img');<br>
+	  &nbsp;&nbsp;&nbsp;&nbsp; var tekstIdEl = document.querySelector('#tekst');<br>
+	  &nbsp;&nbsp;< /script ><br><br>
+	  Vi får lite informasjon av å skrive disse variablene til nettsiden. Dersom vi vil se hva som faktisk er lagret i variablen, må den skrives til konsollen. </p>
+
+	  <h1> Metode for å redigere innhold med JavaScript </h1>
+	  <p> Dersom vi lagrer et tekstelement som en variabel, vil denne inneholde hele elementet: <br>
+	  <img src="media/console.png" width="70%"><br>
+	  Selve tekstinnholdet finner vi ved å be om innerHTML. For å skrive ut denne bruker vi det vi kaller dot-notasjon: <br>
+
+  	&nbsp;&nbsp; < p id="tekst"> Her skriver jeg tekst < /p><br>
+  	&nbsp;&nbsp; < script><br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; var tekstEl = document.querySelector("#tekst");<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; var tekstElInnhold = tekstEl.innerHTML;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; document.write(tekstElInnhold);<br>
+  	&nbsp;&nbsp;  < /script></p>
+
+  	<p id="tekst"> Her skriver jeg tekst </p>
+  	<script>
+  		var tekstEl = document.querySelector("#tekst");
+  		var tekstElInnhold = tekstEl.innerHTML;
+  		document.write(tekstElInnhold);
+  	</script>
+
+  	<p> Når vi kan lese ut tekstinnholdet, kan vi også endre det. La oss for eksempel endre innholdet i teksten over til 'teksten ble endret': <br>
+
+    &nbsp;&nbsp; < p id="tekst2" > Her skriver jeg tekst < /p >
+  	&nbsp;&nbsp; < script><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var tekst2El = document.querySelector("#tekst2");<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; tekst2El.innerHTML = 'teksten ble endret';<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; document.write(tekst2El.innerHTML);<br>
+  	&nbsp;&nbsp;  < /script></p>
+
+    <p id="tekst2"> Her skriver jeg tekst </p>
+
+  	<script>
+      var tekst2El = document.querySelector("#tekst2");
+  		tekst2El.innerHTML='teksten ble endret';
+  		document.write(tekst2El.innerHTML);
+  	</script>
+
+  	<p> Vi kan også endre på andre elementer enn < p >-elementer. For eksempel kan hele body (synlig innhold på nettsiden) overskrives: <br>
+
+  	&nbsp;&nbsp; < script > <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; var  bodyEl = document.querySelector('body');<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; bodyEl.innerHTML = 'ERROR';<br>
+  	&nbsp;&nbsp; < /script ></p>
+
+  	<script>
+  /*	 var bodyEl = document.querySelector('body');
+  		bodyEl.innerHTML = 'ERROR';*/
+  	</script>
+
+  	<p> Å endre på body kan vi benytte oss av når vi vil legge til nye  elementer på nettsiden. Legg merke til at alt innhold som skal legges til først lagres i en variabel: <br>
+
+  	&nbsp;&nbsp; < script > <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; var bodyEl = document.querySelector("body");<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; var  liste='';<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; liste+='< ol >';<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; liste+='< li > Listepunkt 1 < /li >';<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; liste+='< li > Listepunkt 2  < /li >';<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; liste+='<  /ol >';<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; bodyEl.innerHTML += liste;<br>
+  	&nbsp;&nbsp; < /script></p>
+
+  	<script>
+  		var bodyEl = document.querySelector("body");
+  		var  liste='';
+  		liste+='<ol>';
+  		liste+='<li> Listepunkt 1 </li>';
+  		liste+='<li> Listepunkt 2  </li>';
+  		liste+='</ol>';
+      bodyEl.innerHTML += liste;
+
+      /* kan også skrives som
+      bodyEl+='<ol>';
+      bodyEl+='<li> Listepunkt 1 </li>';
+      bodyEl+='<li> Listepunkt 2  </li>';
+      bodyEl+='</ol>';
+
+      var liste='<ol><li>Listepunkt 1</li><li>Listepunkt 2</li></ol>';
+      bodyEl.innerHTML += liste;
+
+      bodyEl+='<ol><li>Listepunkt 1</li><li>Listepunkt 2</li></ol>';*/
+  	</script>
+
+
+  	<h1> Å legge til innhold med attributter </h1>
+  	<p> Når vi legger til elementer med attributter bruker vi samme metode. Når vi legger til attributter, angir vi verdien i fnutter: class="tekst" eller class='tekst'. Når vi gjør dette i kombinasjon med tekstEl.innerHTML="ny tekst" eller tekstEl.innerHTML='ny tekst' må vi være oppmerksomme på bruk av fnutter:  <br>
+  		<span class="rod"> tekstEl.innerHTML = '< p class='tekst' > gir problemer fordi vi bruker '&nbsp;' rundt både tekst og attributtverdi < /p >'</span><br>
+  		<span class="gronn"> tekstEl.innerHTML = '< p class="tekst" > går fint fordi vi skiller mellom '&nbsp;' og "&nbsp;" < /p >' </span> <br>
+  		<span class="rod"> tekstEl.innerHTML = "< p class="tekst" > gir problemer fordi vi bruker "&nbsp;" rundt både tekst og attributtverdi < /p >"</span> <br>
+  		<span class="gronn"> tekstEl.innerHTML = "< p class='tekst' > går fint fordi vi skiller mellom "&nbsp;"" og '&nbsp;'' < /p >" </span></p>
+
+    <div id="tom"></div>
+    <script>
+      var tomTekst = document.querySelector("#tom");
+      var nyTekst = "<p class='rod'>ny tekst</p>"
+      tomTekst.innerHTML += nyTekst;
+      var nyttBilde = "<img src='media/geit.png' width='200px'>";
+      tomTekst.innerHTML += nyttBilde;
+      var nyttBilde = '<img src="media/geit.png">';
+      tomTekst.innerHTML += nyttBilde;
+    </script>
+
+  	<h1> Oppgaver </h1>
+  	<p> s. 115: Oppgave 7.7, 7.8, 7.9, 7.10, 7.11</p>
+    <img src="media/oppgaver7_3.png" width="65%"><br>
+
+    <h1> Oppsummering av metoder forrige time: </h1>
+  	<table>
+  		<tr>
+  			<th> Metode </th> <th> Forklaring </th>
+  		</tr><tr>
+  			<td> document.querySelector("p")</td> <td> Henter ut elementer av typen p </td>
+  		</tr><tr>
+  			<td> document.querySelector("#tekst")</td> <td> Henter ut elementer med iden tekst </td>
+  		</tr><tr>
+  			<td> document.querySelector(".tekst")</td> <td> Henter ut elementer med klassen tekst </td>
+  		</tr><tr>
+  			<td> variabel.innerHTML="ny verdi" </td> <td> Gir variablen et nytt innhold (overskriver) </td>
+  		</tr><tr>
+  			<td> variabel.innerHTML += "mer innhold" </td> <td> Legger til innhold i variabelen </td>
+  		</tr>
+    </table>
+
+    <h1> Eksempel </h1>
+    <p> Opprett et tomt html-dokument. Bruk JavaScript til å hente inn body-elementet. I dette elementet skal du legge inn to tekstelementer <br>
+    Det tomme html-dokumentet ser da slik ut:<br>
+    &nbsp;&nbsp; < !DOCTYPE html ><br>
+    &nbsp;&nbsp; < html ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < head ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; < meta charset="utf-8" ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; < title >eksempel < /title ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < /head ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < body ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < /body ><br>
+    &nbsp;&nbsp; < /html ><br><br>
+    I body legges følgende script inn:<br>
+    &nbsp;&nbsp; < script > <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var bodyEl = document.querySelector('body');<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var tekst1El = "< p > Det første tekstelementet < /p >";<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; bodyEl.innerHTML += tekst1El;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var tekst2El = "< p > Det andre tekstelementet < /p >";<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; bodyEl.innerHTML += tekst2El;<br>
+    &nbsp;&nbsp; < /script > </p>
+
+  	<h1> Å redigere attributter </h1>
+  	<p class="attributter"> Metoden innerHTML bruker vi til å legge til innhold i elementene. På samme måte kan vi legge til attrributter (f.eks. klasser, ider, bredder, kilder osv) ved å bruke metoden setAttribute("attributt", "verdi"). Som eksempel kan jeg gi dette p-elementet, med klassen attributter, rød skrift: <br>
+
+  	&nbsp;&nbsp; < script > <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; var attributtEl = document.querySelector(".attributter");<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; attributtEl.setAttribute("class", "rod");<br>
+  	&nbsp;&nbsp; < /script ><br>
+
+  	<script>
+  		var attributtEl = document.querySelector(".attributter");
+  		attributtEl.setAttribute("class", "rod");
+  	</script>
+
+  	<p> På samme måte kan vi fjerne attributter ved bruk av metoden removeAttribute("attributt"): <br>
+
+  	&nbsp;&nbsp; < script > <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;  attributtEl.removeAttribute("class");<br>
+  	&nbsp;&nbsp; < /script ></p>
+
+  	<script>
+  		//attributtEl.removeAttribute("class");
+  	</script>
+
+    <h1> Eksempel </h1>
+    <p> I forrige eksempel: Legg til internal stylesheet med stilsettingen <br>
+    &nbsp;&nbsp; < style ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; .stor{<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-size: 200%;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; font-weight: bold;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+    &nbsp;&nbsp; &nbsp;&nbsp; #gronn{<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; background-color: lightgreen;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp; < /style ><br>
+    Gi hele nettsiden (body) klassen stor og iden gronn. <br><br>
+    I scriptet legges følgende kode til: <br>
+    &nbsp;&nbsp; bodyEl.setAttribute("class", "stor");<br>
+    &nbsp;&nbsp; bodyEl.setAttribute("id", "gronn");</p>
+
+  	<h1> Å redigere CSS-egenskaper </h1>
+  	<p> I kapittel 6 holdt vi oss til å bruke internal eller external stilsetting, da inline blir veldig rotete. Et eksempel på inline css er<br>
+  	&nbsp;&nbsp; < p style="color: blue;"> Blå tekst < /p ><br>
+  	Vi skal fortsatt ikke bruke inline-metoden i ren html-kode, men metoden gir oss en ny dot-notasjon i JavaScript: <br>
+  	&nbsp;&nbsp; variabel.style.egenskap = "verdi";<br>
+  	for eksempel <br>
+  	&nbsp;&nbsp; attributtEl.style.backgroundColor="lightblue";<br>
+  	Legg merke til at det skrives backgroundColor og ikke background-color som i css. På samme måte vil vi skrive marginTop, fontSize osv. </p>
+
+  	<script>
+  		attributtEl.style.backgroundColor="lightblue";
+      attributtEl.style.fontSize="30px";
+      attributtEl.style.borderRadius ="10px";
+      console.log(attributtEl);
+  	</script>
+
+  	<h1> Oppsummering av metoder denne timen: </h1>
+  	<table>
+  		<tr>
+  			<th> Metode </th> <th> Forklaring </th>
+  		</tr><tr>
+  			<td> document.querySelector("p")</td> <td> Henter ut elementer av typen p </td>
+  		</tr><tr>
+  			<td> document.querySelector("#tekst")</td> <td> Henter ut elementer med iden tekst </td>
+  		</tr><tr>
+  			<td> document.querySelector(".tekst")</td> <td> Henter ut elementer med klassen tekst </td>
+  		</tr><tr>
+  			<td> variabel.innerHTML="ny verdi" </td> <td> Gir variablen et nytt innhold (overskriver) </td>
+  		</tr><tr>
+  			<td> variabel.innerHTML += "mer innhold" </td> <td> Legger til innhold i variabelen </td>
+  		</tr><tr>
+  			<td> variabel.setAttribute("type attributt", "verdi")</td> <td> Legger til nytt attributt, f.eks. en klasse  (verdien er da klassenavnet)</td>
+  		</tr><tr>
+  			<td> variabel.removeAttribute("type attributt")</td><td> Fjerner et attributt, f.eks. en klasse, fra variabelen </td>
+  		</tr><tr>
+  			<td> variabel.style.egenskap="ny verdi" </td> <td> Endrer en enkelt css-egenskap uten bruk av klasser/ider </td>
+  		</tr>
+  	</table>
+
+  	<h1> Oppgaver </h1>
+  	<p> s. 118: Oppgave 7.12, 7.13, 7.14, 7.15, 7.16, 7.17 </p>
+    <img src="media/oppgaver7_3.png" width="40%"> <img src="media/oppgaver7_3b.png" width="55%">
+
+
+  </body>
+</html>

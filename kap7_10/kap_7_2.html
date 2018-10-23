@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="undervisning.css">
+	<title> Hente html-elementer med script </title>
+</head>
+<body>
+	<h1> Metoder for å hente inn html-elementer </h1>
+	<p> I CSS kan vi stilsette elementer ved å referere til elementet (img), klassen (.overskrifter) eller iden (#bilde1). Vi kan bruke det samme for å hente inn til script:<br>
+	&nbsp;&nbsp; metoden getElementById('bilde1') vil hente elementet med denne iden <br>
+	&nbsp;&nbsp; metoden getElementsByClassName('overskrifter') vil hente alle elementene med denne klassen <br>
+	&nbsp;&nbsp; metoden getElementsByTagName('img') vil hente alle elementene av denne typen <br>
+	Legg merke til at de to siste henter alle elementer: getElement<b>s</b>By<br><br>
+	Det er tungvint å forholde seg til tre metoder for å hente html-elementer, og vi velger derfor å erstatte de tre metodene med <br>
+	&nbsp;&nbsp; metoden querySelector('#bilde1'), querySelector('.overskrifter'), querySelector('img') som henter inn det første elementet av typen <br>
+	&nbsp;&nbsp; metoden querySelectorAll('.overskrifter'), querySelectorAll('img') som henter alle elementer av klassen/typen.<br><br>
+
+	Elementene vi henter inn lagres til variabler. Disse kan gjerne få navn som bilde1El (elementet bilde1), overskrifterEl (elementene overskrifter lagret i en array (liste - kommer i kapittel 11)). <br>
+	Frem til vi lærer arrays vil vi hente inn ett og ett element ved bruk av querySelector('#bilde1'), querySelector('.overskrifter'), querySelector('img'). querySelectorAll får vente til etter arrays.</p>
+
+
+	<h1> Eksempel </h1>
+	<p> Vi lager en side som svarer til DOM i forrige kapittel, men lar den første tekstbiten få class="tekst" og den andre få id="tekst":<br>
+	&nbsp;&nbsp; < p class="tekst"> Her skriver jeg masse tekst < /p><br>
+	&nbsp;&nbsp; < img src="media/lundefugl.jpg" width="300px"><br>
+	&nbsp;&nbsp; < p id="tekst"> Her skriver jeg mer tekst < /p><br>
+	</p>
+	<p class="tekst"> Her skriver jeg masse tekst </p>
+	<img src="media/lundefugl.jpg" width="300px">
+	<p id="tekst"> Her skriver jeg mer tekst </p>
+
+	<p> Ved hjelp av JavaScript henter jeg inn elementene og lagrer til variabler, som jeg senere skriver ut til siden og til konsollen. <br>
+	Vi ser at selve elementet er enten [object HTMLParagraphElement] eller [object HTMLImageElement]. I konsollen får vi mer informasjon: <br>
+
+	&nbsp;&nbsp; < script ><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var tekstKEl = document.querySelector('.tekst');<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var bildeEl = document.querySelector('img');<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var tekstIEl = document.querySelector('#tekst');<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; console.log(tekstKEl);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; console.log(bildeEl);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; console.log(tekstIEl);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;document.write(tekstKEl  + '< br >' + bildeEl + '< br >' + tekstIEl +'< br >')<br>
+	&nbsp;&nbsp;< /script ><br><br>
+
+	<script>
+		var tekstKEl = document.querySelector('.tekst');
+		var bildeEl = document.querySelector('img');
+		var tekstIEl = document.querySelector('#tekst');
+		console.log(tekstKEl);
+		console.log(bildeEl);
+		console.log(tekstIEl);
+		document.write(tekstKEl + '<br>' + bildeEl + '<br>' + tekstIEl +'<br>')
+	</script>
+	</p>
+
+	<h1> Oppgaver  </h1>
+	<p> s. 113: oppgave 7.3, 7.4, 7.5, 7.6 </p>
+	<img src="media/oppgaver7_2.png" width="55%">	<br><img src="media/oppgaver7_2b.png" width="50%"> <img src="media/oppgaver7_2c.png" width="40%">
+</body>
+</html>

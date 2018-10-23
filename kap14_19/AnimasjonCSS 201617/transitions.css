@@ -1,0 +1,43 @@
+/* generelle innstillinger */
+body{
+	background-color: #EBF0F1; 
+	color: #1C3C50; 
+	margin-left: 50px;
+}
+
+p{
+	font-size: 150%;
+}
+table, tr, td, th{
+	font-size: 110%;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+/*  transition */
+#byttForm, #byttForm2{
+	width: 200px; 
+	height: 200px; 
+	background-color: darkgreen; 
+	transition-property: border-radius; 
+	transition-delay: 2s; 
+	transition-duration: 5s; 
+}
+#byttForm2{
+	-webkit-transition: all 5s cubic-bezier(.03,.45,1,0); 
+    transition: all 5s cubic-bezier(.03,.45,1,0));
+}
+#byttFarge{
+	width: 200px; 
+	height: 200px;
+	background-color: darkblue; 
+	transition-property: background-color; 
+	transition-delay: 5s; 
+	transition-duration: 10s; 
+}
+#byttForm:hover, #byttForm2:hover{
+	border-radius: 70%
+}
+#byttFarge:hover{
+	background-color: yellow;
+}

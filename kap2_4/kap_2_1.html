@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Variabler </title>
+	<link rel="stylesheet" type="text/css" href="../grid.css">
+	<link rel="stylesheet" type="text/css" href="../stil.css">
+</head>
+<body>
+	<div class="col-12 row header">
+		Kapittel 2
+	</div>
+	<script type="text/javascript" src="../forside/meny.js"></script>
+	
+	<div class="innhold">
+	<h1> Variabler </h1>
+	<p> Variabler brukes til å holde orden på verdier underveis i et program. Slike verdier kan være tekst (f.eks. navn), tall (f.eks. konstanter) eller de boolske verdiene sann eller usann. <br>
+	For å fortelle programmet at vi lagrer en variabel, bruker vi nøkkelordet var: <br>
+	&nbsp;&nbsp; < script ><br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var fornavn = 'Asta';<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var etternavn = 'Fjærli';<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var alder = 28; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; // disse variablene kan vi bruke i f.eks. document.write() og console.log();<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; document.write('navnet er fornavn etternavn og alderen er alder år');<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; document.write('navnet er ' + fornavn + ' ' + etternavn + ' og alderen er ' + alder + ' år');<br>
+	&nbsp;&nbsp; < /script ><br>
+
+	<script>
+		var fornavn = 'Asta';
+		var etternavn = 'Fjærli';
+		var alder = 28;
+		document.write('navnet er fornavn etternavn og alderen er alder år<br>');
+		document.write('navnet er ' + fornavn + ' ' + etternavn + ' og alderen er ' + alder + ' år');
+	</script>
+
+	<h2> Oppgave </h2>
+	<p> Skriv inn koden over i dokumentet ditt fra i sta, men bytt ut med ditt eget navn og alder. Hva betyr + ' ' + (evt + " " +) mellom fornavn og etternavn? </p>
+
+	<h1> Overskriving av variabler </h1>
+	<p> Når vi først har lagret en variabel med nøkkelordet var, kan vi overskrive den uten å bruke nøkkelordet var: <br>
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; var tall = 0;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; tall = 42;<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log(tall); <br>
+		&nbsp;&nbsp; < /script ></p>
+
+	<h2> Oppgave </h2>
+	<p> Skriv inn koden over og se hva som skrives til konsollen. </p>
+	<script>
+		var tall = 0;
+		tall = 42;
+		console.log(tall);
+	</script>
+
+	<h1> Variabelnavn </h1>
+	<p> Regler for å sette variabelnavn: </p>
+	<ul>
+		<li> Variabelnavn er case sensitive: var TALL og var tall er to forskjellige variabler </li>
+		<li> Navnet kan ikke starte med et tall </li>
+		<li> Navnet kan ikke starte med stor forbokstav </li>
+		<li> Variabelnavn kan ikke hete det samme som metoder i JS: f.eks. ikke hete var console = 'konsollen'</li>
+		<li> Dersom variabelnavnet består av flere ord, gir vi det enten storForbokstav for neste ord, eller deler_med_understrek </li>
+		<li> Variabelnavn skal ikke inneholde punktum, komma, bindestrek eller andre tegn </li>
+		<li> Å bruke æøå i variabelnavn er lite ønskelig, da det begrenser bruk av koden med utenlandsk tastatur </li>
+		<li> Variabelnavn av typen matematiske konstanter lagres med kun store bokstaver: f.eks. Math.PI </li>
+	</ul>
+
+	<h1> Oppgaver </h1>
+	<p> I boka: 2.1 - 2.5 s. 28 (løsningsforslag til mange av bokas oppgaver på Lokus)<br>
+		På w3schools: besøk <a href="https://www.w3schools.com/js/js_variables.asp" target="_blank">variabler</a> </p>
+	</div>
+</body>
+</html>

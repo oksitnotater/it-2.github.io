@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Skjemaer</title>
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <meta charset="utf-8">
+</head>
+<body>
+	<h1> Utgangspunkt for å opprette et skjema fra en datakolleksjon </h1>
+	<p> Datakolleksjonen kan være en array eller et object, eller en kombinasjon av disse. Husk at vi finner enkeltverdier som <br>
+	&nbsp;&nbsp; a = [1, 2, 3, 4]; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; gir enkeltverdi a[0]<br>
+	&nbsp;&nbsp; o = {nokkel1: "verdi1", nokkel2: "verdi2", nokkel3: "verdi3"}; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; gir enkeltverdi o.nokkel1 <br><br>
+	Videre kan vi kombinere de to datakolleksjonene:<br>
+	&nbsp;&nbsp; a = [<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; {nokkela1: "verdia1", nokkela2: "verdia2"},<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; {nokkela3: "verdia3", nokkela4: "verdia4"}<br>
+	&nbsp;&nbsp;]; <br> 
+	&nbsp;&nbsp;&nbsp;&nbsp;gir enkeltverdi a[0].nokkela1<br>
+	&nbsp;&nbsp; o = {<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; nokkelo1: [1, 2, 3, 4], <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; nokkelo2: [5, 6, 7, 8]<br>
+	&nbsp;&nbsp; }; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; gir enkeltverdi o.nokkelo1[0] <br><br>
+
+	Vi løkker gjennom arrays ved å referere til plasseringen:<br>
+	&nbsp;&nbsp; for(var i = 0; i < array.length; i++){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; // kode som kjøres: f.eks. opprette inputfelter eller bearbeide inndata<br>
+	&nbsp;&nbsp; }<br><br>
+
+	Og vi løkker gjennom objects ved å referere til nøklene: <br>
+	&nbsp;&nbsp; for(var egenskap in object){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; // kode som kjøres: f.eks. opprette inputfelter <br>
+	&nbsp;&nbsp; }</p>
+
+	<h1> Å opprette inputfelter </h1>
+	<p> I html-fila har dere liggende en tom div der dere ønsker å legge inn skjemaet (å legge til skjemaet til en div og ikke til body gir mer kontroll på plassering). <br>
+	Denne henter dere inn i script ved å referere til id'en: <br>
+	&nbsp;&nbsp; var divEl = document.querySelector("#idTilDiven");<br>
+	I denne diven skal dere legge til et inputfelt for hver verdi i en array/et object med data. <br>
+	I forløkken/for-in-løkken må dere da: <br>
+	&nbsp;&nbsp; opprette et inputfelt <br>
+	&nbsp;&nbsp; gi inputfeltet en type (text, number, radio, checkbox,..). <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; husk at dersom du vil bruke select, må select opprettes utenfor forløkken og option opprettes inne i forløkken <br>
+	&nbsp;&nbsp; gi inputfeltet en id hvis du får bruk for denne senere <br>
+	&nbsp;&nbsp; gi inputfeltet et name, spesielt hvis det er radioknapper og du ønsker at bare en skal kunne velges <br>
+	&nbsp;&nbsp; gi inputfeltet en placeholder hvis du vil ha en forklarende tekst i det <br>
+	&nbsp;&nbsp; gi inputfeltet en value hvis du vil ha muligheten til å kjøre med testdata uten å fylle inn hver gang <br>
+	Utenfor forløkken legger du til f.eks. en knapp som styrer funksjonen som tar inn inputverdiene. </p>
+
+	<select id = "test">
+		<option value="1">Første felt </option>
+		<option value="2">Andre felt </option>
+		<option value="3">Tredje felt </option>
+		<option value="4">Fjerde felt </option>
+	</select>
+
+	<h1> Å hente inn data </h1>
+	<p> Med metoden <br>
+	&nbsp;&nbsp; var inndata = document.querySelectorAll("input")  // evt ("input[type='radio']") hvis vi vil spesifisere videre<br>
+	får vi lagret alle inputfelt i en array. Verdien i disse feltene kan vi hente med en forløkke:<br>
+	&nbsp;&nbsp; for(var i = 0; i < inndata.length; i++){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; console.log(inndata[i].value)<br>
+	&nbsp;&nbsp; }<br>
+	I stedet for å logge verdien kan den da legges til en sumvariabel, fylles inn i et object i en array med tomme nøkler <br>
+	&nbsp;&nbsp; opprinneligArray[i].tomNokkel = inndata[i]<br>
+	eller annet du måtte ha bruk for i den aktuelle oppgaven </p>
+
+	<h1> Å legge til ulike skjemaer på samme side </h1>
+	<p> Av og til vil skjemaet som dukker opp være avhengig av et valg brukeren tar når siden åpnes: f.eks. kommer det ulike skjemaer for å bestille ferie om man velger kort eller lang sykkeltur. Dette løser dere ved å lage en funksjon for hvert skjema som skal lages som tar utgangspunkt i det aktuelle datagrunnlaget. <br>
+	Som et eksempel: Når siden lastes vises to div'er der man velger kort eller lang sykkeltur. <br>
+	Hver av disse har en lytter slik at den akutelle funksjonen kjører. <br>
+	I scriptet har hentet inn en div der du vil legge ut skjemaet og du har liggende datagrunnlaget for både kort og lang sykkeltur: f.eks. <br>
+	&nbsp;&nbsp; var kortTur = [<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; {aktivitet: "fruktplukking", pris: 100}, <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; {aktivitet: "båttur", pris: 500}<br>
+	&nbsp;&nbsp;]<br>
+	også videre med et object for hver aktvitet med de samme nøklene i alle. <br>
+	Funksjonen som kjøres oppretter da et skjema for den valgte turen, mens funksjonen for den andre turen ikke kjøres. </p>
+
+	<h1> Den siste repetisjonen: </h1>
+	<p> Jeg ville brukt tida på å løse oppgave 2 fra høstens eksamen med canvas samt de skjemaoppgaver fra fjorårets heldags og tidligere eksamener som dere ikke har gjort enda. </p>
+
+</body>
+</html>

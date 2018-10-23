@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset = "UTF-8">
+	<title> Skjemaer</title>
+</head>
+<body>
+	<!-- lenker til to aktuelle sider -->
+	<h3> Andre relevante lenker </h3>
+	<ul> 
+		<li><a href="http://www.w3schools.com/jsref/event_onclick.asp"> onclick </a></li>
+		<li><a href ="http://www.w3schools.com/jsref/jsref_tolowercase.asp"> toLowerCase </a> </li>
+		<li><a href="http://www.w3schools.com/jsref/event_oninput.asp"> oninput </a></li>
+	</ul>
+	<!-- lager et skjema der svarene lagres -->
+	<form id="skjema" method="GET">
+		Navn: <br>
+		<input type="text" name="navn"> <br><br>
+		Adresse:<br>
+		<input type="text" name="adresse"> <br><br>
+		Telefonnummer:<br>
+		<input type="text" name="nummer"> <br><br>
+		<!-- bruker onClick-funksjonen: -->
+		<input type="submit" onClick="skjemaSvar(this.form);return false" name="send" value="Send svar">
+	</form>
+	<script src="skjema.js"></script>
+</body>
+</html>

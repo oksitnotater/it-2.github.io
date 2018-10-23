@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Animasjoner med css</title>
+    <link rel="stylesheet" type="text/css" href="kap_18_1_2.css">
+    <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Så langt: </h1>
+  	<p> Grid gir oss mulighet til å plassere elementer der vi vil ha dem på en nettside <br>
+  	Transitions gir oss mulighet til å lage enkle overganger mellom css-verdier <br>
+  	Animations gir oss mulighet til å gjenta overganger og til å sette sammen ulike overganger <br>
+  	Animasjoner styrer vi enten med start- og slutt-verdi eller med prosentvise overganger <br>
+  	Vi kan kombinere css-animasjoner med enkle script for å hendelsesstyre overgangene </p>
+  	<h1> Transfomasjoner med CSS </h1>
+  	<p> Transformasjoner er en måte å endre utseendet til et element uten at det påvirker resten av siden <br>
+  	I CSS gjøres dette med egenskapen transform, der egenskaper som forflytning (translate), rotasjon (rotate), skalering (scale) inngår <br>
+  	Dette kombineres gjerne med en gridstruktur for plassering av elementer. <br>
+  	Som vanlig: link til <a href="http://www.w3schools.com/cssref/css3_pr_transform.asp">w3schools.com</a> hvis dere vil ha mer info. </p>
+  	<h1> Oversikt over egenskaper og brukte verdier </h1>
+  	<table>
+  	<tr><th> Egenskap </th> <th> Beskrivelse </th><th> Verdi/eksempel </th></tr>
+  	<tr><td>translate</td> <td>Beskriver forflytning i xy-planet</td><td>transform: translate{100px, 150px} flytter 100 px mot høyre og 150 px nedover</td></tr>
+  	<tr><td>scale</td><td>Beskriver endring i størrelse</td><td>transform: scale(2, 0.5) dobler størrelse i x-retning og halverer i y-retning</td></tr>
+  	<tr><td>rotate</td> <td>Beskriver en rotasjon av objektet</td><td>transform: rotate(15deg) roterer 15 grader med klokka <br>
+  	transform: rotate(2turn) roterer 2 hele runder</td></tr>
+  	<tr><td>skew</td> <td>Beskriver en forflytning av punktene </td><td>transform: skew(20deg,10deg); forflytter punktene 20 og 10 grader </td></tr>
+  	<tr><td>translateX, scaleY, rotateY, skewX,...</td> <td>Angir transformasjon i en retning</td><td></td></tr>
+  	<tr><td>translate3d(x,y,z), scale3d(x,y,z), rotate3d(x,y,z), skew3d(x,y,z)</td> <td>Angir tredimensjonal transformasjon</td><td></td></tr>
+  	<tr><td>initial</td><td>Tilbakestiller til standardverdier</td><td></td></tr>
+  	</table>
+
+  	<h1> Eksempel 1: bruk av transform </h1>
+  	<p> <b>HTML-kode:</b> <br>
+  	&nbsp;&nbsp; < div id="flytt" >< /div ><br>
+  	&nbsp;&nbsp; < div id="skaler" >< /div > <br>
+  	&nbsp;&nbsp; < div id="roter" >< /div ><br>
+  	&nbsp;&nbsp; < div id="punktforflytt" >< /div > <br>
+  	&nbsp;&nbsp; < div id="samlet" >< /div > <br><br>
+  	<b> CSS-kode: </b><br>
+  	&nbsp;&nbsp; #flytt{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; background-color: pink;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; width: 400px;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; height: 200px;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; transform: translate(400px, 50px);<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; #skaler{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; background-color: lightgreen;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; width: 400px;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; height: 200px;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; transform: scale(0.4, 1.6);<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; #roter{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; background-color: purple;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; width: 400px;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; height: 200px;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; transform: rotate(-30deg);<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; #punktforflytt{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; background-color: orange;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; width: 400px;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; height: 200px;<br>	
+	&nbsp;&nbsp;&nbsp;&nbsp; transform: skew(30deg);<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; #samlet{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; background-color: yellow;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; width: 400px;	<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; height: 200px;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; transform: translate(800px, -40px) scale(2, 0.8) rotate(20deg);<br>
+	&nbsp;&nbsp; }</p>
+
+  	<div id="flytt"></div>  		
+  	<div id="skaler"></div>
+  	<div id="roter"></div>
+  	<div id="punktforflytt"></div>
+  	<div id="samlet"></div>
+
+  	<h1> Transformasjon med JavaScript - eksempel 2: boks som roterer når knapp trykkes </h2>
+  	<p> <b> HTML-kode:</b> Lager først boksen og en knapp for å rotere boksen: <br>
+   	&nbsp;&nbsp; < div id="boks" > < /div ><br>
+ 	&nbsp;&nbsp; < button id="roterKnapp" > Roter < /button > <br><br>
+
+  	<b> CSS-kode:</b><br>
+	&nbsp;&nbsp; #boks{<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; width: 300px;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; height: 300px;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; background-color: lightBlue;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; border: 2px solid blue;<br>
+  	&nbsp;&nbsp; }<br>
+  	Ved hjelp av en animasjon bestemmer jeg hvor ofte boksen skal rotere: jeg gir animasjonen 3 sekunder for en hel runde og deler en runde i 10 deler: gir ny vinkel hver 10% der vinkelen øker med 36 grader <br>
+  	&nbsp;&nbsp; .rotereBoks{<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; animation-name: rotasjon;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; animation-duration: 3s;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; animation-iteration-count: 1;<br>
+  	&nbsp;&nbsp; }<br>
+  	Spesifiserer så at data for rotasjonsanimasjonen. Her bruker jeg transisjonen transform: rotate(n*36deg) som animasjonsargument. <br>
+  	&nbsp;&nbsp; @keyframes rotasjon{<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 10% {transform:rotate(36deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 20% {transform:rotate(72deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 30% {transform:rotate(108deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 40% {transform:rotate(144deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 50% {transform:rotate(180deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 60% {transform:rotate(216deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 70% {transform:rotate(252deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 80% {transform:rotate(288deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 90% {transform:rotate(324deg);}<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; 100% {transform:rotate(360deg);}<br>
+	&nbsp;&nbsp; }<br><br>
+
+  	<b> JS-kode:</b><br>
+  	I script tillegger jeg boksen klassen rotereBoks når knappen trykkes: <br>
+	&nbsp;&nbsp; var knappEl = document.querySelector("#roterKnapp");<br>
+	&nbsp;&nbsp; var boksEl = document.querySelector("#boks");<br>
+	&nbsp;&nbsp; knappEl.addEventListener("click", roterFunksjon);<br>
+	&nbsp;&nbsp; function roterFunksjon(){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; boksEl.classList.add("rotereBoks");<br>
+	&nbsp;&nbsp; } </p>
+
+  	<div id="boks"></div>
+  	<button id="roterKnapp">Roter </button>
+	<script>
+		var knappEl = document.querySelector("#roterKnapp");
+		var boksEl = document.querySelector("#boks");
+		knappEl.addEventListener("click", roterFunksjon);
+		function roterFunksjon(){
+			boksEl.classList.add("rotereBoks");
+		}
+	</script>
+
+	<h1> 3D-transformasjoner: eksempel 3 </h1>
+	<p> Transformasjoner kan skje om tre akser. Dette kalles 3D-transformasjoner. <br>
+	Lager først et element å rotere: setter inn skrift for å illustrere rotasjonen: <br>
+	< div class="boks3D" > Se på dette! < / div > </p>
+	
+	<div class="boks3D"> <p>Se på dette!</p> </div>
+	<p> Rotasjon om x: <br>
+	&nbsp;&nbsp; transform: rotateX(180deg); </p>
+	<div class="boks3D" id="boks3DX"> <p>X-rotasjon!</p> </div>
+	<p> Rotasjon om y: <br>
+	&nbsp;&nbsp; transform: rotateY(180deg); </p>
+	<div class="boks3D" id="boks3DY"> <p>Y-rotasjon!</p> </div>
+	<p> Rotasjon om z: <br>
+	&nbsp;&nbsp; transform: rotateZ(180deg); </p>
+	<div class="boks3D" id="boks3DZ"> <p>Z-rotasjon!</p> </div>
+
+	<p> Vi kan tydeligere se hva som skjer ved å lage en animasjon av overgangen: </p>
+	<p> Urotert: </p>
+	<div class="boks3D"> <p> Se på dette!</p> </div>
+	<p> X-rotasjon: </p>
+	<div class="boks3D" id="boks3DX_an"> <p>X-rotasjon!</p> </div>
+	<p> Y-rotasjon:</p>
+	<div class="boks3D" id="boks3DY_an"> <p>Y-rotasjon!</p> </div>
+	<p> Z-rotasjon: </p>
+	<div class="boks3D" id="boks3DZ_an"> <p>Z-rotasjon!</p> </div>
+
+	<h1> Oppgaver </h1>
+	<p> Prøv dere frem: <br>
+	Hva forventer dere fra transform: translate3d(x,y,z), transform: scale3d(x,y,z) og transform: rotate3d(x,y,z,angle)? Test de forskjellige. <br>
+	Knytt transformasjonsanimasjonen til en hendelse: f.eks. en boks som begynner å rotere når du klikker på den. <br>
+	Side 289: Oppgave 18.2 <br>
+	Side 290-291: Se på kodeeksempel 18.2, oppgave 18.4, 18.5 <br>
+	Side 292-293: Se på kodeeksempel 18,4, oppgave 18.7, 18.8 <br>
+	Evt jobbe med øveoppgaver (ligger på its)</p>
+
+  </body>
+</html>

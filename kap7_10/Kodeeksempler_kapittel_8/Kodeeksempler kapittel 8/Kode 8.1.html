@@ -1,0 +1,32 @@
+<!doctype html>
+<html>
+<head>
+  <title>click-hendelse</title>
+  <meta charset="UTF-8">
+  <style>
+  body {
+    font-family: "Century Gothic", Arial, sans-serif;
+    font-size: 14px;
+  }
+  p {
+    background-color: #f05a3f;
+    padding: 20px;
+  }
+  p:hover {
+    cursor: pointer;
+  }
+  </style>
+</head>
+<body>
+  <p id="avsnitt"> Trykk på meg! </p>
+
+<script>
+var avsnittEl = document.querySelector("#avsnitt");
+avsnittEl.addEventListener("click", nytekst);
+
+function nytekst() {
+  avsnittEl.innerHTML = "Du trykket på meg!";
+}
+</script>
+</body>
+</html>

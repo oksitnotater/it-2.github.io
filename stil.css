@@ -1,0 +1,81 @@
+html{
+  height: 100%;
+}
+body{
+  font-family: arial;
+  height: 70%;
+}
+.header{
+  background-color: #3399FF;
+  color: white;
+  text-align: center;
+  font-size: 24px;
+}
+.innhold{
+  margin: 10px 5%;
+}
+table, th, td{
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+h1, h2{
+  color: #143D66;
+}
+.info{
+  height: 100%;
+}
+.note{
+  font-size: 80%;
+}
+/* dropdownmenyen*/
+.dropbtn2, .dropbtn7, .dropbtn11, .dropbtn14, .dropbtn20, .dropbtnE, .dropbtnN {
+    background-color: #3399FF;
+    color: white;
+    padding: 5px;
+    font-size: 16px;
+    border: none;
+    min-height: 50px;
+    text-align: center;
+}
+.dropdown2, .dropdown7, .dropdown11, .dropdown14, .dropdown20, .dropdownE, .dropdownN{
+    position: relative;
+    display: inline-block;
+}
+.dropdown-content2, .dropdown-content7, .dropdown-content11, .dropdown-content14, .dropdown-content20, .dropdown-contentE, .dropdown-contentN {
+    display: none;
+    position: absolute;
+    background-color: #f1f1f1;
+/*  min-width: 160px;*/
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+}
+.dropdown-content2 a, .dropdown-content7 a, .dropdown-content11 a, .dropdown-content14 a, .dropdown-content20 a, .dropdown-contentE a, .dropdown-contentN a{
+  color: black;
+  padding: 5px;
+  text-decoration: none;
+  display: block;
+  font-size: 10px;
+}
+.dropdown-content2 a:hover{background-color: #ddd;}
+.dropdown-content7 a:hover{background-color: #ddd;}
+.dropdown-content11 a:hover{background-color: #ddd;}
+.dropdown-content14 a:hover{background-color: #ddd;}
+.dropdown-content20 a:hover{background-color: #ddd;}
+.dropdown-contentE a:hover{background-color: #ddd;}
+.dropdown-contentN a:hover{background-color: #ddd;}
+
+.dropdown2:hover .dropdown-content2{display: block;}
+.dropdown7:hover .dropdown-content7{display: block;}
+.dropdown11:hover .dropdown-content11{display: block;}
+.dropdown14:hover .dropdown-content14{display: block;}
+.dropdown20:hover .dropdown-content20{display: block;}
+.dropdownE:hover .dropdown-contentE{display: block;}
+.dropdownN:hover .dropdown-contentN {display: block;}
+
+.dropdown2:hover .dropbtn2{background-color: #3399FF;}
+.dropdown7:hover .dropbtn7{background-color: #3399FF;}
+.dropdown11:hover .dropbtn11{background-color: #3399FF;}
+.dropdown14:hover .dropbtn14{background-color: #3399FF;}
+.dropdown20:hover .dropbtn20{background-color: #3399FF;}
+.dropdownE:hover .dropbtnE{background-color: #3399FF;}
+.dropdownN:hover .dropbtnN{background-color: #3399FF;}

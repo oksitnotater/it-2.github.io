@@ -1,0 +1,84 @@
+/* generelle innstillinger */
+body{
+	background-color: #EBF0F1; 
+	color: #1C3C50; 
+	margin-left: 50px;
+}
+
+p{
+	font-size: 150%;
+}
+table, tr, td, th{
+	font-size: 110%;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+/* transition */
+#byttMye{
+	width: 200px; 
+	height: 200px; 
+	background-color: darkgreen; 
+	/*transition-property: background-color, width, height; 
+	transition-delay: 2s; 
+    transition-duration: 4s;*/
+    transition: all 4s 2s;
+}
+#byttMye:hover{
+	background-color: yellow;
+	width: 400px;
+	height: 400px;
+}
+
+#byttForm{
+	width: 200px; 
+	height: 200px; 
+	background-color: darkgreen; 
+	transition-property: border-radius; 
+	transition-delay: 2s; 
+	transition-duration: 5s; 
+}
+#byttForm2{
+	width: 300px; 
+	height: 300px; 
+	background-color: darkblue; 
+	transition-property: border-radius; 
+	transition-delay: 2s; 
+	transition-duration: 10s; 
+}
+.byttForm2{
+	border-radius: 70%;
+} 
+
+#byttToGanger{
+	width: 200px; 
+	height: 200px; 
+	background-color: darkgreen; 
+	transition: background-color 2s 0.5s;
+}
+#byttToGanger:hover{
+	background-color: yellow;
+}
+
+/*  animation */
+#animasjon{
+	width: 200px; 
+	height: 200px; 
+	background-color: white;
+	border: 2px solid black; 
+	animation-name: radiusFarge;
+	animation-duration: 10s;
+	animation-delay: 2s;
+	animation-iteration-count: infinite;
+}
+@keyframes radiusFarge{
+	10% { background-color: red;}
+	20% { background-color: orange;}
+	30% { background-color: yellow;}
+	40% { background-color: green;}
+	50% { border-radius: 70%}
+	60% { background-color: darkgreen}
+	70% { background-color: blue;}
+	80% { background-color: darkblue;}
+	90% { background-color: violet;}
+	100% {border-radius: 0%;}
+}

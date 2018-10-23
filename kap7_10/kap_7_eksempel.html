@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title> Eksempel med DOM </title>
+    <link rel="stylesheet" type="text/css" href="undervisning.css">
+</head>
+<body>
+    <h1> Oppgave </h1>
+    <p> Denne fila viser kun hvordan oppgaven skal løses. Selve scriptet er laget i fila kap_7_eksempel_script.html <br>
+    1. Opprett et nytt, tomt html-dokument. <br>
+    2. Legg (som internal style sheet er ok) til klassene overskrifter og tom samt kantlinjer for tabeller: <br>
+    &nbsp;&nbsp; .overskrifter{<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; font-family: Arial, sans-serif; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; font-size: 400%; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; color: green; <br>
+    &nbsp;&nbsp; }<br>
+    &nbsp;&nbsp; .tom{ <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; background-color: grey; <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; width: 70%;<br>
+    &nbsp;&nbsp; }<br>
+    &nbsp;&nbsp; table, td{<br>
+	  &nbsp;&nbsp;&nbsp;&nbsp; border: 1px solid black;<br>
+	  &nbsp;&nbsp;&nbsp;&nbsp; border-collapse: collapse;<br>
+	  &nbsp;&nbsp; }<br>
+	  3. Legg til følgende innhold ved hjelp av script: <br>
+	  &nbsp;&nbsp; a) En overskrift som tilhører klassen overskrifter <br>
+	  &nbsp;&nbsp; b) En nummerert liste med fire elementer <br>
+	  &nbsp;&nbsp; c) Et img-element uten src <br>
+	  &nbsp;&nbsp; d) Et tomt div-element med klassen "tom"<br>
+  	4. Gi lista rød skriftfarge og endre listetypen til å være lower-roman <br>
+  	5. Gi img-elementet src="http://wpstatic.idium.no/www.dooa.no/2017/08/Basse-Bj%C3%B8rndal-256x300.jpg" (eller annet valgfritt bilde) og bredde 400px <br>
+  	6. Fyll det tomme div-elementet med en 4*4 tabell som inneholder bokstaven A der tabellen fyller hele bredden til div-elementet</p>
+
+  	<h1> Løsning </h1>
+  	<p> Husk at scriptet i sin helhet ligger i egen fil <br><br>
+
+  	3. Legg til følgende innhold ved hjelp av script: <br>
+  	&nbsp;&nbsp; // henter først inn body: <br>
+  	&nbsp;&nbsp; var bodyEl = document.querySelector("body");<br><br>
+  	a) En overskrift som tilhører klassen overskrifter <br>
+  	&nbsp;&nbsp; var overskriftEl = document.createElement("h2");<br>
+    &nbsp;&nbsp; overskriftEl.innerHTML = 'En litt mer sammensatt oppgave';<br>
+    &nbsp;&nbsp; overskriftEl.setAttribute("class", "overskrifter");<br>
+    &nbsp;&nbsp; bodyEl.appendChild(overskriftEl);<br><br>
+
+  	b) En nummerert liste med fire elementer <br>
+  	&nbsp;&nbsp; var olListeEl = document.createElement("ol");<br>
+    &nbsp;&nbsp; for(var i = 0; i< 4; i++){ <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; var listeEl = document.createElement("li");<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; listeEl.innerHTML = 'dette er listepunkt nr ' + (i+1);<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; olListeEl.appendChild(listeEl);<br>
+    &nbsp;&nbsp; }<br>
+    &nbsp;&nbsp; bodyEl.appendChild(olListeEl);<br><br>
+
+  	c) Et img-element uten src <br>
+  	&nbsp;&nbsp; var bildeEl = document.createElement("img");<br>
+    &nbsp;&nbsp; bildeEl.setAttribute("alt", "det finnes ikke noe bilde");<br>
+    &nbsp;&nbsp; bodyEl.appendChild(bildeEl);<br><br>
+
+
+  	d) Et tomt div-element med klassen "tom"<br>
+  	&nbsp;&nbsp; var tomEl = document.createElement("div");<br>
+    &nbsp;&nbsp; tomEl.setAttribute("class", "tom");<br>
+    &nbsp;&nbsp; bodyEl.appendChild(tomEl);<br><br>
+
+  	4. Gi lista rød skriftfarge og endre listetypen til å være lower-roman <br>
+  	&nbsp;&nbsp; olListeEl.style.color="red";<br>
+    &nbsp;&nbsp; olListeEl.style.listStyleType="lower-roman";<br><br>
+
+  	5. Gi img-elementet src="http://wpstatic.idium.no/www.dooa.no/2017/08/Basse-Bj%C3%B8rndal-256x300.jpg" (eller annet valgfritt bilde) og bredde 600px <br>
+  	&nbsp;&nbsp; bildeEl.setAttribute("src", "http://wpstatic.idium.no/www.dooa.no/2017/08/Basse-Bj%C3%B8rndal-256x300.jpg");<br>
+    &nbsp;&nbsp; bildeEl.setAttribute("width", "400px");<br><br>
+
+  	6. Fyll det tomme div-elementet med en 4*4 tabell som inneholder bokstaven A der tabellen fyller hele bredden til div-elementet <br>
+  	&nbsp;&nbsp; var divEl = document.querySelector(".tom");<br>
+    &nbsp;&nbsp; var tabellEl = document.createElement("table");<br>
+   	&nbsp;&nbsp; for (i = 0; i < 4; i++){<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; radEl = document.createElement("tr");<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; for (j = 0; j < 4; j++){<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;var kolonneEl = document.createElement("td");<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; kolonneEl.innerHTML = "A";<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; radEl.appendChild(kolonneEl);<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+   	&nbsp;&nbsp;&nbsp;&nbsp; tabellEl.appendChild(radEl);<br>
+   	&nbsp;&nbsp; }<br>
+   	&nbsp;&nbsp; tabellEl.style.width="100%";<br>
+   	&nbsp;&nbsp; divEl.appendChild(tabellEl);</p>
+</body>
+</html>

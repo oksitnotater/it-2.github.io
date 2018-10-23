@@ -1,0 +1,106 @@
+/* oppgave 1*/
+.innpakning {
+  border: solid black 1px;
+  margin: auto;
+  background-color: #CCCCFF;
+  width: 100%;
+  height: 170%;
+  padding: 20px;
+}
+#farge {
+  border: solid black 1px;
+  background-color: red;
+  width: 400px;
+  height: 400px;
+  padding: 10px;
+  transition-duration: 3s;
+}
+#farge:hover {
+  border-radius:200px;
+  background-color: blue;
+}
+#roter {
+  border: solid black 1px;
+  width: 400px;
+  height: 200px;
+  background-color: yellow;
+}
+.roter{
+  animation: roter 3s 1;
+}
+@keyframes roter {
+  100% {transform: rotateZ(90deg);}
+}
+#bildetekst{
+  position: relative;
+  overflow: hidden;
+  height: 600px;
+}
+#bildetekst img{
+  position: absolute;
+  width: 80%;
+  margin-left: 10%;
+  padding: 2%;
+  opacity: 1;
+  transition: 1s;
+}
+#bildetekst p{
+  position: absolute;
+  width: 80%;
+  margin-left: 10%;
+  margin-top: 10%;
+  font-size: 24px;
+  text-align: center;
+  opacity: 0;
+  transition: 1;
+}
+#bildetekst:hover img{
+  opacity: 0;
+}
+#bildetekst:hover p{
+  opacity: 1;
+}
+
+/*oppgave 2*/
+#innpakning{
+  width: 100%;
+  min-height: 400px;
+  align-items: center;
+}
+#bilInnpakning{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 531px;
+  height: 172px;
+  animation: kjore 9s linear infinite;
+}
+@keyframes kjore {
+  0% {left: -10; top: 0%;}
+  10% {left: 30%; top: 0%;}
+  30% {left: 30%; top: 0%;}
+  50% {left: 80%; top: 0%; transform: rotateY(0deg);}
+  51% {left: 80%; top: 50%; transform: rotateY(180deg);}
+  100% {left: -10%; top: 50%;transform: rotateY(180deg);}
+}
+#hjul1{
+  position: absolute;
+  bottom: 16px;
+  left: 77px;
+  animation: roter 9s linear infinite;
+}
+
+#hjul2{
+  position: absolute;
+  bottom: 16px;
+  right: 60px;
+  animation: roter 9s linear infinite;
+}
+
+ @keyframes roter{
+  0% {transform: rotate(0deg);}
+  10% {transform: rotate(90deg);}
+  30% {transform: rotate(90deg);}
+  50% {transform: rotate(180deg);}
+  100% {transform: rotate(450deg);}
+ }

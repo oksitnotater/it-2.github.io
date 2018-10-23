@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Løsningsforslag</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<h1> Volum og areal for ulike figurer </h1>
+	<script>
+	  // superklasse for sirkler
+    class Sirkel {
+        constructor(radius) {
+          this.radius = radius;
+        }
+      get areal() {
+          return (Math.PI*(this.radius^2)).toFixed(2);
+      }
+      get omkrets (){
+        return (2*Math.PI*this.radius).toFixed(2);
+      }
+    }
+    // subklasse for kule
+    class Kule extends Sirkel {
+      constructor(radius){
+        super(radius)
+      }
+      get volum() {
+        return ((4/3)*Math.PI*(this.radius^3)).toFixed(2);
+      }
+      get overflate() {
+        return (4*Math.PI*this.radius).toFixed(2);
+      }
+    }
+
+    let sirkel1 = new Sirkel(6);
+    let sirkel2 = new Sirkel(10);
+    let kule1 = new Kule(7);
+    let kule2 = new Kule(9);
+
+    // skriver ut resultat
+    document.write("Sirkel 1 har radius " +sirkel1.radius + ", omkrets "+sirkel1.omkrets+" og areal "+sirkel1.areal+"<br> Sirkel 2 har radius " +sirkel2.radius + ", omkrets "+sirkel2.omkrets+" og areal "+sirkel2.areal+"<br>	Kule 1 har radius " + kule1.radius + ", overflateareal "+kule1.overflate+" og volum "+kule1.volum+"<br> Kule 2 har radius " + kule2.radius + ", overflateareal "+kule2.overflate+" og volum "+kule2.volum);
+    </script>
+</body>
+</html>

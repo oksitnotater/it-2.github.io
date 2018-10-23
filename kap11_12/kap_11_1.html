@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Arrays </title>
+	<link rel="stylesheet" type="text/css" href="css/undervisning.css">
+</head>
+<body>
+	<h1> Plan frem til jul </h1>
+	<p> Det neste temaet er datakolleksjonene arrays og objects. Dette er to måter å strukturere informasjon på. Vi kommer til å bruke timene frem til jul på å bli kjent med metoder knyttet til disse. I  uke 1 vil dere få et repetisjonsarbeidssett. Vurdering i temaet blir i uke 3: mulige datoer er mandag 15. januar og torsdag 18. januar.<br><br>
+	<b> Timene før jul: </b><br> 
+	Torsdag 7. desember: Hva er arrays? 11.1: Lage arrays, redigere arrays, finne enkeltverdier <br>
+	Fredag 8. desember: Elevevaluering. 11.2: Løkke gjennom arrays <br>
+	Mandag 11. desember: 11.2: querySelectorAll(), 11.3: Sortere arrays, bubblesort <br>
+	Torsdag 14. desember: Hva er objects? 12.1: Lage objects, bruke objects, løkke gjennom objects, redigere objects<br>
+	Fredag 15. desember: 12.2: this.notasjon <br>
+	Mandag 18. desember: 12.3: Arrays med objects og objects med arrays.</p> 
+
+
+	<h1> Arrays </h1>
+	<p> Så langt har vi sortert all data i enkeltvariabler, noe som er greit når vi ikke har mye data og når vi ikke skal gjenta funksjoner for flere variabler. <br>
+	Se for dere følgende situasjoner: </p>
+	<ol> 
+		<li> Dere skal finne gjennomsnittet av 100 tall</li>
+		<li> Dere skal lage en quiz med 20 spørsmål der alle har radioknapper og like mange svaralternativer </li>
+		<li> Dere skal sortere et sett med 50 tall i stigende rekkefølge </li>
+		<li> Dere skal sortere klasselisten etter første navn i fornavnet </li>
+	</ol>
+	<p> I alle situasjonene over kan man bruke mange enkeltvariabler, men dette blir mye å kode, og koden vil inneholde mange gjentakelser. Da er det enklere å bruke arrays, som er en samling av enkeltverdier. </p>
+
+	<h1> Å deklarere arrays </h1>
+	<p> Vi definerer en array på samme måte som en variabel: <br>
+	&nbsp;&nbsp; var tallArray = <br>
+	Men i stedet for å gi den en enkeltverdi samler vi alt som skal lagres i arrayen mellom [] og skiller verdiene med komma: <br>
+	&nbsp;&nbsp; var tallArray = [0, 1, 2, 3, 4, 5];<br>
+	Variablen over er array med lengde 6. Som for tekststrenger har første verdi index 0: <br>
+	&nbsp;&nbsp; tallArray[0] = 0;</p>
+
+	<h1> Oppgave </h1>
+	<p> Lag to arrayer: en array navn som inneholder navn på familiemedlemmene dine og en array alder som inneholder alderen deres. Skriv ut lengden av hver array (navn.length og alder.length) og den første og siste verdien i arrayen. </p>
+	<script>
+		var navn = ['Asta', 'Christian'];
+		var alder = [27, 29];
+		console.log(navn.length, alder.length);
+		console.log(navn[0], navn[navn.length-1], alder[0], alder[alder.length-1])
+	</script>
+
+	<h1> Array inni array </h1>
+	<p> Vi kan også slå sammen navn- og alder-arrayene til én familiearray med to dimensjoner: <br>
+		&nbsp;&nbsp; var familie = [<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; ['Asta', 'Christian'],<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; [27, 29]<br>
+		&nbsp;&nbsp; ];<br><br>
+		For å henge ut enkeltverdier vil nå <br>
+		familie[0] returnere ['Asta', 'Christian']<br>
+		familie[1] returnere [27, 29]<br>
+		familie[0][0] returnere 'Asta'<br>
+		familie[0][1] returnere 'Christian'<br>
+		familie[1][0] returnere 27<br>
+		familie[1][1] returnere 29<br>
+	</p>
+
+	<h1> Oppgave </h1>
+	<p> Lag en array som inneholder navn og alder på familiemedlemmene dine. Skriv ut lengden av arrayen og ett navn og én alder.</p>
+
+	<script>
+		var familie = [
+			['Asta', 'Christian'],
+			[27, 29]
+		];
+		console.log(familie[0], familie[1]);
+		console.log(familie.length, familie[0].length);
+		console.log(familie[0][0], familie[0][1], familie[1][0], familie[1][1]);
+	</script>
+
+	<h1> Å redigere arrays </h1>
+	<p> Selv om vi deklarerer hele arrayen i ett, kan vi gå tilbake å redigere enkeltverier i arrayen, legge til enkeltverdier i arrayen eller fjerne enkeltverdier i arrayen. <br><br>
+
+	Vi <b>endrer</b> verdier i en array ved: <br>
+	&nbsp;&nbsp; var tallArray = [0, 1, 2, 3, 4, 5];<br>
+	&nbsp;&nbsp; console.log(tallArray);<br>
+	&nbsp;&nbsp; tallArray[2] = 42;<br>
+	&nbsp;&nbsp; console.log(tallArray);<br><br>
+
+	<script>
+		var tallArray = [0, 1, 2, 3, 4, 5];
+		console.log(tallArray);
+		tallArray[2] = 42;
+		console.log(tallArray);
+	</script>
+
+	Vi <b>legger til</b> verdier i en array ved metodene arrayNavn.push(verdi) (legger til på slutten av arrayen) og arrayNavn.unshift(verdi) (legger til på starten av arrayen): <br>
+	&nbsp;&nbsp; var tallArray = [0, 1, 2, 3, 4, 5];<br>
+	&nbsp;&nbsp; console.log(tallArray);<br>
+	&nbsp;&nbsp; tallArray.push(42);<br>
+	&nbsp;&nbsp; console.log(tallArray);<br>
+	&nbsp;&nbsp; tallArray.unshift(42);<br>
+	&nbsp;&nbsp; console.log(tallArray);<br><br>
+
+	<script>
+		var tallArray = [0, 1, 2, 3, 4, 5];
+		console.log(tallArray);
+		tallArray.push(42);
+		console.log(tallArray);
+		tallArray.unshift(42);
+		console.log(tallArray);
+	</script>
+
+	Vi <b>fjerner</b> verdier i en array ved metodene arrayNavn.pop() (fjerner på slutten av arrayen) og arrayNavn.shift() (fjerner på starten av arrayen): <br>
+	&nbsp;&nbsp; var tallArray = [0, 1, 2, 3, 4, 5];<br>
+	&nbsp;&nbsp; console.log(tallArray);<br>
+	&nbsp;&nbsp; tallArray.pop();<br>
+	&nbsp;&nbsp; console.log(tallArray);<br>
+	&nbsp;&nbsp; tallArray.shift();<br>
+	&nbsp;&nbsp; console.log(tallArray);<br><br>
+
+	<script>
+		var tallArray = [0, 1, 2, 3, 4, 5];
+		console.log(tallArray);
+		tallArray.pop();
+		console.log(tallArray);
+		tallArray.shift();
+		console.log(tallArray);
+	</script> 
+
+	Vi <b>finner enkeltverdier</b> i en arrray ved metoden arrayNavn.indexOf(verdi) som gir oss plasseringen til den første forekomsten av en gitt verdi (senere skal vi klare å finne alle): <br>
+	&nbsp;&nbsp; var tallArray = [0, 1, 2, 3, 4, 5];<br>
+	&nbsp;&nbsp; console.log(tallArray);<br>
+	&nbsp;&nbsp; console.log(tallArray.indexOf(2));<br>
+	&nbsp;&nbsp; tallArray.unshift(2);<br>
+	&nbsp;&nbsp; console.log(tallArray);<br>
+	&nbsp;&nbsp; console.log(tallArray.indexOf(2));<br><br>
+
+	<script>
+		var tallArray = [0, 1, 2, 3, 4, 5];
+		console.log(tallArray);
+		console.log(tallArray.indexOf(2));
+		tallArray.unshift(2);
+		console.log(tallArray);
+		console.log(tallArray.indexOf(2));
+	</script>
+
+	Vi <b>fjerner enkeltverdier midt i arrayen</b> ved metoden arrayNavn.splice(index, antall verdier). Her kan indexen finnes i samme operasjon: arrayNavn.splice(arrayNavn.indexOf(verdi), antall verdier): <br>
+	&nbsp;&nbsp; var tallArray = [0, 1, 2, 3, 4, 5];<br>
+	&nbsp;&nbsp; console.log(tallArray);<br>
+	&nbsp;&nbsp; tallArray.splice(tallArray.indexOf(1), 1);<br>
+	&nbsp;&nbsp; console.log(tallArray);<br><br>
+
+	<script>
+		var tallArray = [0, 1, 2, 3, 4, 5];
+		console.log(tallArray);
+		tallArray.splice(tallArray.indexOf(1), 1);
+		console.log(tallArray);
+	</script>
+
+	Vi kan også <b>legge til enkeltverdier midt i arrayen</b> ved bruk av arrayNavn.splice(indexForForsteNye, antallSlettes, verdiSomLeggesTil, verdiSomLeggesTil osv.) <br>
+	&nbsp;&nbsp; var tallArray = [0, 1, 2, 3, 4, 5];<br>
+	&nbsp;&nbsp; console.log(tallArray);<br>
+	&nbsp;&nbsp; tallArray.splice(3, 0, 42, 42, 42);<br>
+	&nbsp;&nbsp; console.log(tallArray);<br>
+	&nbsp;&nbsp; tallArray.splice(3, 2, 11, 12, 'tall? tull?');<br>
+	&nbsp;&nbsp; console.log(tallArray);</p>
+
+	<script>
+		var tallArray = [0, 1, 2, 3, 4, 5];
+		console.log(tallArray);
+		tallArray.splice(3, 0, 42, 42, 42);
+		console.log(tallArray);
+		tallArray.splice(3, 2, 11, 12, 'tall? tull?');
+		console.log(tallArray);
+	</script>
+
+
+
+	<h1> Oppgaver </h1>
+	<p> s. 175: Oppgave 11.1 - 11.5 </p>
+
+</body>
+</html>

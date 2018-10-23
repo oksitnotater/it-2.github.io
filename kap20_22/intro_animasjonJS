@@ -1,0 +1,115 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Animasjon med JavaScript</title>
+    <link rel="stylesheet" type="text/css" href="undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Vi husker fra animasjon med css </h1>
+  	<p> Metodene transform (endre utseendet til et element uten at det påvirker resten av siden), animation (repetisjon endringene eller når overgangene er stegvise) og transition (ingen repetisjoner av det som skjer, enkle overganger) for å lage enkle animasjoner <br>
+  	Vi brukte JS kun for å tilegne funksjoner til hendelser for å starte/slutte animasjonene. </p>
+
+  	<h1> Animasjoner med JavaScript </h1>
+
+  	<h2> Plan for animasjons-perioden: </h2>
+  	<p> Fredag 9. mars: Enkle animasjoner <br>
+  		Mandag 20. mars: Objektorientert animasjon + kollisjoner mellom objekter <br>
+  		Onsdag 22. mars: Spillprogrammering <br>
+  		Fredag 24. mars: Pong <br>
+  		Mandag 27. mars: Pong <br>
+  		Onsdag 29. mars: Mulig prøvedato <br>
+  		Fredag 31. mars: Pong <br>
+  		Mandag 3. april: Alternativ prøvedato </p>
+
+  	<h2> Metoden requestAnimationFrame() </h2>
+  	<p> JS-animasjoner går ut på at elementer tegnes opp på nytt og på nytt på nye steder ved bestemte tidsintervaller. <br>
+  	Animasjonen defineres i en animasjonsFunksjon som kaller metoden requestAnimationFrame. <br>
+  	Med metoden requestAnimationFrame(animasjonsFunksjon) oppdateres nettleseren slik at animasjoner skjer: figurer tegnes opp på nytt med ny posisjon. animasjonsFunksjon kan enten være en automatisk funksjon som kjøres når siden lastes eller en hendelsesstyrt funksjon. <br>
+  	Som alternativ til requestAnimationTime (som oppdaterer ca 60 ganger per sekund) finnes setInterval(animasjonsFunksjon, tidsinterval) der tidsintervallet angis i ms og setTimeout(animasjonsFunksjon, tid) der tiden er pause i ms mellom hver oppdatering. Det er en nyanseforskjell på hvordan oppdateringene skjer med disse to. </p>
+
+  	<h2> Eksempel: sol som roterer over skjermen med JS </h2>
+  	<p> I dag tar vi utgangspunkt i figurer vi setter inn i stedet for å tegne i canvas. Animasjon med canvas-objekter blir introdusert neste time. <br>
+  	Setter inn bildet av solen og tilegner det funksjonen animerSol:<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; < img src="bildefiler/sol.png" width = "200px" id ="solBilde"><br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; < script> <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var bildeEl = document.querySelector("#solBilde");<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var rotasjon = 0;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var xPos = 0;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var rotHast = 4;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var xHast = 3;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function animasjon(){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rotasjon += rotHast;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xPos += xHast;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bildeEl.style.transform = "translate(" + xPos + "px) rotate(" + rotasjon +"deg)";<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; requestAnimationFrame(animasjon);<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; requestAnimationFrame(animasjon);<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; < /script><br>
+  	</p>
+  	<img src="bildefiler/sol.png" width = "200px" id ="solBilde">
+  	<script> 
+  	/*var bildeEl = document.querySelector("#solBilde");
+  	var rotasjon = 0;
+  	var xPos = 0;
+  	var rotHast = 10;
+  	var xHast = 1;
+  	function animasjon(){
+  		rotasjon += rotHast;
+  		xPos += xHast;
+  		bildeEl.style.transform = "translate(" + xPos + "px) rotate(" + rotasjon +"deg)";
+  		requestAnimationFrame(animasjon);
+  	}
+  	requestAnimationFrame(animasjon);*/
+  	</script>
+  	<h2> CancelAnimationFrame </h2>
+  	<p> Vi ønsker ikke alltid at funksjonen skal fortsette i all evighet. For eksempel kan det være aktuelt å stoppe sola når den når høyre kant av siden. Vi stopper en animasjon med metoden cancelAnimationFrame(animasjonID): <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; < script><br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var bildeEl = document.querySelector("#solBilde");<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var rotasjon = 0;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var xPos = 0;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var rotHast = 4;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var xHast = 3;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var animasjonID;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; function animasjon(){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rotasjon += rotHast;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xPos += xHast;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; bildeEl.style.transform = "translate(" + xPos + "px) rotate(" + rotasjon +"deg)";<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if (xPos>(window.innerWidth-250)){ // hvis avsluttvariablen er sann<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cancelAnimationFrame(animasjonID)<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else{<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; requestAnimationFrame(animasjon);<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; requestAnimationFrame(animasjon);<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; < /script><br>
+  	<script>
+  	var bildeEl = document.querySelector("#solBilde");
+  	var rotasjon = 0;
+  	var xPos = 0;
+  	var rotHast = 4;
+  	var xHast = 3;
+  	var animasjonID;
+  	function animasjon(){
+  		rotasjon += rotHast;
+  		xPos += xHast;
+  		bildeEl.style.transform = "translate(" + xPos + "px) rotate(" + rotasjon +"deg)";
+  		if (xPos==(window.innerWidth-250)){ // hvis avsluttvariablen er sann
+  			cancelAnimationFrame(animasjonID)
+  		}
+  		else{
+  	  		requestAnimationFrame(animasjon);
+  	  	}
+  	}
+  	requestAnimationFrame(animasjon);
+  	</script>
+
+  	<h2> Oppgaver </h2>
+  	<p> a) Lag en animasjon av en ﬁrkant som ﬂytter seg fra øvre høyre hjørne av skjermen til nedre venstre hjørne ved å bruke requestAnimationFrame. Firkanten skal stoppe når den når hjørnet. <br>
+  	b) Lag en animasjon av et bilde (f.eks. snøkrystallen som lå vedlagt innleveringen ) som ”danser” over siden: kombiner rotasjon og translasjon av bildet i animasjonFunksjon. <br><br><br><br>	</p>
+
+
+  </body>
+</head>

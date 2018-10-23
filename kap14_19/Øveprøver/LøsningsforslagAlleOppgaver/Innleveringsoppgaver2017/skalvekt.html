@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "UTF-8">
+    <title> LØSNINGSFORSLAG </title>
+    <link rel="stylesheet" type="text/css" href="losning.css">
+  </head>
+  <body>
+  	<div class="ramme">
+  		<div class="topp">
+        <h1> Løsningsforslag til innleveringsoppgaver </h1>
+  		</div>
+  		<div class="meny row">
+        <div class="col-1-5"></div>
+        <a href="index.html"><div class="col-1">Hjem</div></a>
+        <div class="col-1"></div>
+        <a href="trillebar.html"><div class="col-1">Trillebår</div></a>
+        <div class="col-1"></div>
+        <a href="sol.html"><div class="col-1">Sol</div></a>
+        <div class="col-1"></div>
+        <a href="tannhjul.html"><div class="col-1">Tannhjul</div></a>
+        <div class="col-1"></div>
+        <a href="skalvekt.html"><div class="col-1">Skålvekt</div></a>
+        <div class="col-1-5"></div>
+  		</div>
+     
+      <div class="siden row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <h2> Oppgave 4: Skålvekt </h2>
+          <div class="row" id="skalvekt">
+            <img src="del1.png" id="ror">
+            <img src="del2.png" id="stang">
+            <img src="del3.png" id="venstreskal">
+            <img src="del3.png" id="hoyreskal">
+          </div>
+        </div>
+        <div class="col-2"></div>
+      </div>
+    </div>
+    <script>
+      var venstreEl = document.querySelector("#venstreskal");
+      var hoyreEl = document.querySelector("#hoyreskal");
+      var i = 0;
+
+      venstreEl.addEventListener("click", leggTilVenstre);
+      hoyreEl.addEventListener("click", leggTilHoyre);
+      function leggTilVenstre() {
+        i--;
+        document.querySelector("#stang").style.transform = "rotate(" + (i * 5) + "deg)"
+        document.querySelector("#venstreskal").style.marginTop = -(i * 15) + "px";
+        document.querySelector("#hoyreskal").style.marginTop = (i * 15) + "px";
+      }
+      function leggTilHoyre() {
+        i++;
+        document.querySelector("#stang").style.transform = "rotate(" + (i * 5) + "deg)"
+        document.querySelector("#venstreskal").style.marginTop = -(i * 15) + "px";
+        document.querySelector("#hoyreskal").style.marginTop = (i * 15) + "px";
+      }
+    </script>
+  </body>
+</html>

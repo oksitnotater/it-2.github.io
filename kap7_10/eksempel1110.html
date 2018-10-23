@@ -1,0 +1,53 @@
+  <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>eksempel</title>
+    <style>
+    .stor{
+        font-size: 200%;
+        font-weight: bold;
+      }
+      #gronn{
+        background-color: lightgreen;
+      }
+      .rod{
+        color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      var bodyEl = document.querySelector('body');
+      var tekst1El = "<p> Det første tekstelementet </p>";
+      bodyEl.innerHTML += tekst1El;
+      var tekst2El = "<h2> overskrift </h2> <p> Det andre tekstelementet </p>";
+      bodyEl.innerHTML += tekst2El;
+      bodyEl.setAttribute("class", "stor");
+      bodyEl.setAttribute("id", "gronn");
+      bodyEl.removeAttribute("class");
+
+      var overskrift1 = "<h1> Overskrift </h1>";
+      console.log(typeof overskrift1);
+
+      var overskrift2 = document.createElement("h1");
+      overskrift2.innerHTML = "Overskrift";
+      console.log(typeof overskrift2)
+
+      overskrift2.setAttribute("class", "rod")
+    //  overskrift1.setAttribute("class", "rod") // ikke lov fordi overskrift1 er en string
+
+      bodyEl.innerHTML += overskrift1;
+      bodyEl.appendChild(overskrift2)
+
+      var liste = document.createElement("ol");
+      for(var i = 1; i <= 10; i++){
+        var listeElement = document.createElement("li");
+        listeElement.innerHTML = i;
+        liste.appendChild(listeElement)
+      }
+      bodyEl.appendChild(liste);
+
+    </script>
+  </body>
+</html>

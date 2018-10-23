@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> JavaScript </title>
+	<link rel="stylesheet" type="text/css" href="../grid.css">
+	<link rel="stylesheet" type="text/css" href="../stil.css">
+</head>
+<body>
+	<div class="col-12 row header">
+		Kapittel 1
+	</div>
+	<script type="text/javascript" src="../forside/meny.js"></script>
+	<div class="innhold">
+		<h1> Hva er JavaScript? </h1>
+		<p> JavaScript er et programmeringsspråk som nettleseren oversetter til maskinkode. Mens HTML styrer innhold på en nettside og CSS styrer utseende til en nettside, styrer JS interaktiviteten til en nettside. <br>
+		Hva kan vi gjøre med JavaScript?</p>
+		<ul>
+			<li> Endre innhold i HTML-elementer </li>
+			<li> Lage nye HTML-elementer </li>
+			<li> Ta bort HTML-elementer </li>
+			<li> Endre CSS-stiler </li>
+			<li> Gjøre beregninger </li>
+			<li> Hente inn data fra andre datakilder </li>
+			<li> Legge inn kart på HTML-sider </li>
+			<li> Spille av lyd ved hendelser (klikke på siden, scrolle osv)  </li>
+			<li> Tegne/animere vektorgrafikk </li>
+			<li> Lage animasjoner </li>
+			<li> Og mye mer </li>
+		</ul>
+
+		<h1> Før vi begynner </h1>
+		<p> Installer følgende pakker til atom (file -> settings -> install -> søk opp pakken): </p>
+		<ol>
+			<li> beautify</li>
+			<li> open-in-browser </li>
+		</ol>
+
+		<h1> Hvordan bruker vi JavaScript? </h1>
+		<p> Vi kan enten lage egne JS-dokumenter som vi linker til i hoveddokumentet (external), eller legge kode direkte i HTML-fila (internal). Vi starter med internal-metoden. All javascript legges da mellom taggene < script > og < /script >: <br><br>
+		Vi starter med fire måter å presentere informasjon på: <br>
+		&nbsp;&nbsp; < script > <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; document.write('dette vil synes på siden');<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log('dette vil synes i konsollen, som vi finner ved ctrl+shift+j');<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; alert('oj, det virker!'); <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; prompt('nå stiller jeg et spørsmål til deg');<br>
+		&nbsp;&nbsp; < /script > </p>
+
+		<script>
+	  	document.write('dette vil synes på siden');
+			console.log('dette vil synes i konsollen, som vi finner ved ctrl+shift+j');
+			alert('oj, det virker!');
+			prompt('nå stiller jeg et spørsmål til deg');
+		</script>
+
+		<h1> Kommentarer i JavaScript </h1>
+		<p> Vi husker kommentarer i html: < !-- dette leses ikke som kode -- > <br>
+		Og css: /* dette leses ikke som kode */ <br><br>
+		I js har vi to muligheter: // korte kommentarer <br>
+		og /* lengre kommentarer */ </p>
+
+		<h1> console.log og document.write </h1>
+		<p> Metoden document.write('tekst'); ser vi at skriver til skjermen. Dette er en fin metode dersom vi ønsker å skrive til skjerm, men fungerer dårligere dersom vi for eksempel skal kontrollere en mellomregning underveis i et større script, eller sjekke om kode kjører. Da bruker vi heller konsollen: <br>
+		Dersom dere klikker ctrl+shift+J i chrome, kommer dere inn på konsollen. Den er i utgangspunktet tom, frem til du logger dit. Vi logger til konsollen med å skrive <br>
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log('Dette er en test');<br>
+		&nbsp;&nbsp; < /script > </p>
+
+		<script>
+		//	console.log('Dette er en test');
+		</script>
+
+		<h2> Oppgaver </h2>
+		<p> Opprett et nytt HTML-dokument. Skriv inn følgende kode og legg merke til hva som skjer:<br>
+		&nbsp;&nbsp; < script ><br>
+		&nbsp;&nbsp;&nbsp;&nbsp; document.write('< h1 > Dette skrives som en overskrift < /h1 >' +<br>
+		&nbsp;&nbsp;&nbsp;&nbsp; '< p> Jammen fungerer ikke html-tagger også i document.write < /p >'); <br>
+		&nbsp;&nbsp;&nbsp;&nbsp; console.log('men i konsollen kan jeg bare skrive tekst uten stilsetting');<br>
+		&nbsp;&nbsp; < /script ><br><br>
+		Prøv så å sette inn andre html-elementer ved hjelp av document.write.</p>
+		<script>
+	    console.log('Dette er en test');
+	  </script>
+
+		<script>
+			document.write('<h1> Dette skrives som en overskrift </h1>'+
+				"<p> Jammen fungerer ikke html-tagger også i document.write </p>");
+		</script>
+	</div>
+</body>
+</html>

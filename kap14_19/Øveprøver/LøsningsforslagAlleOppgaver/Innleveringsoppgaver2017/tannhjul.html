@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset = "UTF-8">
+    <title> LØSNINGSFORSLAG </title>
+    <link rel="stylesheet" type="text/css" href="losning.css">
+  </head>
+  <body>
+  	<div class="ramme">
+  		<div class="topp">
+        <h1> Løsningsforslag til innleveringsoppgaver </h1>
+  		</div>
+  		<div class="meny row">
+        <div class="col-1-5"></div>
+        <a href="index.html"><div class="col-1">Hjem</div></a>
+        <div class="col-1"></div>
+        <a href="trillebar.html"><div class="col-1">Trillebår</div></a>
+        <div class="col-1"></div>
+        <a href="sol.html"><div class="col-1">Sol</div></a>
+        <div class="col-1"></div>
+        <a href="tannhjul.html"><div class="col-1">Tannhjul</div></a>
+        <div class="col-1"></div>
+        <a href="skalvekt.html"><div class="col-1">Skålvekt</div></a>
+        <div class="col-1-5"></div>
+  		</div>
+      
+      <div class="siden row">
+        <div class="col-2"></div>
+        <div class="col-8">
+          <h2> Oppgave 3: Tannhjul </h2>
+          <div class="row" id="hvit">
+            <img class="tannhjul" id="tannhjul2" src="tannhjul2.png"></img>
+            <img class="tannhjul" id="tannhjul1" src="tannhjul1.png"></img>
+            <img class="tannhjul" id="tannhjul3" src="tannhjul1.png"></img>
+          </div>
+        </div>
+        <div class="col-2"></div>
+      </div>
+    </div>
+
+    <script>
+      /* animasjonen kan enten startes/stoppes ved å endre animationPlayState 
+      eller ved å legge til animasjonsstilsettingen når bildene klikkes på */
+
+      var tannhjulEl = document.querySelectorAll(".tannhjul");
+      var running = false;
+
+      for(var i = 0; i < tannhjulEl.length; i++){
+        tannhjulEl[i].addEventListener("click", snurrHjul);
+      }
+      var running = true
+      function snurrHjul() {
+        if(running) {
+          for(var i = 0; i < tannhjulEl.length; i++){
+            tannhjulEl[i].style.webkitAnimationPlayState="paused";
+          }
+          running=false;
+        }
+        else {
+          for(var i = 0; i < tannhjulEl.length; i++){
+            tannhjulEl[i].style.webkitAnimationPlayState="running";
+          }
+          running=true;
+        }
+      }
+    </script>
+  </body>
+</html>

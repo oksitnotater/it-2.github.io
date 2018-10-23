@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+    // et tall er et primtall dersom det kun er delelig med seg selv og 1
+    // vi tar utgangspunkt i at alle tall er primtall og leter etter et tall det er delelig med for å avkrefte
+    /*var tall = 107;
+    tall%2 tall%3 ---- tall%(tall-1)*/
+
+    // for å sjekke alle tall opp til 100: forløkke fra 1 til 100
+    for(var tall = 1; tall <= 200; tall++){
+      var primtall = true;
+      for (var i = 2; i < tall; i++){
+        if(tall%i == 0){ // hvis tall er delelig med i
+            primtall = false;
+        }
+      }
+      if(primtall == true){
+        document.write(tall + ' er et primtall <br>');
+      }
+    }
+
+    // vi kan også lage en primtallfunksjon
+    function primfinner(max){
+      for(var tall = 1; tall <= max; tall++){
+        var primtall = true;
+        for (var i = 2; i < tall; i++){
+          if(tall%i == 0){ // hvis tall er delelig med i
+              primtall = false;
+          }
+        }
+        if(primtall == true){
+          document.write(tall + ' er et primtall <br>');
+        }
+      }
+    }
+    primfinner(300); // finner primtall opp til 300
+    primfinner(42); // finner primtall opp til 42
+    </script>
+  </body>
+</html>

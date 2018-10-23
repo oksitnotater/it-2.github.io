@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Løsningsforslag</title>
+	<meta charset="utf-8">
+	<style>
+    #canvas{
+    	border: 2px solid black;
+    }
+    </style>
+</head>
+<body>
+<canvas id="canvas" width="400px" height="400px"></canvas>
+<script>
+	// løsningsforslaget er ikke objektorientert, selv om objektorientering kan være veldig smart i denne oppgaven. Det er fordi objektorientering ikke er forventet i oppgave 1.
+
+	var canvas = document.querySelector("#canvas");
+	var ctx = canvas.getContext("2d");
+	// firkanten
+	var rot = 0; // starter uten rotasjon
+	var xPosSenter = 150; 
+	var xPosHjorne = - 50; 
+	var yPosSenter = 150; 
+	var yPosHjorne = -50; 
+	var bredde = 100; 
+	var hoyde = 100;
+	// trekanten
+	var xPos = 0;
+	var yPos = 300;
+	var breddeTre = 50;
+	var hoydeTre = 100;
+	var xFart = 5; // translasjonshastighet
+
+	var animasjonID;
+
+	function animasjon(){
+		ctx.clearRect (0, 0, canvas.width , canvas.height);
+		// roterer og tegner firkant
+		ctx.fillStyle = "blue";
+		rot += Math.PI/128;
+		ctx.save();
+		ctx.translate(xPosSenter, yPosSenter);
+		ctx.rotate(rot);
+		ctx.fillRect(xPosHjorne, yPosHjorne, bredde, hoyde);
+		ctx.restore();
+		// flytter og tegner trekant
+		if (xPos >= canvas.width - breddeTre){
+			xFart = -xFart;
+		}
+		else if (xPos <= 0 && xFart < 0){
+			xFart = -xFart;
+		}
+		xPos += xFart;
+		ctx.fillStyle = "red";
+		ctx.beginPath();
+		ctx.moveTo(xPos, yPos);
+		ctx.lineTo(xPos+breddeTre,yPos);
+		ctx.lineTo(xPos+breddeTre,yPos+hoydeTre);
+		ctx.closePath();
+		ctx.fill();
+		//  starter/stopper animasjon
+		if (rot >= 4*Math.PI){ // to runder
+ 			cancelAnimationFrame(animasjonID);
+  		}
+  		else{
+  	  		requestAnimationFrame(animasjon);
+  		}
+  	}
+  	requestAnimationFrame(animasjon);
+</script>
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Løsningsforslag</title>
+    <meta charset="utf-8">
+    <style>
+    #canvas{
+    	background-color: grey;
+    }
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0px;
+      border: 0;
+      overflow: hidden; // tar bort scrolling
+      display: block;  
+    }
+    </style>
+  </head>
+  <body>
+  	<canvas id="canvas"></canvas>
+  	<script>
+    // besvarelsen er optimalisert for full skjermbredde - dette er helt greit for en 90-minuttersprøve.
+
+  		var canvas = document.querySelector ("#canvas");
+		  var ctx = canvas.getContext ("2d");
+		  canvas.width  = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      // oppretter en klasse for de ulike kjernene med metoder for å tegne og flytte
+      class Kjerne {
+        constructor (xPos, yPos, xFart, yFart, radius, farge) {
+          this.xPos = xPos;
+          this.yPos = yPos;
+          this.xFart = xFart;
+          this.yFart = yFart;
+          this.radius = radius;
+          this.farge = farge;
+        }
+
+        tegn() {
+          ctx.beginPath ();
+          ctx.arc(this.xPos,this.yPos,this.radius,0,Math.PI*2);
+          ctx.strokeStyle = this.farge;
+          ctx.lineWidth = 5;
+          ctx.stroke();
+          ctx.fillStyle = this.farge;
+          ctx.fill();
+          ctx.closePath();
+        }
+
+        flytt() {
+          this.xPos += this.xFart;
+          this.yPos += this.yFart;
+
+          if (this.xPos-this.radius < 0 || this.xPos+this.radius > canvas.width) {
+            this.xFart = -this.xFart;
+          }
+          else if (this.yPos-this.radius < 0 || this.yPos+this.radius > canvas.height) {
+            this.yFart = -this.yFart;
+          }
+        }
+      }
+
+      // starter med fire protoner, med hastigheter slik at de krasjer
+      var pro1 = new Kjerne(canvas.width/5, 2*canvas.height/8, 1, 1.7, 20, "red");
+      var pro2 = new Kjerne(canvas.width/5, 3*canvas.height/8, 1, 1, 20, "red");
+      var pro3 = new Kjerne(canvas.width/5, 5*canvas.height/8, 1, -1, 20, "red");
+      var pro4 = new Kjerne(canvas.width/5, 6*canvas.height/8, 1, -1.7, 20, "red");
+      // trenger etterhvert deuterium, positron og helium
+      var deu1 = new Kjerne(canvas.width/3, canvas.height/3, 1, 1, 40, "black");
+      var deu2 = new Kjerne(canvas.width/3, 2*canvas.height/3, 1, -1, 40, "black");
+      var pos1 = new Kjerne(canvas.width/3, canvas.height/6, 0.5, 0.5, 10, "red");
+      var pos2 = new Kjerne(canvas.width/3, 5*canvas.height/6, 0.5, -0.5, 10, "red");
+      var hel = new Kjerne(canvas.width/2, canvas.height/2, 0, 0, 50, "blue");
+      var pos3 = new Kjerne(canvas.width/2, canvas.height/6, 0, 0, 10, "red");
+      var pos4 = new Kjerne(canvas.width/2, 5*canvas.height/6, 0, 0, 10, "red");
+
+      // trenger en funksjon som sjekker avstand mellom kjernene
+      function dist(obj1, obj2){
+        return Math.sqrt(Math.pow(obj1.xPos-obj2.xPos,2)+Math.pow(obj1.yPos-obj2.yPos,2));
+      }
+
+      function animerProton () {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      pro1.flytt();
+      pro1.tegn();
+      pro2.flytt();
+      pro2.tegn();
+      pro3.flytt();
+      pro3.tegn();
+      pro4.flytt();
+      pro4.tegn(); 
+      // sjekker om protonene kolliderer, lager da nye kjerner       
+      if (dist(pro1, pro2)<pro1.radius && dist(pro1, pro3)<pro1.radius && dist(pro1, pro4 )<pro1.radius && dist(pro2, pro3)<pro1.radius && dist(pro2, pro4)<pro1.radius && dist(pro3, pro4)<pro1.radius){
+          cancelAnimationFrame(animerProton);
+          requestAnimationFrame(animerDeut);
+      }
+      else{
+          requestAnimationFrame(animerProton);
+      }
+    }
+    requestAnimationFrame(animerProton);
+
+    function animerDeut () {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      deu1.flytt();
+      deu1.tegn();
+      deu2.flytt();
+      deu2.tegn();
+      pos1.flytt();
+      pos1.tegn();
+      pos2.flytt();
+      pos2.tegn(); 
+      // sjekker om deuterium kolliderer, lager da ny kjerne
+      if (dist(deu1, deu2)<deu1.radius){
+        cancelAnimationFrame(animerDeut)
+        requestAnimationFrame(animerHel)
+      }
+      else{
+        requestAnimationFrame(animerDeut);
+      }
+    }
+
+    function animerHel () {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+      hel.flytt();
+      hel.tegn();
+      pos3.flytt();
+      pos3.tegn();
+      pos4.flytt();
+      pos4.tegn(); 
+    }
+    </script>
+  </body>
+</html>

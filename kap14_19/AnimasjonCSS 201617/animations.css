@@ -1,0 +1,59 @@
+/* generelle innstillinger */
+body{
+	background-color: #EBF0F1; 
+	color: #1C3C50; 
+	margin-left: 50px;
+}
+
+p{
+	font-size: 150%;
+}
+table, tr, td, th{
+	font-size: 110%;
+	border: 1px solid black;
+	border-collapse: collapse;
+}
+
+/*  animation */
+#byttForm{
+	width: 200px; 
+	height: 200px; 
+	background-color: darkgreen; 
+	transition-property: border-radius; 
+	transition-delay: 2s; 
+	transition-duration: 5s; 
+}
+#byttForm2{
+	width: 300px; 
+	height: 300px; 
+	background-color: darkblue; 
+	transition-property: border-radius; 
+	transition-delay: 2s; 
+	transition-duration: 10s; 
+}
+.byttForm2{
+	border-radius: 70%;
+} 
+
+#animasjon{
+	width: 200px; 
+	height: 200px; 
+	background-color: white;
+	border: 2px solid black; 
+	animation-name: radiusFarge;
+	animation-duration: 10s;
+	animation-delay: 2s;
+	animation-iteration-count: infinite;
+}
+@keyframes radiusFarge{
+	10% { background-color: red;}
+	20% { background-color: orange;}
+	30% { background-color: yellow;}
+	40% { background-color: green;}
+	50% { background-color: darkgreen;}
+	60% { background-color: blue;}
+	70% { background-color: darkblue;}
+	80% { background-color: violet;}
+	90% { border-radius: 70%;}
+	100% { background-color: white}, {border-radius: 0%;}
+}

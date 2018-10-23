@@ -1,0 +1,222 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Animasjon med JavaScript</title>
+    <link rel="stylesheet" type="text/css" href="undervisning.css">
+    <meta charset="utf-8">
+    <style>
+    #eleikoBilde{
+        position: fixed;
+    }
+    </style>
+  </head>
+  <body>
+        <img src="bildefiler/eleiko.png" width = "200px" id ="eleikoBilde">
+    <h1> Animasjon med JS: objektorientert animasjon </h1>
+    <h1> Fra forrige time </h1>
+    <p> Vi bruker metoden requestAnimationFrame(animasjonsFunksjon) til å kjøre animasjoner der nettleser oppdateres 60 ganger i sekundet. Alternativt kan setInterval(animasjonsFunksjon, tidsinterval) eller setTimeout(animasjonsFunksjon, tid) brukes dersom man ønsker andre tidsintervaller. <br>
+    For å avslutte en animasjon bruker vi metoden cancelAnimationFrame(animasjonID).
+    Til å begynne med har vi animert figurer i stedet for å bruke canvas, i dag går vi litt videre.<br><br>
+
+    Eksempel: få bildet av en eleikoskive til å forflytte seg over skjermen. <br><br>
+    &nbsp;&nbsp; var bildeEl = document.querySelector("#eleikoBilde");<br>
+    &nbsp;&nbsp; var xPos = 0;<br>
+    &nbsp;&nbsp; var yPos = 0;<br>
+    &nbsp;&nbsp; var xHast = 2;<br>
+    &nbsp;&nbsp; var yHast = 2;<br>
+    &nbsp;&nbsp; // definerer variabel for å sjekke hvor skiven er<br>
+    &nbsp;&nbsp; function animasjon(){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; if(xPos<=window.innerWidth-260){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; xPos += xHast;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; requestAnimationFrame(animasjon);<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; else if (xPos >= window.innerWidth-260 && yPos <= window.innerHeight-260){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; yPos+=yHast;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; requestAnimationFrame(animasjon);<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; else{<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; cancelAnimationFrame(animasjon);<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; bildeEl.style.transform = "translateX(" + xPos + "px) translateY(" + yPos +"px)";<br>
+    &nbsp;&nbsp; }<br>
+    &nbsp;&nbsp; requestAnimationFrame(animasjon);<br>
+
+    <script>
+    var bildeEl = document.querySelector("#eleikoBilde");
+    var xPos = 0;
+    var yPos = 0;
+    var xHast = 2;
+    var yHast = 2;
+    // definerer variabel for å sjekke hvor skiven er
+   // var th = 0; 
+    function animasjon(){
+        if(xPos<=window.innerWidth-260){
+            xPos += xHast;
+          //  th = 1;
+            requestAnimationFrame(animasjon)
+        }
+        else if (xPos >= window.innerWidth-260 && yPos <= window.innerHeight-260){
+            yPos+=yHast;
+            requestAnimationFrame(animasjon);
+        }
+        else{
+            cancelAnimationFrame(animasjon);
+        }
+        bildeEl.style.transform = "translateX(" + xPos + "px) translateY(" + yPos +"px)";
+    }
+    requestAnimationFrame(animasjon);
+    </script>
+    </p>
+
+    <h1> Objektorientert animasjon </h1>
+    <p> For å behandle mer sammensatte animasjoner og for å kombinere dette med kollisjoner mellom ulike objekter er det en fordel å strukturere koden objektorientert. Eksempler på klasser kan være de ulike "deltakerne" i animasjonen, med tilhørende metoder som bestemmer hvordan de skal bevege seg: både hvordan de skal oppstå (tegnes) og hvordan de skal forflytte seg på skjermen. Objektene er da de respektive "enkeltdeltakerne" i animasjonen. <br>
+    Som eksempel vil vi se på koden for en ball som beveger seg. Her vil klassen beskrive ballbevegelse generelt mens hver enkelt ball er et objekt. <br>
+    For å tegne objektene er det naturlig å bruke < canvas >, slik vi så vidt har sett på for enkle tegninger. Dette gjør også avstandsberegninger enklere, da vi kan beregne avstander internt i canvaset. <br>
+    Koden for å sette inn et canvas er: <br>
+    &nbsp;&nbsp; < canvas id="canvas" width="400" height="400" style="border:1px solid #000000;" >< /canvas > <br>
+    I JavaScript har vi tegnet enkle figurer i JavaScriptet med metodene <br>
+    &nbsp;&nbsp; var canvas1=document.querySelector("#canvas"); <br>
+    &nbsp;&nbsp; var ctx=canvas.getContext("2d"); <br>
+    &nbsp;&nbsp; ctx.strokeRect(xPos, yPos, sidekant, sidekant); for å tegne rektangler <br>
+    &nbsp;&nbsp; ctx.fillRect(xPos, yPos, sidekant, sidekant); for å tegne et fylt rektangel <br>
+    &nbsp;&nbsp; ctx.moveTo(xPos,yPos); startposisjon for linje <br>
+    &nbsp;&nbsp; ctx.lineTo(0,400); sluttposisjon for linje <br>
+    &nbsp;&nbsp; ctx.stroke(); for å tegne linje <br>
+    &nbsp;&nbsp; ctx.beginPath(); for å starte tegning av sirkel<br> 
+    &nbsp;&nbsp; ctx.arc(senterX, senterY, radius, startvinkel, sluttvinkel); for å bestsemme en krum linje <br>
+    &nbsp;&nbsp; ctx.stroke(); for å tegne sirkel <br>
+    &nbsp;&nbsp; ctx.fill(); for å tegne fylt sirkel <br>
+    </p>
+
+    <h2> Repetisjonsoppgave </h2>
+    <p> Tegn opp et canvas med dimensjonene 500px x 500px. Tegn i dette canvaset en sirkel, en linje og et rektangel </p>
+    <canvas id="canvas1" width="500" height="500" style="border:1px solid #000000; background-color: #FFFFFF;"></canvas >
+    <script>
+    var canvas1=document.querySelector("#canvas1");
+    var ctx1=canvas1.getContext("2d"); 
+    ctx1.fillStyle ="blue";
+    ctx1.strokeRect(10, 10, 100, 100); 
+    ctx1.fillRect(390, 390, 100, 100); 
+    ctx1.moveTo(10,490);  
+    ctx1.lineTo(110,390);
+    ctx1.stroke();
+    ctx1.fillStyle ="red";
+    ctx1.beginPath(); 
+    ctx1.arc(250, 250, 100, 0, 360);
+    ctx1.stroke(); 
+    ctx1.fill(); 
+    </script>
+
+  
+    <h1> Eksempel: </h1>
+    <p> Vi skal lage en animasjon av en ball som spretter frem og tilbake i canvaset. <br>
+    For å få til dette må vi: <br>
+    &nbsp;&nbsp; 1. Tegne opp et canvas der animasjonen skal skje <br>
+    &nbsp;&nbsp; 2. Lage en klasse for ballen som spretter <br>
+    &nbsp;&nbsp; 3. Gi ballen egenskapene/attributtene xPosisjon, yPosisjon, hastighet <br>
+    &nbsp;&nbsp; 4. Legge til metoder for å tegne ballen og for å flytte ballen der man også sjekker om den krasjer i canvas-omrisset <br>
+    &nbsp;&nbsp; 5. Starte en animasjon der ballen beveger seg <br>
+  
+    1a. Kode for å tegne canvas i html: <br>
+    &nbsp;&nbsp; < canvas id="canvas2" width="500" height="500" style="border:1px solid #000000; background-color: #FFFFFF;">< /canvas ><br>
+    1b. Kode for å hente inn canvas i js: <br>
+    &nbsp;&nbsp; var canvas2=document.querySelector("#canvas2");<br>
+    &nbsp;&nbsp; var ctx2=canvas2.getContext("2d");<br>
+    2. Kode for å opprette klasse: <br>
+    &nbsp;&nbsp; class Ball {<br>
+    3. Kode for å legge til egenskaper/attributter: <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; constructor (xPos, yPos, hast ) {<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.xPos = xPos;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.yPos = yPos;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.hast = hast;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+
+    4. Kode for å tegne ball: <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; tegnBall() {<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx2.beginPath();<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx2.arc(this.xPos, this.yPos, 15, 0, Math.PI *2); // tegner en sirkel der ballen befinner seg med radius 15px<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx2.strokeStyle = "black";<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx2.lineWidth = 5;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx2.stroke();<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx2.fillStyle = "orange";<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx2.fill();<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ctx2.closePath();<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; }<br><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; flyttBall() {<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.xPos += this.hast;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(this.xPos-15 < 0 || this.xPos+15 > canvas2.width ) {<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.hast= -this.hast;<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp;&nbsp;&nbsp;}<br>
+    &nbsp;&nbsp; }<br><br>
+    &nbsp;&nbsp; var ball = new Ball(canvas2.width/2, canvas2.height/2, 5); <br>
+
+    5. Kode for å starte animasjon: <br>
+    &nbsp;&nbsp; function animerBall(){<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; ctx2.clearRect (0, 0, canvas2.width, canvas2.height);<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; ball.flyttBall();<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; ball.tegnBall();<br>
+    &nbsp;&nbsp;&nbsp;&nbsp; requestAnimationFrame(animerBall);<br>
+    &nbsp;&nbsp; }<br>
+    &nbsp;&nbsp; requestAnimationFrame(animerBall);<br>
+
+    </p>
+    <canvas id="canvas2" width="500" height="500" style="border:1px solid #000000; background-color: #FFFFFF;"></canvas >
+    <script>
+    // henter inn rett canvas å tegne i 
+    var canvas2=document.querySelector("#canvas2");
+    var ctx2=canvas2.getContext("2d");
+
+    // oppretter klasse for baller
+    class Ball {
+      // hver ball har en posisjon og en retning/hastighet
+      constructor (xPos, yPos, hast ) {
+        this.xPos = xPos;
+        this.yPos = yPos;
+        this.hast = hast;
+      }
+
+      // metode for å tegne opp ball
+      tegnBall() {
+        ctx2.beginPath() ;
+        ctx2.arc(this.xPos, this.yPos, 15, 0, Math.PI *2); // tegner en sirkel der ballen befinner seg med radius 15px
+        ctx2.strokeStyle = "black";
+        ctx2.lineWidth = 5;
+        ctx2.stroke();
+        ctx2.fillStyle = "orange";
+        ctx2.fill();
+        ctx2.closePath();
+      }
+
+      // metode for å flytte posisjonen og hastigheten til ballen
+      flyttBall() {
+        this.xPos += this.hast;
+        if(this.xPos-15 < 0 || this.xPos+15 > canvas2.width ) {
+          this.hast = -this.hast;
+        }
+      }
+    }
+
+    // nytt ballobjekt
+    var ball = new Ball(canvas2.width /2, canvas2.height /2, 1);
+
+    // funksjon som tømmer canvaset, flytter ballen og tener den opp på nytt
+    function animerBall(){
+      ctx2.clearRect (0, 0, canvas2.width, canvas2.height);
+      ball.flyttBall();
+      ball.tegnBall();
+      requestAnimationFrame(animerBall);
+    }
+    requestAnimationFrame(animerBall);
+    </script>
+    
+    <h2> Hva hvis ballen beveger seg både i x- og y-retning? </h2>
+    <p> Dersom ballen beveger seg på skrå over canvaset vil det ha både en xHast og en yHast. Hver gang den krasjer i veggen vil enten xHast eller yHast endres avhengig av hvilken vegg ballen har kollidert i. </p>
+
+   <h1> Oppgaver </h1>
+    <p> 1: legg til flere baller med ulik y-posisjon i canvaset <br>
+    2: legg ballenes radius være en del av konstruktøren <br>
+    3: utvid koden slik at ballen også kan bevege seg på skrå. </p>
+  </body>
+</head>

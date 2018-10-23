@@ -1,0 +1,102 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title> Å lage html-elementer med JavaScript </title>
+    <link rel="stylesheet" type="text/css" href="undervisning.css">
+    <style>
+    	.overskrifter{
+    		font-size: 500%;
+    	}
+    </style>
+</head>
+<body>
+	<h1> Bruk av bodyEl+=element </h1>
+	<p> Så langt har vi lagt til elementer på nettsiden ved å legge dem til i body: <br>
+
+	&nbsp;&nbsp; < script > <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var bodyEl = document.querySelector("body");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var  liste='';<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; liste+='< ol >';<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; liste+='< li > Listepunkt 1 < /li >';<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; liste+='< li > Listepunkt 2  < /li >';<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; liste+='<  /ol >';<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; bodyEl.innerHTML += liste;<br>
+	&nbsp;&nbsp; < /script><br><br>
+
+	Dette er en metode som fungerer greit, men den er ikke ideell når vi har større oppgaver. Den gir oss heller ikke mulighet til å sette attributter til elementene som opprettes.</p>
+
+	<h1> Legge til elementer ved createElement og appendChild </h1>
+	<p> En annen metode for å lage nye html-elementer er å bruke metoden document.createElement("type element"). Med denne metoden forteller vi kun hvilket element som skal legges til, uten å si noe om innholdet: <br>
+
+	&nbsp;&nbsp; < script > <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var nyOverskrift  = document.createElement("h1");<br>
+	&nbsp;&nbsp; < /script > <br><br>
+
+	For å legge til innhold i elementet bruker vi fortsatt metoden innerHTML. Vi kan også legge til attributter som klasse, eller annen stil:<br>
+
+	&nbsp;&nbsp; < script > <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var nyOverskrift = document.createElement("h1");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; nyOverskrift.innerHTML = 'Dette er en overskrift'; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; nyOverskrift.setAttribute("class", "overskrifter");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; nyOverskrift.style.color="green";<br>
+	&nbsp;&nbsp; < /script > <br><br>
+
+	Til slutt ønsker vi å legge til elementet på siden, dvs i DOM-treet. Vi bruker da metoden bodyEl.appendChild(elementVariabel). I dette tilfellet er elementVariabel lik nyOverskrift:<br>
+
+	&nbsp;&nbsp; < script > <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var nyOverskrift = document.createElement("h1");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; nyOverskrift.innerHTML = 'Dette er en overskrift'; <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; nyOverskrift.setAttribute("class", "overskrifter");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; nyOverskrift.style.color="green";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; var bodyEl = document.querySelector("body");<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; bodyEl.appendChild(nyOverskrift); <br>
+	&nbsp;&nbsp; < /script> </p>
+
+
+	<script>
+		var nyOverskrift = document.createElement("h1");
+		nyOverskrift.innerHTML = 'Dette er en overskrift';
+		nyOverskrift.setAttribute("class", "overskrifter");
+		nyOverskrift.style.color="green";
+		var bodyEl = document.querySelector("body");
+		bodyEl.appendChild(nyOverskrift);
+	</script>
+
+	<h1> Oppsummering av metoder denne uken: </h1>
+	<table>
+		<tr>
+			<th> Metode </th> <th> Forklaring </th>
+		</tr><tr>
+			<td> document.querySelector("p")</td> <td> Henter ut elementer av typen p </td>
+		</tr><tr>
+			<td> document.querySelector("#tekst")</td> <td> Henter ut elementer med iden tekst </td>
+		</tr><tr>
+			<td> document.querySelector(".tekst")</td> <td> Henter ut elementer med klassen tekst </td>
+		</tr><tr>
+			<td> variabel.innerHTML="ny verdi" </td> <td> Gir variablen et nytt innhold (overskriver) </td>
+		</tr><tr>
+			<td> variabel.innerHTML += "mer innhold" </td> <td> Legger til innhold i variabelen </td>
+		</tr><tr>
+			<td> variabel.setAttribute("type attributt", "verdi")</td> <td> Legger til nytt attributt, f.eks. en klasse  (verdien er da klassenavnet)</td>
+		</tr><tr>
+			<td> variabel.removeAttribute("type attributt")</td><td> Fjerner et attributt, f.eks. en klasse, fra variabelen </td>
+		</tr><tr>
+			<td> variabel.style.egenskap="ny verdi" </td> <td> Endrer en enkelt css-egenskap uten bruk av klasser/ider </td>
+		</tr><tr>
+			<td>document.createElement("type element")</td> <td>Legger til et element. Det har foreløpig ikke innhold og synes ikke på nettsiden</td>
+		</tr><tr>
+			<td>bodyEl.appendChild(elementVariabel)</td> <td>Legger til det nye elementet i DOM slik at det vises på nettsiden.</td>
+		</tr>
+	</table>
+
+	<h1> Oppgaver </h1>
+	<p> s. 121: oppgave 7.18, 7.19, 7.20, 7.21, 7.22  <br><br>
+	<b> ALLE OPPGAVENE FRA KAPITTEL 7 ER STERKT ANBEFALT Å GJØRE (også kalt lekse) FØR VI BEGYNNER PÅ KAPITTEL 8 </b> <br>
+  Husk at det ligger videogjennomganger av pensum og løsningsforslag til oppgaver på lærebokas nettsider (<a href="https://www.lokus.no/open/informasjonsteknologi_2">Elevnettsted</a>)<br>
+  Hvis ferdig: begynn å se på eksempeloppgave kapittel 7, som vi skal gå gjennom på fredag</p>
+  <img src="media/oppgaver7_4.png" width="60%">
+
+</body>
+</html>

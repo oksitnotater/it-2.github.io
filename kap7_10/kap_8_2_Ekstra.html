@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+   	<meta charset="UTF-8">
+   	<title> Hendelser </title>
+   	<link rel="stylesheet" type="text/css" href="undervisning.css">
+</head>
+<body>
+	<h1> Fullstendig kode for Monty Hall </h1>
+	<p> Vi husker konseptet for Monty Hall:</p>
+	<ol>
+		<li> Spilleren velger seg en dør. Døren åpnes ikke.</li>
+		<li> Programlederen åpner en av de andre dørene, bak denne døra kommer det frem en geit </li>
+		<li> Spilleren får valget om å velge dør. Lønner det seg? </li>
+		<li> Når spilleren har bestemt seg, åpnes den valgte døra </li>
+	</ol>
+	<p> I forrige time forenklet vi situasjonen litt slik at vi åpnet den valgte døra med en gang og sjekket om den inneholder en bil eller geit. Nå ønsker vi å skrive kode for det opprinnelige spillet. For å først åpne en dør med en geit og deretter la brukeren velge dør på nytt, vil vi se at vi legger den nye funksjonen inne i den andre. <br><br>
+  Selve koden ligger i filen montyHallEkstra.html <br><br>
+	I html legges følgende: <br>
+	&nbsp;&nbsp; < h1 >Monty Hall< /h1 ><br>
+  &nbsp;&nbsp; < p >Hvilken dør vil du velge?< /p ><br>
+  &nbsp;&nbsp; < img id="r" src="media/rod.png" width="227" alt="Dør" ><br>
+  &nbsp;&nbsp; < img id="g" src="media/gronn.png" width="227" alt="Dør" ><br>
+  &nbsp;&nbsp; < img id="b" src="media/blaa.png" width="227" alt="Dør" ><br>
+	&nbsp;&nbsp; < p id="tilbakemelding" >< /p ><br><br>
+
+	I script lagrer vi først dørene og tilbakemeldingsfeltet i variabler:<br>
+	&nbsp;&nbsp; var rodDorEl = document.querySelector("#r");<br>
+  &nbsp;&nbsp; var gronnDorEl = document.querySelector("#g");<br>
+  &nbsp;&nbsp; var blaaDorEl = document.querySelector("#b");<br>
+  &nbsp;&nbsp; var tilbakemeldingEl = document.querySelector("#tilbakemelding");<br><br>
+
+  Til de tre dørene knytter vi den hendelsesstyrte funksjonen sjekkDor, der hendelsen er klikk: <br>
+  &nbsp;&nbsp; rodDorEl.addEventListener("click", sjekkDor);<br>
+  &nbsp;&nbsp; gronnDorEl.addEventListener("click", sjekkDor);<br>
+ 	&nbsp;&nbsp; blaaDorEl.addEventListener("click", sjekkDor);<br><br>
+
+ 	Vi gjemmer bilen bak en tilfeldig dør:<br>
+ 	&nbsp;&nbsp; var bilDor = Math.floor(Math.random()*3);<br><br>
+
+ 	Deretter kjører vi funksjonen sjekkDor. Det første vi må finne ut er hvilken dør som ble valgt. <br>
+ 	&nbsp;&nbsp; function sjekkDor(e){<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; var valgtDor = e.target;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; if(valgtDor.id == "r"){<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var valgtTall = 0;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; else if(valgtDor.id=="g"){<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var valgtTall = 1;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; else{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var valgtTall = 2;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; } <br><br>
+
+  Og vi åpner da en dør som ikke er valgt og heller ikke inneholder bil: <br>
+  &nbsp;&nbsp;&nbsp;&nbsp; if(bilDor == 0 && valgtTall == 0){ // hvis brukeren har valgt riktig dør i utgangspunktet (rød) <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var tilf = Math.floor(Math.random()*2); // åpner tilfeldig enten grønn eller blå<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(tilf==0){<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gronnDorEl.src="media/geit.png";<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blaaDorEl.src="media/geit.png";<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; if(bilDor == 0 && valgtTall == 1){ // hvis bruker har valgt grønn og bilen er bak rød <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blaaDorEl.src="media/geit.png"; // åpner blå <br>
+  &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; else if (bilDor == 0 && valgtTall == 2){ // hvis bruker har valgt blå og bilen er bak rød <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gronnDorEl.src="media/geit.png"; // åpner grønn<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; else if(bilDor == 1 && valgtTall == 1) // hvis brukeren har valgt riktig dør i utgangspunktet (grønn){<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var tilf = Math.floor(Math.random()*2) // åpner tilfeldig enten rød eller blå<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(tilf==0){<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rodDorEl.src="media/geit.png";<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blaaDorEl.src="media/geit.png";<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; else if(bilDor == 1 && valgtTall == 0){ // hvis brukeren har valgt rød og bilen er bak grønn<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blaaDorEl.src="media/geit.png"; // åpner blå<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; else if(bilDor == 1 && valgtTall == 2){ // hvis brukeren har valgt blå og bilen er bak grønn <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rodDorEl.src="media/geit.png"; // åpner rød<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; else if(bilDor == 2 && valgtTall == 2){  // hvis brukeren har valgt riktig dør i utgangspunktet (blå)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var tilf = Math.floor(Math.random()*2); // åpner tilfeldig enten rød eller grønn<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(tilf==0){<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rodDorEl.src="media/geit.png";<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gronnDorEl.src="media/geit.png";<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; else if(bilDor == 2 && valgtTall == 0){  // hvis brukeren har valgt rød og bilen er bak blå<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gronnDorEl.src="media/geit.png"; //  åpner grønn<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; else{  // hvis brukeren har valgt grønn og bilen er bak blå<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rodDorEl.src="media/geit.png";  // åpner rød <br>
+  &nbsp;&nbsp;&nbsp;&nbsp; }<br><br>
+
+  Nå må vi fjerne lytterne som kjører den første funksjonen, og legge til lyttere som lar spilleren endelig velge dør:<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; rodDorEl.removeEventListener("click", sjekkDor);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; gronnDorEl.removeEventListener("click", sjekkDor);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; blaaDorEl.removeEventListener("click", sjekkDor);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; rodDorEl.addEventListener("click", sjekkDorNy);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; gronnDorEl.addEventListener("click", sjekkDorNy);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; blaaDorEl.addEventListener("click", sjekkDorNy);<br><br>
+
+  Denne nye funksjonen ligger inne i den opprinnelige, og vi starter med å finne ut hvilken dør som ble valgt.<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; function sjekkDorNy(e){ <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var valgtDor = e.target;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(valgtDor.id == "r"){<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var valgtTall = 0;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else if(valgtDor.id=="g"){<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var valgtTall = 1;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var valgtTall = 2;<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>
+
+  Vi finner ut om spilleren har vunnet en geit eller en bil: <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; if(valgtTall == bilDor){<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tilbakemeldingEl.innerHTML="Du vant en bil!";<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valgtDor.src="media/bil.png";<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; else{<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; tilbakemeldingEl.innerHTML="Du vant en geit!";<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; valgtDor.src="media/geit.png";<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br><br>
+
+  Til slutt fjerner vi alle lyttere og avslutter funksjonene <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; rodDorEl.removeEventListener("click", sjekkDorNy);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; gronnDorEl.removeEventListener("click", sjekkDorNy);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; blaaDorEl.removeEventListener("click", sjekkDorNy);<br>
+  &nbsp;&nbsp;&nbsp;&nbsp; } // avslutter sjekkDorNy<br>
+  &nbsp;&nbsp; }// avslutter sjekkDor</p>
+</body>
+</html>

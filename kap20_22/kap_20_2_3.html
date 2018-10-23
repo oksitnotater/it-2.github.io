@@ -1,0 +1,173 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Objektorientering</title>
+    <link rel="stylesheet" type="text/css" href="undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Objektorientert programmering i JavaScript </h1>
+  	<h1> Repeterer forfatter-eksempelet fra fredag: </h1>
+  	<p> Lager en klasse Forfatter med attributtene fnavn (fornavn), enavn (etternavn) og faar (fødselsår) og metoden  visInfo som skriver ut en setning om forfatteren. Forfatterene legges til som objekter og informasjonen skrives ut etter at klassen er definert: <br>
+  	&nbsp;&nbsp; class Forfatter{ // oppretter klasse <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; constructor(fnavn, enavn, faar){ // attributtene til klassen <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.fnavn = fnavn; // attributtet fornavn får paramenterverdien fornavn<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.enavn = enavn; <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.faar = faar; <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; visInfo(){// metoden som skriver ut info <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write(this.fnavn + " " + this.enavn + " er født i " + this.faar); // this peker på hvilken forfatter<br>
+ 	  &nbsp;&nbsp;&nbsp;&nbsp; } <br>
+  	&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; let blixen = new Forfatter("Karen", "Blixen", 1885); //legger til objekt<br>
+  	&nbsp;&nbsp; let hamsun = new Forfatter("Knut", "Hamsun", 1859);	//legger til objekt<br>
+  	&nbsp;&nbsp; blixen.visInfo();<br>
+  	&nbsp;&nbsp; hamsun.visInfo();<br><br>
+  	<script>
+  	class Forfatter{ // oppretter klasse 
+  		constructor(fnavn, enavn, faar){ // attributtene til klassen
+  			this.fnavn = fnavn; // attributtet fornavn får paramenterverdien fornavn
+  			this.enavn = enavn; 
+  			this.faar = faar; 
+  		}
+  		visInfo(){// metoden kaller jeg visInfo <br>
+  			document.write(this.fnavn + " " + this.enavn + " er født i " + this.faar + "<br>"); // this peker på hvilken forfatter
+ 		} 
+  	}
+  	let blixen = new Forfatter("Karen", "Blixen", 1885); //legger til objekt
+  	let hamsun = new Forfatter("Knut", "Hamsun", 1859);	//legger til objekt
+  	blixen.visInfo();
+  	hamsun.visInfo();
+  	</script> </p>
+
+  	<h1> Dagens temaer: </h1>
+  	<p> Get-metoder, subklasser, arv </p>
+
+  	<h1> Get-metoder </h1>
+  	<p> I eksempelet over ble det definert en metode for å skrive ut informasjon om objektene. Forskjellen på en slik, vanlig, metode og en get-metode er at get metoder defineres med get metodeNavn() og har en returverdi. Derfor skal vi ikke inkludere () når metoden kalles. <br><br>
+  	Vanlig metode:<br>
+  	&nbsp;&nbsp; class Klassenavn{<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; contructor (parameter1, parameter2){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.attributt1 = parameter1;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.attributt2 = parameter2;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; metodeNavn(){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //kode metoden skal utføre<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; let objektNavn = new Klassenavn(parameter1, parameter2);<br>
+  	&nbsp;&nbsp; objektNavn.metodeNavn();<br><br>
+  	Get-metode:<br>
+  	&nbsp;&nbsp; class Klassenavn{<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; contructor (parameter1, parameter2){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.attributt1 = parameter1;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.attributt2 = parameter2;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; get metodeNavn(){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; //kode metoden skal utføre<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return returVerdi; <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; let objektNavn = new Klassenavn(parameter1, parameter2);<br>
+  	&nbsp;&nbsp; objektNavn.metodeNavn;<br><br>
+  	Eksempel: bruke get-metode til å hente ut forfatternavnet: <br>
+  	&nbsp;&nbsp; class Forfatter{ // oppretter klasse <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; constructor(fnavn, enavn, faar){ // attributtene til klassen <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.fnavn = fnavn; // attributtet fornavn får paramenterverdien fornavn<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.enavn = enavn; <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.faar = faar; <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; get visInfo(){// metoden som skriver ut info <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; return this.fnavn + " " + this.enavn + " er født i " + this.faar; // this peker på hvilken forfatter<br>
+ 	  &nbsp;&nbsp;&nbsp;&nbsp; } <br>
+  	&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp; let blixen = new Forfatter("Karen", "Blixen", 1885); //legger til objekt<br>
+    &nbsp;&nbsp; let hamsun = new Forfatter("Knut", "Hamsun", 1859);	//legger til objekt<br>
+  	&nbsp;&nbsp; document.write(blixen.visInfo);<br>
+  	&nbsp;&nbsp; document.write(hamsun.visInfo);<br><br>
+  	<script>
+  	class Forfatter2{ // oppretter klasse, endrer navn noe for å ikke få kollisjon med forrige eksempel
+  		constructor(fnavn, enavn, faar){ // attributtene til klassen
+  			this.fnavn = fnavn; // attributtet fornavn får paramenterverdien fornavn
+  			this.enavn = enavn; 
+  			this.faar = faar; 
+  		}
+  		get infoVis(){// metoden som skriver ut info
+  			return this.fnavn + " " + this.enavn + " er født i " + this.faar + "<br>"; 
+ 		}
+  	}
+  	let blixen2 = new Forfatter2("Karen", "Blixen", 1885); //legger til objekt
+  	let hamsun2 = new Forfatter2("Knut", "Hamsun", 1859);	//legger til objekt
+  	document.write(blixen2.infoVis);
+  	document.write(hamsun2.infoVis);
+  	</script> </p>
+
+  	<h1> Klasser, subklasser og arv </h1>
+  	<p> Når man inkluderer subklasser, blir objektorientert programmering enda mer nyttig. En subklasse arver alle parametre og egenskaper fra superklassen, og i tillegg legger vi til egne parmetre og metoder. I klasser kan vi også referere til objekter fra andre klasser på samme måte som når vi ellers har satt verdier til attributtene: vi setter inn objekter som disse verdiene: <br>
+  	&nbsp;&nbsp; class Klassenavn{<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; contructor (parameter1, parameter2){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.attributt1 = parameter1;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.attributt2 = parameter2;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+    &nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; class Klassenavn2{<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; contructor (parameter1, parameter2){ // her er parameter2 et objekt i klasse 1<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.attributt1 = parameter1;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.attributt2 = parameter2; // her er parameter2 et objekt i klasse 1<br>
+     &nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; }<br>
+ 
+  	&nbsp;&nbsp; let objektNavn1 = new Klassenavn1(parameter1, parameter2);<br>
+  	&nbsp;&nbsp; let objektNavn2 = new Klassenavn2(parameter1, objektNavn1);<br><br>
+  
+  	Eksempel: lager en klasse for bøker som har med forfatter som et attributt <br>
+  	&nbsp;&nbsp; class Bok{ // definerer klassen bok<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; constructor(tittel, forfatter, pris){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.tittel=tittel;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.forfatter=forfatter;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.pris=pris;<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; let mittAfrika = new Bok("Mitt Afrika", blixen, 199);<br>
+  	&nbsp;&nbsp; let fortellinger = new Bok("Syv fantastiske fortellinger", blixen, 150);<br>
+  	&nbsp;&nbsp; document.write(fortellinger.tittel +" og "+ mittAfrika.tittel + " er skrevet av " + fortellinger.forfatter.enavn + " som ble født i " + fortellinger.forfatter.faar);<br>
+  	<script>
+  	class Bok{ // definerer klassen bok
+  		constructor(tittel, forfatter, pris){
+  			this.tittel=tittel;
+  			this.forfatter=forfatter;
+  			this.pris=pris;
+  		}
+  	}
+  	let mittAfrika = new Bok("Mitt Afrika", blixen, 199);
+  	let fortellinger = new Bok("Syv fantastiske fortellinger", blixen, 150);
+  	document.write(fortellinger.tittel +" og "+ mittAfrika.tittel + " er skrevet av " + fortellinger.forfatter.enavn + " som ble født i " + fortellinger.forfatter.faar + "<br>");
+  	</script>  <br><br>
+
+  	Vi kan også relatere klasser sammen ved subklasser og superklasser. Dette bruker vi for å unngå å opprette to nesten like klasser dersom to klasser har mye til felles. Subklassen arver alle attributter fra superklassen, men kan også ha egne metoder som ikke finnes i superklassen. Dersom subklassen har egne versjoner av superklassens metoder, overstyrer subklassens metoder superklassens. Koden for å opprette superklasser og subklasser er: <br><br>
+  	&nbsp;&nbsp; class Superklasse{<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; constructor (parameter1, parameter 2){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.attributt1=parameter1; <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.attributt2=parameter2; <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp; metode(){//kode} <br>
+  	&nbsp;&nbsp; }<br><br>
+  	&nbsp;&nbsp; class Subklasse extends Superklasse{<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; constructor (parameter1, parameter 2, parameter3){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; super(parameter1, parmeter2); // klassen arver disse to fra superklassen <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.attributt3=parameter3; // denne er ny for subklassen<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; metode(){//kode som likner superklassens metode, men overstyrer} <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; egenMetode(){//kode som bare finnes i subklassen} <br>
+  	&nbsp;&nbsp; }</p>
+  	<h1> Oppgaver </h1>
+  	<p> Bruk resten av timen på å gjøre <br>
+  		a) Oppgave 20.1 og 20.2 i boka dersom du ikke har gjort dem <br>
+  		b) Lag superklassen Bil og subklassen Hybridbil som begge har parametrene merke, modell og bensinmotor-effekt. Hybridbilen skal også ha parameteren elmotor-effekt. Regn ut den totale effekten til hybridbilen ved å summere de to effektene for denne.  Legg til to bensinbiler og to hybridbilder og skriv ut den totale effekten for hver av disse. <br>
+  		(det legges ut løsningsforslag på denne etter timen) <br>
+      c) I denne oppgaven skal du opprette to klasser: klassen Sirkel og klassen Kule. 
+      Klassen Sirkel skal ha konstruktørargumentet radius og en metode for å regne ut areal. Klassen Kule skal være en subklasse av Sirkel og arve radius fra denne. Metodene skal overskrives med areal og volum av kula. Du skal så legge til to sirkler og to kuler og skrive ut verdiene for omkrets og areal / areal og volum av disse.<br>
+      d) I denne oppgaven skal du opprette to klasser: klassen Kube og klassen Pyramide (dette er en pyramide med kvadratisk grunnflate). Klassen Kube skal ha konstruktørargumentet lengde og en metode for å regne ut overflateareal og volum til kuben. Klassen Pyramide skal arve lengde-argumentet fra Kube og i tillegg ta inn argumentet hoyde. Metoden for å regne ut overflateareal og volum skal overskrives. Du skal så legge til to kuber og to pyramider og skrive ut verdiene for overflateareal og volum av disse  </p>
+  	</body>
+</html>

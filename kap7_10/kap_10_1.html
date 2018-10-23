@@ -1,0 +1,48 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <meta charset="UTF-8"> 
+    <title> Skjemaer </title> 
+        <link rel="stylesheet" type="text/css" href="css/undervisning.css">
+  </head>
+  <body>
+  	<h1> Skjemaer </h1>
+    <iframe width="560" height="315" src="https://www.youtube.com/embed/eInG7KjDApI" frameborder="0" allowfullscreen></iframe>
+  	<p> Taggen for skjema er < form > < /form >. Mellom her angir vi de inputene vi ønsker at brukeren skal fylle ut. I < form > er det viktigste attributtet method: dette sier noe om hva vi skal gjøre med inndataen. Vi bruker GET når det ikke er sensitiv data og POST når det er sensitiv data. I IT-2-faget vil vi som oftes ikke ha bruk for form-taggene i det hele tatt, da vi bearbeider skjemaet med js og ikke php. For strukturens del legger vi likevel skjemaet i < form > til å begynne med. <br>
+  	Koden for et skjema kan derfor være <br>
+  	&nbsp;&nbsp; < form  method="GET" ><br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; Skriv inn navn: < input type = "text" name = "navn" > < br > <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; Skriv inn alder: < input type = "number" name = "alder" > < br > <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; Hva synes du om denne nettsiden? < select name="tilbakemelding" ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; < option value="1" > Dårlig < /option ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; < option value="2" > Helt OK < /option ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; < option value="3" > Kjempebra! < /option ><br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < /select > < br > <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; Kjønn: < input type = "radio" name = "kjonn" > Kvinne < input type="radio" name="kjonn" > Mann < br ><br>
+
+    &nbsp;&nbsp;&nbsp;&nbsp; Hva liker du å spise til middag? <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < input type="checkbox" name="middag" value="pasta"> Pasta < br > <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < input type="checkbox" name="middag" value="pizza"> Pizza < br> <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < input type="checkbox" name="middag" value="taco"> Taco < br > <br>
+    &nbsp;&nbsp;&nbsp;&nbsp; < input type="submit" name="send" value="Send tilbakemelding" ><br>
+  	&nbsp;&nbsp; < /form > </p>
+
+	<form  method="GET"> 
+	Skriv inn navn: <input type = "text" name = "navn"> <br>
+	Skriv inn alder: <input type = "number" name = "alder"><br>
+	Hva synes du om denne nettsiden? <select name="tilbakemelding">
+    <option value="1"> Dårlig </option>
+    <option value="2"> Helt OK </option>
+    <option value="3"> Kjempebra! </option>
+  </select><br>
+  Kjønn: <input type = "radio" name = "kjonn"> Kvinne <input type="radio" name="kjonn"> Mann <br>
+  Hva liker du å spise til middag? <br>
+  <input type="checkbox" name="middag" value="pasta"> Pasta <br>
+  <input type="checkbox" name="middag" value="pizza"> Pizza <br>
+  <input type="checkbox" name="middag" value="taco"> Taco <br>
+	<input type="submit" name="send" value="Send tilbakemelding">
+	</form> 
+
+	<p> Mer om skjemaer kan du lese på <a href="https://www.w3schools.com/html/html_forms.asp">w3schools</a></p> 
+  </body>
+</html>

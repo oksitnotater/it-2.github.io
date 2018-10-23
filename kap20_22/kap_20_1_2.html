@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Objektorientering</title>
+    <link rel="stylesheet" type="text/css" href="undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Introduksjon til objektorientert programmering i JavaScript </h1>
+  	<h1> Forskjellen på prosedyreorientert og objektorientert programmering </h1>
+  	<p> Så langt i faget har vi holdt oss til prosedyreorientert programmering: vi har skrevet kode med metoder som følger hverandre. Vi har likevel hilst litt på det objektorienterte ved å ta i bruk objekter, men foreløpig kun for å organisere informasjon med tilhørende nøkler. <br>
+  	Vi vil de neste timene ta i bruk objekter og klasser for å organisere kode i større grad, blant annet for å enklere gjenta kode. </p>
+  	<p> Objektorientert programmering handler om å organisere kode i klasser og objekter. En klasse kan sammenliknes med en arkitekttegning av et hus, mens objektene kan sammenliknes med husene som er byggget etter tegingen: klassen gir "oppskriften" og objektene er produkter av oppskriften. Vi kan si dette som at objektene er konkrete tilfeller av klassen.</p>
+
+  	<h1> Implementere klasser i koden </h1>
+  	<p> En klasse har kodeordet class, et klassenavn (stor forbokstav), kode som står mellom {}. I koden har vi verdier, kalt attributter, og funksjonalitet, kalt metoder. Koden må ha en konstruktør som definerer hvilke attributter som tilhører klassen. <br>Syntaxen for å definere en klasse er dermed: <br><br>
+  	&nbsp;&nbsp; class Klassenavn{<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; constructor(parameter1, parameter2){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; this.attributt1 = parameter1; <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; this.attributtt2 = parameter2; <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+  	&nbsp;&nbsp;}<br><br>
+  	Som et eksempel kan vi lage en klasse for forfattere: parametrene blir her fornavn, etternavn og fødeslsår. Videre skal vi se hvordan vi kan legge til objekter (bestemte forfattere) til denne klassen. <br><br>
+  	&nbsp;&nbsp; class Forfatter{ // oppretter klasse <br> 
+  	&nbsp;&nbsp;&nbsp;&nbsp; constructor(fnavn, enavn, faar){ // attributtene til klassen <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.fnavn = fnavn; // attributtet fornavn får paramenterverdien fornavn <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.enavn = enavn; <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.faar = faar; <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+  	&nbsp;&nbsp;}<br><br>
+
+  	<script>
+  	class Forfatter{ // oppretter klasse 
+  		constructor(fnavn, enavn, faar){ // attributtene til klassen
+  			this.fnavn = fnavn; // attributtet fornavn får paramenterverdien fornavn
+  			this.enavn = enavn; 
+  			this.faar = faar; 
+  		}
+  	}
+  	</script>
+  	</p>
+
+  	<h1> Legge til objekter i klassen </h1>
+  	<p>Objektene i forfatterklassen vil være forfattere. Syntaxen for å legge et objekt til en klasse er <br>
+  	&nbsp;&nbsp; let objektNavn = new Klassenavn(parameter1, parameter2); <br>
+  	For en forfatter vil det si <br>
+  	&nbsp;&nbsp; let blixen = new Forfatter("Karen", "Blixen", 1885);<br>
+  	&nbsp;&nbsp; let hamsum = new Forfatter("Knut", "Hamsun", 1859); <br><br>
+  	Vi kan skrive ut informasjon om forfattene med<br>
+  	&nbsp;&nbsp; document.write(blixen.fnavn + " " + blixen.enavn + " er født i " + blixen.faar);<br><br>
+  	<script>
+  	let blixen = new Forfatter("Karen", "Blixen", 1885);
+  	let hamsun = new Forfatter("Knut", "Hamsun", 1859);	
+  	document.write(blixen.fnavn + " " + blixen.enavn + " er født i " + blixen.faar + "<br>");
+  	document.write(hamsun.fnavn + " " + hamsun.enavn + " er født i " + hamsun.faar + "<br>");
+  	</script>
+  	</p>
+
+  	<h1> Legge til metoder i klassen </h1>
+  	<p> I stedet for å skrive samme kode for å skrive ut hver enkelt forfatter, kan vi lage en metode som skriver ut forfatterinformasjon. Metoden skrives inn i klassen som <br>
+  	&nbsp;&nbsp; metodeNavn(){<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; //kode som skal skrives ut<br>
+  	&nbsp;&nbsp;}<br>
+  	For forfatterne blir klassen da <br>
+  	&nbsp;&nbsp; class Forfatter{ // oppretter klasse <br> 
+  	&nbsp;&nbsp;&nbsp;&nbsp; constructor(fnavn, enavn, faar){ // attributtene til klassen <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.fnavn = fnavn; // attributtet fornavn får paramenterverdien fornavn <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.enavn = enavn; <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; this.faar = faar; <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+  	&nbsp;&nbsp;&nbsp;&nbsp; visInfo(){// metoden kaller jeg visInfo <br>
+  	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; document.write(this.fnavn + " " + this.enavn + " er født i " + this.faar); // this peker på hvilken forfatter<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp;} <br>
+  	&nbsp;&nbsp;}<br><br>
+  	Vi kaller på metoden ved å skrive <br>
+  	&nbsp;&nbsp; blixen.visInfo(); <br>
+  	<script>
+  	class Forfatter{ // oppretter klasse 
+  		constructor(fnavn, enavn, faar){ // attributtene til klassen
+  			this.fnavn = fnavn; // attributtet fornavn får paramenterverdien fornavn
+  			this.enavn = enavn; 
+  			this.faar = faar; 
+  		}
+  		visInfo(){// metoden kaller jeg visInfo <br>
+  			document.write(this.fnavn + " " + this.enavn + " er født i " + this.faar + "<br>"); // this peker på hvilken forfatter
+ 		} 
+  	}
+  	let blixen = new Forfatter("Karen", "Blixen", 1885); //legger til objekt
+  	let hamsun = new Forfatter("Knut", "Hamsun", 1859);	//legger til objekt
+  	blixen.visInfo();
+  	hamsun.visInfo();
+  	</script>
+
+    <h1> Oppgaver: </h1>
+    <p> 1. Det var to nordmenn som utviklet objektorientert programmering: Ole-Johan Dahl og Kristen Nygaard i sitt programmeringsspråk Simula (1965). Bli kjent med de to utviklerne <a href="http://www.ub.uio.no/fag/informatikk-matematikk/informatikk/faglig/dns/">her</a> (lenke på itslearning).<br>
+    2. Oppgave 20.1 og 20.2: <br>
+    <img src="oppg.png">
+  </body>
+</html>

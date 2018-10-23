@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Løsningsforslag</title>
+	<meta charset="utf-8">
+</head>
+<body>
+	<h1> Volum og areal for ulike figurer </h1>
+	<script>
+	// superklasse for kuber
+      class Kube {
+        constructor(lengde) {
+          this.lengde = lengde;
+        }
+        get volum() {
+          return (Math.pow(this.lengde,3)).toFixed(2);
+      }
+      get overflate (){
+        return (6*this.lengde*this.lengde).toFixed(2);
+      }
+    }
+
+    // subklasse for pyramide med en noe forenklet geometrisk betraktning
+    class Pyramide extends Kube {
+      constructor(lengde, hoyde) {
+        super(lengde);
+        this.hoyde = hoyde;
+      }
+      get volum() {
+        return ((1/3)*this.lengde*this.lengde*this.hoyde).toFixed(2);
+      }
+      get overflate() {
+        return (4*(1/2*this.lengde*this.hoyde)+(this.lengde*this.lengde)).toFixed(2);
+      }
+    }
+
+    let kube1 = new Kube(6);
+    let kube2 = new Kube(10);
+    let pyramide1 = new Pyramide(4,7);
+    let pyramide2 = new Pyramide(1,9);
+
+    // skriver ut resultat
+    document.write("Kube 1 har sideflate " +kube1.lengde + ", overflateareal "+kube1.overflate+" og volum "+kube1.volum+"<br> Kube 2 har sideflate " +kube2.lengde + ", overflateareal "+kube2.overflate+" og volum "+kube2.volum+"<br>	Pyramide 1 har grunnflater " + pyramide1.lengde + ", høyde " + pyramide1.hoyde +", overflateareal "+pyramide1.overflate+" og volum "+pyramide1.volum+"<br> Pyramide 2 har grunnflater " + pyramide2.lengde + ", høyde " + pyramide2.hoyde +", overflateareal " +pyramide2.overflate+" og volum "+pyramide2.volum);
+    </script>
+</body>
+</html>

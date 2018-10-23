@@ -1,0 +1,420 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Objektorientering</title>
+    <link rel="stylesheet" type="text/css" href="undervisning.css">
+    <meta charset="utf-8">
+  </head>
+  <body>
+  	<h1> Introduksjon til objektorientert programmering i JavaScript </h1>
+  	<h1> Om perioden: </h1>
+  	<p> Kompetansemålet i læreplanen som handler om objektorientert programmering sier følgende: <b>gjøre rede for hensikten med objektorientert utvikling og begrepene klasse, objekt og arv</b>. Vi kommer til å gå litt dypere i dette temaet og bruke det som utgangspunkt for scriptanimasjoner. <br><br>
+  	<b> Uke 17: </b> <br>
+  	&nbsp;&nbsp; Mandag: ingen time<br>
+  	&nbsp;&nbsp; Torsdag: set, map<br>
+  	&nbsp;&nbsp; Fredag: kap 20.1: introduksjon til objektorientert programmering <br>
+  	<b> Uke 18: </b><br>
+  	&nbsp;&nbsp; Mandag: kap 20.2, 20.3: mer om objektorientert programmering <br>
+  	&nbsp;&nbsp; Torsdag: objektorientert utvikling <br>
+  	&nbsp;&nbsp; Fredag: jobbe med oppgaver til objektorientert programmering <br>
+  	<b> Uke 19: </b><br>
+  	&nbsp;&nbsp; Mandag: kap 21.1, 21.2: requestAnimationFrame, enkle kollisjoner <br>
+  	&nbsp;&nbsp; Torsdag, fredag: ingen timer (himmelspretten)<br>
+  	<b> Uke 20: </b><br>
+  	&nbsp;&nbsp; Mandag: kap 21.3, 21.4: kollisjoner, cancelAnimationFrame <br>
+  	&nbsp;&nbsp; Tirsdag: eksamenstrekk <br>
+  	&nbsp;&nbsp; Torsdag: ingen time (grunnlovsdagen) <br>
+  	&nbsp;&nbsp; Fredag: planlegging og utvikling <br>
+  	<b> Uke 21: </b><br>
+  	&nbsp;&nbsp; Alle dager: eksamenstrening/vi lager spill <br>
+  	<b> Uke 22: </b><br> 
+  	&nbsp;&nbsp; Alle dager; eksamenstrening/vi lager spill <br>
+  	&nbsp;&nbsp; Eksamen IT-2 onsdag 30. mai. <br><br>
+
+  	Skulle det være nødvendig at noen av dere har vippeprøver i faget, vil det bli en vurdering i kapittel 21. Dere får i så fall beskjed om det samtidig som dere får tilbake heldags. Vi avtaler et tidspunkt som passer når skriftlig trekk er over.
+  	
+  	
+	<h1> Set og map </h1>
+	<p> Arrays og objects er to av mage typer datakolleksjoner. Set og map er to nye vi skal bli kjent med i dag </p>
+
+	<h1> Arrays </h1>
+	<p> Arrays gir indekserte verdier, der vi han hente ut hver enkel verdi ved å referere til plasseringen (nummeret) til den aktuelle verdien. Vi husker at nummereringen starter på 0. Vi kan enten legge inn verdier når vi oppretter arrayen eller opprette en tom array som siden fylles med verdier.<br>
+	Vi husker hvordan vi selv sorterte arrays ved å implementere metoden bubblesort, men legg også merke til at vi har følgende metoder for å sortere: </p>
+	<table>
+	<tr> 
+		<th> Metode </th> <th> Forklaring </th>
+	</tr> <tr>
+		<td>arrayNavn.sort(); </td> <td> Sorterer tekst alfabetisk </td>
+	</tr> <tr>
+		<td>arrayNavn.sort(function(a,b){return a-b}); </td> <td> Sorterer tall i stigende rekkefølge </td>
+	</tr> <tr>
+		<td>arrayNavn.sort(function(a,b){return b-a}); </td> <td> Sorterer tall i synkende rekkefølge </td>
+	</tr> <tr>
+		<td>arrayNavn.reverse() </td> <td> Bytter rekkefølge </td>
+	</tr>
+	</table>
+	<p> Dersom vi skal legge inn nye verdier i arrayen har vi ulike metoder, under beskrives disse. </p>
+<table>
+	<tr> 
+		<th> Metode </th> <th> Forklaring </th>
+	</tr> <tr>
+		<td> arrayNavn.push(verdi)</td> <td>Legg til en ny verdi på slutten av arrayen</td>
+	</tr> <tr>
+		<td> arrayNavn.unshift(verdi)</td> <td>Legg til en ny verdi på begynnelsen av arrayen</td>
+	</tr> <tr>
+		<td> arrayNavn.pop()</td> <td>Ta bort arrayens siste verdi</td>
+	</tr> <tr>
+		<td> arrayNavn.shift()</td> <td>Ta bort arrayens første verdi</td>
+	</tr> <tr>
+		<td> arrayNavn.splice(indeks, antall som fjernes)</td> <td>Ta bort verdier i en gitt indeks</td>
+	</tr> <tr>
+		<td> arrayNavn.splice(indeks, antall som fjernes,verdi)</td> <td>Ta  bort verdier i en gitt indeks og sett inn en ny verdi</td>
+	</tr> 
+	</table>
+
+	<h1> Set </h1>
+	<p> En set-kolleksjon er en kolleksjon av data som har unike verdier: ingen verdier er like. Vi kan altså lage array i alle tilfeller vi kan lage set, men ikke omvendt. I og med at ingen set-verdier er like, er det lett å sjekke om seten inneholder bestemte verdier, hente ut verdier og slette bestemte verdier. </p>
+	<table>
+	<tr> 
+		<th> Metode </th> <th> Forklaring </th>
+	</tr> <tr>
+		<td> var setNavn = new Set() </td> <td> Oppretter ny set </td>
+	</tr> <tr>
+		<td> setNavn.add(verdi) </td> <td> Legger til en verdi </td>
+	</tr> <tr>
+		<td> setNavn.clear() </td> <td> Sletter alle verdier </td>
+	</tr> <tr>
+		<td> setNavn.delete(verdi) </td> <td> Sletter en bestemt verdi </td>
+	</tr> <tr>
+		<td> setNavn.has(verdi) </td> <td> Sjekker om en bestemt verdi finnes </td>
+	</tr> <tr>
+		<td> setNavn.values() </td> <td> Gir ut en liste med alle verdiene </td>
+	</tr> <tr>
+		<td> setNavn.size </td> <td> Gir ut antall verdier i kolleksjonen </td>
+	</tr>
+	</table>
+	<p> Eksempel: vi oppretter en set-kolleksjon som inneholder ulike stjerner <br>
+	&nbsp;&nbsp; var stjerner = new Set(); // oppretter set<br>
+	&nbsp;&nbsp; stjerner.add("Sirius"); // legger inn verdier<br>
+	&nbsp;&nbsp; stjerner.add("Vega");<br>
+	&nbsp;&nbsp; stjerner.add("Pollux");<br>
+	&nbsp;&nbsp; document.write(stjerner.has("Arcturus")); // sjekker om stjernen Arcturus finnes<br>
+	&nbsp;&nbsp; document.write(stjerner.size); // skriver ut størrelsen<br>
+	&nbsp;&nbsp; stjerner.add("Pollux"); // forsøker å legge til Pollux en gang til <br>
+	&nbsp;&nbsp; document.write(stjerner.size);<br>
+	&nbsp;&nbsp; stjerner.delete("Pollux"); // sletter Pollux <br>
+	&nbsp;&nbsp; document.write(stjerner.size);<br>
+	&nbsp;&nbsp; stjerner.add("Pollux"); // forsøker å legge til Pollux igjen<br>
+	&nbsp;&nbsp; document.write(stjerner.size);<br>
+	&nbsp;&nbsp; stjerner.clear(); // sletter alt innhold<br>
+	&nbsp;&nbsp; document.write(stjerner.size); //<br><br>
+	Resultatet av document.write-kodene vises under: <br><br>
+	<script>
+		var stjerner = new Set(); // oppretter set
+		stjerner.add("Sirius"); // legger inn verdier
+		stjerner.add("Vega");
+		stjerner.add("Pollux");
+		document.write(stjerner.has("Arcturus") + "<br>"); // sjekker om stjernen Arcturus finnes
+		document.write(stjerner.size + "<br>"); // skriver ut størrelsen
+		stjerner.add("Pollux"); // forsøker å legge til Pollux igjen
+		document.write(stjerner.size + "<br>");
+		stjerner.delete("Pollux"); // sletter Pollux 
+		document.write(stjerner.size + "<br>");
+		stjerner.add("Pollux"); // forsøker å legge til Pollux igjen
+		document.write(stjerner.size + "<br>");
+		stjerner.clear(); // sletter alt innhold
+		document.write(stjerner.size + "<br>"); //
+	</script> 
+	</p>
+
+	<h1> Set og array </h1>
+	<p> Det går an å opprette en set med verdiene fra en array: <br>
+	&nbsp;&nbsp; var arraySet = new Set([verdi1, verdi2, verdi3]); <br>
+	Set-metodene fungerer akkurat som vanlig. Et eksempel vises under:<br>
+	&nbsp;&nbsp; var filmer = new Set(["Harry Potter", "Hobbiten", "Fabeldyr"]);<br>
+	&nbsp;&nbsp; if(filmer.has("Hobbiten")){<br>
+	&nbsp;&nbsp; document.write("Hobbiten finnes i samlingen");<br>
+	&nbsp;&nbsp; filmer.add("Ringenes Herre");<br>
+	&nbsp;&nbsp; document.write("Alle som eier Hobbiten eier også Ringenes Herre. Denne er lagt til");<br>
+	&nbsp;&nbsp; }<br>
+	<script>
+	var filmer = new Set(["Harry Potter", "Hobbiten", "Fabeldyr"]);
+	if(filmer.has("Hobbiten")){
+		document.write("Hobbiten finnes i samlingen <br>");
+		filmer.add("Ringenes Herre");
+		document.write("Alle som eier Hobbiten eier også Ringenes Herre. Denne er lagt til<br>");
+	}
+	</script><br>
+	Set og array har ulike fordeler: set gir enklest muligheten til å hente ut verdier mens array er mulig å sortere. Det er derfor aktuelt å konvertere mellom array og set: </p>
+	<table>
+	<tr> 
+		<th> Metode </th> <th> Forklaring </th>
+	</tr> <tr>
+		<td> var setNavn = new Set(arrayNavn) </td> <td> Oppretter ny set fra array </td>
+	</tr> <tr>
+		<td> var arrayNavn = Array.from(setNavn) </td> <td> Oppretter ny array fra set </td>
+	</tr>
+	</table>
+
+	<h1> Transversere en set </h1>
+	<p> Å transversere en set vil si å jobbe seg gjennom en set verdi-for-verdi: dersom vi ønsker å utføre den samme operasjonen på alle elementene (f.eks. skrive ut alle verdiene i en tekst). Her bruker vi en for-of-løkke: <br>
+	&nbsp;&nbsp; for (var elementNavn of setNavn){<br>
+	&nbsp;&nbsp; kode som skjer <br>
+	&nbsp;&nbsp;}<br>
+	Et eksempel er hvis vi har en set med ulike blomster og vil liste dem opp:<br>
+	&nbsp;&nbsp; var blomster = new Set(["Solsikke", "Engsoleie", "Løvetann", "Hestehov"]); <br>
+	&nbsp;&nbsp; document.write("< ul >") <br>
+	&nbsp;&nbsp; for(var blomst of blomster){ <br>
+	&nbsp;&nbsp; document.write("< li >" + blomst + "< /li >"); <br>
+	&nbsp;&nbsp;} <br>
+	&nbsp;&nbsp; document.write("< /ul >") <br>
+	<script> 
+	var blomster = new Set(["Solsikke", "Engsoleie", "Løvetann", "Hestehov"]);
+	document.write("<ul>")
+	for(var blomst of blomster){
+		document.write("<li>" + blomst + "</li>");
+	}
+	document.write("</ul>")
+	</script>
+	<h1> Oppgave med set </h1>
+	<p> Oppgaven går ut på å lage en applikasjon der du kan bruke en kalender til å sjekke om du har planer på en bestemt dag. Legg inn alle datoer som årstall-måned-dato (2018-05-17) og la bruker velge dato ved hjelp av inputtypen dato (< input type="date">). Legg alle datoer som velges inn i en set og sett som utgangspunkt at 17. mai er opptatt og alle andre datoer er ledige. Gi så brukeren tilbakemelding på om datoen er opptatt eller ikke og legg til valgte datoer som opptatte. </p>
+	
+	<h1> Map </h1>
+  	<p> Vi så at vi kan bruke set i stedet for arrays der det kun er unike verdier og der rekkefølgen ikke spiller noen rolle <br>
+  	Nå skal vi gå gjennom datakolleksjonen map, som kan minne om objects. I map hører alle verdier til en nøkkel, der vi bruker nøkkelen til å få tak i verdien. Vi har flere av de samme metodene i map som i set. </p>
+  	<table>
+	<tr> 
+		<th> Metode </th> <th> Forklaring </th>
+	</tr> <tr>
+		<td> var mapNavn = new Map() </td> <td> Oppretter ny map </td>
+	</tr> <tr>
+		<td> mapNavn.set(nøkkel, verdi) </td> <td> Legger til en verdi </td>
+	</tr> <tr>
+		<td> mapNavn.clear() </td> <td> Sletter alle verdier </td>
+	</tr> <tr>
+		<td> mapNavn.delete(nøkkel) </td> <td> Sletter en verdi med en bestemt nøkkel </td>
+	</tr> <tr>
+		<td> mapNavn.has(nøkkel) </td> <td> Sjekker om en verdi med en bestemt nøkkel finnes </td>
+		</tr> <tr>
+		<td> mapNavn.size</td> <td> Gir ut antall verdier i kolleksjonen </td>
+	</tr> <tr>
+		<td> mapNavn.values() </td> <td> Gir ut en liste med alle verdiene </td>
+	</tr> <tr>
+		<td> mapNavn.keys()</td> <td> Gir ut en liste over alle nøklene </td>
+	</tr> <tr>
+		<td> mapNavn.entries() </td> <td>  Gir ut en liste med alle nøkkel- og verdipar </td>
+	</tr> <tr>
+		<td> mapNavn.get(nøkkel)</td> <td> Henter ut en verdi med en bestemt nøkkel </td>
+	</tr>
+	</table>
+	<p> Eksempel: vi registrerer nye personer i en map. <br>
+	Her vil nøkkelen være personnummeret: denne er unik for hver innbygger <br>
+	&nbsp;&nbsp; //oppretter map<br>
+	&nbsp;&nbsp; var innbyggere = new Map();<br>
+	&nbsp;&nbsp; innbyggere.set("001", "Kalle Kanin");<br>
+	&nbsp;&nbsp; innbyggere.set("002", "Tassen");<br>
+	&nbsp;&nbsp; innbyggere.set("003", "Klaus Ku");<br>
+	&nbsp;&nbsp; //henter ut antall innbyggere:<br>
+	&nbsp;&nbsp; document.write(innbyggere.size);<br>
+	&nbsp;&nbsp; //sjekker om vi har en innbygger 002 og 005<br>
+	&nbsp;&nbsp; document.write(innbyggere.has("002")  + "< br >" + innbyggere.has("005"));<br>
+	&nbsp;&nbsp; //sletter Kalle Kanin<br>
+	&nbsp;&nbsp; innbyggere.delete("001");<br>
+	&nbsp;&nbsp; //erstatter Klaus Ku med Klara Ku<br>
+	&nbsp;&nbsp; innbyggere.set("003", "Klara Ku");<br>
+	&nbsp;&nbsp; //skriver ut Klara Ku<br>
+	&nbsp;&nbsp; document.write(innbyggere.get("003"));<br>
+	
+	<script>
+	//oppretter map
+	var innbyggere = new Map();
+	innbyggere.set("001", "Kalle Kanin");
+	innbyggere.set("002", "Tassen");
+	innbyggere.set("003", "Klaus Ku");
+	//henter ut antall innbyggere:
+	document.write(innbyggere.size +"<br>");
+	//sjekker om vi har en innbygger 002 og 005
+	document.write(innbyggere.has("002") + "<br>" + innbyggere.has("005") + "<br>");
+	//sletter Kalle Kanin
+	innbyggere.delete("001");
+	//erstatter Klaus Ku med Klara Ku
+	innbyggere.set("003", "Klara Ku");
+	//skriver ut Klara Ku
+	document.write(innbyggere.get("003")+"<br>");
+	</script>
+
+	<h1> Map og objects </h1>
+	<p> Vi kan også opprette en map fra objects med informasjon. Som et eksempel har vi en variabel for Kalle Kanin, Tassen og Klaus Ku: <br>
+	&nbsp;&nbsp; // oppretter objects med informasjonen<br>
+	&nbsp;&nbsp; var kalleKanin = {<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; pnr: "001",<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; navn: "Kalle Kanin",<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; adresse: "Kaninsvingen 1"<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; var tassen = {<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; pnr: "002",<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; navn: "Tassen",<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; adresse: "Kjøttbeinstien 1"<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; var klausKu = {<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; pnr: "003",<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; navn: "Klaus Ku",<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; adresse: "Kvegfaret 1"<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp;// oppretter en map der vi skal legge inn informasjonen<br>
+	&nbsp;&nbsp; var innbyggere = new Map();<br>
+	&nbsp;&nbsp; innbyggere.set(kalleKanin.pnr, kalleKanin);<br>
+	&nbsp;&nbsp; innbyggere.set(tassen.pnr, tassen);<br>
+	&nbsp;&nbsp; innbyggere.set(klausKu.pnr, klausKu);</p>
+
+	<script>
+	// oppretter objects med informasjonen
+	var kalleKanin = {
+		pnr: "001",
+		navn: "Kalle Kanin",
+		adresse: "Kaninsvingen 1"
+	}
+	var tassen = {
+		pnr: "002",
+		navn: "Tassen",
+		adresse: "Kjøttbeinstien 1"
+	}
+	var klausKu = {
+		pnr: "003",
+		navn: "Klaus Ku",
+		adresse: "Kvegfaret 1"
+	}
+
+	// oppretter en map der vi skal legge inn informasjonen
+	var innbyggere = new Map();
+	innbyggere.set(kalleKanin.pnr, kalleKanin);
+	innbyggere.set(tassen.pnr, tassen);
+	innbyggere.set(klausKu.pnr, klausKu);
+	</script>
+
+	<h1> Å bruke skjema for å søke opp i en map </h1>
+	<p> Vi kan lage et skjemafelt der brukeren å søke opp de ulike innbyggerne <br>
+	< input type="text" placeholder="personnummer" id="inputPnr"><br>
+	< input type="submit" value="send" id="inputSend"><br>
+	< p id="info"> Skriv inn personnummeret du vil søke etter < /p><br>
+	&nbsp;&nbsp; var inputSend = document.querySelector("#inputSend");<br>
+	&nbsp;&nbsp; var inputPnr = document.querySelector("#inputPnr");<br>
+	&nbsp;&nbsp; var info = document.querySelector("#info");<br>
+	&nbsp;&nbsp; inputSend.addEventListener("click", hentInput);<br>
+	&nbsp;&nbsp; function hentInput(){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; if(innbyggere.has(inputPnr.value)){ //dersom personnummeret finnes<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; var person = innbyggere.get(inputPnr.value);<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; info.innerHTML ="Navn: " + person.navn + "Adresse: " + person.adresse;<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; else{<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; info.innerHTML ="Skriv inn et personnummer som eksisterer";<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; }<br>
+	</p>
+
+	<input type="text" placeholder="personnummer" id="inputPnr">
+	<input type="submit" value="send" id="inputSend">
+	<p id="info"> Skriv inn personnummeret du vil søke etter </p>
+	<script>
+		var inputSend = document.querySelector("#inputSend");
+		var inputPnr = document.querySelector("#inputPnr");
+		var info = document.querySelector("#info");
+		inputSend.addEventListener("click", hentInput);
+		function hentInput(){
+			if(innbyggere.has(inputPnr.value)){ //dersom personnummeret finnes
+				var person = innbyggere.get(inputPnr.value);
+				info.innerHTML ="Navn: " + person.navn + "<br> Adresse: " + person.adresse;
+			}
+			else{
+				info.innerHTML ="Skriv inn et personnummer som eksisterer";
+			}
+		}
+	</script>
+
+	<h1> Transversere en map </h1>
+	<p> Vi har tre muligheter til å jobbe oss gjennom en map: enten ved å bruke nøkler, verdier eller begge. De ulike metodene vises under: </p>
+	<table>
+	<tr> 
+		<th> Metode </th> <th> Forklaring </th>
+	</tr> <tr>
+		<td> for(var nøkkel of mapNavn.keys()){kode} </td> <td> Transverserer nøklene </td>
+	</tr> <tr>
+		<td> for(var verdi of mapNavn.values()){kode} </td> <td> Transverserer verdiene </td>
+	</tr> <tr>
+		<td> for (var [verdi, nøkkel] of mapNavn){kode} </td> <td> Transverserer både nøkler og verdier </td>
+	</tr>
+	<tr>
+		<td> mapNavn.forEach(function(verdi, nøkkel){kode}) </td> <td> Transverserer både nøkler og verdier </td>
+	</tr>
+	</table>
+	<p> Eksempel: Lager en map med filmer (nøkkel er IMDB sin) og løkker gjennom den på tre måter: <br>
+	&nbsp;&nbsp; var filmer = new Map();<br>
+	&nbsp;&nbsp; filmer.set("tt0241527", "Harry Potter og de vises stein");<br>
+	&nbsp;&nbsp; filmer.set("tt0120737", "Ringens brorskap");<br>
+	&nbsp;&nbsp; filmer.set("tt3183660", "Fabeldyr og hvor de er å finne");<br>
+	&nbsp;&nbsp; // løkker gjennom nøklene<br>
+	&nbsp;&nbsp; for(var filmId of filmer.keys()){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; document.write(filmId + "< br>");<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp;// løkker gjennom verdiene<br>
+	&nbsp;&nbsp; for (var film of filmer.values()){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; document.write(film + "< br>");<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; // løkker gjennom begge<br>
+	&nbsp;&nbsp; for(var [filmId, film] of filmer){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; document.write(filmId + ":" + film + "< br>");<br>
+	&nbsp;&nbsp; }<br>
+	&nbsp;&nbsp; filmer.forEach(function(film, filmID){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp; document.write(filmId + ":" + film + "< br>");<br>
+	&nbsp;&nbsp; })<br><br>
+	<script>
+		var filmer = new Map();
+		filmer.set("tt0241527", "Harry Potter og de vises stein");
+		filmer.set("tt0120737", "Ringens brorskap");
+		filmer.set("tt3183660", "Fabeldyr og hvor de er å finne");
+		// løkker gjennom nøklene
+		for(var filmId of filmer.keys()){
+			document.write(filmId + "<br>");
+		}
+		// løkker gjennom verdiene
+		for (var film of filmer.values()){
+			document.write(film + "<br>");
+		}
+		// løkker gjennom begge
+		for(var [filmId, film] of filmer){
+			document.write(filmId + ":" + film + "<br>");
+		}
+		filmer.forEach(function(film, filmID){
+			document.write(filmId + ":" + film + "<br>");
+		})
+	</script>
+	</p>
+	<h1> forEach </h1>
+	<p> Kan også brukes for arrays og sets: <br>
+		<table>
+		<tr> 
+			<th> Kolleksjon </th> <th> forEach-syntax </th>
+		</tr> <tr>
+			<td> Array </td> <td> arrayNavn.forEach(function(verdi, indeks, array){kode}) </td>
+		</tr> <tr>
+			<td> Set </td> <td> mapNavn.forEach(function(verdi, verdi, set){kode}) </td>
+		</tr> <tr>
+			<td> Map </td> <td> mapNavn.forEach(function(verdi, nøkkel, map){kode}) </td>
+		</tr>
+	</table>
+	</p>
+	<!--<h1> NodeList </h1>
+	<p> En nodelist er en samling av HTML-elementer: når vi bruker f.eks. document.querySelectorAll("p") referer vi til alle p-elementer. Listen med disse elementene kalles en nodelist. Nodelisten kan gjøres om til en array med metoden <br>
+	&nbsp;&nbsp; arrayNavn = Array.from(nodelistNavn); </p>-->
+	<h1> Oppgaver </h1>
+	<p> 1a) Opprett en map med telefonnummer og navn på noen venner. Telefonnummer kan være nøkkel. <br>
+		1b) Legg til en ny person <br>
+		1c) Fjern de to siste vennene <br>
+		1d) Transverser mapen og lag en liste over alle venner og telefonnumre på to ulike måter <br>
+		<br>
+		2a) Bruk to input-elementer for å registrere landkode og navn for et land. <br>
+		2b) Bruk landkode som nøkkel og legg landene i en map. <br>
+		2c) Start funksjonen visLand etter at landet er registrert. Funksjonen skal vise alle landene i en tabell på nettsiden. <br>
+  </body>
+</html>

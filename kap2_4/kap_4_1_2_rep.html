@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title> Funksjoner </title>
+	<link rel="stylesheet" type="text/css" href="undervisning.css">
+</head>
+<body>
+	<h1> Hva er en funksjon? </h1>
+	<p> En funksjon er et lite program som inngår som en del av koden i et større program. Eksempler på funksjoner vi allerede har brukt er <br>
+	&nbsp;&nbsp; document.write();<br>
+	&nbsp;&nbsp; console.log();<br>
+	&nbsp;&nbsp; Math.random();<br>
+	Disse er forhåndsdefinert i JavaScript, slik at vi ikke selv trenger å angi hvordan de fungerer. </p>
+	<p> Vi kan også lage våre egne funksjoner. Koden for dette er <br>
+	&nbsp;&nbsp; < script > <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; function funksjonsNavn(){<br>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // kode som kjøres <br>
+	&nbsp;&nbsp;&nbsp;&nbsp; } <br>
+	&nbsp;&nbsp; < /script > </p>
+	<p> For å kalle funksjonen (ta den i bruk) skriver vi funksjonsNavn();</p>
+
+	<h1> Oppgaver </h1>
+	<p> 1. Lag en funksjon som skriver ut "Dette er en funksjon!" til nettsiden. <br>
+	2. Lag en funksjon som skriver ut en tilfeldig hilsen. Den tilfeldige hilsenen kan være "Hei!", "Hallo!" eller "God morgen!" </p>
+
+	<h1> Funksjoner med argumenter </h1>
+	<p> Noen funksjoner er avhengig av input for å fungere. Skal vi for eksempel lage en funksjon som beregner areal av en sirkel, er det nødvendig å kjenne til radiusen. For å kunne bruke samme arealfunksjon på flere sirkler legges derfor radiusen som et input-argument. I deklarasjonen av funksjonen gjøres dette med<br>
+	&nbsp;&nbsp; < script ><br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; function funksjonsNavn(parameter){<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // kode som tar i bruk parameteren<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+ 	&nbsp;&nbsp; < /script ><br><br>
+ 	Som eksempel har vi funksjonen som beregner areal og omkrets av en sirkel, med radius som parameter. Denne deklareres og kalles med ulike verdier for r:<br>
+ 	&nbsp;&nbsp; < script ><br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; function sirkel(r){<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; areal = (Math.PI*r*r).toFixed(2);<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; omkrets = (2*Math.PI*r).toFixed(2);<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; console.log('Arealet til en sirkel med radius '+r+' er '+areal+' og omkretsen er '+omkrets+'.');<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; }<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; sirkel(4);<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; sirkel(1);<br>
+ 	&nbsp;&nbsp;&nbsp;&nbsp; sirkel(10);<br>
+ 	&nbsp;&nbsp; < /script > <br><br>
+
+ 	toFixed(2) sørger her for at svaret gis med to desimaler.</p>
+
+ 	<script>
+ 		function sirkel(r){
+ 			areal = (Math.PI*r*r).toFixed(2);
+ 			omkrets = (2*Math.PI*r).toFixed(2);
+ 			document.write('<p> Arealet til en sirkel med radius '+r+' er '+areal+' og omkretsen er '+omkrets+'.</p>');
+ 		}
+ 		sirkel(4);
+ 		sirkel(1);
+ 		sirkel(10);
+ 	</script>
+
+	<h1> Oppgaver </h1>
+	<p> 1. Lag en funksjon som tar inn et navn som argument og skriver ut en en hilsen til personen med dette navnet. Eks: funksjonen siHeiTil('Asta') skriver ut "Hei, Asta!"<br>
+	2. Lag en funksjon som tar inn lengden og bredden til et rektangel som argument og beregner areal og omkrets. <br>
+	3. Lag en funksjon som tar inn to tall som argument og genererer et tilfeldig tall mellom disse to <br>
+	4. Utvid funksjonen gangetabell til at den tar inn størrelsen på gangetabellen (i stedet for standard 10*10) og returnerer en tabell med denne gangetabellen. <br>
+ 	5. Side 62: oppgave 4.6, 4.7 </p>
+
+ 	<br><br><br><br><br><br>
+</body>
+</html>

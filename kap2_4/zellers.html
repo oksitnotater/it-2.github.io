@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <script>
+      // oppgave a: skriv kode for pseudokoden. test med en dato
+      var D = 28; // dag
+      var M = 9; // måned
+      var Y = 2018; // år
+      var C = 20; // to første sifre i år
+      var K = 18; // to siste sifre i år
+
+      if(M == 1 || M == 2){
+        M+=12; //M = M + 12
+        Y-=1; // Y = Y - 1
+      }
+
+      var X = 2.6*M - 5.39;
+
+      if(X < 0){
+        X = Math.ceil(X); // runder X opp
+      }
+      else{
+        X = Math.floor(X); // runder X ned
+      }
+
+      Y = Math.floor(K/4);
+      var Z = Math.floor(C/4);
+
+      var S = X + Y +Z + D + K - 2*C;
+      var R = S%7;
+
+      if(R == 0){
+        document.write("<p> Det er søndag </p>")
+      }
+      else if(R == 1){
+        document.write("<p> Det er mandag </p>")
+      }
+      else if(R == 2){
+        document.write("<p> Det er tirsdag </p>")
+      }
+      else if(R == 3){
+        document.write("<p> Det er onsdag </p>")
+      }
+      else if(R == 4){
+        document.write("<p> Det er torsdag </p>")
+      }
+      else if(R == 5){
+        document.write("<p> Det er fredag </p>")
+      }
+      else{
+        document.write("<p> Det er lørdag </p>")
+      }
+
+      // oppgave b: lag en funksjon som utfører algoritmen
+      function zellers(D, M, Y, C, K){
+        if(M == 1 || M == 2){
+          M+=12; //M = M + 12
+          Y-=1; // Y = Y - 1
+        }
+
+        var X = 2.6*M - 5.39;
+
+        if(X < 0){
+          X = Math.ceil(X); // runder X opp
+        }
+        else{
+          X = Math.floor(X); // runder X ned
+        }
+
+        Y = Math.floor(K/4);
+        var Z = Math.floor(C/4);
+
+        var S = X + Y +Z + D + K - 2*C;
+        var R = S%7;
+
+        if(R == 0){
+          document.write("<p> Det er søndag </p>")
+        }
+        else if(R == 1){
+          document.write("<p> Det er mandag </p>")
+        }
+        else if(R == 2){
+          document.write("<p> Det er tirsdag </p>")
+        }
+        else if(R == 3){
+          document.write("<p> Det er onsdag </p>")
+        }
+        else if(R == 4){
+          document.write("<p> Det er torsdag </p>")
+        }
+        else if(R == 5){
+          document.write("<p> Det er fredag </p>")
+        }
+        else{
+          document.write("<p> Det er lørdag </p>")
+        }
+
+      }
+
+      zellers(28, 9, 2018, 20, 18);
+
+      // oppgave c: finn ut ukedagen du ble født på
+      // dvs: kjør funksjonen med fødselsdato
+      zellers(15, 4, 1990, 19, 90);
+      zellers(14, 6, 2000, 20, 00); // gir problemer: Y = Math.floor(K/4);
+      zellers(28, 9, 2000, 20, 00);
+
+      // oppgave d: la funksjonen forstå datoinput dd.mm.yyyy
+
+      function zellersDato(dato){
+        //substring: deler opp en string slik vi ønsker
+      /*  var dato = "28.09.2018";
+        var dag = dato.substring(0,2); // fra og med 0, til 2
+        var maned = dato.substring(3,5); // fra og med 3, til 5
+        var ar = dato.substring(6,10); // fra og med 6, til 10
+        document.write(dag + " " + maned + " " + ar + "<br>");*/
+        var D = Number(dato.substring(0,2)); // Number() gjør om til tallvariabler
+        var M = Number(dato.substring(3,5));
+        var Y = Number(dato.substring(6,10));
+        var C = Number(dato.substring(6,8));
+        var K = Number(dato.substring(8,10));
+          //  document.write(typeof K)
+          if(M == 1 || M == 2){
+            M+=12; //M = M + 12
+            Y-=1; // Y = Y - 1
+          }
+
+          var X = 2.6*M - 5.39;
+
+          if(X < 0){
+            X = Math.ceil(X); // runder X opp
+          }
+          else{
+            X = Math.floor(X); // runder X ned
+          }
+
+          Y = Math.floor(K/4);
+          var Z = Math.floor(C/4);
+
+          var S = X + Y +Z + D + K - 2*C;
+          var R = S%7;
+
+          if(R == 0){
+            document.write("<p> Det er søndag </p>")
+          }
+          else if(R == 1){
+            document.write("<p> Det er mandag </p>")
+          }
+          else if(R == 2){
+            document.write("<p> Det er tirsdag </p>")
+          }
+          else if(R == 3){
+            document.write("<p> Det er onsdag </p>")
+          }
+          else if(R == 4){
+            document.write("<p> Det er torsdag </p>")
+          }
+          else if(R == 5){
+            document.write("<p> Det er fredag </p>")
+          }
+          else{
+            document.write("<p> Det er lørdag </p>")
+          }
+      }
+
+
+      zellersDato("28.09.2018");
+
+    </script>
+  </body>
+</html>

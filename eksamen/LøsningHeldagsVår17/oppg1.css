@@ -1,0 +1,45 @@
+#norge{
+	width: 400px;
+	height: 452px;
+	border: 1px solid black;
+	background-image: url("Vedlegg/NorgeSkisteder.jpg");
+	position: fixed;
+	/*background-position: left top; */
+	background-repeat: no-repeat;
+	background-size: 400px 452px;
+}
+
+#hurrungane{
+	/*border: 1px solid red;*/
+	width: 15px;
+	height: 15px;
+	margin-left: 96px;
+	margin-top: 302px;
+	cursor: pointer;
+	position: fixed;
+}
+#halling{
+	/*border: 1px solid red;*/
+	width: 15px;
+	height: 15px;
+	margin-left: 105px;
+	margin-top: 330px;
+	cursor: pointer;
+	position: fixed;
+}
+#okstindan{
+	/*border: 1px solid red;*/
+	width: 15px;
+	height: 15px;
+	margin-left: 196px;
+	margin-top: 175px;
+	cursor: pointer;
+	position: fixed;
+}
+
+#tekst{
+	position: absolute;
+	top:452px;
+	font-size: 30px;
+	color: red;
+}
